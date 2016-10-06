@@ -3,7 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 
 /**
- * Created by marco2 y josep Y hector2 y Richo on 01/09/2016.
+ * Created by marco2 y josep Y hector2 y Richo 1111 on 01/09/2016.
  */
 public class Juego extends Game{
 
