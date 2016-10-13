@@ -54,8 +54,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private void inicializarCamara() {
 
-        camara = new OrthographicCamera(1280,800);
-        camara.position.set(1280/2,800/2,0);
+        camara = new OrthographicCamera(1280,720);
+        camara.position.set(1280/2,720/2,0);
         camara.update();
         vista = new StretchViewport(1280,800,camara);
 
