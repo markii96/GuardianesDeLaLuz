@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class Guerrero {
 
+
+    private Estado estado;
     private Sprite sprite;
 
     int danoFisico = 50;
@@ -19,8 +22,16 @@ public class Guerrero {
 
 
     public Guerrero(Texture textura){
+
         sprite = new Sprite(textura);
     }
+
+    private void actualizar(){
+        //estados
+    }
+
+
+
 
     public Guerrero(Texture Textura, float x, float y){
         this(Textura);
@@ -28,7 +39,30 @@ public class Guerrero {
     }
 
     public void draw(SpriteBatch batch) {
+        actualizar();
         sprite.draw(batch);
+    }
+
+    public boolean contiene(float x, float y){
+        return sprite.getBoundingRectangle().contains(x,y);
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public enum Estado{
+        ATACANDO,
+        GOLPEADO,
+        CAMINANDO,
+        PARADO,
+        MORIR,
+        USANDOHABILDAD,
+        SELECCIONADO //ESTA SE USARA PARA MOSTRAR LAS HABILIDADES DEL HEROE
     }
 
     }

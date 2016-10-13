@@ -29,6 +29,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private SpriteBatch batch;
 
+    private Texto texto; //texto para mostrar el cd de las habilidades
+
     private Fondo fondo;
 
     private Array<Guerrero> guerrero;
@@ -48,6 +50,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         crearEscena();
 
         Gdx.input.setInputProcessor(this);
+        texto =new Texto();
 
 
     }
@@ -79,6 +82,8 @@ public class PantallaJuego implements Screen, InputProcessor {
         Guerrero g = new Guerrero(texturaGuerrero,200,200);
         guerrero.add(g);
 
+        //para la torre
+
 
     }
 
@@ -95,7 +100,16 @@ public class PantallaJuego implements Screen, InputProcessor {
         for(Guerrero g:
                 guerrero) {
             g.draw(batch);
+
+            if(g.getEstado()==Guerrero.Estado.SELECCIONADO){
+
             }
+
+            }
+
+
+
+
 
 
         if(estado == Estado.PERDER){
@@ -163,9 +177,13 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         if(estado == Estado.JUGANDO){
 
-            //espacio para poner si las habilidades don tocadas
+            for(Guerrero g:
+                    guerrero) {
+                if (g.contiene(x,y)){
+                    g.setEstado(Guerrero.Estado.SELECCIONADO);
+                }
 
-
+            }
         }
 
         return true;
@@ -197,11 +215,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     public enum Estado{
         JUGANDO,
         GANAR,
-        PERDER,
-        HACIENDONADA,
-        GOLPEAR,
-        GOLPEADO,
-        CAMINANDO
+        PERDER
     }
 
 }
