@@ -91,7 +91,7 @@ public class MenuPrincipal implements Screen {
 			public void clicked(InputEvent event, float x, float y) {
 				Gdx.app.log("Clicked", "Tap sobre el boton jugar");
                 //cambiar pantalla
-                juego.setScreen(new Tutorial(juego));
+                juego.setScreen(new PantallaJuego(juego));
 			}
 		});
 
