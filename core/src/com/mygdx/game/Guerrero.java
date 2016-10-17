@@ -17,7 +17,7 @@ public class Guerrero {
     int danoFisico = 50;
     int danoMagico = 0;
     int alcance = 2;
-    int curacion =0;
+    int curacion = 0;
     int vida = 1000;
 
 
