@@ -18,6 +18,7 @@ public class Heroe {
 
     private Estado estado;
     private Sprite sprite;
+    private int[] posicionInicial = new int[2];
 
     private String nombre;
     private String clase;
@@ -36,7 +37,6 @@ public class Heroe {
     private Boolean disponibilidad;
     private String descripcion;
     private Texture textura;
-    private int[] posicionInicial = new int[2];
     private String img;
 
     public Heroe(int id, int x, int y) {
@@ -57,35 +57,29 @@ public class Heroe {
         this.nombre = datos[0];
         this.clase = datos[1];
         this.estado = Estado.PARADO;
-        this.nombre = datos[4];
-        this.clase = datos[5];
-        this.danoFisico = Integer.parseInt(datos[6]);
-        this.danoMagico = Integer.parseInt(datos[7]);
-        this.alcance = Float.parseFloat(datos[8]);
-        this.velocidadAatque = Float.parseFloat(datos[9]);
-        this.curacion = Integer.parseInt(datos[10]);
-        this.vitalidad = Integer.parseInt(datos[11]);
-        this.velocidadMovimiento = Float.parseFloat(datos[12]);
-        this.exp = Integer.parseInt(datos[13]);
-        this.nivel = Integer.parseInt(datos[14]);
-        this.armadura = Integer.parseInt(datos[15]);
-        this.precio = Integer.parseInt(datos[16]);
+        this.danoFisico = Integer.parseInt(datos[2]);
+        this.danoMagico = Integer.parseInt(datos[3]);
+        this.alcance = Float.parseFloat(datos[4]);
+        this.velocidadAatque = Float.parseFloat(datos[5]);
+        this.curacion = Integer.parseInt(datos[6]);
+        this.vitalidad = Integer.parseInt(datos[7]);
+        this.velocidadMovimiento = Float.parseFloat(datos[8]);
+        this.exp = Integer.parseInt(datos[9]);
+        this.nivel = Integer.parseInt(datos[10]);
+        this.armadura = Integer.parseInt(datos[11]);
+        this.precio = Integer.parseInt(datos[12]);
         //this.habilidades = ; Checar este
-        if (datos[18]=="1") this.disponibilidad = true;
+        if (datos[14]=="1") this.disponibilidad = true;
         else this.disponibilidad = false;
-        this.descripcion = datos[19];
-        this.textura = new Texture (datos[20]);
+        this.descripcion = datos[15];
+        this.textura = new Texture (datos[16]);
         this.posicionInicial[0] = x;
         this.posicionInicial[1] = y;
-        this.img = datos[21];
+        this.img = datos[17];
 
         this.sprite = new Sprite(this.textura);;
 
-
-
-
     }
-
 
 
     private void actualizar(){
