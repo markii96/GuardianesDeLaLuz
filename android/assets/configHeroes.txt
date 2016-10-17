@@ -1,1 +1,3 @@
-id|nombre|
+id|nombre|clase|danoFisico|danoMagico|alcance|velocidadAatque|curacion|vitalidad|velocidadMovimiento|exp|nivel|armadura|precio|habilidades(por comas)|disponibilidad|descripcion|textura|img
+
+
