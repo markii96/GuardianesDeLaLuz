@@ -44,11 +44,11 @@ public class MenuPrincipal implements Screen {
     }
 
 	public void Preferencias(){
-		Preferences preferencias = Gdx.app.getPreferences("Heroes");
+		Preferences preferencias = Gdx.app.getPreferences("Niveles");
 
-		preferencias.putString("1","Ehtoas|Guerrero|100|0|Corto|2|0|100|1|0|1|1|0|Puñalazo|1|Lorem Ipsum sdhbjjeic|Glad.png|Glad.png");
+		preferencias.putString("1","1|Tuorial|Emprende la nueva aventura|1,2|100|1000|1|nivel1.png|JUGANDO");
 		preferencias.flush();
-		Preferences p = Gdx.app.getPreferences("Heroes");
+		Preferences p = Gdx.app.getPreferences("Niveles");
 		Gdx.app.log("PreferenciasLeidas",p.getString("1"));
 
 	}
