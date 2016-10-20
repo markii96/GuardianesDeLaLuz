@@ -13,6 +13,7 @@ public class Enemigo {
     private Sprite sprite;
     private int[] posicionInicial = new int[2];
 
+    private Estado estado;
     private String nombre;
     private int danoFisico;
     private int danoMagico;
@@ -36,11 +37,6 @@ public class Enemigo {
 
     public boolean contiene(float x, float y){
         return sprite.getBoundingRectangle().contains(x,y);
-    }
-
-
-    public Estado getEstado() {
-        return estado;
     }
 
     public enum Estado{
@@ -149,6 +145,10 @@ public class Enemigo {
 
     public void setTextura(Texture textura) {
         this.textura = textura;
+    }
+
+    public Estado getEstado() {
+        return estado;
     }
 
 }
