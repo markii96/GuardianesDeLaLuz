@@ -43,10 +43,7 @@ public class Enemigo {
         ATACANDO,
         GOLPEADO,
         CAMINANDO,
-        PARADO,
-        MORIR,
-        USANDOHABILDAD,
-        SELECCIONADO //ESTA SE USARA PARA MOSTRAR LAS HABILIDADES DEL HEROE
+        MORIR
     }
 
     public void setEstado(Estado estado) {
