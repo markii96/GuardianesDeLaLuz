@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -39,19 +40,14 @@ public class Heroe {
     private Texture textura;
     private String img;
 
-    public Heroe(int id, int x, int y) {
+    public Heroe(String id, int x, int y) {
 
         String dato;
         String[] datos;
 
-        datos = dato.split("\n");
+        Preferences p = Gdx.app.getPreferences("Heroes");
+        dato = p.getString(id);
 
-        for (int i = 0; i < datos.length; i++){
-            if ((int) datos[i].charAt(0) == id) {
-                dato = datos[i];
-                break;
-            }
-        }
         datos = dato.split("|");
 
         this.nombre = datos[0];
@@ -77,7 +73,7 @@ public class Heroe {
         this.posicionInicial[1] = y;
         this.img = datos[17];
 
-        this.sprite = new Sprite(this.textura);;
+        this.sprite = new Sprite(this.textura);
 
     }
 
