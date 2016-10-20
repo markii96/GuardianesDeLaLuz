@@ -1,1 +1,3 @@
-1|nombre|descripcion|enemigos|heroes|recompensaOro|recompensaExp|disponibilidad|textura|estado|cristal
+id|nombre|descripcion|enemigos|recompensaOro|recompensaExp|disponibilidad|textura|estado
+
+1|Tuorial|Emprende la nueva|1,2|100|1000|1|nivel1.png|JUGANDO
