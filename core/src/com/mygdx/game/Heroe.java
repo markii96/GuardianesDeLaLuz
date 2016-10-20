@@ -113,4 +113,164 @@ public class Heroe {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public int[] getPosicionInicial() {
+        return posicionInicial;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public int getDanoFisico() {
+        return danoFisico;
+    }
+
+    public int getDanoMagico() {
+        return danoMagico;
+    }
+
+    public float getAlcance() {
+        return alcance;
+    }
+
+    public float getVelocidadAatque() {
+        return velocidadAatque;
+    }
+
+    public int getCuracion() {
+        return curacion;
+    }
+
+    public int getVitalidad() {
+        return vitalidad;
+    }
+
+    public float getVelocidadMovimiento() {
+        return velocidadMovimiento;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public int getArmadura() {
+        return armadura;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public Habilidad[] getHabilidades() {
+        return habilidades;
+    }
+
+    public Boolean getDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public Texture getTextura() {
+        return textura;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public void setPosicionInicial(int[] posicionInicial) {
+        this.posicionInicial = posicionInicial;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
+    public void setDanoFisico(int danoFisico) {
+        this.danoFisico = danoFisico;
+    }
+
+    public void setDanoMagico(int danoMagico) {
+        this.danoMagico = danoMagico;
+    }
+
+    public void setAlcance(float alcance) {
+        this.alcance = alcance;
+    }
+
+    public void setVelocidadAatque(float velocidadAatque) {
+        this.velocidadAatque = velocidadAatque;
+    }
+
+    public void setCuracion(int curacion) {
+        this.curacion = curacion;
+    }
+
+    public void setVitalidad(int vitalidad) {
+        this.vitalidad = vitalidad;
+    }
+
+    public void setVelocidadMovimiento(float velocidadMovimiento) {
+        this.velocidadMovimiento = velocidadMovimiento;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public void setArmadura(int armadura) {
+        this.armadura = armadura;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public void setHabilidades(Habilidad[] habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    public void setDisponibilidad(Boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setTextura(Texture textura) {
+        this.textura = textura;
+    }
 }
