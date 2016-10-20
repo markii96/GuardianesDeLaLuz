@@ -56,7 +56,7 @@ public class MenuPrincipal implements Screen {
 
     public void create () {
 
-		Preferencias();
+		//Preferencias();
 		cargarTexturas();
 		escena = new Stage();
 
