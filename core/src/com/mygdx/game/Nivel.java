@@ -55,7 +55,7 @@ public class Nivel {
         return descripcion;
     }
 
-    public Enemigo[] getEnemigos() {
+    public String[] getEnemigos() {
         return enemigos;
     }
 
@@ -95,9 +95,6 @@ public class Nivel {
         this.descripcion = descripcion;
     }
 
-    public void setEnemigos(Enemigo[] enemigos) {
-        this.enemigos = enemigos;
-    }
 
     public void setHeroes(Heroe[] heroes) {
         this.heroes = heroes;
