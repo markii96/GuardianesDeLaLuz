@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Enemigo {
 
-    private Estado estado;
+
     private Sprite sprite;
     private int[] posicionInicial = new int[2];
 
