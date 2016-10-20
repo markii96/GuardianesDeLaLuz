@@ -44,16 +44,6 @@ public class Heroe {
         String dato;
         String[] datos;
 
-        datos = dato.split("\n");
-
-        for (int i = 0; i < datos.length; i++){
-            if ((int) datos[i].charAt(0) == id) {
-                dato = datos[i];
-                break;
-            }
-        }
-        datos = dato.split("|");
-
         this.nombre = datos[0];
         this.clase = datos[1];
         this.estado = Estado.PARADO;
