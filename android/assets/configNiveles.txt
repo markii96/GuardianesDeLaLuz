@@ -1,0 +1,1 @@
+1|nombre|descripcion|enemigos|heroes|recompensaOro|recompensaExp|disponibilidad|textura|estado|cristal
