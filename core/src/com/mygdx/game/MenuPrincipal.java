@@ -43,12 +43,20 @@ public class MenuPrincipal implements Screen {
 
     }
 
+	public void Preferencias(){
+		Preferences preferencias = Gdx.app.getPreferences("Heroes");
 
+		preferencias.putString("1","Ehtoas|Guerrero|100|0|Corto|2|0|100|1|0|1|1|0|Puñalazo|1|Lorem Ipsum sdhbjjeic|Glad.png|Glad.png");
+		preferencias.flush();
+		Preferences p = Gdx.app.getPreferences("Heroes");
+		Gdx.app.log("PreferenciasLeidas",p.getString("1"));
+
+	}
 
 
     public void create () {
 
-
+		Preferencias();
 		cargarTexturas();
 		escena = new Stage();
 
