@@ -1,4 +1,4 @@
 id|nombre|clase|danoFisico|danoMagico|alcance|velocidadAatque|curacion|vitalidad|velocidadMovimiento|exp|nivel|armadura|precio|habilidades(por comas)|disponibilidad|descripcion|textura|img
 
 
-1|Ehtoas|Guerrero|100|0|Corto|2|0|100|1|0|1|1|0|Puñalazo|1|Lorem Ipsum sdhbjjeic|Glad.png|Glad.png
+1-Ehtoas-Guerrero-100-0-Corto-2-0-100-1-0-1-1-0-Puñalazo-1-Lorem Ipsum sdhbjjeic-Glad.png-Glad.png

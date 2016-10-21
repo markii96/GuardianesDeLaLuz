@@ -7,6 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import java.util.Arrays;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,13 +20,13 @@ public class Heroe {
 
     private Estado estado;
     private Sprite sprite;
-    private int[] posicionInicial = new int[2];
+    private int[] posicion = new int[2];
 
     private String nombre;
     private String clase;
     private int danoFisico;
     private int danoMagico;
-    private float alcance;
+    private String alcance;
     private float velocidadAatque;
     private int curacion;
     private int vitalidad;
@@ -48,29 +49,31 @@ public class Heroe {
         Preferences p = Gdx.app.getPreferences("Heroes");
         dato = p.getString(id);
 
-        datos = dato.split("|");
+        datos = dato.split("-");
 
-        this.nombre = datos[0];
-        this.clase = datos[1];
+
+
+        this.nombre = datos[1];
+        this.clase = datos[2];
         this.estado = Estado.PARADO;
-        this.danoFisico = Integer.parseInt(datos[2]);
-        this.danoMagico = Integer.parseInt(datos[3]);
-        this.alcance = Float.parseFloat(datos[4]);
-        this.velocidadAatque = Float.parseFloat(datos[5]);
-        this.curacion = Integer.parseInt(datos[6]);
-        this.vitalidad = Integer.parseInt(datos[7]);
-        this.velocidadMovimiento = Float.parseFloat(datos[8]);
-        this.exp = Integer.parseInt(datos[9]);
-        this.nivel = Integer.parseInt(datos[10]);
-        this.armadura = Integer.parseInt(datos[11]);
-        this.precio = Integer.parseInt(datos[12]);
+        this.danoFisico = Integer.parseInt(datos[3]);
+        this.danoMagico = Integer.parseInt(datos[4]);
+        this.alcance = datos[5];
+        this.velocidadAatque = Float.parseFloat(datos[6]);
+        this.curacion = Integer.parseInt(datos[7]);
+        this.vitalidad = Integer.parseInt(datos[8]);
+        this.velocidadMovimiento = Float.parseFloat(datos[9]);
+        this.exp = Integer.parseInt(datos[10]);
+        this.nivel = Integer.parseInt(datos[11]);
+        this.armadura = Integer.parseInt(datos[12]);
+        this.precio = Integer.parseInt(datos[13]);
         //this.habilidades = ; Checar este
-        if (datos[14]=="1") this.disponibilidad = true;
+        if (datos[15]=="1") this.disponibilidad = true;
         else this.disponibilidad = false;
-        this.descripcion = datos[15];
-        this.textura = new Texture (datos[16]);
-        this.posicionInicial[0] = x;
-        this.posicionInicial[1] = y;
+        this.descripcion = datos[16];
+        this.textura = new Texture (datos[17]);
+        this.posicion[0] = x;
+        this.posicion[1] = y;
         this.img = datos[17];
 
         this.sprite = new Sprite(this.textura);
@@ -114,8 +117,8 @@ public class Heroe {
         return sprite;
     }
 
-    public int[] getPosicionInicial() {
-        return posicionInicial;
+    public int[] getPosicion() {
+        return posicion;
     }
 
     public String getNombre() {
@@ -134,7 +137,7 @@ public class Heroe {
         return danoMagico;
     }
 
-    public float getAlcance() {
+    public String getAlcance() {
         return alcance;
     }
 
@@ -198,8 +201,8 @@ public class Heroe {
         this.sprite = sprite;
     }
 
-    public void setPosicionInicial(int[] posicionInicial) {
-        this.posicionInicial = posicionInicial;
+    public void setPosicion(int[] posicionInicial) {
+        this.posicion = posicionInicial;
     }
 
     public void setNombre(String nombre) {
@@ -218,7 +221,7 @@ public class Heroe {
         this.danoMagico = danoMagico;
     }
 
-    public void setAlcance(float alcance) {
+    public void setAlcance(String alcance) {
         this.alcance = alcance;
     }
 

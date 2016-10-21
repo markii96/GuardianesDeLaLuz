@@ -21,7 +21,7 @@ public class Nivel {
     private Enum estado;
     private Cristal cristal;
 
-    public Nivel(String[] heroes, String id) {
+    public Nivel( String id,String[] heroes) {
 
         String dato;
         String[] datos;
@@ -29,14 +29,16 @@ public class Nivel {
         Preferences p = Gdx.app.getPreferences("Niveles");
         dato = p.getString(id);
 
-        datos = dato.split("|");
+        datos = dato.split("-");
 
         this.nombre = datos[0];
         this.descripcion = datos[1];
         this.enemigos = datos[2].split(",");
-        this.heroes[0] = new Heroe(heroes[0],50,50);
-        this.heroes[1] = new Heroe(heroes[1],100,100);
-        this.heroes[2] = new Heroe(heroes[2],200,200);
+
+        for(int i=0; i<heroes.length; i++){
+            this.heroes[i] = new Heroe(heroes[i],(i+1)*50,(i+1)*50);
+        }
+
         this.recompensaOro = Integer.parseInt(datos[3]);
         this.recompensaExp = Integer.parseInt(datos[4]);
         if (datos[5]=="1") this.disponibilidad = true;

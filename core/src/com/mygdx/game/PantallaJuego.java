@@ -24,7 +24,10 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Viewport vista;
 
     private Texture texturaFondo;
-    private Texture texturaGuerrero;
+    private Texture texturaHeroe1;
+    private Texture texturaHeroe2;
+    private Texture texturaHeroe3;
+
     private Texture texturaTorre;
     private Texture texturaPerdiste;
 
@@ -34,17 +37,27 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Fondo fondo;
 
-    private Array<Guerrero> guerrero;
 
     private Estado estado = Estado.JUGANDO;
+
+    private Nivel nivel;
+
+    private String[] heroesId = new String[1];
 
     public PantallaJuego(Juego juego) {
 
         this.juego = juego;
+        heroesId[0]="1";
+
+        this.nivel = new Nivel("1",heroesId);
+
+
     }
 
     @Override
     public void show() {
+
+
 
         inicializarCamara();
         cargarTexturas();
@@ -67,9 +80,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private void cargarTexturas() {
 
-        texturaFondo = new Texture("campo.png");
-        texturaGuerrero = new Texture("Glad.png");
-        texturaTorre = new Texture("torre.png");
+        texturaFondo = this.nivel.getTextura();
+        texturaHeroe1 = this.nivel.getHeroes()[0].getTextura();
 
     }
 
@@ -77,13 +89,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         batch = new SpriteBatch();
         fondo = new Fondo(texturaFondo);
-
-        //Guerrero
-        guerrero = new Array<Guerrero>(1);
-        Guerrero g = new Guerrero(texturaGuerrero,200,200);
-        guerrero.add(g);
-
-        //para la torre
 
 
     }
@@ -98,15 +103,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         fondo.draw(batch);
 
-        for(Guerrero g:
-                guerrero) {
-            g.draw(batch);
-
-            if(g.getEstado()==Guerrero.Estado.SELECCIONADO){
-
-            }
-
-            }
+        nivel.getHeroes()[0].draw(batch);
 
 
 
@@ -178,13 +175,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         if(estado == Estado.JUGANDO){
 
-            for(Guerrero g:
-                    guerrero) {
-                if (g.contiene(x,y)){
-                    g.setEstado(Guerrero.Estado.SELECCIONADO);
-                }
 
-            }
         }
 
         return true;
