@@ -30,9 +30,6 @@ public class Guerrero {
         //estados
     }
 
-
-
-
     public Guerrero(Texture Textura, float x, float y){
         this(Textura);
         sprite.setPosition(x,y);
