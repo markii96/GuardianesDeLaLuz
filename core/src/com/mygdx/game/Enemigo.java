@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.StringBuilder;
 
 /**
  * Created by LUISRICARDO on 10/20/2016.
@@ -13,18 +14,40 @@ public class Enemigo {
     private Sprite sprite;
     private int[] posicionInicial = new int[2];
 
-    private Estado estado;
+
     private String nombre;
-    private int danoFisico;
-    private int danoMagico;
-    private float alcance;
-    private float velocidadAtaque;
     private int vitalidad;
     private float velocidadMovimiento;
-    private int expSuelta;
+    private float velocidadAtaque;
+    private int danoFisico;
+    private float alcance;
+    private Estado estado;
+    private String objetivo;
     private int nivelEncontrado;
     private String descripcion;
     private Texture textura;
+
+    public Enemigo(String id, int x, int y){
+
+
+
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    public int getNivelEncontrado() {
+        return nivelEncontrado;
+    }
+
+    public void setNivelEncontrado(int nivelEncontrado) {
+        this.nivelEncontrado = nivelEncontrado;
+    }
 
     private void actualizar(){
         //estados
@@ -39,12 +62,7 @@ public class Enemigo {
         return sprite.getBoundingRectangle().contains(x,y);
     }
 
-    public enum Estado{
-        ATACANDO,
-        GOLPEADO,
-        CAMINANDO,
-        MORIR
-    }
+
 
     public void setEstado(Estado estado) {
         this.estado = estado;
@@ -67,15 +85,11 @@ public class Enemigo {
         return danoFisico;
     }
 
-    public int getDanoMagico() {
-        return danoMagico;
-    }
-
     public float getAlcance() {
         return alcance;
     }
 
-    public float getVelocidadAatque() {
+    public float getVelocidadAtaque() {
         return velocidadAtaque;
     }
 
@@ -115,16 +129,12 @@ public class Enemigo {
         this.danoFisico = danoFisico;
     }
 
-    public void setDanoMagico(int danoMagico) {
-        this.danoMagico = danoMagico;
-    }
-
     public void setAlcance(float alcance) {
         this.alcance = alcance;
     }
 
-    public void setVelocidadAatque(float velocidadAatque) {
-        this.velocidadAtaque = velocidadAatque;
+    public void setVelocidadAtaque(float velocidadAtaque) {
+        this.velocidadAtaque = velocidadAtaque;
     }
 
 
@@ -146,6 +156,13 @@ public class Enemigo {
 
     public Estado getEstado() {
         return estado;
+    }
+
+    public enum Estado{
+        ATACANDO,
+        GOLPEADO,
+        CAMINANDO,
+        MORIR
     }
 
 }
