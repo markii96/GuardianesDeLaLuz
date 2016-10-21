@@ -53,7 +53,6 @@ public class MenuPrincipal implements Screen {
 
 	}
 
-
     public void create () {
 
 		//Preferencias();

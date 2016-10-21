@@ -37,7 +37,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Fondo fondo;
 
-
     private Estado estado = Estado.JUGANDO;
 
     private Nivel nivel;
@@ -50,14 +49,10 @@ public class PantallaJuego implements Screen, InputProcessor {
         heroesId[0]="1";
 
         this.nivel = new Nivel("1",heroesId);
-
-
     }
 
     @Override
     public void show() {
-
-
 
         inicializarCamara();
         cargarTexturas();
@@ -65,8 +60,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Gdx.input.setInputProcessor(this);
         texto =new Texto();
-
-
     }
 
     private void inicializarCamara() {
@@ -90,7 +83,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         batch = new SpriteBatch();
         fondo = new Fondo(texturaFondo);
 
-
     }
 
     @Override
@@ -106,20 +98,13 @@ public class PantallaJuego implements Screen, InputProcessor {
         nivel.getHeroes()[0].draw(batch);
 
 
-
-
-
-
         if(estado == Estado.PERDER){
 
             batch.draw(texturaPerdiste,200,200);
 
         }
 
-
-
         batch.end();
-
 
     }
 
