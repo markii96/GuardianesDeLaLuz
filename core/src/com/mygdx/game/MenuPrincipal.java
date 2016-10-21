@@ -46,7 +46,7 @@ public class MenuPrincipal implements Screen {
 	public void Preferencias(){
 		Preferences preferencias = Gdx.app.getPreferences("Niveles");
 
-		preferencias.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-nivel1.png-JUGANDO");
+		preferencias.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-nivel 1.png-JUGANDO");
 		preferencias.flush();
 		Preferences p = Gdx.app.getPreferences("Niveles");
 		Gdx.app.log("PreferenciasLeidas",p.getString("1"));

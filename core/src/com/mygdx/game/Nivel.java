@@ -13,7 +13,7 @@ public class Nivel {
     private String nombre;
     private String descripcion;
     private String[] enemigos;
-    private Heroe[] heroes;
+    private Heroe[] heroes = new Heroe[3];
     private Integer recompensaOro;
     private Integer recompensaExp;
     private Boolean disponibilidad;
@@ -31,19 +31,20 @@ public class Nivel {
 
         datos = dato.split("-");
 
-        this.nombre = datos[0];
-        this.descripcion = datos[1];
-        this.enemigos = datos[2].split(",");
+        this.nombre = datos[1];
+        this.descripcion = datos[2];
+        this.enemigos = datos[3].split(",");
+
 
         for(int i=0; i<heroes.length; i++){
             this.heroes[i] = new Heroe(heroes[i],(i+1)*50,(i+1)*50);
         }
 
-        this.recompensaOro = Integer.parseInt(datos[3]);
-        this.recompensaExp = Integer.parseInt(datos[4]);
-        if (datos[5]=="1") this.disponibilidad = true;
+        this.recompensaOro = Integer.parseInt(datos[4]);
+        this.recompensaExp = Integer.parseInt(datos[5]);
+        if (datos[6]=="1") this.disponibilidad = true;
         else this.disponibilidad = false;
-        this.textura = new Texture (datos[6]);
+        this.textura = new Texture (datos[7]);
         this.cristal = new Cristal();
 
 
