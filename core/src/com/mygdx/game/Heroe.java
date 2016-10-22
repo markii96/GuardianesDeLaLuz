@@ -93,6 +93,10 @@ public class Heroe {
         return sprite.getBoundingRectangle().contains(x,y);
     }
 
+    public void mover(float x, float y){
+
+    }
+
 
     public Estado getEstado() {
         return estado;
