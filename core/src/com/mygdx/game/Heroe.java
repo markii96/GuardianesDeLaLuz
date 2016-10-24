@@ -22,6 +22,14 @@ public class Heroe {
     private Sprite sprite;
     private int[] posicion = new int[2];
 
+    /*
+    public static final float VELOCIDAD_X = 4;      // Velocidad horizontal
+    public static final float VELOCIDAD_Y = 4;    // Vel. vertical
+
+    private Animation animacion;    // Caminando
+    private float timerAnimacion;   // tiempo para calcular el frame
+    */
+
     private String nombre;
     private String clase;
     private int danoFisico;
@@ -275,4 +283,81 @@ public class Heroe {
     public void setTextura(Texture textura) {
         this.textura = textura;
     }
+
+
+
+    /*  codigo para correr Sprites
+    private EstadoMovimiento estadoMovimiento=EstadoMovimiento.INICIANDO;
+
+	public Personaje(Texture textura) {
+        // Lee la textura como región
+        TextureRegion texturaCompleta = new TextureRegion(textura);
+        // La divide en 4 frames de 32x64 (ver marioSprite.png)
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(32,64);
+        // Crea la animación con tiempo de 0.25 segundos entre frames.
+        animacion = new Animation(0.25f,texturaPersonaje[0][1],
+                texturaPersonaje[0][2], texturaPersonaje[0][3] );
+
+        // Animación infinita
+        animacion.setPlayMode(Animation.PlayMode.LOOP);
+        // Inicia el timer que contará tiempo para saber qué frame se dibuja
+        timerAnimacion = 0;
+        // Crea el sprite con el personaje quieto (idle)
+        sprite = new Sprite(texturaPersonaje[0][0]);    // QUIETO
+        sprite.setPosition(300,800);    // Posición inicial	///////mover aqui
+    }
+
+public void render(SpriteBatch batch) {
+        // Dibuja el personaje dependiendo del estadoMovimiento
+        switch (estadoMovimiento) {
+            case MOV_DERECHA:
+            case MOV_IZQUIERDA:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                TextureRegion region = animacion.getKeyFrame(timerAnimacion);		//preguntar
+                if (estadoMovimiento==EstadoMovimiento.MOV_IZQUIERDA) {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
+                batch.draw(region,sprite.getX(),sprite.getY());
+                break;
+            case QUIETO:
+            case INICIANDO:
+                sprite.draw(batch); // Dibuja el sprite
+                break;
+        }
+    }
+
+public void actualizar(TiledMap mapa) {
+        switch (estadoMovimiento) {
+            case MOV_DERECHA:
+            case MOV_IZQUIERDA:
+                moverHorizontal(mapa);
+                break;
+            case INICIANDO:
+                caer(mapa, VELOCIDAD_Y);
+                break;
+        }
+
+        switch (estadoSubiendo) {		///estado golpeando
+            case SUBIENDO:
+            case BAJANDO:
+                actualizarSalto(mapa);
+                break;
+        }
+
+    }
+
+
+
+
+
+
+    */
+
+
 }
