@@ -62,7 +62,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i = 0; i< this.nivel.getCantEnemigos();i++){
             int ran =  (int)(Math.random() * range);
             this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran],100,100,"Cristal");
-            Gdx.app.log("Prueba","Holaaa");
+            Gdx.app.log("Prueba",new Integer(ran).toString());
         }
     }
 
