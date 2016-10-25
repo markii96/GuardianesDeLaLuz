@@ -41,7 +41,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Nivel nivel;
 
-    private String[] heroesId = new String[1];
+    private String[] heroesId = new String[3];
 
     private Enemigo[] enemigos;
 
@@ -49,6 +49,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         this.juego = juego;
         heroesId[0]="1";
+        heroesId[1]="2";
+        heroesId[2]="3";
 
         this.nivel = new Nivel("1",heroesId);
 
@@ -60,6 +62,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i = 0; i< this.nivel.getCantEnemigos();i++){
             int ran =  (int)(Math.random() * range);
             this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran],100,100,"Cristal");
+            Gdx.app.log("Prueba","Holaaa");
         }
     }
 
