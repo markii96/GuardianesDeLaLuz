@@ -19,9 +19,6 @@ import java.awt.Point;
 
 public class PantallaJuego implements Screen, InputProcessor {
     private final Juego juego;
-
-
-
     private OrthographicCamera camara;
     private Viewport vista;
 
@@ -30,7 +27,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Texture texturaHeroe2;
     private Texture texturaHeroe3;
 
-    private int[] posicion = new int[2];
+    private float[] posicion = new float[2];
     private Texture texturaTorre;
     private Texture texturaPerdiste;
 
@@ -44,9 +41,13 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Nivel nivel;
 
+    private Heroe heroes;
+
     private String[] heroesId = new String[3];
 
     private Enemigo[] enemigos;
+
+    float xInicial,yInicial;
 
 
 
@@ -108,6 +109,16 @@ public class PantallaJuego implements Screen, InputProcessor {
         batch = new SpriteBatch();
         fondo = new Fondo(texturaFondo);
 
+
+
+        Heroe hero1 = new Heroe("1",230+300,230+300);
+        Heroe hero2 = new Heroe("2",230+300,230+300);
+        Heroe hero3 = new Heroe("3",230+300,230+300);
+
+
+
+
+
     }
 
     @Override
@@ -136,7 +147,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     }
 
-    public int[] getPosicion1() {
+    public float[] getPosicion1() {
         return posicion;
     }
 
@@ -189,34 +200,50 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x =v.x;
         float y = v.y;
 
-        if ( estado==Estado.JUGANDO ) {
+        if (estado == Estado.JUGANDO) {
 
-            //this.nivel.getHeroes()
+
+                if(heroes.contiene(x,y)){
+
+                    x = xInicial;
+                    y = yInicial;
+                    //h.setPosicion(x,y);
+            }
+
+
 
         }
-
-
-
         return true;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
+
+        Vector3 v = new Vector3(screenX,screenY,0);
+        camara.unproject(v);
+        float x =v.x;
+        float y = v.y;
+
+        //posicion[0] = x;
+        //posicion[1] = y;
+        if (estado == Estado.JUGANDO) {
+
+            if (xInicial > x + 20 || y > yInicial + 20) {
+
+
+                    heroes.setEstado(Heroe.Estado.CAMINANDO);
+                    System.out.println("perro");
+                    heroes.xFinal = x;
+                    heroes.yFinal = y;
+
+            }
+
+        }
+        return true;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-
-
-        if(estado == Estado.JUGANDO) {
-
-
-            posicion[0] = screenX;
-            posicion[1] = screenY;
-        }
-
-
 
 
         return true;

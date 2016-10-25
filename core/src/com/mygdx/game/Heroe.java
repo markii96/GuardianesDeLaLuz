@@ -20,15 +20,17 @@ import java.io.FileReader;
  * Created by Josep on 17/10/16.
  */
 public class Heroe {
-
+    private float b;
     private Estado estado;
     private Sprite sprite;
-    private int[] posicion = new int[2];
+    private float[] posicion = new float[2];
 
     public static final int VELOCIDAD_X = 1;      // Velocidad horizontal
     public static final int VELOCIDAD_Y = 1;    // Vel. vertical
 
-
+    float pendiente;
+    float x,y;
+    public float xFinal, yFinal;
 
     private String nombre;
     private String clase;
@@ -83,6 +85,9 @@ public class Heroe {
 
         for (int i =0; i< hab.length; i++){
             habilidades[i] = new Habilidad(hab[i]);
+
+            this.x = posicion[0];
+            this.y = posicion[1];
         }
 
         if (datos[15]=="1") this.disponibilidad = true;
@@ -121,23 +126,18 @@ public class Heroe {
     private void actualizar(){
         //estados
 
+        pendiente = ((yFinal-posicion[0])/(xFinal-posicion[1]));
+        b = (pendiente*posicion[0])-posicion[1];
+
         switch (estado){
 
+
+
             case CAMINANDO:
+                System.out.println("hola");
 
-                PantallaJuego pj = new PantallaJuego();
-                pj.getPosicion1();
-
-
-                while (this.posicion[0]!= pj.getPosicion1()[0]  && this.posicion[1]!= pj.getPosicion1()[1]){//si es diferente de la posicion hacia donde arrasttro la mano... por ahora se dejara asi
-
-                    this.posicion[0] += 1;
-                    this.posicion[1] += 1;
-
-
-
-            }
-
+                this.posicion[1]+=(pendiente*posicion[0])+b;
+                this.posicion[0]+=(posicion[1]+b)/pendiente;
 
         }
 
@@ -180,7 +180,7 @@ public class Heroe {
         return sprite;
     }
 
-    public int[] getPosicion() {
+    public float[] getPosicion() {
         return posicion;
     }
 
@@ -264,7 +264,7 @@ public class Heroe {
         this.sprite = sprite;
     }
 
-    public void setPosicion(int[] posicionInicial) {
+    public void setPosicion(float[] posicionInicial) {
         this.posicion = posicionInicial;
     }
 
@@ -304,9 +304,12 @@ public class Heroe {
         this.velocidadMovimiento = velocidadMovimiento;
     }
 
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
+   // public void setExp(int exp) {
+    //    this.exp = exp;
+    //}
+
+
+    public void setyFinal(float yFinal1){ this.yFinal = yFinal1;}
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
