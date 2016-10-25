@@ -112,7 +112,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         fondo.draw(batch);
 
 
-        nivel.getHeroes()[0].draw(batch,  nivel.getHeroes()[0].getPosicion()[0],nivel.getHeroes()[0].getPosicion()[1]);
+        nivel.getHeroes()[0].draw(batch);
         nivel.getHeroes()[1].draw(batch);
         nivel.getHeroes()[2].draw(batch);
 

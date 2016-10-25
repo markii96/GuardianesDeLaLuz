@@ -5,8 +5,11 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import java.util.Arrays;
 
 import java.io.BufferedReader;
@@ -49,6 +52,10 @@ public class Heroe {
     private Texture textura;
     private String img;
 
+    // Animación
+    private Animation animacion;    // Caminando
+    private float timerAnimacion;   // tiempo para calcular el frame
+
     public Heroe(String id, int x, int y) {
 
         String dato;
@@ -90,8 +97,21 @@ public class Heroe {
         this.img = datos[17];
 
 
-        this.sprite = new Sprite(this.textura);
 
+        TextureRegion texturaCompleta = new TextureRegion(this.textura);
+        // La divide en frames de 16x32 (ver marioSprite.png)
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(32,64);
+        // Crea la animación con tiempo de 0.25 segundos entre frames.
+        Animation animacion = new Animation(0.25f, texturaPersonaje[0][3],
+                texturaPersonaje[0][2], texturaPersonaje[0][1]);
+        // Animación infinita
+        animacion.setPlayMode(Animation.PlayMode.LOOP);
+        // Inicia el timer que contará tiempo para saber qué frame se dibuja
+        timerAnimacion = 0;
+        // Crea el sprite cuando para el personaje quieto (idle)
+        this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
+        this.sprite.setX(this.posicion[0]);
+        this.sprite.setY(this.posicion[1]);
     }
 
 
@@ -290,9 +310,15 @@ public class Heroe {
     public void setTextura(Texture textura) {
         this.textura = textura;
     }
+/*
+    public void render(SpriteBatch batch) {
+        timerAnimacion += Gdx.graphics.getDeltaTime();
+        // Obtiene el frame que se debe mostrar (de acuerdo al timer)
+        TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+        batch.draw(region, sprite.getX(), sprite.getY());
+    }
 
-
-
+*/
     /*  codigo para correr Sprites
     private EstadoMovimiento estadoMovimiento=EstadoMovimiento.INICIANDO;
 
