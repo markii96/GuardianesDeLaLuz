@@ -100,7 +100,7 @@ public class Heroe {
 
         TextureRegion texturaCompleta = new TextureRegion(this.textura);
         // La divide en frames de 16x32 (ver marioSprite.png)
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(32,64);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(288,576);
         // Crea la animación con tiempo de 0.25 segundos entre frames.
         Animation animacion = new Animation(0.25f, texturaPersonaje[0][3],
                 texturaPersonaje[0][2], texturaPersonaje[0][1]);
@@ -112,6 +112,7 @@ public class Heroe {
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(this.posicion[0]);
         this.sprite.setY(this.posicion[1]);
+        this.sprite.setScale(.3f);
     }
 
 
