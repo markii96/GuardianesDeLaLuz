@@ -59,7 +59,7 @@ public class PantallaOpciones implements Screen {
         botonHistoria = new Texture("historia.png");
         botonInstrucciones = new Texture("instrucciones.png");
 
-        texturaFondo = new Texture("fondo.jpeg");
+        texturaFondo = new Texture("fondo_opciones.png");
         texturaBtnBack = new Texture("back.png");
         botonMejoras = new Texture("mejoras.png");
 
