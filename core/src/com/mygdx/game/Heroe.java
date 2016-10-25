@@ -146,7 +146,7 @@ public class Heroe {
 
 
 
-                    System.out.println(this.posicion);
+                    //System.out.println(this.posicion);
                 }
 
                 if(this.posicion[0]==xFinal && this.posicion[1] == yFinal){
