@@ -39,7 +39,7 @@ public class Nivel {
 
 
         for(int i=0; i<heroes.length; i++){
-            this.heroes[i] = new Heroe(heroes[i],220,(i+1)*200-300);
+            this.heroes[i] = new Heroe(heroes[i],220,(i+1)*50-300);
         }
 
         this.recompensaOro = Integer.parseInt(datos[4]);
