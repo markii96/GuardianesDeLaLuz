@@ -20,6 +20,7 @@ public class Nivel {
     private Texture textura;
     private Enum estado;
     private Cristal cristal;
+    private int cantEnemigos;
 
     public Nivel( String id,String[] heroes) {
 
@@ -42,12 +43,25 @@ public class Nivel {
 
         this.recompensaOro = Integer.parseInt(datos[4]);
         this.recompensaExp = Integer.parseInt(datos[5]);
-        if (datos[6]=="1") this.disponibilidad = true;
+        if (datos[6] == "1") this.disponibilidad = true;
         else this.disponibilidad = false;
         this.textura = new Texture (datos[7]);
+        this.cantEnemigos = Integer.parseInt(datos[8]);
         this.cristal = new Cristal();
 
 
+    }
+
+    public void setEnemigos(String[] enemigos) {
+        this.enemigos = enemigos;
+    }
+
+    public int getCantEnemigos() {
+        return cantEnemigos;
+    }
+
+    public void setCantEnemigos(int cantEnemigos) {
+        this.cantEnemigos = cantEnemigos;
     }
 
     public String getNombre() {

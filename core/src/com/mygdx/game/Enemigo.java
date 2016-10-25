@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,12 +25,33 @@ public class Enemigo {
     private float alcance;
     private Estado estado;
     private String objetivo;
-    private int nivelEncontrado;
     private String descripcion;
     private Texture textura;
 
-    public Enemigo(String id, int x, int y){
+    public Enemigo(String id, int x, int y, String objetivo){
 
+        String dato;
+        String[] datos;
+
+        this.posicionInicial[0] = x;
+        this.posicionInicial[1] = y;
+
+        Preferences p = Gdx.app.getPreferences("Enemigos");
+        dato = p.getString(id);
+
+        datos = dato.split("-");
+
+        this.sprite =  new Sprite(this.textura);
+        this.nombre = datos[1];
+        this.vitalidad = Integer.parseInt(datos[2]);
+        this.velocidadMovimiento = Float.parseFloat(datos[3]);
+        this.velocidadAtaque = Float.parseFloat(datos[4]);
+        this.danoFisico =  Integer.parseInt(datos[5]);
+        this.alcance = Float.parseFloat(datos[6]);
+        this.estado =  Estado.CAMINANDO;
+        this.objetivo = objetivo;
+        this.descripcion = datos[7];
+        this.textura = new Texture (datos[8]);
 
 
     }
@@ -41,13 +64,6 @@ public class Enemigo {
         this.objetivo = objetivo;
     }
 
-    public int getNivelEncontrado() {
-        return nivelEncontrado;
-    }
-
-    public void setNivelEncontrado(int nivelEncontrado) {
-        this.nivelEncontrado = nivelEncontrado;
-    }
 
     private void actualizar(){
         //estados

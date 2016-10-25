@@ -43,12 +43,24 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private String[] heroesId = new String[1];
 
+    private Enemigo[] enemigos;
+
     public PantallaJuego(Juego juego) {
 
         this.juego = juego;
         heroesId[0]="1";
 
         this.nivel = new Nivel("1",heroesId);
+
+        this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
+
+        int range = (nivel.getCantEnemigos()-1) + 1;
+
+
+        for (int i = 0; i< this.nivel.getCantEnemigos();i++){
+            int ran =  (int)(Math.random() * range);
+            this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran],100,100,"Cristal");
+        }
     }
 
     @Override
@@ -75,6 +87,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         texturaFondo = this.nivel.getTextura();
         texturaHeroe1 = this.nivel.getHeroes()[0].getTextura();
+        texturaHeroe2 = this.nivel.getHeroes()[1].getTextura();
+        texturaHeroe3 = this.nivel.getHeroes()[2].getTextura();
 
     }
 
@@ -96,6 +110,8 @@ public class PantallaJuego implements Screen, InputProcessor {
         fondo.draw(batch);
 
         nivel.getHeroes()[0].draw(batch);
+        nivel.getHeroes()[1].draw(batch);
+        nivel.getHeroes()[2].draw(batch);
 
 
         if(estado == Estado.PERDER){

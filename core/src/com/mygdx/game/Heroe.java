@@ -43,7 +43,7 @@ public class Heroe {
     private int nivel;
     private int armadura;
     private int precio;
-    private Habilidad[] habilidades = new Habilidad[1];
+    private Habilidad[] habilidades;
     private Boolean disponibilidad;
     private String descripcion;
     private Texture textura;
@@ -73,7 +73,14 @@ public class Heroe {
         this.nivel = Integer.parseInt(datos[11]);
         this.armadura = Integer.parseInt(datos[12]);
         this.precio = Integer.parseInt(datos[13]);
-        this.habilidades[0] = new Habilidad("habilidad1");
+
+        String[] hab = datos[14].split(",");
+        this.habilidades = new Habilidad[hab.length];
+
+        for (int i =0; i< hab.length; i++){
+            habilidades[i] = new Habilidad(hab[i]);
+        }
+
         if (datos[15]=="1") this.disponibilidad = true;
         else this.disponibilidad = false;
         this.descripcion = datos[16];

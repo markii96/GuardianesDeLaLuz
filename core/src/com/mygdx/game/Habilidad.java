@@ -5,9 +5,11 @@ package com.mygdx.game;
  */
 public class Habilidad {
 
-    private String nombre;
+    private String id;
 
-    public Habilidad(String nombre){
-        this.nombre = nombre;
+    public Habilidad(String id){
+
+        this.id = id;
+
     }
 }
