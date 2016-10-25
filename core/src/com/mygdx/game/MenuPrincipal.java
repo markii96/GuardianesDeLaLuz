@@ -96,7 +96,7 @@ public class MenuPrincipal implements Screen {
 		//jugar
 		TextureRegionDrawable trBtnJugar = new TextureRegionDrawable(new TextureRegion(texturaBtnJugar));
 		ImageButton btnJugar = new ImageButton( trBtnJugar );
-		btnJugar.setPosition(ancho*17/10 - btnJugar.getWidth(), 0.55f*alto);
+		btnJugar.setPosition(ancho*17/10 - btnJugar.getWidth(), 0.50f*alto);
 		btnJugar.setWidth(btnJugar.getWidth()*.35f);
 		btnJugar.setHeight(btnJugar.getHeight()*.35f);
 		escena.addActor(btnJugar);
@@ -104,7 +104,7 @@ public class MenuPrincipal implements Screen {
 		// Opciones
 		TextureRegionDrawable trBtnOpciones = new TextureRegionDrawable(new TextureRegion(texturaBtnOpciones));
 		ImageButton btnOpciones = new ImageButton( trBtnOpciones );
-		btnOpciones.setPosition(ancho*17/10 - btnOpciones.getWidth(), 0.325f*alto);
+		btnOpciones.setPosition(ancho*17/10 - btnOpciones.getWidth(), 0.275f*alto);
 		btnOpciones.setWidth(btnOpciones.getWidth()*.35f);
 		btnOpciones.setHeight(btnOpciones.getHeight()*.35f);
 		escena.addActor(btnOpciones);
@@ -112,7 +112,7 @@ public class MenuPrincipal implements Screen {
 		//Acerca de
 		TextureRegionDrawable trBtnAcercaDe = new TextureRegionDrawable(new TextureRegion(texturaBtnAcercaDe));
 		ImageButton btnAcercaDe = new ImageButton( trBtnAcercaDe );
-		btnAcercaDe.setPosition(ancho*17/10 - btnAcercaDe.getWidth(), 0.10f*alto);
+		btnAcercaDe.setPosition(ancho*17/10 - btnAcercaDe.getWidth(), 0.05f*alto);
 		btnAcercaDe.setWidth(btnAcercaDe.getWidth()*.35f);
 		btnAcercaDe.setHeight(btnAcercaDe.getHeight()*.35f);
 		escena.addActor(btnAcercaDe);
