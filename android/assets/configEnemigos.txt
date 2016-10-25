@@ -1,0 +1,4 @@
+id-nombre-vitalidad-velocidad de Movi- velocidad de ataque-daño fisico- alcance-descripcion-textura
+
+1-crawler-500-2-2-10-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png
+2-soulEater-800-1-2-15-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png

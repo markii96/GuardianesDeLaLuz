@@ -1,0 +1,5 @@
+id-nombre-tiempo reutilizacion-tipo-disponibilidad-textura-animacion
+
+1-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png
+2-Misil Arcano-4-uno-1-misil_arcano.png--misil_arcano_anim.png
+3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png
