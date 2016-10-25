@@ -22,7 +22,7 @@ public class Enemigo {
     private float velocidadMovimiento;
     private float velocidadAtaque;
     private int danoFisico;
-    private float alcance;
+    private String alcance;
     private Estado estado;
     private String objetivo;
     private String descripcion;
@@ -49,7 +49,7 @@ public class Enemigo {
         this.velocidadMovimiento = Float.parseFloat(datos[3]);
         this.velocidadAtaque = Float.parseFloat(datos[4]);
         this.danoFisico =  Integer.parseInt(datos[5]);
-        this.alcance = Float.parseFloat(datos[6]);
+        this.alcance = datos[6];
         this.estado =  Estado.CAMINANDO;
         this.objetivo = objetivo;
         this.descripcion = datos[7];
@@ -103,7 +103,7 @@ public class Enemigo {
         return danoFisico;
     }
 
-    public float getAlcance() {
+    public String getAlcance() {
         return alcance;
     }
 
@@ -147,7 +147,7 @@ public class Enemigo {
         this.danoFisico = danoFisico;
     }
 
-    public void setAlcance(float alcance) {
+    public void setAlcance(String alcance) {
         this.alcance = alcance;
     }
 

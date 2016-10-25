@@ -34,6 +34,7 @@ public class Nivel {
 
         this.nombre = datos[1];
         this.descripcion = datos[2];
+        this.enemigos = new String[datos[3].split(",").length];
         this.enemigos = datos[3].split(",");
 
 
