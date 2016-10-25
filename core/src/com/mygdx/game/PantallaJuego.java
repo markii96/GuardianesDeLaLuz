@@ -56,7 +56,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
 
-        int range = (nivel.getCantEnemigos()-1) + 1;
+        int range = (nivel.getEnemigos().length-1) + 1;
 
 
         for (int i = 0; i< this.nivel.getCantEnemigos();i++){
