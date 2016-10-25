@@ -143,6 +143,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         }
 
+
         batch.end();
 
     }
