@@ -149,7 +149,7 @@ public class MenuPrincipal implements Screen {
 
 	private void cargarTexturas() {
 		//Textura de fondo
-		assetManager.load("fondo.jpeg", Texture.class);
+		assetManager.load("fondo.png", Texture.class);
 		//Textura de botones
 		assetManager.load("jugar.png", Texture.class);
 		assetManager.load("opciones.png", Texture.class);

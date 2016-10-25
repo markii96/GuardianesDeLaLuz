@@ -1,3 +1,3 @@
 id|nombre|descripcion|enemigos|recompensaOro|recompensaExp|disponibilidad|textura|estado
 
-1|Tuorial|Emprende la nueva aventura|1,2|100|1000|1|nivel1.png|JUGANDO
+1|Tuorial|Emprende la nueva aventura|1,2|100|1000|1|campo.png|JUGANDO
