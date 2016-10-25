@@ -96,25 +96,25 @@ public class MenuPrincipal implements Screen {
 		//jugar
 		TextureRegionDrawable trBtnJugar = new TextureRegionDrawable(new TextureRegion(texturaBtnJugar));
 		ImageButton btnJugar = new ImageButton( trBtnJugar );
-		btnJugar.setPosition(ancho - btnJugar.getWidth(), 0.4f*alto);
-		btnJugar.setWidth(btnJugar.getWidth()*.3f);
-		btnJugar.setHeight(btnJugar.getHeight()*.3f);
+		btnJugar.setPosition(ancho*17/10 - btnJugar.getWidth(), 0.55f*alto);
+		btnJugar.setWidth(btnJugar.getWidth()*.35f);
+		btnJugar.setHeight(btnJugar.getHeight()*.35f);
 		escena.addActor(btnJugar);
 
 		// Opciones
 		TextureRegionDrawable trBtnOpciones = new TextureRegionDrawable(new TextureRegion(texturaBtnOpciones));
 		ImageButton btnOpciones = new ImageButton( trBtnOpciones );
-		btnOpciones.setPosition(ancho/2 - btnOpciones.getWidth()/2, 0.5f*alto);
-		btnOpciones.setWidth(btnOpciones.getWidth()*.3f);
-		btnOpciones.setHeight(btnOpciones.getHeight()*.3f);
+		btnOpciones.setPosition(ancho*17/10 - btnOpciones.getWidth(), 0.325f*alto);
+		btnOpciones.setWidth(btnOpciones.getWidth()*.35f);
+		btnOpciones.setHeight(btnOpciones.getHeight()*.35f);
 		escena.addActor(btnOpciones);
 
 		//Acerca de
 		TextureRegionDrawable trBtnAcercaDe = new TextureRegionDrawable(new TextureRegion(texturaBtnAcercaDe));
 		ImageButton btnAcercaDe = new ImageButton( trBtnAcercaDe );
-		btnAcercaDe.setPosition(ancho/2 - btnAcercaDe.getWidth()/2, 0.6f*alto);
-		btnAcercaDe.setWidth(btnAcercaDe.getWidth()*.3f);
-		btnAcercaDe.setHeight(btnAcercaDe.getHeight()*.3f);
+		btnAcercaDe.setPosition(ancho*17/10 - btnAcercaDe.getWidth(), 0.10f*alto);
+		btnAcercaDe.setWidth(btnAcercaDe.getWidth()*.35f);
+		btnAcercaDe.setHeight(btnAcercaDe.getHeight()*.35f);
 		escena.addActor(btnAcercaDe);
 
 		//agregar titulo
