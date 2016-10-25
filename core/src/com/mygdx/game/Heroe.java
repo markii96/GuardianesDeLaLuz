@@ -25,11 +25,10 @@ public class Heroe {
     private Sprite sprite;
     private int[] posicion = new int[2];
 
-    /*
-    public static final float VELOCIDAD_X = 4;      // Velocidad horizontal
-    public static final float VELOCIDAD_Y = 4;    // Vel. vertical
+    public static final int VELOCIDAD_X = 1;      // Velocidad horizontal
+    public static final int VELOCIDAD_Y = 1;    // Vel. vertical
 
-    */
+
 
     private String nombre;
     private String clase;
@@ -121,6 +120,28 @@ public class Heroe {
 
     private void actualizar(){
         //estados
+
+        switch (estado){
+
+            case CAMINANDO:
+
+                PantallaJuego pj = new PantallaJuego();
+                pj.getPosicion1();
+
+
+                while (this.posicion[0]!= pj.getPosicion1()[0]  && this.posicion[1]!= pj.getPosicion1()[1]){//si es diferente de la posicion hacia donde arrasttro la mano... por ahora se dejara asi
+
+                    this.posicion[0] += 1;
+                    this.posicion[1] += 1;
+
+
+
+            }
+
+
+        }
+
+
     }
 
     public void draw(SpriteBatch batch) {
@@ -375,16 +396,9 @@ public void actualizar(TiledMap mapa) {
             case MOV_IZQUIERDA:
                 moverHorizontal(mapa);
                 break;
-            case INICIANDO:
-                caer(mapa, VELOCIDAD_Y);
-                break;
         }
 
-        switch (estadoSubiendo) {		///estado golpeando
-            case SUBIENDO:
-            case BAJANDO:
-                actualizarSalto(mapa);
-                break;
+
         }
 
     }

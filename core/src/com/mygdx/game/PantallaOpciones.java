@@ -99,6 +99,7 @@ public class PantallaOpciones implements Screen {
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
+        //btnInstrucciones.setScale(.4f);
 
         escena.addActor(imgFondo);
         escena.addActor(btnBack);

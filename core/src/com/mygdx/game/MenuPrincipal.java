@@ -43,6 +43,7 @@ public class MenuPrincipal implements Screen {
 
     }
 
+
 	public void Preferencias(){
 		/*Gdx.app.log("PreferenciasLeidas",p.getString("1"));*/
 

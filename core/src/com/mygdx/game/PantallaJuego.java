@@ -20,6 +20,8 @@ import java.awt.Point;
 public class PantallaJuego implements Screen, InputProcessor {
     private final Juego juego;
 
+
+
     private OrthographicCamera camara;
     private Viewport vista;
 
@@ -28,6 +30,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Texture texturaHeroe2;
     private Texture texturaHeroe3;
 
+    private int[] posicion = new int[2];
     private Texture texturaTorre;
     private Texture texturaPerdiste;
 
@@ -44,6 +47,8 @@ public class PantallaJuego implements Screen, InputProcessor {
     private String[] heroesId = new String[3];
 
     private Enemigo[] enemigos;
+
+
 
     public PantallaJuego(Juego juego) {
 
@@ -65,6 +70,9 @@ public class PantallaJuego implements Screen, InputProcessor {
         }
 
     }
+
+
+
 
     @Override
     public void show() {
@@ -118,9 +126,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         nivel.getHeroes()[2].draw(batch);
         nivel.getCristal().draw(batch);
 
-
-
-
         if(estado == Estado.PERDER){
 
             batch.draw(texturaPerdiste,200,200);
@@ -129,6 +134,10 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         batch.end();
 
+    }
+
+    public int[] getPosicion1() {
+        return posicion;
     }
 
     @Override
@@ -177,14 +186,16 @@ public class PantallaJuego implements Screen, InputProcessor {
         //si toco alguna habilidad
         Vector3 v = new Vector3(screenX,screenY,0);
         camara.unproject(v);
-
         float x =v.x;
         float y = v.y;
 
-        if(estado == Estado.JUGANDO){
+        if ( estado==Estado.JUGANDO ) {
 
+            //this.nivel.getHeroes()
 
         }
+
+
 
         return true;
     }
@@ -197,9 +208,18 @@ public class PantallaJuego implements Screen, InputProcessor {
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
 
-        //if(guerrero.g)
 
-        return false;
+        if(estado == Estado.JUGANDO) {
+
+
+            posicion[0] = screenX;
+            posicion[1] = screenY;
+        }
+
+
+
+
+        return true;
     }
 
     @Override
@@ -215,7 +235,9 @@ public class PantallaJuego implements Screen, InputProcessor {
     public enum Estado{
         JUGANDO,
         GANAR,
-        PERDER
+        PERDER,
+        SELECCIONADO
+
     }
 
 }
