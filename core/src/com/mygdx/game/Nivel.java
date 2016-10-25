@@ -49,6 +49,8 @@ public class Nivel {
         this.cantEnemigos = Integer.parseInt(datos[8]);
         this.cristal = new Cristal();
 
+        this.estado = Estado.JUGANDO;
+
 
     }
 
@@ -139,5 +141,11 @@ public class Nivel {
 
     public void setCristal(Cristal cristal) {
         this.cristal = cristal;
+    }
+
+    public enum Estado{
+        JUGANDO,
+        GANAR,
+        PERDER
     }
 }
