@@ -94,13 +94,18 @@ public class Heroe {
         this.textura = new Texture (datos[17]);
         this.posicion[0] = x;
         this.posicion[1] = y;
-        this.img = datos[17];
+        this.img = datos[18];
 
+        String[] medidas = datos[19].split(",");
+        int medidax = Integer.parseInt(medidas[0])/4;
+        int mediday = Integer.parseInt(medidas[1]);
+
+        Gdx.app.log("prueba",medidas[1]);
 
 
         TextureRegion texturaCompleta = new TextureRegion(this.textura);
         // La divide en frames de 16x32 (ver marioSprite.png)
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(286,576);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
         // Crea la animación con tiempo de 0.25 segundos entre frames.
         Animation animacion = new Animation(0.25f, texturaPersonaje[0][3],
                 texturaPersonaje[0][2], texturaPersonaje[0][1]);

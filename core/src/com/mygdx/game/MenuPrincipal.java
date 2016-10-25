@@ -55,7 +55,7 @@ public class MenuPrincipal implements Screen {
 			Preferences p = Gdx.app.getPreferences("Enemigos");
 			preferenciasHeroes.putString("1","1-Ehtoas-Guerrero-100-0-Corto-2-0-100-1-0-1-1-0-1-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png-1728,576");
 			preferenciasHeroes.putString("2","2-Althalas-Mago-0-100-Largo-2-0-40-1-0-1-1-0-2-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png-1152,576");
-			preferenciasHeroes.putString("3","3-Orina-Arquero-70-0-Largo-3-0-50-1-0-1-1-0-3-1-Dejó su pueblo para salvar la luz del mundo-arquero_caminando.png-arquero-png-1152,576");
+			preferenciasHeroes.putString("3","3-Orina-Arquero-70-0-Largo-3-0-50-1-0-1-1-0-3-1-Dejó su pueblo para salvar la luz del mundo-arquero_caminando.png-arquero.png-1152,576");
 			preferenciasHeroes.flush();
 			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-10");
 			preferenciasNiveles.flush();
@@ -97,24 +97,30 @@ public class MenuPrincipal implements Screen {
 		TextureRegionDrawable trBtnJugar = new TextureRegionDrawable(new TextureRegion(texturaBtnJugar));
 		ImageButton btnJugar = new ImageButton( trBtnJugar );
 		btnJugar.setPosition(ancho - btnJugar.getWidth(), 0.4f*alto);
+		btnJugar.setWidth(btnJugar.getWidth()*.4f);
+		btnJugar.setHeight(btnJugar.getHeight()*.4f);
 		escena.addActor(btnJugar);
 
 		// Opciones
 		TextureRegionDrawable trBtnOpciones = new TextureRegionDrawable(new TextureRegion(texturaBtnOpciones));
 		ImageButton btnOpciones = new ImageButton( trBtnOpciones );
 		btnOpciones.setPosition(ancho/6 - btnOpciones.getWidth()/2, 0.4f*alto);
+		btnOpciones.setWidth(btnOpciones.getWidth()*.4f);
+		btnOpciones.setHeight(btnOpciones.getHeight()*.4f);
 		escena.addActor(btnOpciones);
 
 		//Acerca de
 		TextureRegionDrawable trBtnAcercaDe = new TextureRegionDrawable(new TextureRegion(texturaBtnAcercaDe));
 		ImageButton btnAcercaDe = new ImageButton( trBtnAcercaDe );
 		btnAcercaDe.setPosition(ancho/2 - btnAcercaDe.getWidth()/2, 0.05f*alto);
+		btnAcercaDe.setWidth(btnAcercaDe.getWidth()*.4f);
+		btnAcercaDe.setHeight(btnAcercaDe.getHeight()*.4f);
 		escena.addActor(btnAcercaDe);
 
 		//agregar titulo
-		Image imgTitulo = new Image(texturaTitulo);
+		/*Image imgTitulo = new Image(texturaTitulo);
 		imgTitulo.setPosition(ancho/2 -imgTitulo.getWidth()/2, 0.8f*alto);
-		escena.addActor(imgTitulo);
+		escena.addActor(imgTitulo);*/
 
 		//registrar listener
 		btnJugar.addListener(new ClickListener(){
@@ -157,7 +163,7 @@ public class MenuPrincipal implements Screen {
 		assetManager.load("menu.png", Texture.class);
 
 		assetManager.finishLoading();
-		texturaFondo=assetManager.get("fondo.jpeg");
+		texturaFondo=assetManager.get("fondo.png");
 
 		//cuando termina, llemos las texturas
 		texturaBtnJugar = assetManager.get("jugar.png");
