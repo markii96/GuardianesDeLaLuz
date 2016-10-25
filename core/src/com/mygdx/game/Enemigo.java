@@ -41,6 +41,8 @@ public class Enemigo {
 
         datos = dato.split("-");
 
+        this.textura = new Texture (datos[8]);
+
         this.sprite =  new Sprite(this.textura);
         this.nombre = datos[1];
         this.vitalidad = Integer.parseInt(datos[2]);
@@ -51,7 +53,7 @@ public class Enemigo {
         this.estado =  Estado.CAMINANDO;
         this.objetivo = objetivo;
         this.descripcion = datos[7];
-        this.textura = new Texture (datos[8]);
+
 
 
     }
