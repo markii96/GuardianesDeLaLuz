@@ -25,9 +25,6 @@ public class Heroe {
     private Sprite sprite;
     private float[] posicion = new float[2];
 
-    public static final int VELOCIDAD_X = 1;      // Velocidad horizontal
-    public static final int VELOCIDAD_Y = 1;    // Vel. vertical
-
     float pendiente;
     float x,y;
     public float xFinal, yFinal;
@@ -50,6 +47,7 @@ public class Heroe {
     private String descripcion;
     private Texture textura;
     private String img;
+    float[] cambioPosicion = new float[2];
 
     // Animación
     private Animation animacion;    // Caminando
@@ -132,13 +130,28 @@ public class Heroe {
         switch (estado){
 
 
-
+            case PARADO:break;
             case CAMINANDO:
-                System.out.println("hola");
 
-                this.posicion[1]+=(pendiente*posicion[0])+b;
-                this.posicion[0]+=(posicion[1]+b)/pendiente;
 
+
+                if((this.posicion[0]>=(xFinal-5) || this.posicion[0]<=(xFinal+5))&&(this.posicion[1]>=(yFinal-5) || this.posicion[1]<=(yFinal+5))) {
+                    posicion[1] += (pendiente * posicion[0]) + b;
+                    posicion[0] += (posicion[1] + b) / pendiente;
+
+                    cambioPosicion[0] = posicion[0];
+                    cambioPosicion[1] = posicion[1];
+
+                    this.setPosicion(cambioPosicion);
+
+
+
+                    System.out.println(this.posicion);
+                }
+
+                if(this.posicion[0]==xFinal && this.posicion[1] == yFinal){
+                    estado = Estado.PARADO;
+                }
         }
 
 
