@@ -29,8 +29,6 @@ public class Heroe {
     public static final float VELOCIDAD_X = 4;      // Velocidad horizontal
     public static final float VELOCIDAD_Y = 4;    // Vel. vertical
 
-    private Animation animacion;    // Caminando
-    private float timerAnimacion;   // tiempo para calcular el frame
     */
 
     private String nombre;
