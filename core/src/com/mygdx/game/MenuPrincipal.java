@@ -104,7 +104,7 @@ public class MenuPrincipal implements Screen {
 		// Opciones
 		TextureRegionDrawable trBtnOpciones = new TextureRegionDrawable(new TextureRegion(texturaBtnOpciones));
 		ImageButton btnOpciones = new ImageButton( trBtnOpciones );
-		btnOpciones.setPosition(ancho/6 - btnOpciones.getWidth()/2, 0.4f*alto);
+		btnOpciones.setPosition(ancho/2 - btnOpciones.getWidth()/2, 0.4f*alto);
 		btnOpciones.setWidth(btnOpciones.getWidth()*.4f);
 		btnOpciones.setHeight(btnOpciones.getHeight()*.4f);
 		escena.addActor(btnOpciones);
