@@ -1,6 +1,6 @@
-id|nombre|clase|danoFisico|danoMagico|alcance|velocidadAatque|curacion|vitalidad|velocidadMovimiento|exp|nivel|armadura|precio|habilidades id(por comas)|disponibilidad|descripcion|textura|img
+id|nombre|clase|danoFisico|danoMagico|alcance|velocidadAatque|curacion|vitalidad|velocidadMovimiento|exp|nivel|armadura|precio|habilidades id(por comas)|disponibilidad|descripcion|textura|img|medidas
 
 
-1-Ehtoas-Guerrero-100-0-Corto-2-0-100-1-0-1-1-0-Puñalazo-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png
-2-Althalas-Mago-0-100-Largo-2-0-40-1-0-1-1-0-Misil_Arcano-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png
-3-Orina-Arquero-70-0-Largo-3-0-50-1-0-1-1-0-Triple_Flecha-1-Dejó su pueblo para salvar la luz del mundo-arquero.png-arquero_caminando.png
+1-Ehtoas-Guerrero-100-0-Corto-2-0-100-1-0-1-1-0-Puñalazo-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png-1728,576
+2-Althalas-Mago-0-100-Largo-2-0-40-1-0-1-1-0-Misil_Arcano-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png-1152,576
+3-Orina-Arquero-70-0-Largo-3-0-50-1-0-1-1-0-Triple_Flecha-1-Dejó su pueblo para salvar la luz del mundo-arquero.png-arquero_caminando.png-1152,576
