@@ -143,7 +143,7 @@ public class Enemigo {
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 region = animacion.getKeyFrame(timerAnimacion);
 
-                batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+                batch.draw(region, sprite.getX(), sprite.getY());
                 break;
            /* case ATACANDO:
                 timerAnimacion += Gdx.graphics.getDeltaTime();
