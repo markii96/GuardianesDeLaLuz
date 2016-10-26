@@ -181,6 +181,7 @@ public class Heroe {
         PARADO,
         MORIR,
         USANDOHABILDAD,
+        DESELECCIONADO,
         SELECCIONADO //ESTA SE USARA PARA MOSTRAR LAS HABILIDADES DEL HEROE
     }
 

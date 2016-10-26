@@ -193,6 +193,22 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x =v.x;
         float y = v.y;
 
+        if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[0].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+
+        if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[1].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+
+        if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[2].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+
+
+        nivel.getHeroes()[1].setEstado(Heroe.Estado.SELECCIONADO);
+        nivel.getHeroes()[2].setEstado(Heroe.Estado.SELECCIONADO);
+
         if (estado == Estado.JUGANDO) {
 
                 if(nivel.getHeroes()[0].contiene(x,y)){
@@ -248,6 +264,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                     System.out.println("entre1");
                     nivel.getHeroes()[0].xFinal = x;
                     nivel.getHeroes()[0].yFinal = y;
+
             }
         }
 
