@@ -113,38 +113,38 @@ public class Heroe {
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(this.posicion[0]);
         this.sprite.setY(this.posicion[1]);
-        this.sprite.setScale(.3f);
+        //this.sprite.setScale(.3f);
     }
 
 
     private void actualizar(){
         //estados
+
+        pendiente = ((yFinal-posicion[0])/(xFinal-posicion[1]));
+        b = (pendiente*posicion[0])-posicion[1];
+
         switch (estado){
 
 
             case PARADO:break;
             case CAMINANDO:
-                if(sprite.getX() >= xFinal && sprite.getY()>=yFinal){
-                    sprite.setX(sprite.getX()-velocidadMovimiento);
-                    sprite.setY(sprite.getY()-velocidadMovimiento);
-                }else
-                if(sprite.getX() >= xFinal && sprite.getY()<=yFinal){
-                    sprite.setX(sprite.getX()-velocidadMovimiento);
-                    sprite.setY(sprite.getY()+velocidadMovimiento);
+                if(sprite.getX() >= xFinal) sprite.setX(sprite.getX()-velocidadMovimiento);
 
-                }else
-                if(sprite.getX() <= xFinal && sprite.getY()>=yFinal){
-                    sprite.setX(sprite.getX()+velocidadMovimiento);
-                    sprite.setY(sprite.getY()-velocidadMovimiento);
-                }else
-                if(sprite.getX() <= xFinal && sprite.getY()<=yFinal){
-                    sprite.setX(sprite.getX()+velocidadMovimiento);
-                    sprite.setY(sprite.getY()+velocidadMovimiento);
-                }
-                posicion[0]= sprite.getX();
-                posicion[1]= sprite.getY();
+                if(sprite.getY() >= yFinal) sprite.setY(sprite.getY()-velocidadMovimiento);
+
+                if(sprite.getX() <= xFinal) sprite.setX(sprite.getX()+velocidadMovimiento);
+
+                if(sprite.getY() <= yFinal) sprite.setY(sprite.getY()+velocidadMovimiento);
+
+
+                //sprite.setPosition(posicion[0],posicion[1]);
                 if(sprite.getX()<=xFinal+2&&sprite.getX()>=xFinal-2&&sprite.getY()<=yFinal+2&&sprite.getY()>=yFinal-2) {
+                    sprite.setY(yFinal);
+                    sprite.setX(xFinal);
                     estado = Estado.PARADO;
+                    System.out.println(this.nombre+" "+this.getEstado());
+                    System.out.println(sprite.getX()+" "+sprite.getY());
+                    System.out.println(xFinal+" "+yFinal);
                 }
 
         }
@@ -158,7 +158,7 @@ public class Heroe {
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = animacion.getKeyFrame(timerAnimacion);
 
-            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),1f,.1f,0);
 
         }else
             sprite.draw(batch);
@@ -368,5 +368,80 @@ public class Heroe {
     public void setTextura(Texture textura) {
         this.textura = textura;
     }
+/*
+    public void render(SpriteBatch batch) {
+        timerAnimacion += Gdx.graphics.getDeltaTime();
+        // Obtiene el frame que se debe mostrar (de acuerdo al timer)
+        TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+        batch.draw(region, sprite.getX(), sprite.getY());
+    }
+
+*/
+    /*  codigo para correr Sprites
+    private EstadoMovimiento estadoMovimiento=EstadoMovimiento.INICIANDO;
+
+	public Personaje(Texture textura) {
+        // Lee la textura como región
+        TextureRegion texturaCompleta = new TextureRegion(textura);
+        // La divide en 4 frames de 32x64
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(32,64);
+        // Crea la animación con tiempo de 0.25 segundos entre frames.
+        animacion = new Animation(0.25f,texturaPersonaje[0][1],
+                texturaPersonaje[0][2], texturaPersonaje[0][3] );
+
+        // Animación infinita
+        animacion.setPlayMode(Animation.PlayMode.LOOP);
+        // Inicia el timer que contará tiempo para saber qué frame se dibuja
+        timerAnimacion = 0;
+        // Crea el sprite con el personaje quieto (idle)
+        sprite = new Sprite(texturaPersonaje[0][0]);    // QUIETO
+        sprite.setPosition(300,800);    // Posición inicial	///////mover aqui
+    }
+
+public void render(SpriteBatch batch) {
+        // Dibuja el personaje dependiendo del estadoMovimiento
+        switch (estadoMovimiento) {
+            case MOV_DERECHA:
+            case MOV_IZQUIERDA:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                TextureRegion region = animacion.getKeyFrame(timerAnimacion);		//preguntar
+                if (estadoMovimiento==EstadoMovimiento.MOV_IZQUIERDA) {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
+                batch.draw(region,sprite.getX(),sprite.getY());
+                break;
+            case QUIETO:
+            case INICIANDO:
+                sprite.draw(batch); // Dibuja el sprite
+                break;
+        }
+    }
+
+public void actualizar(TiledMap mapa) {
+        switch (estadoMovimiento) {
+            case MOV_DERECHA:
+            case MOV_IZQUIERDA:
+                moverHorizontal(mapa);
+                break;
+        }
+
+
+        }
+
+    }
+
+
+
+
+
+
+    */
+
 
 }

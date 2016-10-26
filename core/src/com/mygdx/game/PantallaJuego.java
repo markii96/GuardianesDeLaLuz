@@ -136,10 +136,9 @@ public class PantallaJuego implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         for(int i = 0;i<cont;i++){
             for(int j = 0;j<nivel.getHeroes().length;j++){
-                if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX()+120,enemigos[i].getSprite().getY()+250)){
+                if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
                     enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
-                    System.out.println(nivel.getHeroes()[j].getSprite().getX()+" || "+enemigos[i].getSprite().getX());
-                    System.out.println(nivel.getHeroes()[j].getSprite().getY()+" || "+enemigos[i].getSprite().getY());
+
                 }
             }
 
@@ -186,6 +185,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public void resize(int width, int height) {
+        vista.update(width,height);
 
     }
 
@@ -274,8 +274,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Vector3 v = new Vector3(screenX,screenY,0);
         camara.unproject(v);
-        float x =v.x-120;
-        float y = v.y -250;
+        float x =v.x;
+        float y = v.y;
         System.out.println(x+" "+y);
 
 
