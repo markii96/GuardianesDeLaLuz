@@ -201,7 +201,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                     yInicial = y;
                     //h.setPosicion(x,y);
                     //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                    nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
+                    nivel.getHeroes()[0].setEstado(Heroe.Estado.SELECCIONADO);
                     System.out.println(nivel.getHeroes()[0].getEstado().toString());
             }
 
@@ -209,7 +209,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 xInicial = x ;
                 yInicial = y;
-                nivel.getHeroes()[1].setEstado(Heroe.Estado.CAMINANDO);
+                nivel.getHeroes()[1].setEstado(Heroe.Estado.SELECCIONADO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
             }
@@ -218,7 +218,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 xInicial = x ;
                 yInicial = y;
-                nivel.getHeroes()[2].setEstado(Heroe.Estado.CAMINANDO);
+                nivel.getHeroes()[2].setEstado(Heroe.Estado.SELECCIONADO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
             }
@@ -240,7 +240,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         System.out.println(nivel.getHeroes()[0].getEstado().toString());
 
-        if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.CAMINANDO) {
+        if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO) {
 
 
                 if (xInicial > x + 20 || y > yInicial + 20) {
@@ -251,7 +251,7 @@ public class PantallaJuego implements Screen, InputProcessor {
             }
         }
 
-        if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.CAMINANDO) {
+        if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO) {
 
 
             if (xInicial > x + 20 || y > yInicial + 20) {
@@ -265,7 +265,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         }
 
-        if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.CAMINANDO) {
+        if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.SELECCIONADO) {
 
 
             if (xInicial > x + 20 || y > yInicial + 20) {
