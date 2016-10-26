@@ -90,9 +90,31 @@ public class Enemigo {
 
     private void actualizar(){
         switch (estado){
-
+            case ATACANDO:
+                break;
             case CAMINANDO:
+                if(sprite.getX() >= 10 && sprite.getY()>=50){
+                    sprite.setX(sprite.getX()-2);
+                    sprite.setY(sprite.getY()-1);
+                }else
+                if(sprite.getX() >= 10 && sprite.getY()<=50){
+                    sprite.setX(sprite.getX()-2);
+                    sprite.setY(sprite.getY()+1);
+                }else
+                if(sprite.getX() <= 10 && sprite.getY()>=50){
+                    sprite.setX(sprite.getX()+2);
+                    sprite.setY(sprite.getY()-1);
+                }else
+                if(sprite.getX() <= 10 && sprite.getY()<=50){
+                    sprite.setX(sprite.getX()+2);
+                    sprite.setY(sprite.getY()+1);
+                }
+                //sprite.setPosition(posicion[0],posicion[1]);
+                if(sprite.getX()<=12&&sprite.getX()>=8&&sprite.getY()<=52&&sprite.getY()>=48) {
+                    estado = Estado.ATACANDO;
+                }
 
+            break;
 
 
 
@@ -101,7 +123,14 @@ public class Enemigo {
 
     public void draw(SpriteBatch batch) {
         actualizar();
-        sprite.draw(batch);
+        if(this.getEstado()== Estado.CAMINANDO){
+            timerAnimacion += Gdx.graphics.getDeltaTime();
+            TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+
+            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+
+        }else
+            sprite.draw(batch);
     }
 
     public boolean contiene(float x, float y){

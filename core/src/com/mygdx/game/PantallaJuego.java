@@ -139,7 +139,16 @@ public class PantallaJuego implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        for(int i = 0;i<cont;i++){
+            for(int j = 0;j<nivel.getHeroes().length;j++){
+                if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX()+120,enemigos[i].getSprite().getY()+250)){
+                    enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                    System.out.println(nivel.getHeroes()[j].getSprite().getX()+" || "+enemigos[i].getSprite().getX());
+                    System.out.println(nivel.getHeroes()[j].getSprite().getY()+" || "+enemigos[i].getSprite().getY());
+                }
+            }
 
+        }
         batch.setProjectionMatrix(camara.combined);
         batch.begin();
 
@@ -170,7 +179,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i=0; i<regresaEnemigos();i++){
             enemigos[i].draw(batch);
         }
-
 
 
         batch.end();
@@ -230,9 +238,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x =v.x;
         float y = v.y;
 
-        System.out.println("heroe1"+nivel.getHeroes()[0].getEstado().toString());
-        System.out.println("heroe2"+nivel.getHeroes()[1].getEstado().toString());
-        System.out.println("heroe3"+nivel.getHeroes()[2].getEstado().toString());
 
         if(nivel.getHeroes()[0].getEstado()== Heroe.Estado.SELECCIONADO){
             nivel.getHeroes()[0].setEstado(Heroe.Estado.DESELECCIONADO);
@@ -246,15 +251,11 @@ public class PantallaJuego implements Screen, InputProcessor {
 
 
         if (estado == Estado.JUGANDO) {
-
             if(nivel.getHeroes()[0].contiene(x,y)){
-
                 xInicial = x ;
                 yInicial = y;
-                //h.setPosicion(x,y);
-                //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
                 nivel.getHeroes()[0].setEstado(Heroe.Estado.SELECCIONADO);
-                System.out.println("Heroe 0: "+nivel.getHeroes()[0].getEstado().toString());
+
             }else
 
             if(nivel.getHeroes()[1].contiene(x,y)){
@@ -262,19 +263,11 @@ public class PantallaJuego implements Screen, InputProcessor {
                 xInicial = x ;
                 yInicial = y;
                 nivel.getHeroes()[1].setEstado(Heroe.Estado.SELECCIONADO);
-                //h.setPosicion(x,y);
-                //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("Heroe 1: "+nivel.getHeroes()[1].getEstado().toString());
-            }else
-
-            if(nivel.getHeroes()[2].contiene(x,y)){
+            }else if(nivel.getHeroes()[2].contiene(x,y)){
 
                 xInicial = x ;
                 yInicial = y;
                 nivel.getHeroes()[2].setEstado(Heroe.Estado.SELECCIONADO);
-                //h.setPosicion(x,y);
-                //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("Heroe 2: "+nivel.getHeroes()[2].getEstado().toString());
             }
 
         }
@@ -294,7 +287,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO) {
             if(x>=xInicial+5||x<=xInicial-5&&y>=yInicial+5||y<=yInicial-5) {
                 nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("entre1");
                 nivel.getHeroes()[0].setxFinal(x);
                 nivel.getHeroes()[0].setyFinal(y);
             }
@@ -303,7 +295,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO) {
             if(x>=xInicial+5||x<=xInicial-5&&y>=yInicial+5||y<=yInicial-5) {
                 nivel.getHeroes()[1].setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("entre2");
                 nivel.getHeroes()[1].setxFinal(x);
                 nivel.getHeroes()[1].setyFinal(y);
 
@@ -313,7 +304,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.SELECCIONADO) {
             if(x>=xInicial+5||x<=xInicial-5&&y>=yInicial+5||y<=yInicial-5) {
                 nivel.getHeroes()[2].setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("entre3");
                 nivel.getHeroes()[2].setxFinal(x);
                 nivel.getHeroes()[2].setyFinal(y);
             }
