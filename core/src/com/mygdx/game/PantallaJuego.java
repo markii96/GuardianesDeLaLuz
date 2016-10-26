@@ -111,14 +111,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         batch = new SpriteBatch();
         fondo = new Fondo(texturaFondo);
 
-         hero1 = new Heroe("1",500+300,230+300);
-         hero2 = new Heroe("2",100+300,230+300);
-         hero3 = new Heroe("3",000+300,230+300);
-
-
-
-
-
     }
 
     @Override
@@ -201,30 +193,45 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x =v.x;
         float y = v.y;
 
+        if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[0].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+
+        if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[1].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+
+        if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[2].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+
+
         if (estado == Estado.JUGANDO) {
 
                 if(nivel.getHeroes()[0].contiene(x,y)){
 
-                    x = xInicial;
-                    y = yInicial;
+                    xInicial = x ;
+                    yInicial = y;
                     //h.setPosicion(x,y);
                     //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                    estado = Estado.SELECCIONADO;
-                    System.out.println("posicionando el dedo");
+                    nivel.getHeroes()[0].setEstado(Heroe.Estado.SELECCIONADO);
+                    System.out.println(nivel.getHeroes()[0].getEstado().toString());
             }
 
             if(nivel.getHeroes()[1].contiene(x,y)){
 
-                x = xInicial;
-                y = yInicial;
+                xInicial = x ;
+                yInicial = y;
+                nivel.getHeroes()[1].setEstado(Heroe.Estado.SELECCIONADO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
             }
 
             if(nivel.getHeroes()[2].contiene(x,y)){
 
-                x = xInicial;
-                y = yInicial;
+                xInicial = x ;
+                yInicial = y;
+                nivel.getHeroes()[2].setEstado(Heroe.Estado.SELECCIONADO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
             }
@@ -243,42 +250,44 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         //posicion[0] = x;
         //posicion[1] = y;
-        if (estado == Estado.SELECCIONADO) {
+
+        System.out.println(nivel.getHeroes()[0].getEstado().toString());
+
+        if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO) {
 
 
                 if (xInicial > x + 20 || y > yInicial + 20) {
                     nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                    System.out.println("entre");
-                    hero1.xFinal = x;
-                    hero1.yFinal = y;
+                    System.out.println("entre1");
+                    nivel.getHeroes()[0].xFinal = x;
+                    nivel.getHeroes()[0].yFinal = y;
+
+            }
+        }
+
+        if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO) {
+
+
+            if (xInicial > x + 20 || y > yInicial + 20) {
+
+                nivel.getHeroes()[1].setEstado(Heroe.Estado.CAMINANDO);
+                System.out.println("entre2");
+                nivel.getHeroes()[1].xFinal = x;
+                nivel.getHeroes()[1].yFinal = y;
 
             }
 
         }
 
-        if (estado == Estado.SELECCIONADO) {
+        if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.SELECCIONADO) {
 
 
             if (xInicial > x + 20 || y > yInicial + 20) {
 
-                hero1.setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("entre");
-                hero1.xFinal = x;
-                hero1.yFinal = y;
-
-            }
-
-        }
-
-        if (estado == Estado.SELECCIONADO) {
-
-
-            if (xInicial > x + 20 || y > yInicial + 20) {
-
-                hero1.setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("entre");
-                hero1.xFinal = x;
-                hero1.yFinal = y;
+                nivel.getHeroes()[2].setEstado(Heroe.Estado.CAMINANDO);
+                System.out.println("entre3");
+                nivel.getHeroes()[2].xFinal = x;
+                nivel.getHeroes()[2].yFinal = y;
 
 
                 //nivel.getHeroes()[0].setPosicion();
