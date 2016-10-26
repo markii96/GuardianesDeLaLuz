@@ -113,7 +113,7 @@ public class Heroe {
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(this.posicion[0]);
         this.sprite.setY(this.posicion[1]);
-        this.sprite.setScale(.3f);
+        //this.sprite.setScale(.3f);
     }
 
 
@@ -139,9 +139,12 @@ public class Heroe {
 
                 //sprite.setPosition(posicion[0],posicion[1]);
                 if(sprite.getX()<=xFinal+2&&sprite.getX()>=xFinal-2&&sprite.getY()<=yFinal+2&&sprite.getY()>=yFinal-2) {
+                    sprite.setY(yFinal);
+                    sprite.setX(xFinal);
                     estado = Estado.PARADO;
                     System.out.println(this.nombre+" "+this.getEstado());
                     System.out.println(sprite.getX()+" "+sprite.getY());
+                    System.out.println(xFinal+" "+yFinal);
                 }
 
         }
@@ -155,7 +158,7 @@ public class Heroe {
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = animacion.getKeyFrame(timerAnimacion);
 
-            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),1f,.1f,0);
 
         }else
             sprite.draw(batch);

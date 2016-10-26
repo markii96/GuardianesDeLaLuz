@@ -136,10 +136,9 @@ public class PantallaJuego implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         for(int i = 0;i<cont;i++){
             for(int j = 0;j<nivel.getHeroes().length;j++){
-                if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX()+120,enemigos[i].getSprite().getY()+250)){
+                if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
                     enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
-                    System.out.println(nivel.getHeroes()[j].getSprite().getX()+" || "+enemigos[i].getSprite().getX());
-                    System.out.println(nivel.getHeroes()[j].getSprite().getY()+" || "+enemigos[i].getSprite().getY());
+
                 }
             }
 
