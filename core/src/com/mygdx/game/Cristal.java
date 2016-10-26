@@ -20,8 +20,8 @@ public class Cristal {
         this.textura = new Texture("torre.png");
         this.estado = Estado.VIVIR;
         this.sprite = new Sprite(textura);
-        this.sprite.setX(-300);
-        this.sprite.setY(-50);
+        this.sprite.setX(10);
+        this.sprite.setY(50);
         this.sprite.setScale(.8f);
     }
     private void actualizar(){

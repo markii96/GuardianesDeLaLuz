@@ -128,25 +128,25 @@ public class Heroe {
 
             case PARADO:break;
             case CAMINANDO:
-                if(posicion[0] >= xFinal && posicion[1]>=yFinal){
-                    posicion[0] -= velocidadMovimiento;
-                    posicion[1] -=velocidadMovimiento;
+                if(sprite.getX() >= xFinal && sprite.getY()>=yFinal){
+                    sprite.setX(sprite.getX()-velocidadMovimiento);
+                    sprite.setY(sprite.getY()-velocidadMovimiento);
                 }else
-                if(posicion[0] >= xFinal && posicion[1]<=yFinal){
-                    posicion[0] -= velocidadMovimiento;
-                    posicion[1] +=velocidadMovimiento;
+                if(sprite.getX() >= xFinal && sprite.getY()<=yFinal){
+                    sprite.setX(sprite.getX()-velocidadMovimiento);
+                    sprite.setY(sprite.getY()+velocidadMovimiento);
 
                 }else
-                if(posicion[0] <= xFinal && posicion[1]>=yFinal){
-                    posicion[0] += velocidadMovimiento;
-                    posicion[1] -=velocidadMovimiento;
+                if(sprite.getX() <= xFinal && sprite.getY()>=yFinal){
+                    sprite.setX(sprite.getX()+velocidadMovimiento);
+                    sprite.setY(sprite.getY()-velocidadMovimiento);
                 }else
-                if(posicion[0] <= xFinal && posicion[1]<=yFinal){
-                    posicion[0] += velocidadMovimiento;
-                    posicion[1] +=velocidadMovimiento;
+                if(sprite.getX() <= xFinal && sprite.getY()<=yFinal){
+                    sprite.setX(sprite.getX()+velocidadMovimiento);
+                    sprite.setY(sprite.getY()+velocidadMovimiento);
                 }
-                sprite.setPosition(posicion[0],posicion[1]);
-                if(posicion[0]<=xFinal+5&&posicion[0]>=xFinal-5&&posicion[1]<=yFinal+5&&posicion[1]>=yFinal-5) {
+                //sprite.setPosition(posicion[0],posicion[1]);
+                if(sprite.getX()<=xFinal+5&&sprite.getX()>=xFinal-5&&sprite.getY()<=yFinal+5&&sprite.getY()>=yFinal-5) {
                     estado = Estado.PARADO;
                     System.out.println(this.nombre+" "+this.getEstado());
                 }
