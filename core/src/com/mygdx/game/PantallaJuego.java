@@ -186,6 +186,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public void resize(int width, int height) {
+        vista.update(width,height);
 
     }
 
@@ -274,8 +275,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Vector3 v = new Vector3(screenX,screenY,0);
         camara.unproject(v);
-        float x =v.x-120;
-        float y = v.y -250;
+        float x =v.x;
+        float y = v.y;
         System.out.println(x+" "+y);
 
 
