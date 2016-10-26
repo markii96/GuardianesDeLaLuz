@@ -29,11 +29,13 @@ public class Enemigo {
     private String objetivo;
     private String descripcion;
     private Texture textura;
-    private int medidax, mediday;
+    private int medidax, mediday,medidaxA,medidayA;
 
     private Animation animacion;    // Caminando
     private float timerAnimacion;
 
+    private Animation animacionAtaque;
+    private float timerAnimaiconAtaque;
     public Enemigo(String id, int x, int y, String objetivo){
 
         String dato;
@@ -60,17 +62,29 @@ public class Enemigo {
         this.objetivo = objetivo;
         this.descripcion = datos[7];
 
-
+        // medidas texturas
         String[] medidas = datos[10].split(",");
         medidax = Integer.parseInt(medidas[0])/2;
         mediday = Integer.parseInt(medidas[1]);
-
+        // texturas caminando
         TextureRegion texturaCompleta = new TextureRegion(this.textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
         animacion = new Animation(0.25f, texturaPersonaje[0][0],
                 texturaPersonaje[0][1]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
+
+        medidas = datos[12].split(",");
+        System.out.println(medidas[0]+" "+medidas[1]);
+        medidaxA = Integer.parseInt(medidas[0])/3;
+        medidayA = Integer.parseInt(medidas[1]);
+        // texturas Movimiento
+        /*TextureRegion texturaCompletaAtacando = new TextureRegion(this.textura);
+        TextureRegion[][] texturaPersonajeAtacando = texturaCompletaAtacando.split(medidaxA,medidayA);
+        animacion = new Animation(0.25f, texturaPersonajeAtacando[0][0],
+                texturaPersonajeAtacando[0][1]);
+        animacion.setPlayMode(Animation.PlayMode.LOOP);
+        timerAnimacion = 0;*/
 
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(x);
@@ -123,14 +137,25 @@ public class Enemigo {
 
     public void draw(SpriteBatch batch) {
         actualizar();
-        if(this.getEstado()== Estado.CAMINANDO){
-            timerAnimacion += Gdx.graphics.getDeltaTime();
-            TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+        TextureRegion region;
+        switch(estado){
+            case CAMINANDO:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                region = animacion.getKeyFrame(timerAnimacion);
 
-            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+                batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+                break;
+           /* case ATACANDO:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                region = animacionAtaque.getKeyFrame(timerAnimacion);
 
-        }else
-            sprite.draw(batch);
+                batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+            break;*/
+            default:
+                sprite.draw(batch);
+            break;
+        }
+
     }
 
     public boolean contiene(float x, float y){
