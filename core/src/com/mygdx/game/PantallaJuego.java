@@ -205,26 +205,28 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 if(nivel.getHeroes()[0].contiene(x,y)){
 
-                    x = xInicial;
-                    y = yInicial;
+                    xInicial = x ;
+                    yInicial = y;
                     //h.setPosicion(x,y);
                     //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                    estado = Estado.SELECCIONADO;
+                    nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
                     System.out.println("posicionando el dedo");
             }
 
             if(nivel.getHeroes()[1].contiene(x,y)){
 
-                x = xInicial;
-                y = yInicial;
+                xInicial = x ;
+                yInicial = y;
+                nivel.getHeroes()[1].setEstado(Heroe.Estado.CAMINANDO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
             }
 
             if(nivel.getHeroes()[2].contiene(x,y)){
 
-                x = xInicial;
-                y = yInicial;
+                xInicial = x ;
+                yInicial = y;
+                nivel.getHeroes()[2].setEstado(Heroe.Estado.CAMINANDO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
             }
@@ -248,7 +250,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 if (xInicial > x + 20 || y > yInicial + 20) {
                     nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                    System.out.println("entre");
+                    System.out.println("entre1");
                     hero1.xFinal = x;
                     hero1.yFinal = y;
 
@@ -262,7 +264,7 @@ public class PantallaJuego implements Screen, InputProcessor {
             if (xInicial > x + 20 || y > yInicial + 20) {
 
                 hero1.setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("entre");
+                System.out.println("entre2");
                 hero1.xFinal = x;
                 hero1.yFinal = y;
 
@@ -276,7 +278,7 @@ public class PantallaJuego implements Screen, InputProcessor {
             if (xInicial > x + 20 || y > yInicial + 20) {
 
                 hero1.setEstado(Heroe.Estado.CAMINANDO);
-                System.out.println("entre");
+                System.out.println("entre3");
                 hero1.xFinal = x;
                 hero1.yFinal = y;
 
