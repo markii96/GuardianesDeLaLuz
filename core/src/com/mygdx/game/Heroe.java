@@ -162,11 +162,12 @@ public class Heroe {
     public void draw(SpriteBatch batch) {
         actualizar();
         sprite.draw(batch);
+        double medidaxSc = medidax*.3;
+        double medidaySc = mediday*.3;
         if(this.getEstado()== Estado.CAMINANDO){
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = animacion.getKeyFrame(timerAnimacion);
-            region.setRegionWidth(medidax*.3);
-            region.setRegion(mediday*.3);
+
             batch.draw(region, sprite.getX(), sprite.getY());
         }
 
