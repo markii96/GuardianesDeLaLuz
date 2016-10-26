@@ -89,7 +89,7 @@ public class Enemigo {
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(x);
         this.sprite.setY(y);
-        this.sprite.setScale(.3f);
+        //this.sprite.setScale(.3f);
 
     }
 
