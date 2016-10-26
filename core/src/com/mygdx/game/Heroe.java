@@ -158,7 +158,7 @@ public class Heroe {
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = animacion.getKeyFrame(timerAnimacion);
 
-            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),1f,.1f,0);
+            batch.draw(region, sprite.getX(), sprite.getY());
 
         }else
             sprite.draw(batch);
@@ -304,6 +304,14 @@ public class Heroe {
 
     public void setClase(String clase) {
         this.clase = clase;
+    }
+
+    public int getMediday() {
+        return mediday;
+    }
+
+    public int getMedidax() {
+        return medidax;
     }
 
     public void setDanoFisico(int danoFisico) {
