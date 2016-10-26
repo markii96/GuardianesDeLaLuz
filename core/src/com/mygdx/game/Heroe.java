@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -100,20 +101,13 @@ public class Heroe {
         int medidax = Integer.parseInt(medidas[0])/4;
         int mediday = Integer.parseInt(medidas[1]);
 
-        Gdx.app.log("prueba",medidas[1]);
-
 
         TextureRegion texturaCompleta = new TextureRegion(this.textura);
-        // La divide en frames de 16x32 (ver marioSprite.png)
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
-        // Crea la animación con tiempo de 0.25 segundos entre frames.
         Animation animacion = new Animation(0.25f, texturaPersonaje[0][3],
                 texturaPersonaje[0][2], texturaPersonaje[0][1]);
-        // Animación infinita
         animacion.setPlayMode(Animation.PlayMode.LOOP);
-        // Inicia el timer que contará tiempo para saber qué frame se dibuja
         timerAnimacion = 0;
-        // Crea el sprite cuando para el personaje quieto (idle)
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(this.posicion[0]);
         this.sprite.setY(this.posicion[1]);
@@ -132,32 +126,32 @@ public class Heroe {
 
             case PARADO:break;
             case CAMINANDO:
+                System.out.println(this.getEstado());
 
                 if(posicion[0] >= xFinal && posicion[1]>=yFinal){
                     posicion[0] -= 2;
                     posicion[1] -=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
+
 
                 }
                 if(posicion[0] >= xFinal && posicion[1]<=yFinal){
                     posicion[0] -= 2;
                     posicion[1] +=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
+
                 }
                 if(posicion[0] <= xFinal && posicion[1]>=yFinal){
                     posicion[0] += 2;
                     posicion[1] -=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
                 }
                 if(posicion[0] <= xFinal && posicion[1]<=yFinal){
                     posicion[0] += 2;
                     posicion[1] +=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
                 }
-
-                if(this.posicion[0]==xFinal && this.posicion[1] == yFinal){
+                sprite.setPosition(posicion[0],posicion[1]);
+                if(posicion[0]<=xFinal+5&&posicion[0]>=xFinal-5&&posicion[1]<=yFinal+5&&posicion[1]>=yFinal-5) {
                     estado = Estado.PARADO;
                 }
+
         }
 
 
@@ -166,6 +160,12 @@ public class Heroe {
     public void draw(SpriteBatch batch) {
         actualizar();
         sprite.draw(batch);
+        /*if(this.getEstado()== Estado.CAMINANDO){
+            timerAnimacion += Gdx.graphics.getDeltaTime();
+            TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+            batch.draw(region, sprite.getX(), sprite.getY());
+        }*/
+
     }
 
     public boolean contiene(float x, float y){
