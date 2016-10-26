@@ -28,7 +28,6 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Texture texturaHeroe3;
 
     private float[] posicion = new float[2];
-    private Texture texturaTorre;
     private Texture texturaPerdiste;
 
     private SpriteBatch batch;
@@ -40,10 +39,6 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Estado estado = Estado.JUGANDO;
 
     private Nivel nivel;
-
-    private Heroe hero1;
-    private Heroe hero2;
-    private Heroe hero3;
 
     private String[] heroesId = new String[3];
 
