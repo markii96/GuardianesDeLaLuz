@@ -197,17 +197,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         System.out.println("heroe2"+nivel.getHeroes()[1].getEstado().toString());
         System.out.println("heroe3"+nivel.getHeroes()[2].getEstado().toString());
 
-        if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO){
-            nivel.getHeroes()[0].setEstado(Heroe.Estado.DESELECCIONADO);
-        }
 
-        if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO){
-            nivel.getHeroes()[1].setEstado(Heroe.Estado.DESELECCIONADO);
-        }
-
-        if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.SELECCIONADO){
-            nivel.getHeroes()[2].setEstado(Heroe.Estado.DESELECCIONADO);
-        }
 
 
         if (estado == Estado.JUGANDO) {
