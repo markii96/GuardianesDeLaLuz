@@ -197,20 +197,28 @@ public class PantallaJuego implements Screen, InputProcessor {
         System.out.println("heroe2"+nivel.getHeroes()[1].getEstado().toString());
         System.out.println("heroe3"+nivel.getHeroes()[2].getEstado().toString());
 
-
+        if(nivel.getHeroes()[0].getEstado()== Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[0].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+        if(nivel.getHeroes()[1].getEstado()== Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[1].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
+        if(nivel.getHeroes()[1].getEstado()== Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[1].setEstado(Heroe.Estado.DESELECCIONADO);
+        }
 
 
         if (estado == Estado.JUGANDO) {
 
-                if(nivel.getHeroes()[0].contiene(x,y)){
+            if(nivel.getHeroes()[0].contiene(x,y)){
 
-                    xInicial = x ;
-                    yInicial = y;
-                    //h.setPosicion(x,y);
-                    //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                    nivel.getHeroes()[0].setEstado(Heroe.Estado.SELECCIONADO);
-                    System.out.println(nivel.getHeroes()[0].getEstado().toString());
-            }
+                xInicial = x ;
+                yInicial = y;
+                //h.setPosicion(x,y);
+                //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
+                nivel.getHeroes()[0].setEstado(Heroe.Estado.SELECCIONADO);
+                System.out.println("Heroe 0: "+nivel.getHeroes()[0].getEstado().toString());
+            }else
 
             if(nivel.getHeroes()[1].contiene(x,y)){
 
@@ -219,7 +227,8 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes()[1].setEstado(Heroe.Estado.SELECCIONADO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-            }
+                System.out.println("Heroe 1: "+nivel.getHeroes()[1].getEstado().toString());
+            }else
 
             if(nivel.getHeroes()[2].contiene(x,y)){
 
@@ -228,6 +237,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes()[2].setEstado(Heroe.Estado.SELECCIONADO);
                 //h.setPosicion(x,y);
                 //nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
+                System.out.println("Heroe 2: "+nivel.getHeroes()[2].getEstado().toString());
             }
 
         }
@@ -242,49 +252,31 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x =v.x;
         float y = v.y;
 
-        //posicion[0] = x;
-        //posicion[1] = y;
-
-        System.out.println(nivel.getHeroes()[0].getEstado().toString());
-
         if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO) {
-
-
-                if (xInicial > x + 20 || y > yInicial + 20) {
-                    nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
-                    System.out.println("entre1");
-                    nivel.getHeroes()[0].setxFinal(x);
-                    nivel.getHeroes()[0].setyFinal(y);
-
+            if(x>=xInicial+5||x<=xInicial-5&&y>=yInicial+5||y<=yInicial-5) {
+                nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
+                System.out.println("entre1");
+                nivel.getHeroes()[0].setxFinal(x);
+                nivel.getHeroes()[0].setyFinal(y);
             }
         }
 
         if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO) {
-
-
-            if (xInicial > x + 20 || y > yInicial + 20) {
-
+            if(x>=xInicial+5||x<=xInicial-5&&y>=yInicial+5||y<=yInicial-5) {
                 nivel.getHeroes()[1].setEstado(Heroe.Estado.CAMINANDO);
                 System.out.println("entre2");
                 nivel.getHeroes()[1].setxFinal(x);
                 nivel.getHeroes()[1].setyFinal(y);
 
             }
-
         }
 
         if (nivel.getHeroes()[2].getEstado() == Heroe.Estado.SELECCIONADO) {
-
-
-            if (xInicial > x + 20 || y > yInicial + 20) {
-
+            if(x>=xInicial+5||x<=xInicial-5&&y>=yInicial+5||y<=yInicial-5) {
                 nivel.getHeroes()[2].setEstado(Heroe.Estado.CAMINANDO);
                 System.out.println("entre3");
                 nivel.getHeroes()[2].setxFinal(x);
                 nivel.getHeroes()[2].setyFinal(y);
-
-
-                //nivel.getHeroes()[0].setPosicion();
             }
 
         }

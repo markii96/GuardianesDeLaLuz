@@ -27,7 +27,7 @@ public class Heroe {
     private float[] posicion = new float[2];
 
     float pendiente;
-    float x,y;
+    float x, y;
     private float xFinal, yFinal;
 
     private String nombre;
@@ -50,6 +50,7 @@ public class Heroe {
     private String img;
     float[] cambioPosicion = new float[2];
 
+    private int medidax, mediday;
     // Animación
     private Animation animacion;    // Caminando
     private float timerAnimacion;   // tiempo para calcular el frame
@@ -98,14 +99,14 @@ public class Heroe {
         this.img = datos[18];
 
         String[] medidas = datos[19].split(",");
-        int medidax = Integer.parseInt(medidas[0])/4;
-        int mediday = Integer.parseInt(medidas[1]);
+        medidax = Integer.parseInt(medidas[0])/4;
+        mediday = Integer.parseInt(medidas[1]);
 
 
         TextureRegion texturaCompleta = new TextureRegion(this.textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
-        Animation animacion = new Animation(0.25f, texturaPersonaje[0][3],
-                texturaPersonaje[0][2], texturaPersonaje[0][1]);
+        animacion = new Animation(0.25f, texturaPersonaje[0][1],
+                texturaPersonaje[0][2], texturaPersonaje[0][3]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
@@ -150,7 +151,7 @@ public class Heroe {
                 sprite.setPosition(posicion[0],posicion[1]);
                 if(posicion[0]<=xFinal+5&&posicion[0]>=xFinal-5&&posicion[1]<=yFinal+5&&posicion[1]>=yFinal-5) {
                     estado = Estado.PARADO;
-                    System.out.println(this.getEstado());
+                    System.out.println(this.nombre+" "+this.getEstado());
                 }
 
         }
@@ -161,11 +162,13 @@ public class Heroe {
     public void draw(SpriteBatch batch) {
         actualizar();
         sprite.draw(batch);
-        /*if(this.getEstado()== Estado.CAMINANDO){
+        if(this.getEstado()== Estado.CAMINANDO){
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+            region.setRegionWidth(medidax*.3);
+            region.setRegion(mediday*.3);
             batch.draw(region, sprite.getX(), sprite.getY());
-        }*/
+        }
 
     }
 
