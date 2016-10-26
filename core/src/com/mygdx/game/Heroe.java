@@ -28,7 +28,7 @@ public class Heroe {
 
     float pendiente;
     float x,y;
-    public float xFinal, yFinal;
+    private float xFinal, yFinal;
 
     private String nombre;
     private String clase;
@@ -126,7 +126,7 @@ public class Heroe {
 
             case PARADO:break;
             case CAMINANDO:
-                System.out.println(this.getEstado());
+
 
                 if(posicion[0] >= xFinal && posicion[1]>=yFinal){
                     posicion[0] -= 2;
@@ -150,6 +150,7 @@ public class Heroe {
                 sprite.setPosition(posicion[0],posicion[1]);
                 if(posicion[0]<=xFinal+5&&posicion[0]>=xFinal-5&&posicion[1]<=yFinal+5&&posicion[1]>=yFinal-5) {
                     estado = Estado.PARADO;
+                    System.out.println(this.getEstado());
                 }
 
         }
@@ -198,6 +199,18 @@ public class Heroe {
 
     public Sprite getSprite() {
         return sprite;
+    }
+
+    public float getxFinal() {
+        return xFinal;
+    }
+
+    public void setxFinal(float xFinal) {
+        this.xFinal = xFinal;
+    }
+
+    public float getyFinal() {
+        return yFinal;
     }
 
     public float[] getPosicion() {

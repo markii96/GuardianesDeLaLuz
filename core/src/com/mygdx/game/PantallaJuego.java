@@ -253,8 +253,8 @@ public class PantallaJuego implements Screen, InputProcessor {
                 if (xInicial > x + 20 || y > yInicial + 20) {
                     nivel.getHeroes()[0].setEstado(Heroe.Estado.CAMINANDO);
                     System.out.println("entre1");
-                    nivel.getHeroes()[0].xFinal = x;
-                    nivel.getHeroes()[0].yFinal = y;
+                    nivel.getHeroes()[0].setxFinal(x);
+                    nivel.getHeroes()[0].setyFinal(y);
 
             }
         }
@@ -266,8 +266,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 nivel.getHeroes()[1].setEstado(Heroe.Estado.CAMINANDO);
                 System.out.println("entre2");
-                nivel.getHeroes()[1].xFinal = x;
-                nivel.getHeroes()[1].yFinal = y;
+                nivel.getHeroes()[1].setxFinal(x);
+                nivel.getHeroes()[1].setyFinal(y);
 
             }
 
@@ -280,8 +280,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 nivel.getHeroes()[2].setEstado(Heroe.Estado.CAMINANDO);
                 System.out.println("entre3");
-                nivel.getHeroes()[2].xFinal = x;
-                nivel.getHeroes()[2].yFinal = y;
+                nivel.getHeroes()[2].setxFinal(x);
+                nivel.getHeroes()[2].setyFinal(y);
 
 
                 //nivel.getHeroes()[0].setPosicion();
