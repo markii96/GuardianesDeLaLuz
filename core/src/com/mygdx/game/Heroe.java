@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -26,8 +27,8 @@ public class Heroe {
     private float[] posicion = new float[2];
 
     float pendiente;
-    float x,y;
-    public float xFinal, yFinal;
+    float x, y;
+    private float xFinal, yFinal;
 
     private String nombre;
     private String clase;
@@ -49,9 +50,11 @@ public class Heroe {
     private String img;
     float[] cambioPosicion = new float[2];
 
+    private int medidax, mediday;
     // Animación
     private Animation animacion;    // Caminando
     private float timerAnimacion;   // tiempo para calcular el frame
+    private boolean direccion; //true = derecha, false = izquierda
 
     public Heroe(String id, int x, int y) {
 
@@ -97,23 +100,16 @@ public class Heroe {
         this.img = datos[18];
 
         String[] medidas = datos[19].split(",");
-        int medidax = Integer.parseInt(medidas[0])/4;
-        int mediday = Integer.parseInt(medidas[1]);
-
-        Gdx.app.log("prueba",medidas[1]);
+        medidax = Integer.parseInt(medidas[0])/4;
+        mediday = Integer.parseInt(medidas[1]);
 
 
         TextureRegion texturaCompleta = new TextureRegion(this.textura);
-        // La divide en frames de 16x32 (ver marioSprite.png)
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
-        // Crea la animación con tiempo de 0.25 segundos entre frames.
-        Animation animacion = new Animation(0.25f, texturaPersonaje[0][3],
-                texturaPersonaje[0][2], texturaPersonaje[0][1]);
-        // Animación infinita
+        animacion = new Animation(0.25f, texturaPersonaje[0][1],
+                texturaPersonaje[0][2], texturaPersonaje[0][3]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
-        // Inicia el timer que contará tiempo para saber qué frame se dibuja
         timerAnimacion = 0;
-        // Crea el sprite cuando para el personaje quieto (idle)
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(this.posicion[0]);
         this.sprite.setY(this.posicion[1]);
@@ -123,41 +119,34 @@ public class Heroe {
 
     private void actualizar(){
         //estados
-
-        pendiente = ((yFinal-posicion[0])/(xFinal-posicion[1]));
-        b = (pendiente*posicion[0])-posicion[1];
-
         switch (estado){
 
 
             case PARADO:break;
             case CAMINANDO:
+                if(sprite.getX() >= xFinal && sprite.getY()>=yFinal){
+                    sprite.setX(sprite.getX()-velocidadMovimiento);
+                    sprite.setY(sprite.getY()-velocidadMovimiento);
+                }else
+                if(sprite.getX() >= xFinal && sprite.getY()<=yFinal){
+                    sprite.setX(sprite.getX()-velocidadMovimiento);
+                    sprite.setY(sprite.getY()+velocidadMovimiento);
 
-                if(posicion[0] >= xFinal && posicion[1]>=yFinal){
-                    posicion[0] -= 2;
-                    posicion[1] -=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
-
+                }else
+                if(sprite.getX() <= xFinal && sprite.getY()>=yFinal){
+                    sprite.setX(sprite.getX()+velocidadMovimiento);
+                    sprite.setY(sprite.getY()-velocidadMovimiento);
+                }else
+                if(sprite.getX() <= xFinal && sprite.getY()<=yFinal){
+                    sprite.setX(sprite.getX()+velocidadMovimiento);
+                    sprite.setY(sprite.getY()+velocidadMovimiento);
                 }
-                if(posicion[0] >= xFinal && posicion[1]<=yFinal){
-                    posicion[0] -= 2;
-                    posicion[1] +=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
-                }
-                if(posicion[0] <= xFinal && posicion[1]>=yFinal){
-                    posicion[0] += 2;
-                    posicion[1] -=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
-                }
-                if(posicion[0] <= xFinal && posicion[1]<=yFinal){
-                    posicion[0] += 2;
-                    posicion[1] +=2;
-                    sprite.setPosition(posicion[0],posicion[1]);
-                }
-
-                if(this.posicion[0]==xFinal && this.posicion[1] == yFinal){
+                posicion[0]= sprite.getX();
+                posicion[1]= sprite.getY();
+                if(sprite.getX()<=xFinal+2&&sprite.getX()>=xFinal-2&&sprite.getY()<=yFinal+2&&sprite.getY()>=yFinal-2) {
                     estado = Estado.PARADO;
                 }
+
         }
 
 
@@ -165,7 +154,16 @@ public class Heroe {
 
     public void draw(SpriteBatch batch) {
         actualizar();
-        sprite.draw(batch);
+        if(this.getEstado()== Estado.CAMINANDO){
+            timerAnimacion += Gdx.graphics.getDeltaTime();
+            TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+
+            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+
+        }else
+            sprite.draw(batch);
+
+
     }
 
     public boolean contiene(float x, float y){
@@ -198,6 +196,18 @@ public class Heroe {
 
     public Sprite getSprite() {
         return sprite;
+    }
+
+    public float getxFinal() {
+        return xFinal;
+    }
+
+    public void setxFinal(float xFinal) {
+        this.xFinal = xFinal;
+    }
+
+    public float getyFinal() {
+        return yFinal;
     }
 
     public float[] getPosicion() {
@@ -358,80 +368,5 @@ public class Heroe {
     public void setTextura(Texture textura) {
         this.textura = textura;
     }
-/*
-    public void render(SpriteBatch batch) {
-        timerAnimacion += Gdx.graphics.getDeltaTime();
-        // Obtiene el frame que se debe mostrar (de acuerdo al timer)
-        TextureRegion region = animacion.getKeyFrame(timerAnimacion);
-        batch.draw(region, sprite.getX(), sprite.getY());
-    }
-
-*/
-    /*  codigo para correr Sprites
-    private EstadoMovimiento estadoMovimiento=EstadoMovimiento.INICIANDO;
-
-	public Personaje(Texture textura) {
-        // Lee la textura como región
-        TextureRegion texturaCompleta = new TextureRegion(textura);
-        // La divide en 4 frames de 32x64
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(32,64);
-        // Crea la animación con tiempo de 0.25 segundos entre frames.
-        animacion = new Animation(0.25f,texturaPersonaje[0][1],
-                texturaPersonaje[0][2], texturaPersonaje[0][3] );
-
-        // Animación infinita
-        animacion.setPlayMode(Animation.PlayMode.LOOP);
-        // Inicia el timer que contará tiempo para saber qué frame se dibuja
-        timerAnimacion = 0;
-        // Crea el sprite con el personaje quieto (idle)
-        sprite = new Sprite(texturaPersonaje[0][0]);    // QUIETO
-        sprite.setPosition(300,800);    // Posición inicial	///////mover aqui
-    }
-
-public void render(SpriteBatch batch) {
-        // Dibuja el personaje dependiendo del estadoMovimiento
-        switch (estadoMovimiento) {
-            case MOV_DERECHA:
-            case MOV_IZQUIERDA:
-                timerAnimacion += Gdx.graphics.getDeltaTime();
-                TextureRegion region = animacion.getKeyFrame(timerAnimacion);		//preguntar
-                if (estadoMovimiento==EstadoMovimiento.MOV_IZQUIERDA) {
-                    if (!region.isFlipX()) {
-                        region.flip(true,false);
-                    }
-                } else {
-                    if (region.isFlipX()) {
-                        region.flip(true,false);
-                    }
-                }
-                batch.draw(region,sprite.getX(),sprite.getY());
-                break;
-            case QUIETO:
-            case INICIANDO:
-                sprite.draw(batch); // Dibuja el sprite
-                break;
-        }
-    }
-
-public void actualizar(TiledMap mapa) {
-        switch (estadoMovimiento) {
-            case MOV_DERECHA:
-            case MOV_IZQUIERDA:
-                moverHorizontal(mapa);
-                break;
-        }
-
-
-        }
-
-    }
-
-
-
-
-
-
-    */
-
 
 }
