@@ -128,24 +128,22 @@ public class Heroe {
 
             case PARADO:break;
             case CAMINANDO:
-
-
                 if(posicion[0] >= xFinal && posicion[1]>=yFinal){
-                    posicion[0] -= 2;
-                    posicion[1] -=2;
-                }
+                    posicion[0] -= velocidadMovimiento;
+                    posicion[1] -=velocidadMovimiento;
+                }else
                 if(posicion[0] >= xFinal && posicion[1]<=yFinal){
-                    posicion[0] -= 2;
-                    posicion[1] +=2;
+                    posicion[0] -= velocidadMovimiento;
+                    posicion[1] +=velocidadMovimiento;
 
-                }
+                }else
                 if(posicion[0] <= xFinal && posicion[1]>=yFinal){
-                    posicion[0] += 2;
-                    posicion[1] -=2;
-                }
+                    posicion[0] += velocidadMovimiento;
+                    posicion[1] -=velocidadMovimiento;
+                }else
                 if(posicion[0] <= xFinal && posicion[1]<=yFinal){
-                    posicion[0] += 2;
-                    posicion[1] +=2;
+                    posicion[0] += velocidadMovimiento;
+                    posicion[1] +=velocidadMovimiento;
                 }
                 sprite.setPosition(posicion[0],posicion[1]);
                 if(posicion[0]<=xFinal+5&&posicion[0]>=xFinal-5&&posicion[1]<=yFinal+5&&posicion[1]>=yFinal-5) {
