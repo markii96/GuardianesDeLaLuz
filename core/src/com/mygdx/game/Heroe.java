@@ -126,7 +126,6 @@ public class Heroe {
 
         pendiente = ((yFinal-posicion[0])/(xFinal-posicion[1]));
         b = (pendiente*posicion[0])-posicion[1];
-        System.out.println();
 
         switch (estado){
 
@@ -134,18 +133,26 @@ public class Heroe {
             case PARADO:break;
             case CAMINANDO:
 
+                if(posicion[0] >= xFinal && posicion[1]>=yFinal){
+                    posicion[0] -= 2;
+                    posicion[1] -=2;
+                    sprite.setPosition(posicion[0],posicion[1]);
 
-
-                if((this.posicion[0]>=(xFinal-5) || this.posicion[0]<=(xFinal+5))&&(this.posicion[1]>=(yFinal-5) || this.posicion[1]<=(yFinal+5))) {
-                    posicion[1] += (pendiente * posicion[0]) + b;
-                    posicion[0] += (posicion[1] + b) / pendiente;
-
-                    cambioPosicion[0] = posicion[0];
-                    cambioPosicion[1] = posicion[1];
-
-
-
-                    //System.out.println(this.posicion);
+                }
+                if(posicion[0] >= xFinal && posicion[1]<=yFinal){
+                    posicion[0] -= 2;
+                    posicion[1] +=2;
+                    sprite.setPosition(posicion[0],posicion[1]);
+                }
+                if(posicion[0] <= xFinal && posicion[1]>=yFinal){
+                    posicion[0] += 2;
+                    posicion[1] -=2;
+                    sprite.setPosition(posicion[0],posicion[1]);
+                }
+                if(posicion[0] <= xFinal && posicion[1]<=yFinal){
+                    posicion[0] += 2;
+                    posicion[1] +=2;
+                    sprite.setPosition(posicion[0],posicion[1]);
                 }
 
                 if(this.posicion[0]==xFinal && this.posicion[1] == yFinal){
