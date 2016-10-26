@@ -286,8 +286,10 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Vector3 v = new Vector3(screenX,screenY,0);
         camara.unproject(v);
-        float x =v.x;
-        float y = v.y;
+        float x =v.x-120;
+        float y = v.y -250;
+        System.out.println(x+" "+y);
+
 
         if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO) {
             if(x>=xInicial+5||x<=xInicial-5&&y>=yInicial+5||y<=yInicial-5) {

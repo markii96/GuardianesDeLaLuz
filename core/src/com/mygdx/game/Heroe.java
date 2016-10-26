@@ -146,9 +146,10 @@ public class Heroe {
                     sprite.setY(sprite.getY()+velocidadMovimiento);
                 }
                 //sprite.setPosition(posicion[0],posicion[1]);
-                if(sprite.getX()<=xFinal+5&&sprite.getX()>=xFinal-5&&sprite.getY()<=yFinal+5&&sprite.getY()>=yFinal-5) {
+                if(sprite.getX()<=xFinal+1&&sprite.getX()>=xFinal-1&&sprite.getY()<=yFinal+1&&sprite.getY()>=yFinal-1) {
                     estado = Estado.PARADO;
                     System.out.println(this.nombre+" "+this.getEstado());
+                    System.out.println(sprite.getX()+" "+sprite.getY());
                 }
 
         }

@@ -89,7 +89,14 @@ public class Enemigo {
 
 
     private void actualizar(){
-        //estados
+        switch (estado){
+
+            case CAMINANDO:
+
+
+
+
+        }
     }
 
     public void draw(SpriteBatch batch) {
