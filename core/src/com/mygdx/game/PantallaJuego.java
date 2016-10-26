@@ -51,9 +51,14 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     float xInicial,yInicial;
 
+    private int cont =0;
+
+    private int limiteEnemigos =2;
+
 
 
     public PantallaJuego(Juego juego) {
+
 
         this.juego = juego;
         heroesId[0]="1";
@@ -65,15 +70,32 @@ public class PantallaJuego implements Screen, InputProcessor {
         this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
 
         int range = (nivel.getEnemigos().length-1) + 1;
+        int range2 = (401);
+
+        int ran =  (int)(Math.random() * range);
+        int ran2 = (int)(Math.random() * range2);
 
 
-        for (int i = 0; i< this.nivel.getCantEnemigos();i++){
-            int ran =  (int)(Math.random() * range);
-            this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran],100,100,"Cristal");
-        }
+        this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, "Cristal");
+        cont+=1;
 
     }
 
+    private int regresaEnemigos() {
+        int cont=0;
+
+        try {
+            for (int i = 0; i < enemigos.length; i++) {
+                if (enemigos[i]!= null)
+                cont+=1;
+            }
+        }
+        catch (Exception error){
+            return cont;
+        }
+
+        return cont;
+    }
 
 
 
@@ -123,17 +145,32 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         fondo.draw(batch);
 
+        int range = (nivel.getEnemigos().length-1) + 1;
+        int range2 = (401);
 
-        nivel.getHeroes()[0].draw(batch);//guerrero
-        nivel.getHeroes()[1].draw(batch);//mago
-        nivel.getHeroes()[2].draw(batch);//arquera
+        for (int i = 1; i< this.nivel.getCantEnemigos();i++){
+            int ran =  (int)(Math.random() * range);
+            int ran2 = (int)(Math.random() * range2);
+
+            if (cont < limiteEnemigos) {
+                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, "Cristal");
+                cont+=1;
+            }
+        }
+
+        nivel.getHeroes()[0].draw(batch);
+        nivel.getHeroes()[1].draw(batch);
+        nivel.getHeroes()[2].draw(batch);
         nivel.getCristal().draw(batch);
 
         if(estado == Estado.PERDER){
-
             batch.draw(texturaPerdiste,200,200);
-
         }
+
+        for (int i=0; i<regresaEnemigos();i++){
+            enemigos[i].draw(batch);
+        }
+
 
 
         batch.end();

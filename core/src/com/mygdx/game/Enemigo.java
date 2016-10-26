@@ -3,8 +3,10 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.StringBuilder;
 
 /**
@@ -27,6 +29,10 @@ public class Enemigo {
     private String objetivo;
     private String descripcion;
     private Texture textura;
+    private int medidax, mediday;
+
+    private Animation animacion;    // Caminando
+    private float timerAnimacion;
 
     public Enemigo(String id, int x, int y, String objetivo){
 
@@ -41,7 +47,7 @@ public class Enemigo {
 
         datos = dato.split("-");
 
-        this.textura = new Texture (datos[8]);
+        this.textura = new Texture (datos[9]);
 
         this.sprite =  new Sprite(this.textura);
         this.nombre = datos[1];
@@ -55,6 +61,21 @@ public class Enemigo {
         this.descripcion = datos[7];
 
 
+        String[] medidas = datos[10].split(",");
+        medidax = Integer.parseInt(medidas[0])/2;
+        mediday = Integer.parseInt(medidas[1]);
+
+        TextureRegion texturaCompleta = new TextureRegion(this.textura);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
+        animacion = new Animation(0.25f, texturaPersonaje[0][0],
+                texturaPersonaje[0][1]);
+        animacion.setPlayMode(Animation.PlayMode.LOOP);
+        timerAnimacion = 0;
+
+        this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
+        this.sprite.setX(x);
+        this.sprite.setY(y);
+        this.sprite.setScale(.3f);
 
     }
 
