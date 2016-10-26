@@ -48,7 +48,6 @@ public class Heroe {
     private String descripcion;
     private Texture textura;
     private String img;
-    float[] cambioPosicion = new float[2];
 
     private int medidax, mediday;
     // Animación
@@ -56,6 +55,9 @@ public class Heroe {
     private float timerAnimacion;   // tiempo para calcular el frame
     private boolean direccion; //true = derecha, false = izquierda
 
+    // animación atacando
+    private Texture texturaAtacando;
+    private Animation animacionAtaque;
     public Heroe(String id, int x, int y) {
 
         String dato;
@@ -110,6 +112,16 @@ public class Heroe {
                 texturaPersonaje[0][2], texturaPersonaje[0][3]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
+
+        // texturas Ataque
+        this.texturaAtacando = new Texture(datos[19]);
+        TextureRegion texturaCompletaAtacando = new TextureRegion(texturaAtacando);
+        TextureRegion[][] texturaPersonajeAtacando = texturaCompletaAtacando.split(medidax,mediday);
+        animacionAtaque = new Animation(0.25f, texturaPersonajeAtacando[0][0],
+                texturaPersonajeAtacando[0][1],texturaPersonajeAtacando[0][2],texturaPersonajeAtacando[0][1]);
+        animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
+
+
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(this.posicion[0]);
         this.sprite.setY(this.posicion[1]);
@@ -141,10 +153,7 @@ public class Heroe {
                 if(sprite.getX()<=xFinal+2&&sprite.getX()>=xFinal-2&&sprite.getY()<=yFinal+2&&sprite.getY()>=yFinal-2) {
                     sprite.setY(yFinal);
                     sprite.setX(xFinal);
-                    estado = Estado.PARADO;
-                    System.out.println(this.nombre+" "+this.getEstado());
-                    System.out.println(sprite.getX()+" "+sprite.getY());
-                    System.out.println(xFinal+" "+yFinal);
+                    estado = Estado.ATACANDO;
                 }
 
         }
@@ -154,16 +163,24 @@ public class Heroe {
 
     public void draw(SpriteBatch batch) {
         actualizar();
-        if(this.getEstado()== Estado.CAMINANDO){
-            timerAnimacion += Gdx.graphics.getDeltaTime();
-            TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+        TextureRegion region;
+        switch(estado){
+            case CAMINANDO:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                region = animacion.getKeyFrame(timerAnimacion);
 
-            batch.draw(region, sprite.getX(), sprite.getY());
+                batch.draw(region, sprite.getX(), sprite.getY());
+                break;
+            case ATACANDO:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                region = animacionAtaque.getKeyFrame(timerAnimacion);
 
-        }else
-            sprite.draw(batch);
-
-
+                batch.draw(region, sprite.getX(), sprite.getY());
+                break;
+            default:
+                sprite.draw(batch);
+                break;
+        }
     }
 
     public boolean contiene(float x, float y){

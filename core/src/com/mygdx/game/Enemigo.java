@@ -29,13 +29,16 @@ public class Enemigo {
     private String objetivo;
     private String descripcion;
     private Texture textura;
-    private int medidax, mediday,medidaxA,medidayA;
 
+
+    private int medidax, mediday;
     private Animation animacion;    // Caminando
     private float timerAnimacion;
 
+    private Texture texturaAtacando;
     private Animation animacionAtaque;
     private float timerAnimaiconAtaque;
+    private int medidaxA,medidayA;
     public Enemigo(String id, int x, int y, String objetivo){
 
         String dato;
@@ -74,17 +77,17 @@ public class Enemigo {
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
 
-        medidas = datos[12].split(",");
-        System.out.println(medidas[0]+" "+medidas[1]);
-        medidaxA = Integer.parseInt(medidas[0])/3;
-        medidayA = Integer.parseInt(medidas[1]);
-        // texturas Movimiento
-        /*TextureRegion texturaCompletaAtacando = new TextureRegion(this.textura);
+        String[] medidasA = datos[12].split(",");
+
+        medidaxA = Integer.parseInt(medidasA[0])/3;
+        medidayA = Integer.parseInt(medidasA[1]);
+        // texturas Ataque
+        this.texturaAtacando = new Texture(datos[11]);
+        TextureRegion texturaCompletaAtacando = new TextureRegion(texturaAtacando);
         TextureRegion[][] texturaPersonajeAtacando = texturaCompletaAtacando.split(medidaxA,medidayA);
-        animacion = new Animation(0.25f, texturaPersonajeAtacando[0][0],
-                texturaPersonajeAtacando[0][1]);
-        animacion.setPlayMode(Animation.PlayMode.LOOP);
-        timerAnimacion = 0;*/
+        animacionAtaque = new Animation(0.25f, texturaPersonajeAtacando[0][0],
+                texturaPersonajeAtacando[0][1],texturaPersonajeAtacando[0][2],texturaPersonajeAtacando[0][1]);
+        animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
 
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(x);
@@ -145,12 +148,12 @@ public class Enemigo {
 
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
-           /* case ATACANDO:
+           case ATACANDO:
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 region = animacionAtaque.getKeyFrame(timerAnimacion);
 
-                batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
-            break;*/
+                batch.draw(region, sprite.getX(), sprite.getY());
+            break;
             default:
                 sprite.draw(batch);
             break;
