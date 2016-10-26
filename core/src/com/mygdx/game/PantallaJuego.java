@@ -206,9 +206,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         }
 
 
-        nivel.getHeroes()[1].setEstado(Heroe.Estado.SELECCIONADO);
-        nivel.getHeroes()[2].setEstado(Heroe.Estado.SELECCIONADO);
-
         if (estado == Estado.JUGANDO) {
 
                 if(nivel.getHeroes()[0].contiene(x,y)){
