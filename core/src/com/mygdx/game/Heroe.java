@@ -126,6 +126,7 @@ public class Heroe {
 
         pendiente = ((yFinal-posicion[0])/(xFinal-posicion[1]));
         b = (pendiente*posicion[0])-posicion[1];
+        System.out.println();
 
         switch (estado){
 
@@ -141,8 +142,6 @@ public class Heroe {
 
                     cambioPosicion[0] = posicion[0];
                     cambioPosicion[1] = posicion[1];
-
-                    this.setPosicion(cambioPosicion);
 
 
 
