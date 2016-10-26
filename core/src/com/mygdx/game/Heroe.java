@@ -54,6 +54,7 @@ public class Heroe {
     // Animación
     private Animation animacion;    // Caminando
     private float timerAnimacion;   // tiempo para calcular el frame
+    private boolean direccion; //true = derecha, false = izquierda
 
     public Heroe(String id, int x, int y) {
 
@@ -132,8 +133,6 @@ public class Heroe {
                 if(posicion[0] >= xFinal && posicion[1]>=yFinal){
                     posicion[0] -= 2;
                     posicion[1] -=2;
-
-
                 }
                 if(posicion[0] >= xFinal && posicion[1]<=yFinal){
                     posicion[0] -= 2;
@@ -161,15 +160,15 @@ public class Heroe {
 
     public void draw(SpriteBatch batch) {
         actualizar();
-        sprite.draw(batch);
-        double medidaxSc = medidax*.3;
-        double medidaySc = mediday*.3;
         if(this.getEstado()== Estado.CAMINANDO){
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = animacion.getKeyFrame(timerAnimacion);
 
-            batch.draw(region, sprite.getX(), sprite.getY());
-        }
+            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
+
+        }else
+            sprite.draw(batch);
+
 
     }
 
