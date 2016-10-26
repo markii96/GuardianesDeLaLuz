@@ -23,6 +23,10 @@ public class PantallaAcercaDe implements Screen {
     private Stage escena;
     private Texture texturaBtnBack;
     private Texture texturaCara;
+    private Texture texturaMarco;
+    private Texture texturaHector;
+    private Texture texturaJosep;
+    private Texture texturaRichard;
     //1
     private Texture texturaFondo;
 
@@ -54,6 +58,10 @@ public class PantallaAcercaDe implements Screen {
         texturaFondo = new Texture("fondo_acercaDe.png");
         texturaBtnBack = new Texture("back.png");
         texturaCara = new Texture("cara.png");
+        texturaMarco = new Texture("marco.jpg");
+        texturaHector = new Texture("hector.jpg");
+        texturaMarco = new Texture("josep.jpg");
+        texturaHector = new Texture("richard.jpg");
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
@@ -88,13 +96,22 @@ public class PantallaAcercaDe implements Screen {
 
 
         //agregar caras(fotos de cada integrante)
-        for(int i = 0; i<2; i++){
-            for(int j=0; j<2;j++){
-                Image imgCara = new Image(texturaCara);
-                imgCara.setPosition(250+j*200,100+i*200);
-                escena.addActor(imgCara);
-            }
-        }
+
+        Image imgMarco = new Image(texturaMarco);
+        Image imgHector = new Image(texturaHector);
+        Image imgJosep = new Image(texturaJosep);
+        Image imgRichard = new Image(texturaRichard);
+        imgMarco.setPosition(50,100);
+        imgHector.setPosition(200,100);
+        imgJosep.setPosition(350,100);
+        imgRichard.setPosition(500,100);
+        imgHector.setScale(.1f,.1f);
+        imgMarco.setScale(.4f,.4f);
+
+        escena.addActor(imgHector);
+        escena.addActor(imgMarco);
+        escena.addActor(imgJosep);
+        escena.addActor(imgRichard);
 
     }
 
