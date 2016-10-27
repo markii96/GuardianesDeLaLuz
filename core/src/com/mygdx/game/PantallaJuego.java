@@ -54,6 +54,9 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private int limiteEnemigos =2;
 
+    private int enemigosEliminados =0;
+    private int heroesEliminados =0;
+
 
 
     public PantallaJuego(Juego juego) {
@@ -145,6 +148,16 @@ public class PantallaJuego implements Screen, InputProcessor {
         int ran =  (int)(Math.random() * range);
         int ran2 = (int)(Math.random() * range2);
 
+        int bandera = 0;
+
+        if (enemigosEliminados >= 3){
+            estado =Estado.GANAR;
+        }
+
+        if (heroesEliminados >= 3){
+            estado =Estado.PERDER;
+        }
+
         timer+= Gdx.graphics.getDeltaTime();
 
         for(int i = 0;i<cont;i++){
@@ -163,6 +176,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if ( nivel.getHeroes()[j].getVitalidad() <= 0){
                             nivel.getHeroes()[j].getSprite().setY(1000);
                             nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+                            heroesEliminados++;
 
                             enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
 
@@ -172,12 +186,13 @@ public class PantallaJuego implements Screen, InputProcessor {
                             enemigos[i].getSprite().setY(1000);
                             enemigos[i].setEstado(Enemigo.Estado.MORIR);
                             enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                            enemigosEliminados++;
                             nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
                         }
 
                         timer = 0;
                     }
-                    break;
+
 
                 }
 
@@ -194,6 +209,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if ( nivel.getHeroes()[j].getVitalidad() <= 0){
                             nivel.getHeroes()[j].getSprite().setY(1000);
                             nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+                            heroesEliminados++;
 
                             enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
                         }
@@ -202,28 +218,30 @@ public class PantallaJuego implements Screen, InputProcessor {
                             enemigos[i].getSprite().setY(1000);
                             enemigos[i].setEstado(Enemigo.Estado.MORIR);
                             enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                            enemigosEliminados++;
                             nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
                         }
                         timer = 0;
                     }
 
-                    break;
+                    bandera = 1;
 
                 }
 
+                if (bandera==0) {
 
-
-                if (!enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(),nivel.getHeroes()[j].getSprite().getY())){
-                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-                    break;
-                }
-                if(!nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
-
+                    if (!enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(), nivel.getHeroes()[j].getSprite().getY())) {
                         enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
 
+                    }
+                    if (!nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(), enemigos[i].getSprite().getY())) {
 
-                    break;
+                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
 
+
+
+
+                    }
                 }
 
 
@@ -258,6 +276,10 @@ public class PantallaJuego implements Screen, InputProcessor {
         nivel.getCristal().draw(batch);
 
         if(estado == Estado.PERDER){
+            batch.draw(texturaPerdiste,200,200);
+        }
+
+        if(estado == Estado.GANAR){
             batch.draw(texturaPerdiste,200,200);
         }
 
