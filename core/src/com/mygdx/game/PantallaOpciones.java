@@ -66,7 +66,7 @@ public class PantallaOpciones implements Screen {
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
-        btnBack.setScale(0,0);
+
 
         TextureRegionDrawable trdConfiguracion = new TextureRegionDrawable(new TextureRegion(botonConfiguracion));
         ImageButton btnConfiguracion = new ImageButton(trdConfiguracion);
@@ -92,9 +92,12 @@ public class PantallaOpciones implements Screen {
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                //regresar al menu principal
                 juego.setScreen(new MenuPrincipal(juego));
+
             }
         });
+
         Gdx.input.setInputProcessor(escena);
 
 
