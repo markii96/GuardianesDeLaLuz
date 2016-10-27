@@ -56,7 +56,7 @@ public class PantallaAcercaDe implements Screen {
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
         //2
         texturaFondo = new Texture("fondo_acercaDe.png");
-        texturaBtnBack = new Texture("back.png");
+        texturaBtnBack = new Texture("atras.png");
         texturaCara = new Texture("cara.png");
         texturaMarco = new Texture("marco.jpg");
         texturaHector = new Texture("hector.jpg");

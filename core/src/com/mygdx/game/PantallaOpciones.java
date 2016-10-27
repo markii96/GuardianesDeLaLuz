@@ -60,26 +60,26 @@ public class PantallaOpciones implements Screen {
         botonInstrucciones = new Texture("instrucciones.png");
 
         texturaFondo = new Texture("fondo_opciones.png");
-        texturaBtnBack = new Texture("back.png");
+        texturaBtnBack = new Texture("atras.png");
         botonMejoras = new Texture("mejoras.png");
 
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
-        btnBack.setScale(.1f,.1f);
+        btnBack.setScale(0,0);
 
         TextureRegionDrawable trdConfiguracion = new TextureRegionDrawable(new TextureRegion(botonConfiguracion));
         ImageButton btnConfiguracion = new ImageButton(trdConfiguracion);
-        btnConfiguracion.setPosition(ancho/2 -btnConfiguracion.getWidth()/2, 0.7f*alto);
+        btnConfiguracion.setPosition(ancho/2 -btnConfiguracion.getWidth()/2, 0.5f*alto);
 
         TextureRegionDrawable trdHistoria = new TextureRegionDrawable(new TextureRegion(botonHistoria));
         ImageButton btnHistoria = new ImageButton(trdHistoria);
-        btnHistoria.setPosition(ancho/2-btnHistoria.getWidth()/2,0.5f*alto);
+        btnHistoria.setPosition(ancho/2-btnHistoria.getWidth()/2,0.3f*alto);
 
         TextureRegionDrawable trdInstrucciones = new TextureRegionDrawable(new TextureRegion(botonInstrucciones));
         ImageButton btnInstrucciones = new ImageButton(trdInstrucciones);
         btnInstrucciones.setScale(.1f,.1f);
-        btnInstrucciones.setPosition(ancho/2-btnInstrucciones.getWidth()/2,0.3f*alto);
+        btnInstrucciones.setPosition(ancho/2-btnInstrucciones.getWidth()/2,0.1f*alto);
 
 /*
         TextureRegionDrawable trdBtnMejoras = new TextureRegionDrawable(new TextureRegion(botonMejoras));
