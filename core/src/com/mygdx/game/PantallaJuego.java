@@ -139,6 +139,12 @@ public class PantallaJuego implements Screen, InputProcessor {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        int range = (nivel.getEnemigos().length-1) + 1;
+        int range2 = (401);
+
+        int ran =  (int)(Math.random() * range);
+        int ran2 = (int)(Math.random() * range2);
+
         timer+= Gdx.graphics.getDeltaTime();
 
         for(int i = 0;i<cont;i++){
@@ -152,14 +158,23 @@ public class PantallaJuego implements Screen, InputProcessor {
                         System.out.println(nivel.getHeroes()[0].getVitalidad()+" "+Gdx.graphics.getDeltaTime());
 
                         if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
-                        if ( ;
+                        if ( enemigos[i].getVitalidad() > 0) enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes()[j].getDanoFisico());
 
-                        if ( nivel.getHeroes()[j].getVitalidad() == 0){
-                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+                        if ( nivel.getHeroes()[j].getVitalidad() <= 0){
                             nivel.getHeroes()[j].getSprite().setY(1000);
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+
                             enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
 
                         }
+
+                        if (enemigos[i].getVitalidad() <= 0 ){
+                            enemigos[i].getSprite().setY(1000);
+                            enemigos[i].setEstado(Enemigo.Estado.MORIR);
+                            enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
+                        }
+
                         timer = 0;
                     }
                     break;
@@ -174,11 +189,20 @@ public class PantallaJuego implements Screen, InputProcessor {
                         System.out.println(nivel.getHeroes()[0].getVitalidad()+" "+Gdx.graphics.getDeltaTime());
 
                         if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
+                        if ( enemigos[i].getVitalidad() > 0) enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes()[j].getDanoFisico());
 
-                        if ( nivel.getHeroes()[j].getVitalidad() == 0){
-                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+                        if ( nivel.getHeroes()[j].getVitalidad() <= 0){
                             nivel.getHeroes()[j].getSprite().setY(1000);
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+
                             enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                        }
+
+                        if (enemigos[i].getVitalidad() <= 0 ){
+                            enemigos[i].getSprite().setY(1000);
+                            enemigos[i].setEstado(Enemigo.Estado.MORIR);
+                            enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
                         }
                         timer = 0;
                     }
@@ -187,12 +211,17 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 }
 
+
+
                 if (!enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(),nivel.getHeroes()[j].getSprite().getY())){
-                    enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
                     break;
                 }
                 if(!nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
-                    enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
+                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
+
                     break;
 
                 }
@@ -208,15 +237,17 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         fondo.draw(batch);
 
-        int range = (nivel.getEnemigos().length-1) + 1;
-        int range2 = (401);
+
+
+         range = (nivel.getEnemigos().length-1) + 1;
+        range2 = (401);
 
         for (int i = 1; i< this.nivel.getCantEnemigos();i++){
-            int ran =  (int)(Math.random() * range);
-            int ran2 = (int)(Math.random() * range2);
+            ran =  (int)(Math.random() * range);
+            ran2 = (int)(Math.random() * range2);
 
             if (cont < limiteEnemigos) {
-                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, "Cristal");
+                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
                 cont+=1;
             }
         }
