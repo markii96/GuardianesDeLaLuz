@@ -114,7 +114,7 @@ public class Heroe {
         timerAnimacion = 0;
 
         // texturas Ataque
-        this.texturaAtacando = new Texture(datos[19]);
+        this.texturaAtacando = new Texture(datos[20]);
         TextureRegion texturaCompletaAtacando = new TextureRegion(texturaAtacando);
         TextureRegion[][] texturaPersonajeAtacando = texturaCompletaAtacando.split(medidax,mediday);
         animacionAtaque = new Animation(0.25f, texturaPersonajeAtacando[0][0],
