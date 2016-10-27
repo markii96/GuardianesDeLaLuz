@@ -14,8 +14,20 @@ public class Cristal {
     private Texture textura;
     private Estado estado;
     private Sprite sprite;
+    private int maxVitalidad;
+    private Vida barraVida;
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
     public Cristal(){
         this.vitalidad = 1000;
+        maxVitalidad = vitalidad;
         this.armadura = 0;
         this.textura = new Texture("torre.png");
         this.estado = Estado.VIVIR;
@@ -23,13 +35,16 @@ public class Cristal {
         this.sprite.setX(10);
         this.sprite.setY(50);
         this.sprite.setScale(.8f);
+        barraVida = new Vida(this, new Texture("vidaLlena.png"), new Texture("vidaVacia.png"));
     }
     private void actualizar(){
         //estados
+        barraVida.update();
     }
     public void draw(SpriteBatch batch) {
         actualizar();
         sprite.draw(batch);
+        barraVida.draw(batch);
     }
 
     public int getVitalidad() {
@@ -69,5 +84,36 @@ public class Cristal {
         VIVIR,
         DAÑADO
     }
+    private class Vida {
+        private Sprite barraVidaVacia;
+        private Sprite barraVidaLlena;
+        private Cristal owner;
+        private final short buffer = 10;
+        public Vida(Cristal owner, Texture vidaLlena, Texture vidaVacia){
+            this.owner = owner;
 
+            barraVidaVacia = new Sprite(vidaVacia);
+            barraVidaLlena = new Sprite(vidaLlena);
+            barraVidaLlena.setX(owner.getSprite().getX()+owner.getSprite().getWidth()/3);
+            barraVidaLlena.setY(owner.getSprite().getY()+owner.getSprite().getHeight()-buffer);
+            barraVidaVacia.setX(owner.getSprite().getX()+owner.getSprite().getWidth()/3);
+            barraVidaVacia.setY(owner.getSprite().getY()+owner.getSprite().getHeight()-buffer);
+            barraVidaLlena.setOrigin(0,0);
+
+        }
+        public void update(){
+            barraVidaLlena.setX(owner.getSprite().getX()+owner.getSprite().getWidth()/3);
+            barraVidaLlena.setY(owner.getSprite().getY()+owner.getSprite().getHeight()-buffer);
+            barraVidaVacia.setX(owner.getSprite().getX()+owner.getSprite().getWidth()/3);
+            barraVidaVacia.setY(owner.getSprite().getY()+owner.getSprite().getHeight()-buffer);
+            barraVidaLlena.setScale(owner.vitalidad/(float)owner.maxVitalidad,1);
+        }
+        public void draw(SpriteBatch batch){
+            update();
+            barraVidaVacia.draw(batch);
+            barraVidaLlena.draw(batch);
+        }
+
+
+    }
 }

@@ -94,7 +94,7 @@ public class Enemigo {
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(x);
         this.sprite.setY(y);
-        barraVida = new Vida(this, new Texture("vidaLlena.png"), new Texture("vidaVacia.png"));
+        barraVida = new Vida(this, new Texture("vidaenemigo.png"), new Texture("vidaVacia.png"));
         //this.sprite.setScale(.3f);
 
     }
