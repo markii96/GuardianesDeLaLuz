@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import java.util.Arrays;
 import com.sun.javafx.scene.paint.GradientUtils;
 
 import java.awt.Point;
@@ -44,6 +45,8 @@ public class PantallaJuego implements Screen, InputProcessor {
     private String[] heroesId = new String[3];
 
     private Enemigo[] enemigos;
+
+    private float timer =0;
 
     float xInicial,yInicial;
 
@@ -111,7 +114,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         camara = new OrthographicCamera(1280,720);
         camara.position.set(1280/2,720/2,0);
         camara.update();
-        vista = new StretchViewport(1280,800,camara);
+        vista = new StretchViewport(1280,720,camara);
 
     }
 
@@ -135,26 +138,90 @@ public class PantallaJuego implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        int range = (nivel.getEnemigos().length-1) + 1;
+        int range2 = (401);
+
+        int ran =  (int)(Math.random() * range);
+        int ran2 = (int)(Math.random() * range2);
+
+        timer+= Gdx.graphics.getDeltaTime();
+
         for(int i = 0;i<cont;i++){
             for(int j = 0;j<nivel.getHeroes().length;j++){
                 if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
+
                     enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                    nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
+
+                    if (timer >=1) {
+                        System.out.println(nivel.getHeroes()[0].getVitalidad()+" "+Gdx.graphics.getDeltaTime());
+
+                        if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
+                        if ( enemigos[i].getVitalidad() > 0) enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes()[j].getDanoFisico());
+
+                        if ( nivel.getHeroes()[j].getVitalidad() <= 0){
+                            nivel.getHeroes()[j].getSprite().setY(1000);
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+
+                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
+                        }
+
+                        if (enemigos[i].getVitalidad() <= 0 ){
+                            enemigos[i].getSprite().setY(1000);
+                            enemigos[i].setEstado(Enemigo.Estado.MORIR);
+                            enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
+                        }
+
+                        timer = 0;
+                    }
                     break;
 
                 }
 
                 if(enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(),nivel.getHeroes()[j].getSprite().getY())){
                     enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                    nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
+
+                    if (timer >=1) {
+                        System.out.println(nivel.getHeroes()[0].getVitalidad()+" "+Gdx.graphics.getDeltaTime());
+
+                        if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
+                        if ( enemigos[i].getVitalidad() > 0) enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes()[j].getDanoFisico());
+
+                        if ( nivel.getHeroes()[j].getVitalidad() <= 0){
+                            nivel.getHeroes()[j].getSprite().setY(1000);
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+
+                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                        }
+
+                        if (enemigos[i].getVitalidad() <= 0 ){
+                            enemigos[i].getSprite().setY(1000);
+                            enemigos[i].setEstado(Enemigo.Estado.MORIR);
+                            enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
+                        }
+                        timer = 0;
+                    }
+
                     break;
 
                 }
 
+
+
                 if (!enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(),nivel.getHeroes()[j].getSprite().getY())){
-                    enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
                     break;
                 }
                 if(!nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
-                    enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
+                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
+
                     break;
 
                 }
@@ -170,15 +237,17 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         fondo.draw(batch);
 
-        int range = (nivel.getEnemigos().length-1) + 1;
-        int range2 = (401);
+
+
+         range = (nivel.getEnemigos().length-1) + 1;
+        range2 = (401);
 
         for (int i = 1; i< this.nivel.getCantEnemigos();i++){
-            int ran =  (int)(Math.random() * range);
-            int ran2 = (int)(Math.random() * range2);
+            ran =  (int)(Math.random() * range);
+            ran2 = (int)(Math.random() * range2);
 
             if (cont < limiteEnemigos) {
-                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, "Cristal");
+                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
                 cont+=1;
             }
         }
