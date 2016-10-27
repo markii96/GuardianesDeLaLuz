@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -297,7 +298,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         camara.unproject(v);
         float x =v.x;
         float y = v.y;
-        System.out.println(x+" "+y);
 
 
         if (nivel.getHeroes()[0].getEstado() == Heroe.Estado.SELECCIONADO) {
@@ -306,6 +306,11 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes()[0].setxFinal(x-nivel.getHeroes()[0].getMedidax()/6);
                 nivel.getHeroes()[0].setyFinal(y);
             }
+            if(xInicial<x){
+                nivel.getHeroes()[0].setDireccion(true);
+            }else{
+                nivel.getHeroes()[0].setDireccion(false);
+            }
         }
 
         if (nivel.getHeroes()[1].getEstado() == Heroe.Estado.SELECCIONADO) {
@@ -313,7 +318,11 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes()[1].setEstado(Heroe.Estado.CAMINANDO);
                 nivel.getHeroes()[1].setxFinal(x-nivel.getHeroes()[1].getMedidax()/6);
                 nivel.getHeroes()[1].setyFinal(y);
-
+            }
+            if(xInicial<x){
+                nivel.getHeroes()[1].setDireccion(true);
+            }else{
+                nivel.getHeroes()[1].setDireccion(false);
             }
         }
 
@@ -323,7 +332,11 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes()[2].setxFinal(x -nivel.getHeroes()[2].getMedidax()/6);
                 nivel.getHeroes()[2].setyFinal(y);
             }
-
+            if(xInicial<x){
+                nivel.getHeroes()[2].setDireccion(true);
+            }else{
+                nivel.getHeroes()[2].setDireccion(false);
+            }
         }
 
 
@@ -354,5 +367,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         SELECCIONADO
 
     }
+
 
 }
