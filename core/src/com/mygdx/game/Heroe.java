@@ -37,6 +37,7 @@ public class Heroe {
     private String alcance;
     private float velocidadAatque;
     private int curacion;
+    private int maxVitalidad;
     private int vitalidad;
     private float velocidadMovimiento;
     private int exp;
@@ -48,14 +49,18 @@ public class Heroe {
     private String descripcion;
     private Texture textura;
     private String img;
-    float[] cambioPosicion = new float[2];
 
+    private Vida barraVida;
     private int medidax, mediday;
     // Animación
     private Animation animacion;    // Caminando
     private float timerAnimacion;   // tiempo para calcular el frame
+
     private boolean direccion; //true = derecha, false = izquierda
 
+    // animación atacando
+    private Texture texturaAtacando;
+    private Animation animacionAtaque;
     public Heroe(String id, int x, int y) {
 
         String dato;
@@ -74,7 +79,8 @@ public class Heroe {
         this.alcance = datos[5];
         this.velocidadAatque = Float.parseFloat(datos[6]);
         this.curacion = Integer.parseInt(datos[7]);
-        this.vitalidad = Integer.parseInt(datos[8]);
+        this.maxVitalidad = Integer.parseInt(datos[8]);
+        this.vitalidad = maxVitalidad;
         this.velocidadMovimiento = Float.parseFloat(datos[9]);
         this.exp = Integer.parseInt(datos[10]);
         this.nivel = Integer.parseInt(datos[11]);
@@ -98,7 +104,7 @@ public class Heroe {
         this.posicion[0] = x;
         this.posicion[1] = y;
         this.img = datos[18];
-
+        this.direccion = true;
         String[] medidas = datos[19].split(",");
         medidax = Integer.parseInt(medidas[0])/4;
         mediday = Integer.parseInt(medidas[1]);
@@ -110,10 +116,21 @@ public class Heroe {
                 texturaPersonaje[0][2], texturaPersonaje[0][3]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
+
+        // texturas Ataque
+        this.texturaAtacando = new Texture(datos[20]);
+        TextureRegion texturaCompletaAtacando = new TextureRegion(texturaAtacando);
+        TextureRegion[][] texturaPersonajeAtacando = texturaCompletaAtacando.split(medidax,mediday);
+        animacionAtaque = new Animation(0.25f, texturaPersonajeAtacando[0][0],
+                texturaPersonajeAtacando[0][1],texturaPersonajeAtacando[0][2],texturaPersonajeAtacando[0][3]);
+        animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
+
+
         this.sprite = new Sprite(texturaPersonaje[0][0]);    // quieto
         this.sprite.setX(this.posicion[0]);
         this.sprite.setY(this.posicion[1]);
-        this.sprite.setScale(.3f);
+
+        barraVida = new Vida(this, new Texture("vidaLlena.png"), new Texture("vidaVacia.png"));
     }
 
 
@@ -124,46 +141,77 @@ public class Heroe {
 
             case PARADO:break;
             case CAMINANDO:
-                if(sprite.getX() >= xFinal && sprite.getY()>=yFinal){
-                    sprite.setX(sprite.getX()-velocidadMovimiento);
-                    sprite.setY(sprite.getY()-velocidadMovimiento);
-                }else
-                if(sprite.getX() >= xFinal && sprite.getY()<=yFinal){
-                    sprite.setX(sprite.getX()-velocidadMovimiento);
-                    sprite.setY(sprite.getY()+velocidadMovimiento);
+                if(sprite.getX() >= xFinal) sprite.setX(sprite.getX()-velocidadMovimiento);
 
-                }else
-                if(sprite.getX() <= xFinal && sprite.getY()>=yFinal){
-                    sprite.setX(sprite.getX()+velocidadMovimiento);
-                    sprite.setY(sprite.getY()-velocidadMovimiento);
-                }else
-                if(sprite.getX() <= xFinal && sprite.getY()<=yFinal){
-                    sprite.setX(sprite.getX()+velocidadMovimiento);
-                    sprite.setY(sprite.getY()+velocidadMovimiento);
-                }
-                posicion[0]= sprite.getX();
-                posicion[1]= sprite.getY();
+                if(sprite.getY() >= yFinal) sprite.setY(sprite.getY()-velocidadMovimiento);
+
+                if(sprite.getX() <= xFinal) sprite.setX(sprite.getX()+velocidadMovimiento);
+
+                if(sprite.getY() <= yFinal) sprite.setY(sprite.getY()+velocidadMovimiento);
+
+
+                //sprite.setPosition(posicion[0],posicion[1]);
                 if(sprite.getX()<=xFinal+2&&sprite.getX()>=xFinal-2&&sprite.getY()<=yFinal+2&&sprite.getY()>=yFinal-2) {
+                    sprite.setY(yFinal);
+                    sprite.setX(xFinal);
                     estado = Estado.PARADO;
                 }
 
         }
+        barraVida.update();
 
 
     }
 
     public void draw(SpriteBatch batch) {
         actualizar();
-        if(this.getEstado()== Estado.CAMINANDO){
-            timerAnimacion += Gdx.graphics.getDeltaTime();
-            TextureRegion region = animacion.getKeyFrame(timerAnimacion);
-
-            batch.draw(region, sprite.getX(), sprite.getY(),sprite.getOriginX(),sprite.getOriginY(),region.getRegionWidth(),region.getRegionHeight(),.3f,.3f,0);
-
-        }else
-            sprite.draw(batch);
-
-
+        TextureRegion region;
+        switch(estado){
+            case CAMINANDO:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                region = animacion.getKeyFrame(timerAnimacion);
+                if (direccion) {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
+                batch.draw(region, sprite.getX(), sprite.getY());
+                break;
+            case ATACANDO:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                region = animacionAtaque.getKeyFrame(timerAnimacion);
+                if (direccion) {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
+                batch.draw(region, sprite.getX(), sprite.getY());
+                break;
+            default:
+                TextureRegion texturaCompleta = new TextureRegion(textura);
+                TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
+                region = texturaPersonaje[0][0];
+                if (direccion) {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
+                batch.draw(region, sprite.getX(), sprite.getY());
+                break;
+        }
+        barraVida.draw(batch);
     }
 
     public boolean contiene(float x, float y){
@@ -306,6 +354,14 @@ public class Heroe {
         this.clase = clase;
     }
 
+    public int getMediday() {
+        return mediday;
+    }
+
+    public int getMedidax() {
+        return medidax;
+    }
+
     public void setDanoFisico(int danoFisico) {
         this.danoFisico = danoFisico;
     }
@@ -368,5 +424,43 @@ public class Heroe {
     public void setTextura(Texture textura) {
         this.textura = textura;
     }
+    public boolean isDireccion() {
+        return direccion;
+    }
 
+    public void setDireccion(boolean direccion) {
+        this.direccion = direccion;
+    }
+    private class Vida {
+        private Sprite barraVidaVacia;
+        private Sprite barraVidaLlena;
+        private Heroe owner;
+        private final short buffer = 10;
+        public Vida(Heroe owner, Texture vidaLlena, Texture vidaVacia){
+            this.owner = owner;
+
+            barraVidaVacia = new Sprite(vidaVacia);
+            barraVidaLlena = new Sprite(vidaLlena);
+            barraVidaLlena.setX(owner.getSprite().getX());
+            barraVidaLlena.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaVacia.setX(owner.getSprite().getX());
+            barraVidaVacia.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaLlena.setOrigin(0,0);
+
+        }
+        public void update(){
+            barraVidaLlena.setX(owner.getSprite().getX());
+            barraVidaLlena.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaVacia.setX(owner.getSprite().getX());
+            barraVidaVacia.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaLlena.setScale(owner.vitalidad/(float)owner.maxVitalidad,1);
+        }
+        public void draw(SpriteBatch batch){
+            update();
+            barraVidaVacia.draw(batch);
+            barraVidaLlena.draw(batch);
+        }
+
+
+    }
 }
