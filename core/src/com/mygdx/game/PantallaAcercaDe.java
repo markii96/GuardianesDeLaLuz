@@ -60,8 +60,8 @@ public class PantallaAcercaDe implements Screen {
         texturaCara = new Texture("cara.png");
         texturaMarco = new Texture("marco.jpg");
         texturaHector = new Texture("hector.jpg");
-        texturaMarco = new Texture("josep.jpg");
-        texturaHector = new Texture("richard.jpg");
+        texturaJosep = new Texture("josep.jpg");
+        texturaRichard = new Texture("ricardo.jpg");
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
@@ -107,6 +107,8 @@ public class PantallaAcercaDe implements Screen {
         imgRichard.setPosition(500,100);
         imgHector.setScale(.1f,.1f);
         imgMarco.setScale(.4f,.4f);
+        imgJosep.setScale(.3f,.3f);
+        imgRichard.setScale(.3f,.3f);
 
         escena.addActor(imgHector);
         escena.addActor(imgMarco);

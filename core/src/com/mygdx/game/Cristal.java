@@ -38,6 +38,8 @@ public class Cristal {
         barraVida = new Vida(this, new Texture("vidaLlena.png"), new Texture("vidaVacia.png"));
     }
     private void actualizar(){
+
+
         //estados
         barraVida.update();
     }

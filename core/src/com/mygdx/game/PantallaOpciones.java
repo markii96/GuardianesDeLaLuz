@@ -66,6 +66,7 @@ public class PantallaOpciones implements Screen {
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
+        btnBack.setScale(.1f,.1f);
 
         TextureRegionDrawable trdConfiguracion = new TextureRegionDrawable(new TextureRegion(botonConfiguracion));
         ImageButton btnConfiguracion = new ImageButton(trdConfiguracion);
@@ -77,7 +78,9 @@ public class PantallaOpciones implements Screen {
 
         TextureRegionDrawable trdInstrucciones = new TextureRegionDrawable(new TextureRegion(botonInstrucciones));
         ImageButton btnInstrucciones = new ImageButton(trdInstrucciones);
+        btnInstrucciones.setScale(.1f,.1f);
         btnInstrucciones.setPosition(ancho/2-btnInstrucciones.getWidth()/2,0.3f*alto);
+
 /*
         TextureRegionDrawable trdBtnMejoras = new TextureRegionDrawable(new TextureRegion(botonMejoras));
         ImageButton btnMejoras = new ImageButton(trdBtnMejoras);
@@ -102,10 +105,12 @@ public class PantallaOpciones implements Screen {
         //btnInstrucciones.setScale(.4f);
 
         escena.addActor(imgFondo);
-        escena.addActor(btnBack);
+
         escena.addActor(btnConfiguracion);
         escena.addActor(btnHistoria);
         escena.addActor(btnInstrucciones);
+        escena.addActor(btnBack);
+
       //  escena.addActor(btnMejoras);
 
     }
