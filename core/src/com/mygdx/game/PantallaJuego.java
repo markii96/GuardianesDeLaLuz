@@ -357,7 +357,10 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x =v.x;
         float y = v.y;
         if(estado == Estado.PERDER || estado == Estado.GANAR) {
-            if (x <= btnAtras.getX() + 100 && x >= btnAtras.getX() && y <= btnAtras.getY() + 50 && y >= btnAtras.getY()) {
+            System.out.println(x+" "+btnAtras.getX());
+            System.out.println(y+" "+btnAtras.getY());
+
+            if (x <= btnAtras.getX() + btnAtras.getWidth() && x >= btnAtras.getX() && y <= btnAtras.getY() + btnAtras.getHeight() && y >= btnAtras.getY()) {
                 System.out.println("lol");
                 juego.setScreen(new MenuPrincipal(juego));
             }
