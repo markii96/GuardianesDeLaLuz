@@ -37,6 +37,7 @@ public class Heroe {
     private String alcance;
     private float velocidadAatque;
     private int curacion;
+    private int maxVitalidad;
     private int vitalidad;
     private float velocidadMovimiento;
     private int exp;
@@ -78,7 +79,8 @@ public class Heroe {
         this.alcance = datos[5];
         this.velocidadAatque = Float.parseFloat(datos[6]);
         this.curacion = Integer.parseInt(datos[7]);
-        this.vitalidad = Integer.parseInt(datos[8]);
+        this.maxVitalidad = Integer.parseInt(datos[8]);
+        this.vitalidad = maxVitalidad;
         this.velocidadMovimiento = Float.parseFloat(datos[9]);
         this.exp = Integer.parseInt(datos[10]);
         this.nivel = Integer.parseInt(datos[11]);
@@ -431,20 +433,22 @@ public class Heroe {
 
             barraVidaVacia = new Sprite(vidaVacia);
             barraVidaLlena = new Sprite(vidaLlena);
-            barraVidaLlena.setX(owner.getPosicion()[0]);
-            barraVidaLlena.setY(owner.getPosicion()[1]+owner.mediday+buffer);
-            barraVidaVacia.setX(owner.getPosicion()[0]);
-            barraVidaVacia.setY(owner.getPosicion()[1]+owner.mediday+buffer);
+            barraVidaLlena.setX(owner.getSprite().getX());
+            barraVidaLlena.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaVacia.setX(owner.getSprite().getX());
+            barraVidaVacia.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaLlena.setOrigin(0,0);
 
         }
         public void update(){
-            barraVidaLlena.setX(owner.getPosicion()[0]);
-            barraVidaLlena.setY(owner.getPosicion()[1]+owner.mediday+buffer);
-            barraVidaVacia.setX(owner.getPosicion()[0]);
-            barraVidaVacia.setY(owner.getPosicion()[1]+owner.mediday+buffer);
+            barraVidaLlena.setX(owner.getSprite().getX());
+            barraVidaLlena.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaVacia.setX(owner.getSprite().getX());
+            barraVidaVacia.setY(owner.getSprite().getY()+owner.mediday+buffer);
+            barraVidaLlena.setScale(owner.vitalidad/(float)owner.maxVitalidad,1);
         }
         public void draw(SpriteBatch batch){
-            //update();
+            update();
             barraVidaVacia.draw(batch);
             barraVidaLlena.draw(batch);
         }
