@@ -57,6 +57,8 @@ public class PantallaJuego implements Screen, InputProcessor {
     private int enemigosEliminados =0;
     private int heroesEliminados =0;
 
+    private Sprite btnAtras;
+
 
 
     public PantallaJuego(Juego juego) {
@@ -276,17 +278,26 @@ public class PantallaJuego implements Screen, InputProcessor {
         nivel.getCristal().draw(batch);
 
         if(estado == Estado.PERDER){
-            batch.draw(texturaPerdiste,200,200);
+            texturaPerdiste = new Texture("perdiste.png");
+            batch.draw(texturaPerdiste,400,200);
         }
 
         if(estado == Estado.GANAR){
-            batch.draw(texturaPerdiste,200,200);
+            texturaPerdiste = new Texture("ganaste.png");
+            batch.draw(texturaPerdiste,400,200);
         }
 
         for (int i=0; i<regresaEnemigos();i++){
             enemigos[i].draw(batch);
         }
-
+        if(estado== Estado.GANAR || estado == Estado.PERDER){
+            Texture back = new Texture("back.png");
+            btnAtras = new Sprite(back);
+            btnAtras.setScale(.3f);
+            btnAtras.setX(400);
+            btnAtras.setY(50);
+            btnAtras.draw(batch);
+        }
 
         batch.end();
 
@@ -345,7 +356,12 @@ public class PantallaJuego implements Screen, InputProcessor {
         camara.unproject(v);
         float x =v.x;
         float y = v.y;
-
+        if(estado == Estado.PERDER || estado == Estado.GANAR) {
+            if (x <= btnAtras.getX() + 100 && x >= btnAtras.getX() && y <= btnAtras.getY() + 50 && y >= btnAtras.getY()) {
+                System.out.println("lol");
+                juego.setScreen(new MenuPrincipal(juego));
+            }
+        }
 
         if(nivel.getHeroes()[0].getEstado()== Heroe.Estado.SELECCIONADO){
             nivel.getHeroes()[0].setEstado(Heroe.Estado.DESELECCIONADO);
