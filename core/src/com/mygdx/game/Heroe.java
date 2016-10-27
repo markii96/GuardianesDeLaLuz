@@ -184,7 +184,15 @@ public class Heroe {
             case ATACANDO:
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 region = animacionAtaque.getKeyFrame(timerAnimacion);
-
+                if (direccion) {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
             default:
