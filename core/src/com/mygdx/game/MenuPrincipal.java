@@ -63,8 +63,8 @@ public class MenuPrincipal implements Screen {
 			preferenciasHabilidades.putString("1","1-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png");
 			preferenciasHabilidades.putString("2","2-Misil Arcano-4-uno-1-misil_arcano.png-misil_arcano_anim.png");
 			preferenciasHabilidades.putString("3","3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png");
-			preferenciasEnemigos.putString("1","1-crawler-500-2-2-10-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");
-			preferenciasEnemigos.putString("2","2-soulEater-800-1-2-15-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
+			preferenciasEnemigos.putString("1","1-crawler-500-2-2-5-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");
+			preferenciasEnemigos.putString("2","2-soulEater-800-1-2-10-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
 			preferenciasEnemigos.flush();
 			preferenciasValidacion.putString("1", "1");
 			preferenciasValidacion.flush();
