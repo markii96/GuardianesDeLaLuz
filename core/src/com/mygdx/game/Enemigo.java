@@ -108,6 +108,8 @@ public class Enemigo {
     private void actualizar(){
         switch (estado){
             case ATACANDO:
+
+
                 break;
             case CAMINANDO:
                 if(sprite.getX() >= 10 && sprite.getY()>=50){

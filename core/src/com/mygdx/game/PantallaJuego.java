@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import java.util.Arrays;
 import com.sun.javafx.scene.paint.GradientUtils;
 
 import java.awt.Point;
@@ -44,6 +45,8 @@ public class PantallaJuego implements Screen, InputProcessor {
     private String[] heroesId = new String[3];
 
     private Enemigo[] enemigos;
+
+    private float timer =0;
 
     float xInicial,yInicial;
 
@@ -111,7 +114,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         camara = new OrthographicCamera(1280,720);
         camara.position.set(1280/2,720/2,0);
         camara.update();
-        vista = new StretchViewport(1280,800,camara);
+        vista = new StretchViewport(1280,720,camara);
 
     }
 
@@ -135,16 +138,51 @@ public class PantallaJuego implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        timer+= Gdx.graphics.getDeltaTime();
+
         for(int i = 0;i<cont;i++){
             for(int j = 0;j<nivel.getHeroes().length;j++){
                 if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
+
                     enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                    nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
+
+                    if (timer >=1) {
+                        System.out.println(nivel.getHeroes()[0].getVitalidad()+" "+Gdx.graphics.getDeltaTime());
+
+                        if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
+                        if ( ;
+
+                        if ( nivel.getHeroes()[j].getVitalidad() == 0){
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+                            nivel.getHeroes()[j].getSprite().setY(1000);
+                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
+                        }
+                        timer = 0;
+                    }
                     break;
 
                 }
 
                 if(enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(),nivel.getHeroes()[j].getSprite().getY())){
                     enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                    nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
+
+                    if (timer >=1) {
+                        System.out.println(nivel.getHeroes()[0].getVitalidad()+" "+Gdx.graphics.getDeltaTime());
+
+                        if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
+
+                        if ( nivel.getHeroes()[j].getVitalidad() == 0){
+                            nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
+                            nivel.getHeroes()[j].getSprite().setY(1000);
+                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                        }
+                        timer = 0;
+                    }
+
                     break;
 
                 }
