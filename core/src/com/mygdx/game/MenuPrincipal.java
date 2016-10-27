@@ -55,7 +55,7 @@ public class MenuPrincipal implements Screen {
 		//if(!preferenciasValidacion.get().toString().equals("{}")){
 			Preferences p = Gdx.app.getPreferences("Enemigos");
 			preferenciasHeroes.putString("1","1-Ehtoas-Guerrero-100-0-Corto-2-0-100-2-0-1-1-0-1-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png-518,173-glad_atacando.png");
-			preferenciasHeroes.putString("2","2-Althalas-Mago-0-100-Largo-2-0-40-2-0-1-1-0-2-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png-346,173-mago_atacando.png");
+			preferenciasHeroes.putString("2","2-Althalas-Mago-100-100-Largo-2-0-40-2-0-1-1-0-2-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png-346,173-mago_atacando.png");
 			preferenciasHeroes.putString("3","3-Orina-Arquero-70-0-Largo-3-0-50-2-0-1-1-0-3-1-Dejó su pueblo para salvar la luz del mundo-arquero_caminando.png-arquero.png-346,173-arquera_atacando.png");
 			preferenciasHeroes.flush();
 			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-10");
