@@ -152,7 +152,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         int bandera = 0;
 
-        if (enemigosEliminados >= 3){
+        if (enemigosEliminados >= 5){
             estado =Estado.GANAR;
         }
 
