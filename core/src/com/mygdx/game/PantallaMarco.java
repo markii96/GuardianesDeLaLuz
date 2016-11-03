@@ -30,6 +30,8 @@ public class PantallaMarco implements Screen {
     private final int ANCHO_MUNDO = 800;
     private final int ALTO_MUNDO = 480;
 
+
+
     public PantallaMarco(Juego juego) {
         this.juego = juego;
     }
@@ -45,6 +47,8 @@ public class PantallaMarco implements Screen {
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
+        texturaFondo = new Texture("fondo.png");
+
         texturaBtnBack = new Texture("atras.png");
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
@@ -58,7 +62,7 @@ public class PantallaMarco implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //regresar al menu principal
-                juego.setScreen(new MenuPrincipal(juego));
+                juego.setScreen(new PantallaAcercaDe(juego));
 
             }
         });

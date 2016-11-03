@@ -142,11 +142,6 @@ public class PantallaAcercaDe implements Screen {
         imgFondo.setScale(escalaX,escalaY);
 
 
-        btnMarco.setScale(2);
-        btnHector.setScale(.1f,.1f);
-        btnRichard.setScale(.3f,.3f);
-        btnJosep.setScale(.4f,.4f);
-
         escena.addActor(imgFondo);
         escena.addActor(btnBack);
         escena.addActor(btnHector);

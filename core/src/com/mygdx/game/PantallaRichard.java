@@ -46,6 +46,7 @@ public class PantallaRichard implements Screen {
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
         texturaBtnBack = new Texture("atras.png");
+        texturaFondo = new Texture("fondo.png");
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
@@ -58,7 +59,7 @@ public class PantallaRichard implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //regresar al menu principal
-                juego.setScreen(new MenuPrincipal(juego));
+                juego.setScreen(new PantallaAcercaDe(juego));
 
             }
         });
