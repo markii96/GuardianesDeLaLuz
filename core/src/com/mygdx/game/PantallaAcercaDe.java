@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -67,17 +66,69 @@ public class PantallaAcercaDe implements Screen {
         ImageButton btnBack = new ImageButton(trdBtnBack);
         //btnBack.setPosition(ancho/3-btnBack.getWidth()/2,alto*0.05f);
 
+        TextureRegionDrawable trdMarco = new TextureRegionDrawable(new TextureRegion(texturaMarco));
+        ImageButton btnMarco = new ImageButton(trdMarco);
 
+        btnMarco.setPosition(50,100);
+
+        TextureRegionDrawable trdHector = new TextureRegionDrawable(new TextureRegion(texturaHector));
+        ImageButton btnHector = new ImageButton(trdHector);
+
+        btnHector.setPosition(200,100);
+
+        TextureRegionDrawable trdRichard = new TextureRegionDrawable(new TextureRegion(texturaRichard));
+        ImageButton btnRichard = new ImageButton(trdRichard);
+
+        btnRichard.setPosition(350,100);
+
+        TextureRegionDrawable trdJosep = new TextureRegionDrawable(new TextureRegion(texturaJosep));
+        ImageButton btnJosep = new ImageButton(trdJosep);
+
+        btnJosep.setPosition(500,100);
+        
         escena = new Stage();
-
-
-
 
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //regresar al menu principal
                 juego.setScreen(new MenuPrincipal(juego));
+
+            }
+        });
+
+        btnMarco.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //regresar al menu principal
+                juego.setScreen(new PantallaMarco(juego));
+
+            }
+        });
+
+        btnHector.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //regresar al menu principal
+                juego.setScreen(new PantallaHector(juego));
+
+            }
+        });
+
+        btnRichard.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //regresar al menu principal
+                juego.setScreen(new PantallaRichard(juego));
+
+            }
+        });
+
+        btnJosep.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //regresar al menu principal
+                juego.setScreen(new PantallaJosep(juego));
 
             }
         });
@@ -90,13 +141,23 @@ public class PantallaAcercaDe implements Screen {
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
 
+
+        btnMarco.setScale(2);
+        btnHector.setScale(.1f,.1f);
+        btnRichard.setScale(.3f,.3f);
+        btnJosep.setScale(.4f,.4f);
+
         escena.addActor(imgFondo);
         escena.addActor(btnBack);
+        escena.addActor(btnHector);
+        escena.addActor(btnMarco);
+        escena.addActor(btnJosep);
+        escena.addActor(btnRichard);
 
 
 
         //agregar caras(fotos de cada integrante)
-
+/*
         Image imgMarco = new Image(texturaMarco);
         Image imgHector = new Image(texturaHector);
         Image imgJosep = new Image(texturaJosep);
@@ -114,6 +175,7 @@ public class PantallaAcercaDe implements Screen {
         escena.addActor(imgMarco);
         escena.addActor(imgJosep);
         escena.addActor(imgRichard);
+        */
 
     }
 
