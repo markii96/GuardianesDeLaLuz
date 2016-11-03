@@ -170,7 +170,6 @@ public class PantallaJuego implements Screen, InputProcessor {
                     nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
 
                     if (timer >=1) {
-                        System.out.println(nivel.getHeroes()[0].getVitalidad()+" "+Gdx.graphics.getDeltaTime());
 
                         if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
                         if ( enemigos[i].getVitalidad() > 0) enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes()[j].getDanoFisico());
@@ -257,7 +256,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
 
 
-         range = (nivel.getEnemigos().length-1) + 1;
+        range = (nivel.getEnemigos().length-1) + 1;
         range2 = (401);
 
         for (int i = 1; i< this.nivel.getCantEnemigos();i++){
@@ -328,7 +327,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
     }
 
     @Override
