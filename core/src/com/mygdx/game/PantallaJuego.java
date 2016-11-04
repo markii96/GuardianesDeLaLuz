@@ -234,12 +234,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                     }
                     if (!nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(), enemigos[i].getSprite().getY())) {
-
                         enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-
-
-
-
                     }
                 }
 
@@ -295,7 +290,6 @@ public class PantallaJuego implements Screen, InputProcessor {
             btnAtras.setY(50);
             btnAtras.draw(batch);
         }
-
         batch.end();
 
     }
