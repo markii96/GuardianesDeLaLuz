@@ -432,6 +432,10 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes()[2].setEstado(Heroe.Estado.CAMINANDO);
                 nivel.getHeroes()[2].setxFinal(x -nivel.getHeroes()[2].getMedidax()/6);
                 nivel.getHeroes()[2].setyFinal(y);
+                for(int z=0;z<regresaEnemigos();z++) {
+                    if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) ;
+                        nivel.getHeroes()[2].setyFinal(enemigos[z].getSprite().getY());
+                }
             }
             if(xInicial<x){
                 nivel.getHeroes()[2].setDireccion(true);
