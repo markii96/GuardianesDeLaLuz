@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.StringBuilder;
 
 /**
@@ -171,7 +172,10 @@ public class Enemigo {
     public boolean contiene(float x, float y){
         return sprite.getBoundingRectangle().contains(x,y);
     }
-
+    // comparar con rectangulos contiene
+    public boolean contiene(Rectangle rectangulo){
+        return sprite.getBoundingRectangle().overlaps(rectangulo);
+    }
 
 
     public void setEstado(Estado estado) {

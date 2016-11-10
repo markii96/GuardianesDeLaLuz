@@ -164,7 +164,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         for(int i = 0;i<cont;i++){
             for(int j = 0;j<nivel.getHeroes().length;j++){
-                if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getX(),enemigos[i].getSprite().getY())){
+                if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getBoundingRectangle())){
                     //if(nivel.getHeroes()[j].getEstado()!=Heroe.Estado.CAMINANDO||nivel.getHeroes()[j].getEstado()!=Heroe.Estado.SELECCIONADO) {
                     if(nivel.getHeroes()[j].getEstado()==Heroe.Estado.CAMINANDO) {
                         enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
@@ -173,8 +173,10 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                     if (timer >=1) {
 
-                        if ( nivel.getHeroes()[j].getVitalidad() > 0)nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
-                        if ( enemigos[i].getVitalidad() > 0) enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes()[j].getDanoFisico());
+                        if ( nivel.getHeroes()[j].getVitalidad() > 0)
+                            nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
+                        if ( enemigos[i].getVitalidad() > 0)
+                            enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes()[j].getDanoFisico());
 
                         if ( nivel.getHeroes()[j].getVitalidad() <= 0){
                             nivel.getHeroes()[j].getSprite().setY(1000);
@@ -196,40 +198,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                         timer = 0;
                     }
 
-
-                }
-
-                if(enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(),nivel.getHeroes()[j].getSprite().getY())){
-                    //if(nivel.getHeroes()[j].getEstado()!=Heroe.Estado.SELECCIONADO) {
-                        enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
-                        nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
-                        if (timer >= 1) {
-                            if (nivel.getHeroes()[j].getVitalidad() > 0)
-                                nivel.getHeroes()[j].setVitalidad(nivel.getHeroes()[j].getVitalidad() - enemigos[i].getDanoFisico());
-                            if (enemigos[i].getVitalidad() > 0)
-                                enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes()[j].getDanoFisico());
-
-                            if (nivel.getHeroes()[j].getVitalidad() <= 0) {
-                                nivel.getHeroes()[j].getSprite().setY(1000);
-                                nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
-                                heroesEliminados++;
-
-                                enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-                            }
-
-                            if (enemigos[i].getVitalidad() <= 0) {
-                                enemigos[i].getSprite().setY(1000);
-                                enemigos[i].setEstado(Enemigo.Estado.MORIR);
-                                enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
-                                enemigosEliminados++;
-                                nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
-                            }
-                            timer = 0;
-                        }
-
-                        bandera = 1;
-
-                    //}
+                    bandera = 1;
                 }
 
                 if (bandera==0) {
@@ -353,12 +322,10 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x =v.x;
         float y = v.y;
         if(estado == Estado.PERDER || estado == Estado.GANAR) {
-            System.out.println(x+" "+btnAtras.getX());
-            System.out.println(y+" "+btnAtras.getY());
-
             if (x <= btnAtras.getX() + btnAtras.getWidth() && x >= btnAtras.getX() && y <= btnAtras.getY() + btnAtras.getHeight() && y >= btnAtras.getY()) {
                 System.out.println("lol");
                 juego.setScreen(new MenuPrincipal(juego));
+                return true;
             }
         }
 
@@ -368,8 +335,8 @@ public class PantallaJuego implements Screen, InputProcessor {
         if(nivel.getHeroes()[1].getEstado()== Heroe.Estado.SELECCIONADO){
             nivel.getHeroes()[1].setEstado(Heroe.Estado.DESELECCIONADO);
         }
-        if(nivel.getHeroes()[1].getEstado()== Heroe.Estado.SELECCIONADO){
-            nivel.getHeroes()[1].setEstado(Heroe.Estado.DESELECCIONADO);
+        if(nivel.getHeroes()[2].getEstado()== Heroe.Estado.SELECCIONADO){
+            nivel.getHeroes()[2].setEstado(Heroe.Estado.DESELECCIONADO);
         }
 
 
@@ -396,13 +363,15 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         for (int i = 0; i < nivel.getHeroes().length; i++){
             if (nivel.getHeroes()[i].getEstado() == Heroe.Estado.SELECCIONADO) {
+                //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
                     nivel.getHeroes()[i].setEstado(Heroe.Estado.CAMINANDO);
                     nivel.getHeroes()[i].setxFinal(x - nivel.getHeroes()[0].getMedidax() / 6);
                     nivel.getHeroes()[i].setyFinal(y);
                     for(int z=0;z<regresaEnemigos();z++) {
                         if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) ;
-                        nivel.getHeroes()[2].setyFinal(enemigos[z].getSprite().getY());
+                            nivel.getHeroes()[i].setyFinal(enemigos[z].getSprite().getY());
+                        //setear x para saber de que lado llegar
                     }
                 }
                 if (xInicial < x) {

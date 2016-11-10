@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Arrays;
 
@@ -216,6 +217,9 @@ public class Heroe {
 
     public boolean contiene(float x, float y){
         return sprite.getBoundingRectangle().contains(x,y);
+    }
+    public boolean contiene(Rectangle rectangulo){
+        return sprite.getBoundingRectangle().overlaps(rectangulo);
     }
 
     public void mover(float x, float y){
