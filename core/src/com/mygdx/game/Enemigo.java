@@ -116,28 +116,28 @@ public class Enemigo {
 
                 break;
             case CAMINANDO:
-                if(sprite.getX() >= 10 && sprite.getY()>=50){
+                if(sprite.getX() >= 150 && sprite.getY()>=150){
                     sprite.setX(sprite.getX()-2);
                     sprite.setY(sprite.getY()-1);
                 }else
-                if(sprite.getX() >= 10 && sprite.getY()<=50){
+                if(sprite.getX() >= 150 && sprite.getY()<=150){
                     sprite.setX(sprite.getX()-2);
                     sprite.setY(sprite.getY()+1);
                 }else
-                if(sprite.getX() <= 10 && sprite.getY()>=50){
+                if(sprite.getX() <= 150 && sprite.getY()>=150){
                     sprite.setX(sprite.getX()+2);
                     sprite.setY(sprite.getY()-1);
                 }else
-                if(sprite.getX() <= 10 && sprite.getY()<=50){
+                if(sprite.getX() <= 150 && sprite.getY()<=150){
                     sprite.setX(sprite.getX()+2);
                     sprite.setY(sprite.getY()+1);
                 }
                 //sprite.setPosition(posicion[0],posicion[1]);
-                if(sprite.getX()<=12&&sprite.getX()>=8&&sprite.getY()<=52&&sprite.getY()>=48) {
+                else{
                     estado = Estado.ATACANDO;
                 }
 
-            break;
+                break;
 
 
 
