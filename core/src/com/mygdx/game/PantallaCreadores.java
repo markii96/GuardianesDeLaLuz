@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -18,11 +19,20 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by marco on 03/11/2016.
  */
-public class PantallaHector implements Screen {
+public class PantallaCreadores implements Screen {
 
     private final Juego juego;
     private Stage escena;
+    private int id;
+
     private Texture texturaBtnBack;
+    private Texture texturaMarco;
+    private Texture texturaHector;
+    private Texture texturaJosep;
+    private Texture texturaRichard;
+
+    private SpriteBatch batch;
+
     private Texture texturaFondo;
 
     private OrthographicCamera camara;
@@ -30,12 +40,19 @@ public class PantallaHector implements Screen {
     private final int ANCHO_MUNDO = 800;
     private final int ALTO_MUNDO = 480;
 
-    public PantallaHector(Juego juego) {
+    private Texto texto;
+
+    public PantallaCreadores(Juego juego, int id){
+
         this.juego = juego;
+        this.id = id;
     }
+
 
     @Override
     public void show() {
+
+        batch = new SpriteBatch();
 
         camara = new OrthographicCamera(ANCHO_MUNDO,ALTO_MUNDO);
         camara.position.set(ANCHO_MUNDO/2,ALTO_MUNDO/2,0);
@@ -44,16 +61,20 @@ public class PantallaHector implements Screen {
 
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
-
-        texturaBtnBack = new Texture("atras.png");
+        //2
         texturaFondo = new Texture("fondo.png");
+        texturaBtnBack = new Texture("atras.png");
+        texturaMarco = new Texture("marco.jpg");
+        texturaHector = new Texture("hector.jpg");
+        texturaJosep = new Texture("josep.jpg");
+        texturaRichard = new Texture("ricardo.jpg");
+
+        texto = new Texto();
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
-
         escena = new Stage();
-
 
         btnBack.addListener(new ClickListener(){
             @Override
@@ -64,28 +85,90 @@ public class PantallaHector implements Screen {
             }
         });
 
+
+
         Gdx.input.setInputProcessor(escena);
 
-
+        //3 el fondo
         Image imgFondo = new Image(texturaFondo);
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
-        //btnInstrucciones.setScale(.4f);
+
+        Image imgMarco = new Image(texturaMarco);
+        Image imgHector = new Image(texturaHector);
+        Image imgJosep = new Image(texturaJosep);
+        Image imgRichard = new Image(texturaRichard);
 
         escena.addActor(imgFondo);
-
         escena.addActor(btnBack);
+
+        if(this.id==0){
+            imgMarco.setPosition(450,100);
+            imgMarco.setScale(2.5f);
+            escena.addActor(imgMarco);
+
+        }
+
+        if(this.id==1){
+            imgHector.setPosition(450,100);
+            imgHector.setScale(2.5f);
+            escena.addActor(imgHector);
+
+        }
+
+        if(this.id==3){
+
+            imgJosep.setPosition(450,100);
+            imgJosep.setScale(2.5f);
+            escena.addActor(imgJosep);
+
+        }
+
+        if(this.id ==2){
+
+            imgRichard.setPosition(450,100);
+            imgRichard.setScale(2.5f);
+            escena.addActor(imgRichard);
+
+        }
 
     }
 
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0,1,0,1);
+        Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.setProjectionMatrix(camara.combined);
         escena.setViewport(vista);
+        batch.begin();
+
         escena.draw();
+
+        //texto.mostrarMensaje(batch,"Nombre: Marco Buendia ",120,300);
+
+//1280x800
+
+        batch.end();
+
+
+        batch.begin();
+
+        switch(id){
+
+            case 0:texto.mostrarMensaje(batch,"Nombre: Marco Buendia",120,350);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",120,250);break;
+            case 1:texto.mostrarMensaje(batch,"Nombre: Hector Medina ",120,350);texto.mostrarMensaje(batch,"Carrera: Animacion y arte digital",120,250);break;
+            case 2:texto.mostrarMensaje(batch,"Nombre: Ricardo",120,350);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",120,250);break;
+            case 3:texto.mostrarMensaje(batch,"Nombre: Josep",120,350);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",120,250);break;
+
+        }
+
+
+        //texto.mostrarMensaje(batch,"Nombre: Marco Buendia ",120,300);
+
+
+        batch.end();
 
     }
 

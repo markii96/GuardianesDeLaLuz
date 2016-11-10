@@ -21,7 +21,6 @@ public class PantallaAcercaDe implements Screen {
     private final Juego juego;
     private Stage escena;
     private Texture texturaBtnBack;
-    private Texture texturaCara;
     private Texture texturaMarco;
     private Texture texturaHector;
     private Texture texturaJosep;
@@ -56,7 +55,6 @@ public class PantallaAcercaDe implements Screen {
         //2
         texturaFondo = new Texture("fondo_acercaDe.png");
         texturaBtnBack = new Texture("atras.png");
-        texturaCara = new Texture("cara.png");
         texturaMarco = new Texture("marco.jpg");
         texturaHector = new Texture("hector.jpg");
         texturaJosep = new Texture("josep.jpg");
@@ -101,7 +99,8 @@ public class PantallaAcercaDe implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //regresar al menu principal
-                juego.setScreen(new PantallaMarco(juego));
+                Gdx.app.log("Clicked", "marco");
+                juego.setScreen(new PantallaCreadores(juego,0));
 
             }
         });
@@ -109,8 +108,9 @@ public class PantallaAcercaDe implements Screen {
         btnHector.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Clicked", "hector");
                 //regresar al menu principal
-                juego.setScreen(new PantallaHector(juego));
+                juego.setScreen(new PantallaCreadores(juego,1));
 
             }
         });
@@ -118,8 +118,9 @@ public class PantallaAcercaDe implements Screen {
         btnRichard.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Clicked", "ricardo");
                 //regresar al menu principal
-                juego.setScreen(new PantallaRichard(juego));
+                juego.setScreen(new PantallaCreadores(juego,2));
 
             }
         });
@@ -127,8 +128,10 @@ public class PantallaAcercaDe implements Screen {
         btnJosep.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+
+                Gdx.app.log("Clicked", "josep");
                 //regresar al menu principal
-                juego.setScreen(new PantallaJosep(juego));
+                juego.setScreen(new PantallaCreadores(juego,3));
 
             }
         });

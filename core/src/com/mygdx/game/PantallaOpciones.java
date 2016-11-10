@@ -55,7 +55,7 @@ public class PantallaOpciones implements Screen {
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
 
-        botonConfiguracion = new Texture("configuracion.png");
+        //botonConfiguracion = new Texture("configuracion.png");
         botonHistoria = new Texture("historia.png");
         botonInstrucciones = new Texture("instrucciones.png");
 
@@ -68,18 +68,18 @@ public class PantallaOpciones implements Screen {
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
 
-        TextureRegionDrawable trdConfiguracion = new TextureRegionDrawable(new TextureRegion(botonConfiguracion));
+        /*TextureRegionDrawable trdConfiguracion = new TextureRegionDrawable(new TextureRegion(botonConfiguracion));
         ImageButton btnConfiguracion = new ImageButton(trdConfiguracion);
         btnConfiguracion.setPosition(ancho/2 -btnConfiguracion.getWidth()/2, 0.5f*alto);
-
+*/
         TextureRegionDrawable trdHistoria = new TextureRegionDrawable(new TextureRegion(botonHistoria));
         ImageButton btnHistoria = new ImageButton(trdHistoria);
-        btnHistoria.setPosition(ancho/2-btnHistoria.getWidth()/2,0.3f*alto);
+        btnHistoria.setPosition(ancho/2-btnHistoria.getWidth()/2,0.4f*alto);
 
         TextureRegionDrawable trdInstrucciones = new TextureRegionDrawable(new TextureRegion(botonInstrucciones));
         ImageButton btnInstrucciones = new ImageButton(trdInstrucciones);
         btnInstrucciones.setScale(.1f,.1f);
-        btnInstrucciones.setPosition(ancho/2-btnInstrucciones.getWidth()/2,0.1f*alto);
+        btnInstrucciones.setPosition(ancho/2-btnInstrucciones.getWidth()/2,0.2f*alto);
 
 /*
         TextureRegionDrawable trdBtnMejoras = new TextureRegionDrawable(new TextureRegion(botonMejoras));
@@ -87,6 +87,15 @@ public class PantallaOpciones implements Screen {
         btnMejoras.setPosition(0,.5f*alto);
 */
         escena = new Stage();
+
+        btnHistoria.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //regresar al menu principal
+                juego.setScreen(new PantallaHistoria(juego));
+
+            }
+        });
 
 
         btnBack.addListener(new ClickListener(){
@@ -109,7 +118,7 @@ public class PantallaOpciones implements Screen {
 
         escena.addActor(imgFondo);
 
-        escena.addActor(btnConfiguracion);
+        //escena.addActor(btnConfiguracion);
         escena.addActor(btnHistoria);
         escena.addActor(btnInstrucciones);
         escena.addActor(btnBack);
