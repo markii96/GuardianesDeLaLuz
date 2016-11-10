@@ -200,7 +200,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 }
 
                 if(enemigos[i].contiene(nivel.getHeroes()[j].getSprite().getX(),nivel.getHeroes()[j].getSprite().getY())){
-                    if(nivel.getHeroes()[j].getEstado()!=Heroe.Estado.SELECCIONADO) {
+                    //if(nivel.getHeroes()[j].getEstado()!=Heroe.Estado.SELECCIONADO) {
                         enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
                         nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
                         if (timer >= 1) {
@@ -229,7 +229,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                         bandera = 1;
 
-                    }
+                    //}
                 }
 
                 if (bandera==0) {
