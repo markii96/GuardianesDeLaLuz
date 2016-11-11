@@ -118,8 +118,35 @@ public class Enemigo {
             case ATACANDO:
 
 
+                if(objetivo instanceof Heroe){
+                    if (!this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
+                        estado = Estado.CAMINANDO;
+                    }
+                }
+
+                if(objetivo instanceof Cristal){
+                    if (!this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
+                        estado = Estado.CAMINANDO;
+                    }
+                }
+
+
+
                 break;
             case CAMINANDO:
+
+                if(objetivo instanceof Heroe){
+
+                    if (this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
+                        estado = Estado.ATACANDO;
+                    }
+                }
+
+                if(objetivo instanceof Cristal){
+                    if (this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
+                        estado = Estado.CAMINANDO;
+                    }
+                }
 
                 if(objetivo instanceof Heroe){
                     xFinal = ((Heroe)objetivo).getSprite().getX();

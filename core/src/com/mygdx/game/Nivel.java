@@ -5,6 +5,9 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /**
  * Created by Josep on 20/10/16.
  */
@@ -13,7 +16,7 @@ public class Nivel {
     private String nombre;
     private String descripcion;
     private String[] enemigos;
-    private Heroe[] heroes = new Heroe[3];
+    private ArrayList<Heroe> heroes = new ArrayList<Heroe>();
     private Integer recompensaOro;
     private Integer recompensaExp;
     private Boolean disponibilidad;
@@ -39,7 +42,7 @@ public class Nivel {
 
 
         for(int i=0; i<heroes.length; i++){
-            this.heroes[i] = new Heroe(heroes[i],300,(i+1)*200-100);
+            this.heroes.add(new Heroe(heroes[i],300,(i+1)*200-100));
         }
 
         this.recompensaOro = Integer.parseInt(datos[4]);
@@ -79,7 +82,7 @@ public class Nivel {
         return enemigos;
     }
 
-    public Heroe[] getHeroes() {
+    public ArrayList<Heroe> getHeroes() {
         return heroes;
     }
 
@@ -113,11 +116,6 @@ public class Nivel {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-
-    public void setHeroes(Heroe[] heroes) {
-        this.heroes = heroes;
     }
 
     public void setRecompensaOro(Integer recompensaOro) {
