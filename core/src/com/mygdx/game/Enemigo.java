@@ -146,11 +146,11 @@ public class Enemigo {
                     sprite.setY(sprite.getY()+1);
                 }
                 //sprite.setPosition(posicion[0],posicion[1]);
-                else{
+                if(sprite.getX()<=12&&sprite.getX()>=8&&sprite.getY()<=52&&sprite.getY()>=48) {
                     estado = Estado.ATACANDO;
                 }
 
-                break;
+            break;
 
 
 
