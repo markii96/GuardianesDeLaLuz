@@ -59,6 +59,16 @@ public class Heroe {
 
     private boolean direccion; //true = derecha, false = izquierda
 
+    public Enemigo getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(Enemigo objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    private Enemigo objetivo;
+
     // animación atacando
     private Texture texturaAtacando;
     private Animation animacionAtaque;
@@ -142,6 +152,10 @@ public class Heroe {
 
             case PARADO:break;
             case CAMINANDO:
+                if(objetivo!= null) {
+                    xFinal = objetivo.getSprite().getX();
+                    yFinal = objetivo.getSprite().getY();
+                }
                 if(sprite.getX() >= xFinal) sprite.setX(sprite.getX()-velocidadMovimiento);
 
                 if(sprite.getY() >= yFinal) sprite.setY(sprite.getY()-velocidadMovimiento);
@@ -149,7 +163,6 @@ public class Heroe {
                 if(sprite.getX() <= xFinal) sprite.setX(sprite.getX()+velocidadMovimiento);
 
                 if(sprite.getY() <= yFinal) sprite.setY(sprite.getY()+velocidadMovimiento);
-
 
                 //sprite.setPosition(posicion[0],posicion[1]);
                 if(sprite.getX()<=xFinal+2&&sprite.getX()>=xFinal-2&&sprite.getY()<=yFinal+2&&sprite.getY()>=yFinal-2) {
@@ -464,6 +477,7 @@ public class Heroe {
             barraVidaVacia.draw(batch);
             barraVidaLlena.draw(batch);
         }
+
 
 
     }

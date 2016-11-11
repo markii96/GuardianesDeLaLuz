@@ -28,9 +28,13 @@ public class Enemigo {
     private int danoFisico;
     private String alcance;
     private Estado estado;
-    private String objetivo;
+    private Object objetivo;
     private String descripcion;
     private Texture textura;
+
+    private float xFinal;
+    private float yFinal;
+
 
 
     private int medidax, mediday;
@@ -41,7 +45,7 @@ public class Enemigo {
     private Animation animacionAtaque;
     private float timerAnimaiconAtaque;
     private int medidaxA,medidayA;
-    public Enemigo(String id, int x, int y, String objetivo){
+    public Enemigo(String id, int x, int y, Object objetivo){//debe ser con Cristal o con Heroe a la de egg
 
         String dato;
         String[] datos;
@@ -100,11 +104,11 @@ public class Enemigo {
 
     }
 
-    public String getObjetivo() {
+    public Object getObjetivo() {
         return objetivo;
     }
 
-    public void setObjetivo(String objetivo) {
+    public void setObjetivo(Object objetivo) {
         this.objetivo = objetivo;
     }
 
@@ -116,19 +120,28 @@ public class Enemigo {
 
                 break;
             case CAMINANDO:
-                if(sprite.getX() >= 150 && sprite.getY()>=150){
+
+                if(objetivo instanceof Heroe){
+                    xFinal = ((Heroe)objetivo).getSprite().getX();
+                    yFinal = ((Heroe)objetivo).getSprite().getY();
+                }else{
+                    xFinal = ((Cristal)objetivo).getSprite().getX();
+                    yFinal = ((Cristal)objetivo).getSprite().getY();
+                }
+
+                if(sprite.getX() >= xFinal && sprite.getY()>=yFinal){
                     sprite.setX(sprite.getX()-2);
                     sprite.setY(sprite.getY()-1);
                 }else
-                if(sprite.getX() >= 150 && sprite.getY()<=150){
+                if(sprite.getX() >= xFinal && sprite.getY()<=yFinal){
                     sprite.setX(sprite.getX()-2);
                     sprite.setY(sprite.getY()+1);
                 }else
-                if(sprite.getX() <= 150 && sprite.getY()>=150){
+                if(sprite.getX() <= xFinal && sprite.getY()>=yFinal){
                     sprite.setX(sprite.getX()+2);
                     sprite.setY(sprite.getY()-1);
                 }else
-                if(sprite.getX() <= 150 && sprite.getY()<=150){
+                if(sprite.getX() <= xFinal && sprite.getY()<=yFinal){
                     sprite.setX(sprite.getX()+2);
                     sprite.setY(sprite.getY()+1);
                 }

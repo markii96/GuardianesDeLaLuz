@@ -78,9 +78,19 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         int ran =  (int)(Math.random() * range);
         int ran2 = (int)(Math.random() * range2);
+        int ran3 = (int)(Math.random() * 4);
+        Object objetivo = null;
+        switch(ran3){
+            case(0):
+                objetivo = nivel.getCristal();
+                break;
+            default:
+                objetivo = nivel.getHeroes()[ran3-1];
+                break;
+        }
 
 
-        this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, "Cristal");
+        this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, objetivo);
         cont+=1;
 
     }
@@ -166,8 +176,9 @@ public class PantallaJuego implements Screen, InputProcessor {
             for(int j = 0;j<nivel.getHeroes().length;j++){
                 if(nivel.getHeroes()[j].contiene(enemigos[i].getSprite().getBoundingRectangle())){
                     //if(nivel.getHeroes()[j].getEstado()!=Heroe.Estado.CAMINANDO||nivel.getHeroes()[j].getEstado()!=Heroe.Estado.SELECCIONADO) {
-                    if(nivel.getHeroes()[j].getEstado()==Heroe.Estado.CAMINANDO) {
+                    if(nivel.getHeroes()[j].getEstado()==Heroe.Estado.CAMINANDO||nivel.getHeroes()[j].getEstado()==Heroe.Estado.PARADO) {
                         enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                        enemigos[i].setObjetivo(nivel.getHeroes()[j]);
                         nivel.getHeroes()[j].setEstado(Heroe.Estado.ATACANDO);
                     }
 
@@ -188,9 +199,19 @@ public class PantallaJuego implements Screen, InputProcessor {
                         }
 
                         if (enemigos[i].getVitalidad() <= 0 ){
+                            int ran3 = (int)(Math.random() * 4);
+                            Object objetivo = null;
+                            switch(ran3){
+                                case(0):
+                                    objetivo = nivel.getCristal();
+                                    break;
+                                default:
+                                    objetivo = nivel.getHeroes()[ran3-1];
+                                    break;
+                            }
                             enemigos[i].getSprite().setY(1000);
                             enemigos[i].setEstado(Enemigo.Estado.MORIR);
-                            enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                            enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
                             enemigosEliminados++;
                             nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
                         }
@@ -369,8 +390,12 @@ public class PantallaJuego implements Screen, InputProcessor {
                     nivel.getHeroes()[i].setxFinal(x - nivel.getHeroes()[0].getMedidax() / 6);
                     nivel.getHeroes()[i].setyFinal(y);
                     for(int z=0;z<regresaEnemigos();z++) {
-                        if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) ;
-                            nivel.getHeroes()[i].setyFinal(enemigos[z].getSprite().getY());
+                        if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) {
+                            nivel.getHeroes()[i].setObjetivo(enemigos[z]);
+                            break;
+                        }else{
+                            nivel.getHeroes()[i].setObjetivo(null);
+                        }
                         //setear x para saber de que lado llegar
                     }
                 }
