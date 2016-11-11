@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by LUISRICARDO on 10/20/2016.
@@ -48,7 +49,9 @@ public class Cristal {
         sprite.draw(batch);
         barraVida.draw(batch);
     }
-
+    public boolean contiene(Rectangle rectangulo){
+        return sprite.getBoundingRectangle().overlaps(rectangulo);
+    }
     public int getVitalidad() {
         return vitalidad;
     }

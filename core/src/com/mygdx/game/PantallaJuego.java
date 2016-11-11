@@ -88,7 +88,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 objetivo = nivel.getHeroes()[ran3-1];
                 break;
         }
-
+        Gdx.app.log("Create",ran3+"");
 
         this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, objetivo);
         cont+=1;
@@ -193,8 +193,19 @@ public class PantallaJuego implements Screen, InputProcessor {
                             nivel.getHeroes()[j].getSprite().setY(1000);
                             nivel.getHeroes()[j].setEstado(Heroe.Estado.MORIR);
                             heroesEliminados++;
-
+                            //int ran3 = (int)(Math.random() * 4);
+                            Object objetivo = nivel.getCristal();
+                            /*switch(ran3){
+                                case(0):
+                                    objetivo = nivel.getCristal();
+                                    break;
+                                default:
+                                    objetivo = nivel.getHeroes()[ran3-1];
+                                    break;
+                            }*/// buscar entre los que siguen vivos
+                            enemigos[i].setObjetivo(objetivo);
                             enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
 
                         }
 
@@ -214,6 +225,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                             enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
                             enemigosEliminados++;
                             nivel.getHeroes()[j].setEstado(Heroe.Estado.PARADO);
+                            Gdx.app.log("Create",ran3+"");
                         }
 
                         timer = 0;
@@ -252,10 +264,20 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i = 1; i< this.nivel.getCantEnemigos();i++){
             ran =  (int)(Math.random() * range);
             ran2 = (int)(Math.random() * range2);
-
+            int ran3 = (int)(Math.random() * 4);
+            Object objetivo = null;
+            switch(ran3){
+                case(0):
+                    objetivo = nivel.getCristal();
+                    break;
+                default:
+                    objetivo = nivel.getHeroes()[ran3-1];
+                    break;
+            }
             if (cont < limiteEnemigos) {
-                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, "Cristal");
+                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
                 cont+=1;
+                Gdx.app.log("Create",ran3+"");
             }
         }
 

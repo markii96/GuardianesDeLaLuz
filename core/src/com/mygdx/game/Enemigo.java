@@ -125,30 +125,34 @@ public class Enemigo {
                     xFinal = ((Heroe)objetivo).getSprite().getX();
                     yFinal = ((Heroe)objetivo).getSprite().getY();
                 }else{
-                    xFinal = ((Cristal)objetivo).getSprite().getX();
+                    xFinal = ((Cristal)objetivo).getSprite().getX()+((Cristal)objetivo).getSprite().getWidth()-5;
                     yFinal = ((Cristal)objetivo).getSprite().getY();
                 }
 
                 if(sprite.getX() >= xFinal && sprite.getY()>=yFinal){
-                    sprite.setX(sprite.getX()-2);
-                    sprite.setY(sprite.getY()-1);
+                    sprite.setX(sprite.getX()-velocidadMovimiento);
+                    sprite.setY(sprite.getY()-velocidadMovimiento);
                 }else
                 if(sprite.getX() >= xFinal && sprite.getY()<=yFinal){
-                    sprite.setX(sprite.getX()-2);
-                    sprite.setY(sprite.getY()+1);
+                    sprite.setX(sprite.getX()-velocidadMovimiento);
+                    sprite.setY(sprite.getY()+velocidadMovimiento);
                 }else
                 if(sprite.getX() <= xFinal && sprite.getY()>=yFinal){
-                    sprite.setX(sprite.getX()+2);
-                    sprite.setY(sprite.getY()-1);
+                    sprite.setX(sprite.getX()+velocidadMovimiento);
+                    sprite.setY(sprite.getY()-velocidadMovimiento);
                 }else
                 if(sprite.getX() <= xFinal && sprite.getY()<=yFinal){
-                    sprite.setX(sprite.getX()+2);
-                    sprite.setY(sprite.getY()+1);
+                    sprite.setX(sprite.getX()+velocidadMovimiento);
+                    sprite.setY(sprite.getY()+velocidadMovimiento);
                 }
                 //sprite.setPosition(posicion[0],posicion[1]);
-                if(sprite.getX()<=12&&sprite.getX()>=8&&sprite.getY()<=52&&sprite.getY()>=48) {
-                    estado = Estado.ATACANDO;
+                if(objetivo instanceof Cristal) {
+                    if (this.contiene(((Cristal) objetivo).getSprite().getBoundingRectangle())) {
+                        estado = Estado.ATACANDO;
+
+                    }
                 }
+
 
             break;
 
