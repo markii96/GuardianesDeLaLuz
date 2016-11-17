@@ -44,7 +44,16 @@ public class Enemigo {
 
     private float xFinal;
     private float yFinal;
-    private boolean direccion; //true = derecha, false = izquierda
+
+    public boolean isDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(boolean direccion) {
+        this.direccion = direccion;
+    }
+
+    private boolean direccion; //true = izquierda, false = derecha
 
 
     private int medidax, mediday;
@@ -131,11 +140,11 @@ public class Enemigo {
                 if(objetivo instanceof Heroe){
                     if (!this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.CAMINANDO;
-                        if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
+                        /*if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
                             direccion = true;
                         }else{
                             direccion = false;
-                        }
+                        }*/
                     }
                 }
 
@@ -155,11 +164,11 @@ public class Enemigo {
 
                     if (this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.ATACANDO;
-                        if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
+                        /*if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
                             direccion = true;
                         }else{
                             direccion = false;
-                        }
+                        }*/
                     }
                 }
 

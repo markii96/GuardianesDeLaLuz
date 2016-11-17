@@ -44,7 +44,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Enemigo[] enemigos;
 
-    private float timer =0;
+    private float timerHeroes =0;
+    private float timerEnemigos =0;
 
     float xInicial,yInicial;
 
@@ -178,7 +179,8 @@ public class PantallaJuego implements Screen, InputProcessor {
                 estado = Estado.PERDER;
             }
 
-            timer += Gdx.graphics.getDeltaTime();
+            timerHeroes += Gdx.graphics.getDeltaTime();
+            timerEnemigos += Gdx.graphics.getDeltaTime();
 
             for (int i = 0; i < cont; i++) {
                 for (int j = 0; j < nivel.getHeroes().size(); j++) {
@@ -187,61 +189,58 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.CAMINANDO || nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO) {
                             enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
                             enemigos[i].setObjetivo(nivel.getHeroes().get(j));
+                            if(enemigos[i].getSprite().getX()<nivel.getHeroes().get(j).getSprite().getX()){
+                                enemigos[i].setDireccion(false);
+                            }else{
+                                enemigos[i].setDireccion(true);
+                            }
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
                         }
 
-                        if (timer >= 1) {
-
+                        if (timerHeroes >= 1) {
+                            if (enemigos[i].getVitalidad() > 0) {
+                                nivel.getHeroes().get(j).getSoundAttack().play(.5f);
+                                enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes().get(j).getDanoFisico());
+                            }
+                            timerHeroes = 0;
+                        }
+                        if (timerEnemigos >= 1.3) {
                             if (nivel.getHeroes().get(j).getVitalidad() > 0) {
                                 enemigos[i].getSoundAttack().play(.5f);
                                 nivel.getHeroes().get(j).setVitalidad(nivel.getHeroes().get(j).getVitalidad() - enemigos[i].getDanoFisico());
                             }
-                            if (enemigos[i].getVitalidad() > 0)
-                                nivel.getHeroes().get(j).getSoundAttack().play(.5f);
-                                enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes().get(j).getDanoFisico());
+                            timerEnemigos = 0;
+                        }
+                        if (nivel.getHeroes().get(j).getVitalidad() <= 0) {
+                            nivel.getHeroes().get(j).setEstado(Heroe.Estado.MORIR);
+                            nivel.getHeroes().remove(j);
 
-                            if (nivel.getHeroes().get(j).getVitalidad() <= 0) {
-                                nivel.getHeroes().get(j).setEstado(Heroe.Estado.MORIR);
-                                nivel.getHeroes().remove(j);
+                            heroesEliminados++;
+                            //int ran3 = (int)(Math.random() * 4);
+                            Object objetivo = nivel.getCristal();
+                            // buscar entre los que siguen vivos
+                            enemigos[i].setObjetivo(objetivo);
+                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                        }
 
-                                heroesEliminados++;
-                                //int ran3 = (int)(Math.random() * 4);
-                                Object objetivo = nivel.getCristal();
-                                /*switch(ran3){
-                                    case(0):
-                                        objetivo = nivel.getCristal();
-                                        break;
-                                    default:
-                                        objetivo = nivel.getHeroes().get(r)n3-1];
-                                        break;
-                                }*/// buscar entre los que siguen vivos
-                                enemigos[i].setObjetivo(objetivo);
-                                enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-
-
+                        if (enemigos[i].getVitalidad() <= 0) {
+                            int ran3 = (int) (Math.random() * nivel.getHeroes().size() + 1);
+                            Object objetivo = null;
+                            switch (ran3) {
+                                case (0):
+                                    objetivo = nivel.getCristal();
+                                    break;
+                                default:
+                                    if (!nivel.getHeroes().isEmpty()) {
+                                        objetivo = nivel.getHeroes().get(ran3 - 1);
+                                    }
+                                    break;
                             }
-
-                            if (enemigos[i].getVitalidad() <= 0) {
-                                int ran3 = (int) (Math.random() * nivel.getHeroes().size() + 1);
-                                Object objetivo = null;
-                                switch (ran3) {
-                                    case (0):
-                                        objetivo = nivel.getCristal();
-                                        break;
-                                    default:
-                                        if (!nivel.getHeroes().isEmpty()) {
-                                            objetivo = nivel.getHeroes().get(ran3 - 1);
-                                        }
-                                        break;
-                                }
-                                enemigos[i].getSprite().setY(1000);
-                                enemigos[i].setEstado(Enemigo.Estado.MORIR);
-                                enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
-                                enemigosEliminados++;
-                                nivel.getHeroes().get(j).setEstado(Heroe.Estado.PARADO);
-                            }
-
-                            timer = 0;
+                            enemigos[i].getSprite().setY(1000);
+                            enemigos[i].setEstado(Enemigo.Estado.MORIR);
+                            enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
+                            enemigosEliminados++;
+                            nivel.getHeroes().get(j).setEstado(Heroe.Estado.PARADO);
                         }
 
                         bandera = 1;
@@ -313,25 +312,29 @@ public class PantallaJuego implements Screen, InputProcessor {
             if (estado == Estado.GANAR || estado == Estado.PERDER) {
                 Texture back = new Texture("atras.png");
                 btnAtras = new Sprite(back);
-                //btnAtras.setScale(1f);
                 btnAtras.setX(400);
                 btnAtras.setY(50);
                 btnAtras.draw(batch);
             }
             batch.end();
-        }else if (estado == Estado.PERDER) {
-            texturaPerdiste = new Texture("perdiste.png");
-            batch.draw(texturaPerdiste, 400, 200);
-        }else if (estado == Estado.GANAR) {
-            texturaPerdiste = new Texture("ganaste.png");
-            batch.draw(texturaPerdiste, 400, 200);
         }else if (estado == Estado.GANAR || estado == Estado.PERDER) {
+            batch.begin();
+            fondo.draw(batch);
+            if (estado == Estado.PERDER) {
+
+                texturaPerdiste = new Texture("perdiste.png");
+                batch.draw(texturaPerdiste, 400, 200);
+            }else{
+                texturaPerdiste = new Texture("ganaste.png");
+                batch.draw(texturaPerdiste, 400, 200);
+            }
             Texture back = new Texture("atras.png");
             btnAtras = new Sprite(back);
             //btnAtras.setScale(1f);
             btnAtras.setX(400);
             btnAtras.setY(50);
             btnAtras.draw(batch);
+            batch.end();
         }else if(estado == Estado.PAUSA){
 
             batch.begin();
