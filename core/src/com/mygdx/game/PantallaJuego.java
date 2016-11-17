@@ -59,6 +59,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Sprite btnAtras;
 
     private Sprite btnPausa;
+    private Sprite btnSalir;
 
     public PantallaJuego(Juego juego) {
 
@@ -145,6 +146,12 @@ public class PantallaJuego implements Screen, InputProcessor {
         btnPausa = new Sprite(new Texture("pausa.png"));
         btnPausa.setX(1020);
         btnPausa.setY(544);
+
+        btnSalir = new Sprite(new Texture("play.png"));
+        btnSalir.setX(1280/2);
+        btnSalir.setY(800/2);
+
+
 
     }
 
@@ -267,6 +274,8 @@ public class PantallaJuego implements Screen, InputProcessor {
             fondo.draw(batch);
 
             btnPausa.draw(batch);
+            btnSalir.setScale(.01f,.01f);
+            btnSalir.draw(batch);
             range = (nivel.getEnemigos().length - 1) + 1;
             range2 = (401);
 
@@ -345,6 +354,9 @@ public class PantallaJuego implements Screen, InputProcessor {
             btnAtras.setX(400);
             btnAtras.setY(50);
             btnAtras.draw(batch);
+            btnSalir.draw(batch);
+
+            btnSalir.setScale(1);
 
             batch.end();
         }
@@ -418,6 +430,15 @@ public class PantallaJuego implements Screen, InputProcessor {
                 estado = Estado.JUGANDO;
                 return true;
             }
+
+            if(btnSalir.getBoundingRectangle().contains(x,y)){
+
+                juego.setScreen(new MenuPrincipal(juego));
+
+            }
+
+
+
         }
 
         for (int i=0; i< nivel.getHeroes().size();i++) {
