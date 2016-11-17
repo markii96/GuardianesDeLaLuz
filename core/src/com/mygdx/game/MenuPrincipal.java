@@ -70,8 +70,9 @@ public class MenuPrincipal implements Screen {
 			preferenciasEnemigos.putString("2","2-Azathoth-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
 			preferenciasEnemigos.flush();
 			preferenciasValidacion.putString("1", "1");
+			preferenciasValidacion.putString("2", "1");
 			preferenciasValidacion.flush();
-			//Gdx.app.log("lol",p.get().toString());
+			//Gdx.app.log("lol",p.getString("2").toString());
 
 		//}
 	}
