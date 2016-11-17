@@ -25,15 +25,17 @@ public class PantallaOpciones implements Screen {
     private Texture texturaBtnBack;
     private Texture texturaFondo;
     private Texture botonInstrucciones;
-    private Texture botonConfiguracion;
+    private Texture botonSonidoOn;
+    private Texture botonSonidoOff;
     private Texture botonHistoria;
     private Texture botonMejoras;
+    private boolean banderaSonido = true;
 
     //CAMARA virtual
     private OrthographicCamera camara;
     private Viewport vista;
-    private final int ANCHO_MUNDO = 800;
-    private final int ALTO_MUNDO = 480;
+    private final int ANCHO_MUNDO = 1280;
+    private final int ALTO_MUNDO = 800;
 
     public PantallaOpciones(Juego juego) {
         this.juego = juego;
@@ -58,7 +60,8 @@ public class PantallaOpciones implements Screen {
         //botonConfiguracion = new Texture("configuracion.png");
         botonHistoria = new Texture("historia.png");
         botonInstrucciones = new Texture("instrucciones.png");
-
+        botonSonidoOn = new Texture("on.png");
+        botonSonidoOff = new Texture("off.png");
         texturaFondo = new Texture("fondo_opciones.png");
         texturaBtnBack = new Texture("atras.png");
         botonMejoras = new Texture("mejoras.png");
@@ -67,54 +70,85 @@ public class PantallaOpciones implements Screen {
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
-
-        /*TextureRegionDrawable trdConfiguracion = new TextureRegionDrawable(new TextureRegion(botonConfiguracion));
-        ImageButton btnConfiguracion = new ImageButton(trdConfiguracion);
-        btnConfiguracion.setPosition(ancho/2 -btnConfiguracion.getWidth()/2, 0.5f*alto);
-*/
         TextureRegionDrawable trdHistoria = new TextureRegionDrawable(new TextureRegion(botonHistoria));
         ImageButton btnHistoria = new ImageButton(trdHistoria);
         btnHistoria.setPosition(ancho/2-btnHistoria.getWidth()/2,0.4f*alto);
 
         TextureRegionDrawable trdInstrucciones = new TextureRegionDrawable(new TextureRegion(botonInstrucciones));
         ImageButton btnInstrucciones = new ImageButton(trdInstrucciones);
-        btnInstrucciones.setScale(.1f,.1f);
+        //btnInstrucciones.setScale(.1f,.1f);
         btnInstrucciones.setPosition(ancho/2-btnInstrucciones.getWidth()/2,0.2f*alto);
 
-/*
-        TextureRegionDrawable trdBtnMejoras = new TextureRegionDrawable(new TextureRegion(botonMejoras));
-        ImageButton btnMejoras = new ImageButton(trdBtnMejoras);
-        btnMejoras.setPosition(0,.5f*alto);
-*/
+
+        TextureRegionDrawable trdSonidoOn = new TextureRegionDrawable(new TextureRegion(botonSonidoOn));
+        ImageButton btnSonidoOn = new ImageButton(trdSonidoOn);
+        btnSonidoOn.setPosition(1200,0);
+
+        TextureRegionDrawable trdSonidoOff = new TextureRegionDrawable(new TextureRegion(botonSonidoOff));
+        ImageButton btnSonidoOff = new ImageButton(trdSonidoOff);
+        btnSonidoOff.setPosition(1200,0);
+
         escena = new Stage();
+
+        btnInstrucciones.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaInstrucciones(juego));
+            }
+        });
 
         btnHistoria.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //regresar al menu principal
+                Gdx.app.log("Cliced","Tap sobre instrucciones");
                 juego.setScreen(new PantallaHistoria(juego));
 
             }
         });
-
 
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //regresar al menu principal
                 juego.setScreen(new MenuPrincipal(juego));
-
             }
         });
 
-        Gdx.input.setInputProcessor(escena);
+        btnSonidoOn.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //regresar al menu principal
+                /*
+                AudioManager amanager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
+                amanager.setStreamMute(AudioManager.STREAM_ALARM, true);
+                amanager.setStreamMute(AudioManager.STREAM_MUSIC, true);
+                amanager.setStreamMute(AudioManager.STREAM_RING, true);
+                amanager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
+                */
+            }
+        });
 
+
+
+        Gdx.input.setInputProcessor(escena);
 
         Image imgFondo = new Image(texturaFondo);
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
         //btnInstrucciones.setScale(.4f);
+
+        if(banderaSonido ==true){
+
+            escena.addActor(btnSonidoOn);
+
+        }
+
+        else{
+            escena.addActor(btnSonidoOff);
+        }
 
         escena.addActor(imgFondo);
 

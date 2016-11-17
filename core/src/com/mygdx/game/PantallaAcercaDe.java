@@ -31,8 +31,8 @@ public class PantallaAcercaDe implements Screen {
 
     private OrthographicCamera camara;
     private Viewport vista;
-    private final int ANCHO_MUNDO = 800;
-    private final int ALTO_MUNDO = 480;
+    private final int ANCHO_MUNDO = 1280;
+    private final int ALTO_MUNDO = 800;
 
 
     public PantallaAcercaDe(Juego juego){
@@ -55,10 +55,10 @@ public class PantallaAcercaDe implements Screen {
         //2
         texturaFondo = new Texture("fondo_acercaDe.png");
         texturaBtnBack = new Texture("atras.png");
-        texturaMarco = new Texture("marco.jpg");
-        texturaHector = new Texture("hector.jpg");
-        texturaJosep = new Texture("josep.jpg");
-        texturaRichard = new Texture("ricardo.jpg");
+        texturaMarco = new Texture("marco1.jpg");
+        texturaHector = new Texture("hector1.jpg");
+        texturaJosep = new Texture("josep1.jpg");
+        texturaRichard = new Texture("ricardo1.jpg");
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
@@ -66,23 +66,23 @@ public class PantallaAcercaDe implements Screen {
 
         TextureRegionDrawable trdMarco = new TextureRegionDrawable(new TextureRegion(texturaMarco));
         ImageButton btnMarco = new ImageButton(trdMarco);
-
-        btnMarco.setPosition(50,100);
+        btnMarco.setPosition(150,125);
+        //btnMarco.setScale(2f);
 
         TextureRegionDrawable trdHector = new TextureRegionDrawable(new TextureRegion(texturaHector));
         ImageButton btnHector = new ImageButton(trdHector);
-
-        btnHector.setPosition(200,100);
+        btnHector.setPosition(400,125);
+        //btnHector.setScale(2f);
 
         TextureRegionDrawable trdRichard = new TextureRegionDrawable(new TextureRegion(texturaRichard));
         ImageButton btnRichard = new ImageButton(trdRichard);
-
-        btnRichard.setPosition(350,100);
+        //btnRichard.setScale(2f);
+        btnRichard.setPosition(650,125);
 
         TextureRegionDrawable trdJosep = new TextureRegionDrawable(new TextureRegion(texturaJosep));
         ImageButton btnJosep = new ImageButton(trdJosep);
-
-        btnJosep.setPosition(500,100);
+        btnJosep.setPosition(900,125);
+        //btnJosep.setScale(2f);
         
         escena = new Stage();
 
@@ -144,7 +144,6 @@ public class PantallaAcercaDe implements Screen {
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
 
-
         escena.addActor(imgFondo);
         escena.addActor(btnBack);
         escena.addActor(btnHector);
@@ -154,26 +153,7 @@ public class PantallaAcercaDe implements Screen {
 
 
 
-        //agregar caras(fotos de cada integrante)
-/*
-        Image imgMarco = new Image(texturaMarco);
-        Image imgHector = new Image(texturaHector);
-        Image imgJosep = new Image(texturaJosep);
-        Image imgRichard = new Image(texturaRichard);
-        imgMarco.setPosition(50,100);
-        imgHector.setPosition(200,100);
-        imgJosep.setPosition(350,100);
-        imgRichard.setPosition(500,100);
-        imgHector.setScale(.1f,.1f);
-        imgMarco.setScale(.4f,.4f);
-        imgJosep.setScale(.3f,.3f);
-        imgRichard.setScale(.3f,.3f);
 
-        escena.addActor(imgHector);
-        escena.addActor(imgMarco);
-        escena.addActor(imgJosep);
-        escena.addActor(imgRichard);
-        */
 
     }
 

@@ -17,37 +17,37 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * Created by marco on 03/11/2016.
+ * Created by marco on 17/11/2016.
  */
-public class PantallaCreadores implements Screen {
+public class PantallaInstrucciones implements Screen {
+
+
+    private int posFinalX=600;
+    private int posInicialX=200;
+    private int posFinalY=700;
+    private int posInicialY=300;
 
     private final Juego juego;
     private Stage escena;
-    private int id;
-
     private Texture texturaBtnBack;
-    private Texture texturaMarco;
-    private Texture texturaHector;
-    private Texture texturaJosep;
-    private Texture texturaRichard;
-
-    private SpriteBatch batch;
-
+    private Texture texturaBtnSig;
     private Texture texturaFondo;
+    private Texto texto;
+    private SpriteBatch batch;
+    private int id =0;
+    private Texture texturaHeroe;
+    private Texture texturaMano;
 
+    //CAMARA virtual
     private OrthographicCamera camara;
     private Viewport vista;
     private final int ANCHO_MUNDO = 1280;
     private final int ALTO_MUNDO = 800;
 
-    private Texto texto;
 
-    public PantallaCreadores(Juego juego, int id){
-
+    public PantallaInstrucciones(Juego juego) {
         this.juego = juego;
-        this.id = id;
     }
-
 
     @Override
     public void show() {
@@ -61,77 +61,76 @@ public class PantallaCreadores implements Screen {
 
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
-        //2
-        texturaFondo = new Texture("vacio.png");
-        texturaBtnBack = new Texture("atras.png");
-        texturaMarco = new Texture("marco.jpg");
-        texturaHector = new Texture("hector.jpg");
-        texturaJosep = new Texture("josep.jpg");
-        texturaRichard = new Texture("ricardo.jpg");
 
+        texturaFondo = new Texture("nivel1.jpeg");
+        texturaBtnBack = new Texture("atras.png");
+        texturaHeroe = new Texture("Glad_1.png");
+        texturaMano = new Texture("mano.png");
+        //texturaBtnSig = new Texture("siguiente.png");
         texto = new Texto();
+
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
+
+
         escena = new Stage();
 
-        btnBack.addListener(new ClickListener(){
+
+        btnBack.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //regresar al menu principal
-                juego.setScreen(new PantallaAcercaDe(juego));
-
+                juego.setScreen(new PantallaOpciones(juego));
             }
         });
 
-
-
         Gdx.input.setInputProcessor(escena);
-
-        //3 el fondo
         Image imgFondo = new Image(texturaFondo);
+        Image imgMano = new Image(texturaMano);
+        Image imgHeroe = new Image(texturaHeroe);
+
+        imgMano.setPosition(300,200);
+        imgHeroe.setPosition(300,200);
+
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
 
-        Image imgMarco = new Image(texturaMarco);
-        Image imgHector = new Image(texturaHector);
-        Image imgJosep = new Image(texturaJosep);
-        Image imgRichard = new Image(texturaRichard);
-
         escena.addActor(imgFondo);
+
+        escena.addActor(imgHeroe);
+        escena.addActor(imgMano);
+
         escena.addActor(btnBack);
 
-        if(this.id==0){
-            imgMarco.setPosition(900,300);
-            imgMarco.setScale(2.5f);
-            escena.addActor(imgMarco);
+
+    }
+
+    public void moverMano(){
+/*
+        if(imgMano.getX()!= posFinalX){
+
+
+            posFinalX+=.1;
+
 
         }
 
-        if(this.id==1){
-            imgHector.setPosition(900,300);
-            imgHector.setScale(2.5f);
-            escena.addActor(imgHector);
+        if(imgMano.getY()!= posFinalY){
+
+            posFinalY+=.1;
 
         }
 
-        if(this.id==3){
+        if(imgMano.getY() == posFinalY &&  imgMano.getX()== posFinalX){
 
-            imgJosep.setPosition(900,300);
-            imgJosep.setScale(2.5f);
-            escena.addActor(imgJosep);
+            imgMano.setPosition(posInicialX,posFinalY);
 
         }
 
-        if(this.id ==2){
-
-            imgRichard.setPosition(900,300);
-            imgRichard.setScale(2.5f);
-            escena.addActor(imgRichard);
-
-        }
+        imgMano.setPosition(posFinalX,posFinalY);
+*/
 
     }
 
@@ -142,28 +141,17 @@ public class PantallaCreadores implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camara.combined);
         escena.setViewport(vista);
+
+
+
         batch.begin();
 
         escena.draw();
 
-        //texto.mostrarMensaje(batch,"Nombre: Marco Buendia ",120,300);
-
-//1280x800
-
         batch.end();
 
-
         batch.begin();
-
-        switch(id){
-
-            case 0:texto.mostrarMensaje(batch,"Nombre: Marco Buendia",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: marco_isaac_1996@hotmail.com",487,250);break;
-            case 1:texto.mostrarMensaje(batch,"Nombre: Hector Medina ",300,450);texto.mostrarMensaje(batch,"Carrera: Animacion y arte digital",425,350);texto.mostrarMensaje(batch,"Correo: hector@hotmail.com",487,250);break;
-            case 2:texto.mostrarMensaje(batch,"Nombre: Ricardo Gutierrez",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: ricardo@hotmail.com",487,250);break;
-            case 3:texto.mostrarMensaje(batch,"Nombre: Josep Romagosa",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: josep@hotmail.com",487,250);break;
-
-        }
-
+        texto.mostrarMensaje(batch,"Toca y desplaza al heroe para moverte",600,800);
 
         batch.end();
 
@@ -171,9 +159,7 @@ public class PantallaCreadores implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
         vista.update(width, height);
-
     }
 
     @Override

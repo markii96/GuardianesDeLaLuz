@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,79 +16,107 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * Created by marco on 04/11/2016.
+ * Created by marco on 17/11/2016.
  */
-public class PantallaHistoria implements Screen {
+public class PantallaMapa implements Screen {
 
-    private Juego juego;
+    private final Juego juego;
     private Stage escena;
-    private Texture texturaFondo;
-    private Texto texto;
     private Texture texturaBtnBack;
-    private Texture texturaBtnSig;
-    private SpriteBatch batch;
-
-    private int idTexto =0;
+    private Texture texturaFondo;
+    private Texture textura1;
+    private Texture textura2;
+    private Texture textura3;
+    private Texture textura4;
 
     private OrthographicCamera camara;
     private Viewport vista;
     private final int ANCHO_MUNDO = 1280;
     private final int ALTO_MUNDO = 800;
 
-    public PantallaHistoria(Juego juego){
+
+
+
+    public PantallaMapa(Juego juego){
         this.juego = juego;
     }
 
     @Override
     public void show() {
 
-        batch = new SpriteBatch();
-
         camara = new OrthographicCamera(ANCHO_MUNDO,ALTO_MUNDO);
         camara.position.set(ANCHO_MUNDO/2,ALTO_MUNDO/2,0);
         camara.update();
         vista = new StretchViewport(ANCHO_MUNDO,ALTO_MUNDO,camara);
+
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
-        texto = new Texto();
+        texturaFondo = new Texture("mapa.png");
 
-        texturaFondo = new Texture("vacio.png");
         texturaBtnBack = new Texture("atras.png");
-        //texturaBtnSig = new Texture("siguiente.png");
-        Image imgFondo = new Image(texturaFondo);
-
+        textura1 = new Texture("1.png");
+        textura2 = new Texture("2.png");
+        textura3 = new Texture("3.png");
+        textura4 = new Texture("4.png");
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
-        /*
-        TextureRegionDrawable trdBtnSig = new TextureRegionDrawable(new TextureRegion(texturaBtnSig));
-        ImageButton btnSig = new ImageButton(trdBtnSig);
-        btnSig.setPosition(ANCHO_MUNDO-50,0);
-
-*/
 
 
+        TextureRegionDrawable trd1 = new TextureRegionDrawable(new TextureRegion(textura1));
+        ImageButton btn1 = new ImageButton(trd1);
+        btn1.setScale(.1f,.1f);
+        btn1.setPosition(200,500);
+
+        TextureRegionDrawable trd2 = new TextureRegionDrawable(new TextureRegion(textura2));
+        ImageButton btn2 = new ImageButton(trd2);
+        btn2.setScale(.1f,.1f);
+        btn1.setPosition(200,200);
+
+        TextureRegionDrawable trd3 = new TextureRegionDrawable(new TextureRegion(textura3));
+        ImageButton btn3 = new ImageButton(trd3);
+        btn3.setScale(.1f,.1f);
+        btn1.setPosition(800,500);
+
+        TextureRegionDrawable trd4 = new TextureRegionDrawable(new TextureRegion(textura4));
+        ImageButton btn4 = new ImageButton(trd4);
+        btn4.setScale(.1f,.1f);
+        btn1.setPosition(800,200);
+
+
+        escena = new Stage();
 
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                juego.setScreen(new PantallaOpciones(juego));
+                juego.setScreen(new MenuPrincipal(juego));
+            }
+        });
+
+        btn1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaJuego(juego));
             }
         });
 
 
 
-
-        escena = new Stage();
+        Gdx.input.setInputProcessor(escena);
+        Image imgFondo = new Image(texturaFondo);
 
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
 
         escena.addActor(imgFondo);
+
+        escena.addActor(btn1);
+        escena.addActor(btn2);
+        escena.addActor(btn3);
+        escena.addActor(btn4);
         escena.addActor(btnBack);
-//        escena.addActor(btnSig);
 
 
 
@@ -98,27 +125,16 @@ public class PantallaHistoria implements Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0,1,0,1);
+        Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.setProjectionMatrix(camara.combined);
         escena.setViewport(vista);
         escena.draw();
-
-
-        batch.begin();
-
-        texto.mostrarMensaje(batch,"Érase una vez, hace mucho tiempo en una tierra muy",650,600);
-
-        batch.end();
 
     }
 
     @Override
     public void resize(int width, int height) {
-
-        vista.update(width,height);
-        System.out.println("");
-
+        vista.update(width, height);
     }
 
     @Override
