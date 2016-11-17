@@ -220,7 +220,9 @@ public class PantallaJuego implements Screen, InputProcessor {
                                     objetivo = nivel.getCristal();
                                     break;
                                 default:
-                                    objetivo = nivel.getHeroes().get(ran3-1);
+                                    if(!nivel.getHeroes().isEmpty()) {
+                                        objetivo = nivel.getHeroes().get(ran3 - 1);
+                                    }
                                     break;
                             }
                             enemigos[i].getSprite().setY(1000);
@@ -274,7 +276,8 @@ public class PantallaJuego implements Screen, InputProcessor {
                     objetivo = nivel.getCristal();
                     break;
                 default:
-                    objetivo = nivel.getHeroes().get(ran3-1);
+                    if(!nivel.getHeroes().isEmpty())
+                        objetivo = nivel.getHeroes().get(ran3-1);
                     break;
             }
             if (cont < limiteEnemigos) {
@@ -303,9 +306,9 @@ public class PantallaJuego implements Screen, InputProcessor {
             enemigos[i].draw(batch);
         }
         if(estado== Estado.GANAR || estado == Estado.PERDER){
-            Texture back = new Texture("back.png");
+            Texture back = new Texture("atras.png");
             btnAtras = new Sprite(back);
-            btnAtras.setScale(.3f);
+            //btnAtras.setScale(1f);
             btnAtras.setX(400);
             btnAtras.setY(50);
             btnAtras.draw(batch);

@@ -34,7 +34,7 @@ public class Enemigo {
 
     private float xFinal;
     private float yFinal;
-
+    private boolean direccion; //true = derecha, false = izquierda
 
 
     private int medidax, mediday;
@@ -71,7 +71,7 @@ public class Enemigo {
         this.estado =  Estado.CAMINANDO;
         this.objetivo = objetivo;
         this.descripcion = datos[7];
-
+        direccion = true;
         // medidas texturas
         String[] medidas = datos[10].split(",");
         medidax = Integer.parseInt(medidas[0])/2;
@@ -121,12 +121,18 @@ public class Enemigo {
                 if(objetivo instanceof Heroe){
                     if (!this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.CAMINANDO;
+                        if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
+                            direccion = true;
+                        }else{
+                            direccion = false;
+                        }
                     }
                 }
 
                 if(objetivo instanceof Cristal){
                     if (!this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.CAMINANDO;
+                        //direccion = false;
                     }
                 }
 
@@ -139,6 +145,11 @@ public class Enemigo {
 
                     if (this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.ATACANDO;
+                        if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
+                            direccion = true;
+                        }else{
+                            direccion = false;
+                        }
                     }
                 }
 
@@ -196,13 +207,29 @@ public class Enemigo {
             case CAMINANDO:
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 region = animacion.getKeyFrame(timerAnimacion);
-
+                if (direccion) {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
            case ATACANDO:
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 region = animacionAtaque.getKeyFrame(timerAnimacion);
-
+               if (direccion) {
+                   if (region.isFlipX()) {
+                       region.flip(true,false);
+                   }
+               } else {
+                   if (!region.isFlipX()) {
+                       region.flip(true,false);
+                   }
+               }
                 batch.draw(region, sprite.getX(), sprite.getY());
             break;
             default:
