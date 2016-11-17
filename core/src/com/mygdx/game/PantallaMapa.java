@@ -60,29 +60,26 @@ public class PantallaMapa implements Screen {
         textura3 = new Texture("3.png");
         textura4 = new Texture("4.png");
 
+
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
 
         TextureRegionDrawable trd1 = new TextureRegionDrawable(new TextureRegion(textura1));
         ImageButton btn1 = new ImageButton(trd1);
-        btn1.setScale(.1f,.1f);
-        btn1.setPosition(200,500);
+        btn1.setPosition(250,475);
 
         TextureRegionDrawable trd2 = new TextureRegionDrawable(new TextureRegion(textura2));
         ImageButton btn2 = new ImageButton(trd2);
-        btn2.setScale(.1f,.1f);
-        btn1.setPosition(200,200);
+        btn2.setPosition(75,250);
 
         TextureRegionDrawable trd3 = new TextureRegionDrawable(new TextureRegion(textura3));
         ImageButton btn3 = new ImageButton(trd3);
-        btn3.setScale(.1f,.1f);
-        btn1.setPosition(800,500);
+        btn3.setPosition(950,475);
 
         TextureRegionDrawable trd4 = new TextureRegionDrawable(new TextureRegion(textura4));
         ImageButton btn4 = new ImageButton(trd4);
-        btn4.setScale(.1f,.1f);
-        btn1.setPosition(800,200);
+        btn4.setPosition(950,250);
 
 
         escena = new Stage();
@@ -91,17 +88,17 @@ public class PantallaMapa implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 juego.setScreen(new MenuPrincipal(juego));
+
             }
         });
 
         btn1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Clicked","Tap sobre jugar");
                 juego.setScreen(new PantallaJuego(juego));
             }
         });
-
-
 
         Gdx.input.setInputProcessor(escena);
         Image imgFondo = new Image(texturaFondo);
@@ -117,8 +114,6 @@ public class PantallaMapa implements Screen {
         escena.addActor(btn3);
         escena.addActor(btn4);
         escena.addActor(btnBack);
-
-
 
     }
 
