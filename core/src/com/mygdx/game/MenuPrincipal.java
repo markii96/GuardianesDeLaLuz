@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -35,6 +36,7 @@ public class MenuPrincipal implements Screen {
 	private Texture texturaBtnJugar;
 	private Texture texturaBtnOpciones;
 	private Texture texturaBtnAcercaDe;
+	private Music music;
 	private final AssetManager assetManager = new AssetManager();
 
     public MenuPrincipal(Juego juego) {
@@ -194,6 +196,10 @@ public class MenuPrincipal implements Screen {
 
 		//equivale a create
 		create();
+		//
+		music = Gdx.audio.newMusic(Gdx.files.internal("The_Trip_to_the_Market.mp3"));
+		music.setLooping(true);
+		music.play();
 	}
 
 	@Override

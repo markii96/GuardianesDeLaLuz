@@ -70,7 +70,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         heroesId[2]="3";
 
         this.nivel = new Nivel(nivelId,heroesId);
-        System.out.println(nivelId);
         this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
 
         int range = (nivel.getEnemigos().length-1) + 1;
@@ -391,6 +390,11 @@ public class PantallaJuego implements Screen, InputProcessor {
     public void dispose() {
         batch.dispose();
         music.dispose();
+        texturaPerdiste.dispose();
+        texturaFondo.dispose();
+        texturaHeroe1.dispose();
+        texturaHeroe2.dispose();
+        texturaHeroe3.dispose();
     }
 
     @Override
@@ -417,7 +421,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
         if(estado == Estado.PERDER || estado == Estado.GANAR) {
             if (x <= btnAtras.getX() + btnAtras.getWidth() && x >= btnAtras.getX() && y <= btnAtras.getY() + btnAtras.getHeight() && y >= btnAtras.getY()) {
-                juego.setScreen(new MenuPrincipal(juego));
+                juego.setScreen(new PantallaMapa(juego));
                 return true;
             }
         }else{
