@@ -1,4 +1,5 @@
 id-nombre-vitalidad-velocidad de Movi- velocidad de ataque-daño fisico- alcance-descripcion-textura
 
-1-crawler-500-2-2-10-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png
-2-soulEater-800-1-2-15-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png
+1-crawler-500-1-2-10-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png
+2-souleater-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172
+3-Meatball-250-2-3-4-corto-sus despreciable forma es su castigo, encomendado a defender lo que alguna vez fue tuyo-meatball.png-meatball_caminando.png-346,173-meatball_atacando.png-518,172

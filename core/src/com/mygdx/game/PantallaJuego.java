@@ -70,7 +70,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         heroesId[2]="3";
 
         this.nivel = new Nivel(nivelId,heroesId);
-
+        System.out.println(nivelId);
         this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
 
         int range = (nivel.getEnemigos().length-1) + 1;
@@ -88,7 +88,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 objetivo = nivel.getHeroes().get(ran3-1);
                 break;
         }
-        Gdx.app.log("Create",ran3+"");
+        //Gdx.app.log("Create",ran3+"");
 
         this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, objetivo);
         cont+=1;
@@ -124,6 +124,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         music = Gdx.audio.newMusic(Gdx.files.internal("The_Trip_to_the_Market.mp3"));
         music.setLooping(true);
         music.play();
+        Gdx.input.setCatchBackKey(true);
 
     }
 
@@ -296,7 +297,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 if (cont < limiteEnemigos) {
                     this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
                     cont += 1;
-                    Gdx.app.log("Create", ran3 + "");
+                    //Gdx.app.log("Create", ran3 + "");
                 }
             }
 
@@ -394,7 +395,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
+        return true;
     }
 
     @Override

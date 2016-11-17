@@ -58,16 +58,18 @@ public class MenuPrincipal implements Screen {
 			preferenciasHeroes.putString("2","2-Althalas-Mago-100-100-Largo-2-0-40-2-0-1-1-0-2-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png-346,173-mago_atacando.png");
 			preferenciasHeroes.putString("3","3-Irina-Arquero-70-0-Largo-3-0-50-2-0-1-1-0-3-1-Dejó su pueblo para salvar la luz del mundo-arquero_caminando.png-arquero.png-346,173-arquera_atacando.png");
 			preferenciasHeroes.flush();
-			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-10");
-			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Emprende la nueva aventura-1,2-100-1000-1-ciudad.png-10");
-			preferenciasNiveles.putString("3","3-Bosque por siempre verde--1,2-100-1000-1-bosque.png-10");
-			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te acecha y los enemigos te acechan-1,2-100-1000-1-nieve.png-10");
+			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-7");
+			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-1-ciudad.png-9");
+			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-1-bosque.png-10");
+			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-1-nieve.png-14");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1","1-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png");
 			preferenciasHabilidades.putString("2","2-Misil Arcano-4-uno-1-misil_arcano.png-misil_arcano_anim.png");
 			preferenciasHabilidades.putString("3","3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png");
 			preferenciasEnemigos.putString("1","1-Dhole-500-1-2-5-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");
 			preferenciasEnemigos.putString("2","2-Azathoth-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
+			preferenciasEnemigos.putString("3","3-Meatball-250-2-3-4-corto-sus despreciable forma es su castigo, encomendado a defender lo que alguna vez fue tuyo-meatball.png-meatball_caminando.png-346,173-meatball_atacando.png-518,172");
+
 			preferenciasEnemigos.flush();
 			preferenciasValidacion.putString("1", "1");
 			preferenciasValidacion.putString("2", "1");
