@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -29,7 +30,8 @@ public class PantallaOpciones implements Screen {
     private Texture botonSonidoOff;
     private Texture botonHistoria;
     private Texture botonMejoras;
-    private boolean banderaSonido = true;
+    private int banderaSonido = 1;
+    Preferences validacion = Gdx.app.getPreferences("Validacion");
 
     //CAMARA virtual
     private OrthographicCamera camara;
@@ -82,11 +84,11 @@ public class PantallaOpciones implements Screen {
 
         TextureRegionDrawable trdSonidoOn = new TextureRegionDrawable(new TextureRegion(botonSonidoOn));
         ImageButton btnSonidoOn = new ImageButton(trdSonidoOn);
-        btnSonidoOn.setPosition(1200,0);
+        btnSonidoOn.setPosition(1100,0);
 
         TextureRegionDrawable trdSonidoOff = new TextureRegionDrawable(new TextureRegion(botonSonidoOff));
         ImageButton btnSonidoOff = new ImageButton(trdSonidoOff);
-        btnSonidoOff.setPosition(1200,0);
+        btnSonidoOff.setPosition(900,0);
 
         escena = new Stage();
 
@@ -118,15 +120,21 @@ public class PantallaOpciones implements Screen {
         btnSonidoOn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //regresar al menu principal
-                /*
-                AudioManager amanager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
-                amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
-                amanager.setStreamMute(AudioManager.STREAM_ALARM, true);
-                amanager.setStreamMute(AudioManager.STREAM_MUSIC, true);
-                amanager.setStreamMute(AudioManager.STREAM_RING, true);
-                amanager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
-                */
+                banderaSonido --;
+                System.out.println("clicked on");
+                validacion.putString("2","0");
+
+
+            }
+        });
+
+        btnSonidoOff.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                banderaSonido ++;
+
+                System.out.println("clicked off");
+                validacion.putString("2","1");
             }
         });
 
@@ -139,16 +147,11 @@ public class PantallaOpciones implements Screen {
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
         //btnInstrucciones.setScale(.4f);
+        Gdx.app.getPreferences("Validacion");
 
-        if(banderaSonido ==true){
+        //if(Gdx.app.getPreferences("Validacion"))
 
-            escena.addActor(btnSonidoOn);
 
-        }
-
-        else{
-            escena.addActor(btnSonidoOff);
-        }
 
         escena.addActor(imgFondo);
 
@@ -156,6 +159,14 @@ public class PantallaOpciones implements Screen {
         escena.addActor(btnHistoria);
         escena.addActor(btnInstrucciones);
         escena.addActor(btnBack);
+
+
+            escena.addActor(btnSonidoOn);
+
+
+            escena.addActor(btnSonidoOff);
+
+
 
       //  escena.addActor(btnMejoras);
 

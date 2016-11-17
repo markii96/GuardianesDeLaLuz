@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -29,6 +30,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Music music;
     private float[] posicion = new float[2];
     private Texture texturaPerdiste;
+    Preferences validacion = Gdx.app.getPreferences("Validacion");
 
     private SpriteBatch batch;
 
@@ -124,6 +126,19 @@ public class PantallaJuego implements Screen, InputProcessor {
         music.setLooping(true);
         music.play();
         Gdx.input.setCatchBackKey(true);
+
+
+        if(validacion.getString("2").equals("0")) {
+
+            music.pause();
+
+        }
+
+        if(validacion.getString("2").equals("1")) {
+
+            music.play();
+
+        }
 
     }
 

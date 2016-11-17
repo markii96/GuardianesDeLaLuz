@@ -70,12 +70,6 @@ public class PantallaHistoria implements Screen {
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
-/*
-        TextureRegionDrawable trdBtnSig = new TextureRegionDrawable(new TextureRegion(texturaBtnSig));
-        ImageButton btnSig = new ImageButton(trdBtnSig);
-        btnSig.setPosition(1000,0);
-*/
-
 
         btnNext.addListener(new ClickListener(){
             @Override
@@ -159,7 +153,7 @@ public class PantallaHistoria implements Screen {
             texto.mostrarMensaje(batch, "para conquistar todos los mundos con su oscuridad.", 650, 450);
             texto.mostrarMensaje(batch, "Para detenerlo, se necesitaba del poder de la luz", 650, 400);
             texto.mostrarMensaje(batch, "y de la fuerzo de varios héroes dispuestos a ", 650, 350);
-            texto.mostrarMensaje(batch, "salvar la luz de este mundo.", 650, 400);
+            texto.mostrarMensaje(batch, "salvar la luz de este mundo.", 650, 300);
 
         }
         batch.end();
