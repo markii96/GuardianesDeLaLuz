@@ -37,8 +37,8 @@ public class PantallaCreadores implements Screen {
 
     private OrthographicCamera camara;
     private Viewport vista;
-    private final int ANCHO_MUNDO = 800;
-    private final int ALTO_MUNDO = 480;
+    private final int ANCHO_MUNDO = 1280;
+    private final int ALTO_MUNDO = 800;
 
     private Texto texto;
 
@@ -62,7 +62,7 @@ public class PantallaCreadores implements Screen {
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
         //2
-        texturaFondo = new Texture("fondo.png");
+        texturaFondo = new Texture("vacio.png");
         texturaBtnBack = new Texture("atras.png");
         texturaMarco = new Texture("marco.jpg");
         texturaHector = new Texture("hector.jpg");
@@ -104,14 +104,14 @@ public class PantallaCreadores implements Screen {
         escena.addActor(btnBack);
 
         if(this.id==0){
-            imgMarco.setPosition(450,100);
+            imgMarco.setPosition(900,300);
             imgMarco.setScale(2.5f);
             escena.addActor(imgMarco);
 
         }
 
         if(this.id==1){
-            imgHector.setPosition(450,100);
+            imgHector.setPosition(900,300);
             imgHector.setScale(2.5f);
             escena.addActor(imgHector);
 
@@ -119,7 +119,7 @@ public class PantallaCreadores implements Screen {
 
         if(this.id==3){
 
-            imgJosep.setPosition(450,100);
+            imgJosep.setPosition(900,300);
             imgJosep.setScale(2.5f);
             escena.addActor(imgJosep);
 
@@ -127,7 +127,7 @@ public class PantallaCreadores implements Screen {
 
         if(this.id ==2){
 
-            imgRichard.setPosition(450,100);
+            imgRichard.setPosition(900,300);
             imgRichard.setScale(2.5f);
             escena.addActor(imgRichard);
 
@@ -157,15 +157,12 @@ public class PantallaCreadores implements Screen {
 
         switch(id){
 
-            case 0:texto.mostrarMensaje(batch,"Nombre: Marco Buendia",120,350);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",120,250);break;
-            case 1:texto.mostrarMensaje(batch,"Nombre: Hector Medina ",120,350);texto.mostrarMensaje(batch,"Carrera: Animacion y arte digital",120,250);break;
-            case 2:texto.mostrarMensaje(batch,"Nombre: Ricardo",120,350);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",120,250);break;
-            case 3:texto.mostrarMensaje(batch,"Nombre: Josep",120,350);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",120,250);break;
+            case 0:texto.mostrarMensaje(batch,"Nombre: Marco Buendia",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: marco_isaac_1996@hotmail.com",487,250);break;
+            case 1:texto.mostrarMensaje(batch,"Nombre: Hector Medina ",300,450);texto.mostrarMensaje(batch,"Carrera: Animacion y arte digital",425,350);texto.mostrarMensaje(batch,"Correo: hmedinaramirez@gmail.com",487,250);break;
+            case 2:texto.mostrarMensaje(batch,"Nombre: Ricardo Gutierrez",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: ricardo@hotmail.com",487,250);break;
+            case 3:texto.mostrarMensaje(batch,"Nombre: Josep Romagosa",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: josep@hotmail.com",487,250);break;
 
         }
-
-
-        //texto.mostrarMensaje(batch,"Nombre: Marco Buendia ",120,300);
 
 
         batch.end();

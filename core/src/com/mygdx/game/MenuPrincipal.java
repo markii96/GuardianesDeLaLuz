@@ -21,8 +21,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 //solo es una de las pantallas de la aplicacion
 public class MenuPrincipal implements Screen {
-	private static final int ANCHO_MUNDO = 	800 ;
-	private static final int ALTO_MUNDO = 	480 ;
+	private static final int ANCHO_MUNDO = 	1280 ;
+	private static final int ALTO_MUNDO = 	800 ;
 	private final Juego juego;
     private Stage escena;
 	private Texture texturaFondo;
@@ -97,31 +97,26 @@ public class MenuPrincipal implements Screen {
 		//jugar
 		TextureRegionDrawable trBtnJugar = new TextureRegionDrawable(new TextureRegion(texturaBtnJugar));
 		ImageButton btnJugar = new ImageButton( trBtnJugar );
-		btnJugar.setPosition(ancho*17/10 - btnJugar.getWidth(), 0.50f*alto);
-		btnJugar.setWidth(btnJugar.getWidth()*.35f);
-		btnJugar.setHeight(btnJugar.getHeight()*.35f);
+		btnJugar.setPosition(/*ancho*17/10 - btnJugar.getWidth()*/780, 0.50f*alto);
+		btnJugar.setWidth(btnJugar.getWidth()*.5f);
+		btnJugar.setHeight(btnJugar.getHeight()*.5f);
 		escena.addActor(btnJugar);
 
 		// Opciones
 		TextureRegionDrawable trBtnOpciones = new TextureRegionDrawable(new TextureRegion(texturaBtnOpciones));
 		ImageButton btnOpciones = new ImageButton( trBtnOpciones );
-		btnOpciones.setPosition(ancho*17/10 - btnOpciones.getWidth(), 0.275f*alto);
-		btnOpciones.setWidth(btnOpciones.getWidth()*.35f);
-		btnOpciones.setHeight(btnOpciones.getHeight()*.35f);
+		btnOpciones.setPosition(780, 0.275f*alto);
+		btnOpciones.setWidth(btnOpciones.getWidth()*.5f);
+		btnOpciones.setHeight(btnOpciones.getHeight()*.5f);
 		escena.addActor(btnOpciones);
 
 		//Acerca de
 		TextureRegionDrawable trBtnAcercaDe = new TextureRegionDrawable(new TextureRegion(texturaBtnAcercaDe));
 		ImageButton btnAcercaDe = new ImageButton( trBtnAcercaDe );
-		btnAcercaDe.setPosition(ancho*17/10 - btnAcercaDe.getWidth(), 0.05f*alto);
-		btnAcercaDe.setWidth(btnAcercaDe.getWidth()*.35f);
-		btnAcercaDe.setHeight(btnAcercaDe.getHeight()*.35f);
+		btnAcercaDe.setPosition(780, 0.05f*alto);
+		btnAcercaDe.setWidth(btnAcercaDe.getWidth()*.5f);
+		btnAcercaDe.setHeight(btnAcercaDe.getHeight()*.5f);
 		escena.addActor(btnAcercaDe);
-
-		//agregar titulo
-		/*Image imgTitulo = new Image(texturaTitulo);
-		imgTitulo.setPosition(ancho/2 -imgTitulo.getWidth()/2, 0.8f*alto);
-		escena.addActor(imgTitulo);*/
 
 		//registrar listener
 		btnJugar.addListener(new ClickListener(){
@@ -129,7 +124,7 @@ public class MenuPrincipal implements Screen {
 			public void clicked(InputEvent event, float x, float y) {
 				Gdx.app.log("Clicked", "Tap sobre el boton jugar");
                 //cambiar pantalla
-                	juego.setScreen(new PantallaJuego(juego));
+                	juego.setScreen(new PantallaMapa(juego));
 			}
 		});
 
