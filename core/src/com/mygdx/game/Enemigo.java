@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -19,6 +20,15 @@ public class Enemigo {
     private Sprite sprite;
     private int[] posicionInicial = new int[2];
 
+    public Sound getSoundAttack() {
+        return soundAttack;
+    }
+
+    public void setSoundAttack(Sound soundAttack) {
+        this.soundAttack = soundAttack;
+    }
+
+    private Sound soundAttack = Gdx.audio.newSound(Gdx.files.internal("sword-slash1.mp3"));
 
     private String nombre;
     private int vitalidad;

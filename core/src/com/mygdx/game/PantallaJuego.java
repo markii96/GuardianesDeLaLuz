@@ -192,9 +192,12 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                         if (timer >= 1) {
 
-                            if (nivel.getHeroes().get(j).getVitalidad() > 0)
+                            if (nivel.getHeroes().get(j).getVitalidad() > 0) {
+                                enemigos[i].getSoundAttack().play(.5f);
                                 nivel.getHeroes().get(j).setVitalidad(nivel.getHeroes().get(j).getVitalidad() - enemigos[i].getDanoFisico());
+                            }
                             if (enemigos[i].getVitalidad() > 0)
+                                nivel.getHeroes().get(j).getSoundAttack().play(.5f);
                                 enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes().get(j).getDanoFisico());
 
                             if (nivel.getHeroes().get(j).getVitalidad() <= 0) {
