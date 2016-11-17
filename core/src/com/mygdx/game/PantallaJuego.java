@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,15 +13,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import java.util.Arrays;
-import com.sun.javafx.scene.paint.GradientUtils;
 
-import java.awt.Point;
 
 
 public class PantallaJuego implements Screen, InputProcessor {
@@ -30,7 +26,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Texture texturaHeroe1;
     private Texture texturaHeroe2;
     private Texture texturaHeroe3;
-
+    private Music music;
     private float[] posicion = new float[2];
     private Texture texturaPerdiste;
 
@@ -113,7 +109,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         return cont;
     }
 
-//hola
 
     @Override
     public void show() {
@@ -124,6 +119,10 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Gdx.input.setInputProcessor(this);
         texto =new Texto();
+        music = Gdx.audio.newMusic(Gdx.files.internal("The_Trip_to_the_Market.mp3"));
+        music.setLooping(true);
+        music.play();
+
     }
 
     private void inicializarCamara() {
@@ -372,6 +371,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
+        music.dispose();
     }
 
     @Override
