@@ -223,5 +223,6 @@ public class MenuPrincipal implements Screen {
 		texturaTitulo.dispose();
 		texturaBtnOpciones.dispose();
 		texturaBtnJugar.dispose();
+
 	}
 }

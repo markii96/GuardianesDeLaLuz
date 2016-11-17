@@ -43,7 +43,8 @@ public class PantallaHistoria implements Screen {
 
     @Override
     public void show() {
-
+        escena = new Stage();
+        Gdx.input.setInputProcessor(escena);
         batch = new SpriteBatch();
 
         camara = new OrthographicCamera(ANCHO_MUNDO,ALTO_MUNDO);
@@ -79,13 +80,15 @@ public class PantallaHistoria implements Screen {
         btnNext.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                idTexto++;
+                idTexto += 1;
+                System.out.println("clicked");
             }
         });
 
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                System.out.println("clicked");
                 if(idTexto==1) {
                     juego.setScreen(new PantallaOpciones(juego));
                 }
@@ -96,7 +99,7 @@ public class PantallaHistoria implements Screen {
             }
         });
 
-        escena = new Stage();
+
 
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
@@ -120,9 +123,6 @@ public class PantallaHistoria implements Screen {
         escena.setViewport(vista);
         escena.draw();
 
-
-        batch.begin();
-        batch.end();
 
         batch.begin();
 
@@ -170,7 +170,6 @@ public class PantallaHistoria implements Screen {
     public void resize(int width, int height) {
 
         vista.update(width,height);
-        System.out.println("");
 
     }
 
