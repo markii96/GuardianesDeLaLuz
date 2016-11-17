@@ -61,7 +61,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Sprite btnPausa;
     private Sprite btnSalir;
 
-    public PantallaJuego(Juego juego) {
+    public PantallaJuego(Juego juego,String nivelId) {
 
 
         this.juego = juego;
@@ -69,7 +69,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         heroesId[1]="2";
         heroesId[2]="3";
 
-        this.nivel = new Nivel("1",heroesId);
+        this.nivel = new Nivel(nivelId,heroesId);
 
         this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
 

@@ -83,7 +83,7 @@ public class PantallaMapa implements Screen {
 
 
         escena = new Stage();
-
+        Gdx.input.setInputProcessor(escena);
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -95,12 +95,31 @@ public class PantallaMapa implements Screen {
         btn1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Clicked","Tap sobre jugar");
-                juego.setScreen(new PantallaJuego(juego));
+
+                juego.setScreen(new PantallaJuego(juego,"1"));
             }
         });
+        btn1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
 
-        Gdx.input.setInputProcessor(escena);
+                juego.setScreen(new PantallaJuego(juego,"2"));
+            }
+        });
+        btn1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                juego.setScreen(new PantallaJuego(juego,"3"));
+            }
+        });
+        btn1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                juego.setScreen(new PantallaJuego(juego,"4"));
+            }
+        });
         Image imgFondo = new Image(texturaFondo);
 
         float escalaX = ancho / imgFondo.getWidth();

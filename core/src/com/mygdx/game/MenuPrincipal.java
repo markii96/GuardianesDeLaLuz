@@ -59,6 +59,9 @@ public class MenuPrincipal implements Screen {
 			preferenciasHeroes.putString("3","3-Irina-Arquero-70-0-Largo-3-0-50-2-0-1-1-0-3-1-Dejó su pueblo para salvar la luz del mundo-arquero_caminando.png-arquero.png-346,173-arquera_atacando.png");
 			preferenciasHeroes.flush();
 			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-10");
+			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Emprende la nueva aventura-1,2-100-1000-1-ciudad.png-10");
+			preferenciasNiveles.putString("3","3-Bosque por siempre verde--1,2-100-1000-1-bosque.png-10");
+			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te acecha y los enemigos te acechan-1,2-100-1000-1-nieve.png-10");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1","1-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png");
 			preferenciasHabilidades.putString("2","2-Misil Arcano-4-uno-1-misil_arcano.png-misil_arcano_anim.png");
