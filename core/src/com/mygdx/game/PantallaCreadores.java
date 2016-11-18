@@ -62,7 +62,7 @@ public class PantallaCreadores implements Screen {
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
         //2
-        texturaFondo = new Texture("vacio.png");
+        texturaFondo = new Texture("nieve.png");
         texturaBtnBack = new Texture("atras.png");
         texturaMarco = new Texture("marco.jpg");
         texturaHector = new Texture("hector.jpg");

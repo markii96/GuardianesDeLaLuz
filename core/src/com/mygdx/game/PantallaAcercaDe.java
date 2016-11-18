@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -25,6 +26,9 @@ public class PantallaAcercaDe implements Screen {
     private Texture texturaHector;
     private Texture texturaJosep;
     private Texture texturaRichard;
+
+    private Texto texto;
+    private SpriteBatch batch;
     //1
     private Texture texturaFondo;
 
@@ -43,7 +47,12 @@ public class PantallaAcercaDe implements Screen {
     @Override
     public void show() {
 
+        batch = new SpriteBatch();
         // camara
+
+        texto = new Texto();
+
+
 
         camara = new OrthographicCamera(ANCHO_MUNDO,ALTO_MUNDO);
         camara.position.set(ANCHO_MUNDO/2,ALTO_MUNDO/2,0);
@@ -53,7 +62,7 @@ public class PantallaAcercaDe implements Screen {
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
         //2
-        texturaFondo = new Texture("fondo_acercaDe.png");
+        texturaFondo = new Texture("bosque.png");
         texturaBtnBack = new Texture("atras.png");
         texturaMarco = new Texture("marco1.jpg");
         texturaHector = new Texture("hector1.jpg");
@@ -166,8 +175,20 @@ public class PantallaAcercaDe implements Screen {
 
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.setProjectionMatrix(camara.combined);
         escena.setViewport(vista);
+        batch.begin();
         escena.draw();
+
+
+
+        batch.end();
+
+        batch.begin();
+        texto.mostrarMensaje(batch,"Proyecto de desarrollo de videojuegos",600,600);
+        texto.mostrarMensaje(batch,"Tec Campus estado de Mexico",600,500);
+
+        batch.end();
     }
 
     @Override
