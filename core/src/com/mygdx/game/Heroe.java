@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.io.BufferedReader;
@@ -54,7 +55,7 @@ public class Heroe {
     private int nivel;
     private int armadura;
     private int precio;
-    private Habilidad[] habilidades;
+    private ArrayList<Habilidad> habilidades;
     private Boolean disponibilidad;
     private String descripcion;
     private Texture textura;
@@ -107,14 +108,21 @@ public class Heroe {
         this.armadura = Integer.parseInt(datos[12]);
         this.precio = Integer.parseInt(datos[13]);
 
-        String[] hab = datos[14].split(",");
-        this.habilidades = new Habilidad[hab.length];
+        int var = Integer.parseInt(datos[14]);
 
-        for (int i =0; i< hab.length; i++){
-            habilidades[i] = new Habilidad(hab[i]);
+        Preferences h = Gdx.app.getPreferences("Habilidades");
 
-            this.x = posicion[0];
-            this.y = posicion[1];
+        switch (var){
+            case 1:{
+
+                habilidades.add(new bolaDeFuego("1","Bola"));
+            }
+            case 2:{
+                habilidades.add(new bolaDeFuego("1","Bola"));
+            }
+            case 3:{
+                habilidades.add(new bolaDeFuego("1","Bola"));
+            }
         }
 
         if (datos[15]=="1") this.disponibilidad = true;
