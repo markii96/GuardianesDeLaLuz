@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -19,6 +20,15 @@ public class Enemigo {
     private Sprite sprite;
     private int[] posicionInicial = new int[2];
 
+    public Sound getSoundAttack() {
+        return soundAttack;
+    }
+
+    public void setSoundAttack(Sound soundAttack) {
+        this.soundAttack = soundAttack;
+    }
+
+    private Sound soundAttack = Gdx.audio.newSound(Gdx.files.internal("sword-slash1.mp3"));
 
     private String nombre;
     private int vitalidad;
@@ -35,6 +45,15 @@ public class Enemigo {
     private float xFinal;
     private float yFinal;
 
+    public boolean isDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(boolean direccion) {
+        this.direccion = direccion;
+    }
+
+    private boolean direccion; //true = izquierda, false = derecha
 
 
     private int medidax, mediday;
@@ -71,7 +90,7 @@ public class Enemigo {
         this.estado =  Estado.CAMINANDO;
         this.objetivo = objetivo;
         this.descripcion = datos[7];
-
+        direccion = true;
         // medidas texturas
         String[] medidas = datos[10].split(",");
         medidax = Integer.parseInt(medidas[0])/2;
@@ -121,12 +140,18 @@ public class Enemigo {
                 if(objetivo instanceof Heroe){
                     if (!this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.CAMINANDO;
+                        /*if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
+                            direccion = true;
+                        }else{
+                            direccion = false;
+                        }*/
                     }
                 }
 
                 if(objetivo instanceof Cristal){
                     if (!this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.CAMINANDO;
+                        //direccion = false;
                     }
                 }
 
@@ -139,6 +164,11 @@ public class Enemigo {
 
                     if (this.contiene(((Heroe)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.ATACANDO;
+                        /*if(((Heroe) objetivo).getSprite().getX()>this.getSprite().getX()){
+                            direccion = true;
+                        }else{
+                            direccion = false;
+                        }*/
                     }
                 }
 
@@ -196,13 +226,29 @@ public class Enemigo {
             case CAMINANDO:
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 region = animacion.getKeyFrame(timerAnimacion);
-
+                if (direccion) {
+                    if (region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                } else {
+                    if (!region.isFlipX()) {
+                        region.flip(true,false);
+                    }
+                }
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
            case ATACANDO:
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 region = animacionAtaque.getKeyFrame(timerAnimacion);
-
+               if (direccion) {
+                   if (region.isFlipX()) {
+                       region.flip(true,false);
+                   }
+               } else {
+                   if (!region.isFlipX()) {
+                       region.flip(true,false);
+                   }
+               }
                 batch.draw(region, sprite.getX(), sprite.getY());
             break;
             default:

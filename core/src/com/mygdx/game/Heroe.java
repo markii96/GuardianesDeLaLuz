@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,7 +28,15 @@ public class Heroe {
     private Sprite sprite;
     private float[] posicion = new float[2];
 
-    float pendiente;
+    public Sound getSoundAttack() {
+        return soundAttack;
+    }
+
+    public void setSoundAttack(Sound soundAttack) {
+        this.soundAttack = soundAttack;
+    }
+
+    private Sound soundAttack = Gdx.audio.newSound(Gdx.files.internal("sword-gesture2.mp3"));
     float x, y;
     private float xFinal, yFinal;
 

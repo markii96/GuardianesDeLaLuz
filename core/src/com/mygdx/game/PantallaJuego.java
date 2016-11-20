@@ -2,35 +2,35 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import java.util.Arrays;
-import com.sun.javafx.scene.paint.GradientUtils;
 
-import java.awt.Point;
 
 
 public class PantallaJuego implements Screen, InputProcessor {
     private final Juego juego;
     private OrthographicCamera camara;
     private Viewport vista;
-
     private Texture texturaFondo;
     private Texture texturaHeroe1;
     private Texture texturaHeroe2;
     private Texture texturaHeroe3;
-
+    private Music music;
     private float[] posicion = new float[2];
     private Texture texturaPerdiste;
+    Preferences validacion = Gdx.app.getPreferences("Validacion");
 
     private SpriteBatch batch;
 
@@ -46,7 +46,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Enemigo[] enemigos;
 
-    private float timer =0;
+    private float timerHeroes =0;
+    private float timerEnemigos =0;
 
     float xInicial,yInicial;
 
@@ -59,9 +60,10 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Sprite btnAtras;
 
+    private Sprite btnPausa;
+    private Sprite btnSalir;
 
-
-    public PantallaJuego(Juego juego) {
+    public PantallaJuego(Juego juego,String nivelId) {
 
 
         this.juego = juego;
@@ -69,8 +71,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         heroesId[1]="2";
         heroesId[2]="3";
 
-        this.nivel = new Nivel("1",heroesId);
-
+        this.nivel = new Nivel(nivelId,heroesId);
         this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
 
         int range = (nivel.getEnemigos().length-1) + 1;
@@ -88,7 +89,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 objetivo = nivel.getHeroes().get(ran3-1);
                 break;
         }
-        Gdx.app.log("Create",ran3+"");
+        //Gdx.app.log("Create",ran3+"");
 
         this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, objetivo);
         cont+=1;
@@ -111,7 +112,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         return cont;
     }
 
-//hola
 
     @Override
     public void show() {
@@ -122,6 +122,24 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Gdx.input.setInputProcessor(this);
         texto =new Texto();
+        music = Gdx.audio.newMusic(Gdx.files.internal("The_Trip_to_the_Market.mp3"));
+        music.setLooping(true);
+        music.play();
+        Gdx.input.setCatchBackKey(true);
+
+
+        if(validacion.getString("2").equals("0")) {
+
+            music.pause();
+
+        }
+
+        if(validacion.getString("2").equals("1")) {
+
+            music.play();
+
+        }
+
     }
 
     private void inicializarCamara() {
@@ -137,9 +155,17 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         texturaFondo = this.nivel.getTextura();
 
-            texturaHeroe1 = this.nivel.getHeroes().get(0).getTextura();
-            texturaHeroe2 = this.nivel.getHeroes().get(1).getTextura();
-            texturaHeroe3 = this.nivel.getHeroes().get(2).getTextura();
+        texturaHeroe1 = this.nivel.getHeroes().get(0).getTextura();
+        texturaHeroe2 = this.nivel.getHeroes().get(1).getTextura();
+        texturaHeroe3 = this.nivel.getHeroes().get(2).getTextura();
+        btnPausa = new Sprite(new Texture("pausa.png"));
+        btnPausa.setX(1020);
+        btnPausa.setY(544);
+
+        btnSalir = new Sprite(new Texture("exit.png"));
+        btnSalir.setX(1280/2);
+        btnSalir.setY(800/2);
+
 
 
     }
@@ -148,6 +174,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         batch = new SpriteBatch();
         fondo = new Fondo(texturaFondo);
+
+
 
     }
 
@@ -158,69 +186,76 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         int range = (nivel.getEnemigos().length-1) + 1;
         int range2 = (401);
+        if(estado == Estado.JUGANDO) {
 
-        int ran =  (int)(Math.random() * range);
-        int ran2 = (int)(Math.random() * range2);
+            int ran = (int) (Math.random() * range);
+            int ran2 = (int) (Math.random() * range2);
 
-        int bandera = 0;
+            int bandera = 0;
 
-        if (enemigosEliminados >= 5){
-            estado =Estado.GANAR;
-        }
+            if (enemigosEliminados >= nivel.getCantEnemigos()) {
+                estado = Estado.GANAR;
+            }
 
-        if (nivel.getHeroes().size()==0){
-            estado =Estado.PERDER;
-        }
+            if (heroesEliminados >= 3) {
+                estado = Estado.PERDER;
+            }
 
-        timer+= Gdx.graphics.getDeltaTime();
+            timerHeroes += Gdx.graphics.getDeltaTime();
+            timerEnemigos += Gdx.graphics.getDeltaTime();
 
-        for(int i = 0;i<cont;i++){
-            for(int j = 0;j<nivel.getHeroes().size();j++){
-                if(nivel.getHeroes().get(j).contiene(enemigos[i].getSprite().getBoundingRectangle())||enemigos[i].contiene(nivel.getHeroes().get(j).getSprite().getBoundingRectangle())){
-                    //if(nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.CAMINANDO||nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.SELECCIONADO) {
-                    if(nivel.getHeroes().get(j).getEstado()==Heroe.Estado.CAMINANDO||nivel.getHeroes().get(j).getEstado()==Heroe.Estado.PARADO) {
-                        enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
-                        enemigos[i].setObjetivo(nivel.getHeroes().get(j));
-                        nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
-                    }
+            for (int i = 0; i < cont; i++) {
+                for (int j = 0; j < nivel.getHeroes().size(); j++) {
+                    if (nivel.getHeroes().get(j).contiene(enemigos[i].getSprite().getBoundingRectangle()) || enemigos[i].contiene(nivel.getHeroes().get(j).getSprite().getBoundingRectangle())) {
+                        //if(nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.CAMINANDO||nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.SELECCIONADO) {
+                        if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.CAMINANDO || nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO) {
+                            enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                            enemigos[i].setObjetivo(nivel.getHeroes().get(j));
+                            if(enemigos[i].getSprite().getX()<nivel.getHeroes().get(j).getSprite().getX()){
+                                enemigos[i].setDireccion(false);
+                            }else{
+                                enemigos[i].setDireccion(true);
+                            }
+                            nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
+                        }
 
-                    if (timer >=1) {
-
-                        if ( nivel.getHeroes().get(j).getVitalidad() > 0)
-                            nivel.getHeroes().get(j).setVitalidad(nivel.getHeroes().get(j).getVitalidad() - enemigos[i].getDanoFisico());
-                        if ( enemigos[i].getVitalidad() > 0)
-                            enemigos[i].setVitalidad(enemigos[i].getVitalidad()-nivel.getHeroes().get(j).getDanoFisico());
-
-                        if ( nivel.getHeroes().get(j).getVitalidad() <= 0){
+                        if (timerHeroes >= 1) {
+                            if (enemigos[i].getVitalidad() > 0) {
+                                nivel.getHeroes().get(j).getSoundAttack().play(.5f);
+                                enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes().get(j).getDanoFisico());
+                            }
+                            timerHeroes = 0;
+                        }
+                        if (timerEnemigos >= 1.3) {
+                            if (nivel.getHeroes().get(j).getVitalidad() > 0) {
+                                enemigos[i].getSoundAttack().play(.5f);
+                                nivel.getHeroes().get(j).setVitalidad(nivel.getHeroes().get(j).getVitalidad() - enemigos[i].getDanoFisico());
+                            }
+                            timerEnemigos = 0;
+                        }
+                        if (nivel.getHeroes().get(j).getVitalidad() <= 0) {
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.MORIR);
                             nivel.getHeroes().remove(j);
 
                             heroesEliminados++;
                             //int ran3 = (int)(Math.random() * 4);
                             Object objetivo = nivel.getCristal();
-                            /*switch(ran3){
-                                case(0):
-                                    objetivo = nivel.getCristal();
-                                    break;
-                                default:
-                                    objetivo = nivel.getHeroes().get(r)n3-1];
-                                    break;
-                            }*/// buscar entre los que siguen vivos
+                            // buscar entre los que siguen vivos
                             enemigos[i].setObjetivo(objetivo);
                             enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-
-
                         }
 
-                        if (enemigos[i].getVitalidad() <= 0 ){
-                            int ran3 = (int)(Math.random() * nivel.getHeroes().size()+1);
+                        if (enemigos[i].getVitalidad() <= 0) {
+                            int ran3 = (int) (Math.random() * nivel.getHeroes().size() + 1);
                             Object objetivo = null;
-                            switch(ran3){
-                                case(0):
+                            switch (ran3) {
+                                case (0):
                                     objetivo = nivel.getCristal();
                                     break;
                                 default:
-                                    objetivo = nivel.getHeroes().get(ran3-1);
+                                    if (!nivel.getHeroes().isEmpty()) {
+                                        objetivo = nivel.getHeroes().get(ran3 - 1);
+                                    }
                                     break;
                             }
                             enemigos[i].getSprite().setY(1000);
@@ -228,89 +263,118 @@ public class PantallaJuego implements Screen, InputProcessor {
                             enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
                             enemigosEliminados++;
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.PARADO);
-                            Gdx.app.log("Create",ran3+"");
                         }
 
-                        timer = 0;
+                        bandera = 1;
                     }
 
-                    bandera = 1;
+                    if (bandera == 0) {
+
+                        if (!enemigos[i].contiene(nivel.getHeroes().get(j).getSprite().getX(), nivel.getHeroes().get(j).getSprite().getY())) {
+                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+
+                        }
+                        if (!nivel.getHeroes().get(j).contiene(enemigos[i].getSprite().getX(), enemigos[i].getSprite().getY())) {
+                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                        }
+                    }
+
+
                 }
 
-                if (bandera==0) {
+            }
+            batch.setProjectionMatrix(camara.combined);
+            batch.begin();
 
-                    if (!enemigos[i].contiene(nivel.getHeroes().get(j).getSprite().getX(), nivel.getHeroes().get(j).getSprite().getY())) {
-                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+            fondo.draw(batch);
 
-                    }
-                    if (!nivel.getHeroes().get(j).contiene(enemigos[i].getSprite().getX(), enemigos[i].getSprite().getY())) {
-                        enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-                    }
+            btnPausa.draw(batch);
+            btnSalir.setScale(.01f,.01f);
+            btnSalir.draw(batch);
+            range = (nivel.getEnemigos().length - 1) + 1;
+            range2 = (401);
+
+            for (int i = 1; i < this.nivel.getCantEnemigos(); i++) {
+                ran = (int) (Math.random() * range);
+                ran2 = (int) (Math.random() * range2);
+                int ran3 = (int) (Math.random() * nivel.getHeroes().size() + 1);
+                Object objetivo = null;
+                switch (ran3) {
+                    case (0):
+                        objetivo = nivel.getCristal();
+                        break;
+                    default:
+                        if (!nivel.getHeroes().isEmpty())
+                            objetivo = nivel.getHeroes().get(ran3 - 1);
+                        break;
                 }
-
-
-
-
+                if (cont < limiteEnemigos) {
+                    this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
+                    cont += 1;
+                    //Gdx.app.log("Create", ran3 + "");
+                }
             }
 
-        }
-        batch.setProjectionMatrix(camara.combined);
-        batch.begin();
-
-        fondo.draw(batch);
-
-
-
-        range = (nivel.getEnemigos().length-1) + 1;
-        range2 = (401);
-
-        for (int i = 1; i< this.nivel.getCantEnemigos();i++){
-            ran =  (int)(Math.random() * range);
-            ran2 = (int)(Math.random() * range2);
-            int ran3 = (int)(Math.random() * nivel.getHeroes().size()+1);
-            Object objetivo = null;
-            switch(ran3){
-                case(0):
-                    objetivo = nivel.getCristal();
-                    break;
-                default:
-                    objetivo = nivel.getHeroes().get(ran3-1);
-                    break;
+            for (int i = 0; i < nivel.getHeroes().size(); i++) {
+                nivel.getHeroes().get(i).draw(batch);
             }
-            if (cont < limiteEnemigos) {
-                this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
-                cont+=1;
-                Gdx.app.log("Create",ran3+"");
+            nivel.getCristal().draw(batch);
+
+            if (estado == Estado.PERDER) {
+                texturaPerdiste = new Texture("perdiste.png");
+                batch.draw(texturaPerdiste, 400, 200);
             }
-        }
 
-        for (int i=0;i<nivel.getHeroes().size();i++){
-            nivel.getHeroes().get(i).draw(batch);
-        }
-        nivel.getCristal().draw(batch);
+            if (estado == Estado.GANAR) {
+                texturaPerdiste = new Texture("ganaste.png");
+                batch.draw(texturaPerdiste, 400, 200);
+            }
 
-        if(estado == Estado.PERDER){
-            texturaPerdiste = new Texture("perdiste.png");
-            batch.draw(texturaPerdiste,400,200);
-        }
+            for (int i = 0; i < regresaEnemigos(); i++) {
+                enemigos[i].draw(batch);
+            }
+            if (estado == Estado.GANAR || estado == Estado.PERDER) {
+                Texture back = new Texture("atras.png");
+                btnAtras = new Sprite(back);
+                btnAtras.setX(400);
+                btnAtras.setY(50);
+                btnAtras.draw(batch);
+            }
+            batch.end();
+        }else if (estado == Estado.GANAR || estado == Estado.PERDER) {
+            batch.begin();
+            fondo.draw(batch);
+            if (estado == Estado.PERDER) {
 
-        if(estado == Estado.GANAR){
-            texturaPerdiste = new Texture("ganaste.png");
-            batch.draw(texturaPerdiste,400,200);
-        }
-
-        for (int i=0; i<regresaEnemigos();i++){
-            enemigos[i].draw(batch);
-        }
-        if(estado== Estado.GANAR || estado == Estado.PERDER){
-            Texture back = new Texture("back.png");
+                texturaPerdiste = new Texture("perdiste.png");
+                batch.draw(texturaPerdiste, 400, 200);
+            }else{
+                texturaPerdiste = new Texture("ganaste.png");
+                batch.draw(texturaPerdiste, 400, 200);
+            }
+            Texture back = new Texture("atras.png");
             btnAtras = new Sprite(back);
-            btnAtras.setScale(.3f);
+            //btnAtras.setScale(1f);
             btnAtras.setX(400);
             btnAtras.setY(50);
             btnAtras.draw(batch);
+            batch.end();
+        }else if(estado == Estado.PAUSA){
+
+            batch.begin();
+            fondo.draw(batch);
+            Texture back = new Texture("atras.png");
+            btnAtras = new Sprite(back);
+            //btnAtras.setScale(1f);
+            btnAtras.setX(400);
+            btnAtras.setY(50);
+            btnAtras.draw(batch);
+            btnSalir.draw(batch);
+
+            btnSalir.setScale(1);
+
+            batch.end();
         }
-        batch.end();
 
     }
 
@@ -326,12 +390,10 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
@@ -342,11 +404,17 @@ public class PantallaJuego implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
+        music.dispose();
+        texturaPerdiste.dispose();
+        texturaFondo.dispose();
+        texturaHeroe1.dispose();
+        texturaHeroe2.dispose();
+        texturaHeroe3.dispose();
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
+        return true;
     }
 
     @Override
@@ -361,7 +429,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
         //si toco alguna habilidad
         Vector3 v = new Vector3(screenX,screenY,0);
         camara.unproject(v);
@@ -369,10 +436,29 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
         if(estado == Estado.PERDER || estado == Estado.GANAR) {
             if (x <= btnAtras.getX() + btnAtras.getWidth() && x >= btnAtras.getX() && y <= btnAtras.getY() + btnAtras.getHeight() && y >= btnAtras.getY()) {
-                System.out.println("lol");
-                juego.setScreen(new MenuPrincipal(juego));
+                juego.setScreen(new PantallaMapa(juego));
                 return true;
             }
+        }else{
+            if (btnPausa.getBoundingRectangle().contains(x,y)) {
+                estado =  Estado.PAUSA;
+                return true;
+            }
+        }
+        if(estado == Estado.PAUSA){
+            if(btnAtras.getBoundingRectangle().contains(x,y)){
+                estado = Estado.JUGANDO;
+                return true;
+            }
+
+            if(btnSalir.getBoundingRectangle().contains(x,y)){
+
+                juego.setScreen(new MenuPrincipal(juego));
+
+            }
+
+
+
         }
 
         for (int i=0; i< nivel.getHeroes().size();i++) {
@@ -471,7 +557,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         JUGANDO,
         GANAR,
         PERDER,
-        SELECCIONADO
+        PAUSA
 
     }
 
