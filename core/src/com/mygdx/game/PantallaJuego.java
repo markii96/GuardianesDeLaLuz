@@ -233,7 +233,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                         }
 
-                        if (timerHeroes >= 1 ) {
+                        if (timerHeroes >= 1 && nivel.getHeroes().get(j).getEstado()== Heroe.Estado.ATACANDO) {
                             if (enemigos[i].getVitalidad() > 0) {
                                 nivel.getHeroes().get(j).getSoundAttack().play(.5f);
                                 enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes().get(j).getDanoFisico());
@@ -552,7 +552,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         if (band ==0){
             heroeSel= null;
-            System.out.println("lol");
         }
 
 
