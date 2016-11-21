@@ -567,7 +567,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
 
         for (int i = 0; i < nivel.getHeroes().size(); i++){
-            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO||nivel.getHeroes().get(i).getEstado() == Heroe.Estado.ATACANDO) {
+            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO||nivel.getHeroes().get(i).getEstado() == Heroe.Estado.ATACANDO || nivel.getHeroes().get(i).getEstado() == Heroe.Estado.PARADO) {
                 //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
                     nivel.getHeroes().get(i).setEstado(Heroe.Estado.CAMINANDO);
@@ -589,20 +589,7 @@ public class PantallaJuego implements Screen, InputProcessor {
             }
         }
 
-        for (int i = 0; i < nivel.getHeroes().size();i++) {
-            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO) {
-                if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
-                    nivel.getHeroes().get(i).setEstado(Heroe.Estado.CAMINANDO);
-                    nivel.getHeroes().get(i).setxFinal(x - nivel.getHeroes().get(i).getMedidax() / 6);
-                    nivel.getHeroes().get(i).setyFinal(y);
-                }
-                if (xInicial < x) {
-                    nivel.getHeroes().get(i).setDireccion(true);
-                } else {
-                    nivel.getHeroes().get(i).setDireccion(false);
-                }
-            }
-        }
+
 
 
 
