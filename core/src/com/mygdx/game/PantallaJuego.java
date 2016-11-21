@@ -571,28 +571,28 @@ public class PantallaJuego implements Screen, InputProcessor {
         float x = v.x;
         float y = v.y;
 
-        for (int i = 0; i < nivel.getHeroes().size(); i++){
-            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO) {
+
+
                 //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
-                    nivel.getHeroes().get(i).setEstado(Heroe.Estado.CAMINANDO);
-                    nivel.getHeroes().get(i).setxFinal(x - nivel.getHeroes().get(0).getMedidax() / 6);
-                    nivel.getHeroes().get(i).setyFinal(y);
+                    heroeSel.setEstado(Heroe.Estado.CAMINANDO);
+                    heroeSel.setxFinal(x - nivel.getHeroes().get(0).getMedidax() / 6);
+                    heroeSel.setyFinal(y);
                     for(int z=0;z<regresaEnemigos();z++) {
                         if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) {
-                            nivel.getHeroes().get(i).setObjetivo(enemigos[z]);
+                            heroeSel.setObjetivo(enemigos[z]);
                             break;
                         }
                         //setear x para saber de que lado llegar
                     }
                 }
                 if (xInicial < x) {
-                    nivel.getHeroes().get(i).setDireccion(true);
+                    heroeSel.setDireccion(true);
                 } else {
-                    nivel.getHeroes().get(i).setDireccion(false);
+                    heroeSel.setDireccion(false);
                 }
-            }
-        }
+
+
 
 
 
