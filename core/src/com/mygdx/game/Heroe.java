@@ -175,9 +175,8 @@ public class Heroe extends seudoSprite {
         super.setCompy(this.getSprite().getY());
         //estados
         switch (estado){
-
-
             case PARADO:break;
+            case ATACANDO:
             case CAMINANDO:
                 if(objetivo!= null) {
                     xFinal = objetivo.getSprite().getX();

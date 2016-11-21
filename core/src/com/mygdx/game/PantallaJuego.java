@@ -219,8 +219,8 @@ public class PantallaJuego implements Screen, InputProcessor {
             for (int i = 0; i < cont; i++) {
                 for (int j = 0; j < nivel.getHeroes().size(); j++) {
                     if (nivel.getHeroes().get(j).contiene(enemigos[i].getSprite().getBoundingRectangle()) || enemigos[i].contiene(nivel.getHeroes().get(j).getSprite().getBoundingRectangle())) {
-                        //if(nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.CAMINANDO||nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.SELECCIONADO) {
-                        if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.CAMINANDO || nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO) {
+
+                        if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO) {
                             enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
                             enemigos[i].setObjetivo(nivel.getHeroes().get(j));
                             if(enemigos[i].getSprite().getX()<nivel.getHeroes().get(j).getSprite().getX()){
@@ -230,9 +230,10 @@ public class PantallaJuego implements Screen, InputProcessor {
                             }
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
                             nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
+
                         }
 
-                        if (timerHeroes >= 1) {
+                        if (timerHeroes >= 1 ) {
                             if (enemigos[i].getVitalidad() > 0) {
                                 nivel.getHeroes().get(j).getSoundAttack().play(.5f);
                                 enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes().get(j).getDanoFisico());
@@ -240,7 +241,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                             }
                             timerHeroes = 0;
                         }
-                        if (timerEnemigos >= 1.3) {
+                        if (timerEnemigos >= 1.3 && enemigos[i].getEstado() == Enemigo.Estado.ATACANDO) {
                             if (nivel.getHeroes().get(j).getVitalidad() > 0) {
                                 enemigos[i].getSoundAttack().play(.5f);
                                 nivel.getHeroes().get(j).setVitalidad(nivel.getHeroes().get(j).getVitalidad() - enemigos[i].getDanoFisico());
@@ -567,7 +568,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
 
         for (int i = 0; i < nivel.getHeroes().size(); i++){
-            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO) {
+            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO||nivel.getHeroes().get(i).getEstado() == Heroe.Estado.ATACANDO) {
                 //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
                     nivel.getHeroes().get(i).setEstado(Heroe.Estado.CAMINANDO);
