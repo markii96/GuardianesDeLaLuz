@@ -58,7 +58,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private int cont =0;
 
-    private int limiteEnemigos =2;
+    private int limiteEnemigos;
 
     private int enemigosEliminados =0;
     private int heroesEliminados =0;
@@ -72,6 +72,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private ArrayList<Sprite> botonesHabilidades = new ArrayList<Sprite>();
     private ArrayList<Habilidad> habilidadesUsadas = new ArrayList<Habilidad>();
     private ArrayList<Heroe> heroeHabilidad = new ArrayList<Heroe>();
+
     public PantallaJuego(Juego juego,String nivelId) {
 
 
@@ -81,6 +82,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         heroesId[2]="3";
 
         this.nivel = new Nivel(nivelId,heroesId);
+        this.limiteEnemigos = nivel.getId()+1;
         this.enemigos = new Enemigo[this.nivel.getCantEnemigos()];
 
         int range = (nivel.getEnemigos().length-1) + 1;
@@ -219,20 +221,18 @@ public class PantallaJuego implements Screen, InputProcessor {
             for (int i = 0; i < cont; i++) {
                 for (int j = 0; j < nivel.getHeroes().size(); j++) {
                     if (nivel.getHeroes().get(j).contiene(enemigos[i].getSprite().getBoundingRectangle()) || enemigos[i].contiene(nivel.getHeroes().get(j).getSprite().getBoundingRectangle())) {
+                        enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
+                        enemigos[i].setObjetivo(nivel.getHeroes().get(j));
 
-                        if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO) {
-                            enemigos[i].setEstado(Enemigo.Estado.ATACANDO);
-                            enemigos[i].setObjetivo(nivel.getHeroes().get(j));
+                        if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO ) {
+                            nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
+                            nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
+
                             if(enemigos[i].getSprite().getX()<nivel.getHeroes().get(j).getSprite().getX()){
                                 enemigos[i].setDireccion(false);
                             }else{
                                 enemigos[i].setDireccion(true);
                             }
-                            if(nivel.getHeroes().get(j).getEstado()==Heroe.Estado.PARADO){
-                                nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
-                                nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
-                            }
-
 
                         }
 
@@ -586,6 +586,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
                     heroeSel.setEstado(Heroe.Estado.CAMINANDO);
+                    heroeSel.setObjetivo( null);
                     heroeSel.setxFinal(x - nivel.getHeroes().get(0).getMedidax() / 6);
                     heroeSel.setyFinal(y);
                     for (int z = 0; z < regresaEnemigos(); z++) {

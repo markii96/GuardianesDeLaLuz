@@ -24,11 +24,13 @@ public class Nivel {
     private Enum estado;
     private Cristal cristal;
     private int cantEnemigos;
+    private int id;
 
     public Nivel( String id,String[] heroes) {
 
         String dato;
         String[] datos;
+        this.id = Integer.parseInt(id);
 
         Preferences p = Gdx.app.getPreferences("Niveles");
         dato = p.getString(id);
@@ -56,6 +58,10 @@ public class Nivel {
         this.estado = Estado.JUGANDO;
 
 
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setEnemigos(String[] enemigos) {
