@@ -332,15 +332,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 enemigos[i].draw(batch);
             }
             //pintar botones Habilidades
-            if(heroeSel != null){
 
-                for(int k =1; k<=heroeSel.getHabilidades().size();k++){
-
-                    botonesHabilidades.add(heroeSel.getHabilidades().get(k-1).getSprite());
-                    botonesHabilidades.get(k-1).setPosition(((k-1)*288)+40,604);
-                    botonesHabilidades.get(k-1).draw(batch);
-                }
-            }
             if(!habilidadesUsadas.isEmpty()){
                 for (int k=0;k<habilidadesUsadas.size();k++){
                     habilidadesUsadas.get(k).getSprite().setPosition(heroeHabilidad.get(k).getObjetivo().getSprite().getX(),heroeHabilidad.get(k).getObjetivo().getSprite().getY());
@@ -486,6 +478,18 @@ public class PantallaJuego implements Screen, InputProcessor {
                     xInicial = x;
                     yInicial = y;
                     heroeSel.setEstado(Heroe.Estado.SELECCIONADO);
+
+                    botonesHabilidades.clear();
+
+                    if(heroeSel != null){
+
+                        for(int k =1; k<=heroeSel.getHabilidades().size();k++){
+
+                            botonesHabilidades.add(heroeSel.getHabilidades().get(k-1).getSprite());
+                            botonesHabilidades.get(k-1).setPosition(((k-1)*288)+40,604);
+                            botonesHabilidades.get(k-1).draw(batch);
+                        }
+                    }
 
                     break;
                 }
