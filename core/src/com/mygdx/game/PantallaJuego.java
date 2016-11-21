@@ -576,6 +576,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i =0; i<botonesHabilidades.size();i++) {
             if (botonesHabilidades.get(i).getBoundingRectangle().contains(x, y)) {
                 band2 = 1;
+                System.out.println("lolsack");
             }
         }
 
@@ -593,12 +594,13 @@ public class PantallaJuego implements Screen, InputProcessor {
                         }
                         //setear x para saber de que lado llegar
                     }
+                    if (xInicial < x) {
+                        heroeSel.setDireccion(true);
+                    } else {
+                        heroeSel.setDireccion(false);
+                    }
                 }
-                if (xInicial < x) {
-                    heroeSel.setDireccion(true);
-                } else {
-                    heroeSel.setDireccion(false);
-                }
+
             }
         }
 
