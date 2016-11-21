@@ -438,6 +438,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         //si toco alguna habilidad
         Vector3 v = new Vector3(screenX,screenY,0);
+        int band = 0;
         camara.unproject(v);
         float x =v.x;
         float y = v.y;
@@ -448,17 +449,20 @@ public class PantallaJuego implements Screen, InputProcessor {
             }
         }else{
             if (btnPausa.getBoundingRectangle().contains(x,y)) {
+                band=1;
                 estado =  Estado.PAUSA;
                 return true;
             }
         }
         if(estado == Estado.PAUSA){
             if(btnAtras.getBoundingRectangle().contains(x,y)){
+                band=1;
                 estado = Estado.JUGANDO;
                 return true;
             }
 
             if(btnSalir.getBoundingRectangle().contains(x,y)){
+                band=1;
 
                 juego.setScreen(new MenuPrincipal(juego));
 
@@ -500,6 +504,8 @@ public class PantallaJuego implements Screen, InputProcessor {
         }
         for (int i =0; i<botonesHabilidades.size()-1;i++){
             if(botonesHabilidades.get(i).getBoundingRectangle().contains(x,y)){
+                band=1;
+
                 switch (Integer.parseInt(heroeSel.getHabilidades().get(i).getId())){
                     case 4:
                     case 1://bolas de fuego
@@ -512,6 +518,11 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 }
             }
+        }
+
+        if (band ==0){
+            heroeSel= null;
+
         }
 
 
