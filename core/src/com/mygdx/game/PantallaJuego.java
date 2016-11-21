@@ -252,6 +252,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                             timerEnemigos = 0;
                         }
                         if (nivel.getHeroes().get(j).getVitalidad() <= 0) {
+
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.MORIR);
                             nivel.getHeroes().remove(j);
                             heroeSel=null;
@@ -264,6 +265,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                         }
 
                         if (enemigos[i].getVitalidad() <= 0) {
+                            nivel.getHeroes().get(j).setObjetivo(null);
                             int ran3 = (int) (Math.random() * nivel.getHeroes().size() + 1);
                             Object objetivo = null;
                             switch (ran3) {
