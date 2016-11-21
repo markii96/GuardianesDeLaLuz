@@ -154,6 +154,8 @@ public class Enemigo extends seudoSprite{
                     if (!this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.CAMINANDO;
                         //direccion = false;
+                    }else{
+                        ((Cristal) objetivo).setVitalidad(((Cristal) objetivo).getVitalidad()-this.danoFisico);
                     }
                 }
 
@@ -176,7 +178,7 @@ public class Enemigo extends seudoSprite{
 
                 if(objetivo instanceof Cristal){
                     if (this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
-                        estado = Estado.CAMINANDO;
+                        estado = Estado.ATACANDO;
                     }
                 }
 
