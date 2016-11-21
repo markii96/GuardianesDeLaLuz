@@ -123,14 +123,14 @@ public class Heroe extends seudoSprite {
         String[] vars = var.split(",");
         ArrayList<Integer> ids = new ArrayList<Integer>();
         for (int i=0;i<var.length();i++){
-            ids.add(Integer.parseInt(vars[0]));
+            ids.add(Integer.parseInt(vars[i]));
         }
 
         Preferences h = Gdx.app.getPreferences("Habilidades");
 
         habilidades = new ArrayList<Habilidad>();
 
-        for (int i=0;i< ids.size()-1;i++){
+        for (int i=0;i< ids.size();i++){
             String dh = h.getString(ids.get(i).toString());
             String[] dhs = dh.split("-");
             habilidades.add(new Habilidad(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7]),dhs[8]));
