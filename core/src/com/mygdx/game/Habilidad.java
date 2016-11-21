@@ -1,6 +1,9 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Created by Josep on 17/10/16.
@@ -16,6 +19,10 @@ public  class  Habilidad {
     private String animacion;
     private int indice;
     private Texture texture;
+    private Sprite sprite;
+    private Animation animacionA;
+    private float timerAnimacion;
+    private Texture texturaAnimacion;
 
     public Habilidad(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice) {
         this.id = id;
@@ -24,10 +31,18 @@ public  class  Habilidad {
         this.tipo = tipo;
         this.disponibilidad = disponibilidad;
         this.textura = textura;
+
         this.animacion = animacion;
         this.indice = indice;
+        sprite = new Sprite(texture);
+        this.texturaAnimacion = new Texture(animacion);
 
         texture = new Texture(textura);
+    }
+
+    public void draw (SpriteBatch batch){
+
+
     }
 
     public Texture getTexture() {
