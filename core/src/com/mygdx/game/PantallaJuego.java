@@ -378,7 +378,7 @@ public class PantallaJuego implements Screen, InputProcessor {
             if(heroeSel != null){
 
                 for(int k =1; k<=heroeSel.getHabilidades().size();k++){
-                    botonesHabilidades.get(k-1).setPosition(((k-1)*288)+40,604);
+                    botonesHabilidades.get(k-1).setPosition(((k-1)*120)+40,604);
                     botonesHabilidades.get(k-1).draw(batch);
                 }
             }
