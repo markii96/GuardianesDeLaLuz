@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
 
 /**
  * Created by marco on 17/11/2016.
@@ -22,11 +24,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class PantallaInstrucciones implements Screen {
 
 
-    private int posFinalX=600;
+    private int xFinal=600;
     private int posInicialX=200;
-    private int posFinalY=700;
+    private int yFinal=700;
     private int posInicialY=300;
 
+    private int velocidadMovimiento=1;
+
+
+    private Estado estado = Estado.REPITIENDO;
     private final Juego juego;
     private Stage escena;
     private Texture texturaBtnBack;
@@ -38,11 +44,15 @@ public class PantallaInstrucciones implements Screen {
     private Texture texturaHeroe;
     private Texture texturaMano;
 
+    //public abstract Heroe heroe("1",1,1);
+
     //CAMARA virtual
     private OrthographicCamera camara;
     private Viewport vista;
     private final int ANCHO_MUNDO = 1280;
     private final int ALTO_MUNDO = 800;
+
+    private Sprite Mano;
 
 
     public PantallaInstrucciones(Juego juego) {
@@ -59,6 +69,7 @@ public class PantallaInstrucciones implements Screen {
         camara.update();
         vista = new StretchViewport(ANCHO_MUNDO,ALTO_MUNDO,camara);
 
+
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
@@ -66,14 +77,16 @@ public class PantallaInstrucciones implements Screen {
         texturaBtnBack = new Texture("atras.png");
         texturaHeroe = new Texture("Glad_1.png");
         texturaMano = new Texture("mano.png");
+        Mano = new Sprite(new Texture("mano.png"));
         //texturaBtnSig = new Texture("siguiente.png");
         texto = new Texto();
+
 
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
-
+        //Gdx.input.setInputProcessor();
 
         escena = new Stage();
 
@@ -91,6 +104,9 @@ public class PantallaInstrucciones implements Screen {
         Image imgHeroe = new Image(texturaHeroe);
 
         imgMano.setPosition(300,200);
+        Mano.setPosition(300,300);
+
+
         imgHeroe.setPosition(300,200);
 
         float escalaX = ancho / imgFondo.getWidth();
@@ -108,35 +124,41 @@ public class PantallaInstrucciones implements Screen {
     }
 
     public void moverMano(){
-/*
-        if(imgMano.getX()!= posFinalX){
+
+        System.out.println(Mano.getX()+","+Mano.getY());
+
+        switch (estado) {
+
+            case REPITIENDO:
+
+                if (Mano.getX() >= xFinal)
+                    Mano.setX(Mano.getX() - velocidadMovimiento);
+
+                if (Mano.getY() >= yFinal)
+                    Mano.setY(Mano.getY() - velocidadMovimiento);
+
+                if (Mano.getX() <= xFinal)
+                    Mano.setX(Mano.getX() + velocidadMovimiento);
+
+                if (Mano.getY() <= yFinal)
+                    Mano.setY(Mano.getY() + velocidadMovimiento);
+
+                //sprite.setPosition(posicion[0],posicion[1]);
+                if (Mano.getX() <= xFinal + 2 && Mano.getX() >= xFinal - 2 && Mano.getY() <= yFinal + 2 && Mano.getY() >= yFinal - 2) {
+                    Mano.setY(yFinal);
+                    Mano.setX(xFinal);
+                    estado = Estado.REINICIANDO;
+                }
 
 
-            posFinalX+=.1;
-
-
+            case REINICIANDO:
+                Mano.setPosition(posInicialX,posInicialY);
         }
-
-        if(imgMano.getY()!= posFinalY){
-
-            posFinalY+=.1;
-
-        }
-
-        if(imgMano.getY() == posFinalY &&  imgMano.getX()== posFinalX){
-
-            imgMano.setPosition(posInicialX,posFinalY);
-
-        }
-
-        imgMano.setPosition(posFinalX,posFinalY);
-*/
-
     }
 
     @Override
     public void render(float delta) {
-
+        moverMano();
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camara.combined);
@@ -145,6 +167,8 @@ public class PantallaInstrucciones implements Screen {
 
 
         batch.begin();
+
+
 
         escena.draw();
 
@@ -180,5 +204,10 @@ public class PantallaInstrucciones implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public enum Estado{
+        REPITIENDO,
+        REINICIANDO
     }
 }

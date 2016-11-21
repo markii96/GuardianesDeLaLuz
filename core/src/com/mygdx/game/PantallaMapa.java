@@ -139,13 +139,14 @@ public class PantallaMapa implements Screen {
                 juego.setScreen(new PantallaJuego(juego,"4"));
             }
         });
-
+        /*
         btn5.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 juego.setScreen(new PantallaJuego(juego,"5"));
             }
         });
+        */
 
         Image imgFondo = new Image(texturaFondo);
 

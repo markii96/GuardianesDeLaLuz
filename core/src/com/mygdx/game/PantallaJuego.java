@@ -38,6 +38,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private SpriteBatch batch;
 
+
     private Texto texto; //texto para mostrar el cd de las habilidades
 
     private Fondo fondo;
@@ -64,6 +65,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private int heroesEliminados =0;
 
     private Sprite btnAtras;
+    private Sprite botonPause;
 
     private Sprite btnPausa;
     private Sprite btnSalir;
@@ -171,13 +173,16 @@ public class PantallaJuego implements Screen, InputProcessor {
         texturaHeroe1 = this.nivel.getHeroes().get(0).getTextura();
         texturaHeroe2 = this.nivel.getHeroes().get(1).getTextura();
         texturaHeroe3 = this.nivel.getHeroes().get(2).getTextura();
+
+        botonPause= new Sprite(new Texture("pause.png"));
+
         btnPausa = new Sprite(new Texture("pausa.png"));
-        btnPausa.setX(1020);
-        btnPausa.setY(544);
+        btnPausa.setX(1100);
+        btnPausa.setY(545);
 
         btnSalir = new Sprite(new Texture("exit.png"));
-        btnSalir.setX(1280/2);
-        btnSalir.setY(800/2);
+        btnSalir.setX(750);
+        btnSalir.setY(200);
 
 
 
@@ -398,23 +403,36 @@ public class PantallaJuego implements Screen, InputProcessor {
                 batch.draw(texturaPerdiste, 400, 200);
             }
             Texture back = new Texture("atras.png");
+
+
             btnAtras = new Sprite(back);
+
             //btnAtras.setScale(1f);
-            btnAtras.setX(400);
-            btnAtras.setY(50);
+            btnAtras.setX(450);
+            btnAtras.setY(200);
+
+            botonPause.setX(500);
+            botonPause.setY(700);
+
             btnAtras.draw(batch);
             batch.end();
         }else if(estado == Estado.PAUSA){
 
             batch.begin();
             fondo.draw(batch);
-            Texture back = new Texture("atras.png");
+            Texture back = new Texture("play.png");
             btnAtras = new Sprite(back);
             //btnAtras.setScale(1f);
-            btnAtras.setX(400);
-            btnAtras.setY(50);
+
+            botonPause.setX(350);
+            botonPause.setY(500);
+
+            btnAtras.setX(450);
+            btnAtras.setY(200);
             btnAtras.draw(batch);
             btnSalir.draw(batch);
+            botonPause.draw(batch);
+            //btnPausa.draw(batch);
 
             btnSalir.setScale(1);
 
