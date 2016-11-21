@@ -23,6 +23,7 @@ public  class  Habilidad {
     private String animacion;
     private int indice;
     private Texture texture;
+    private String texturaReutilizacion;
 
     public Sprite getSprite() {
         return sprite;
@@ -37,7 +38,7 @@ public  class  Habilidad {
     private float timerAnimacion;
     private Texture texturaAnimacion;
 
-    public Habilidad(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice) {
+    public Habilidad(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice,String texturaReutilizacion) {
         this.id = id;
         this.nombre = nombre;
         this.tiempo = tiempo;
@@ -49,7 +50,7 @@ public  class  Habilidad {
         this.indice = indice;
         sprite = new Sprite(new Texture(textura));
         this.texturaAnimacion = new Texture(animacion);
-
+        this.texturaReutilizacion = texturaReutilizacion;
         TextureRegion texturaCompleta = new TextureRegion(texturaAnimacion);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(texturaCompleta.getRegionWidth()/6,texturaCompleta.getRegionHeight());
         animacionA = new Animation(0.16f, texturaPersonaje[0][0],texturaPersonaje[0][1],
@@ -59,6 +60,7 @@ public  class  Habilidad {
     }
 
     public void draw (SpriteBatch batch, ArrayList<Habilidad> habilidadUsada,ArrayList<Heroe> heroeHabilidad,int i) {
+        sprite.setTexture(new Texture(texturaReutilizacion));
         TextureRegion region;
         timerAnimacion += Gdx.graphics.getDeltaTime();
         region = animacionA.getKeyFrame(timerAnimacion);
@@ -67,6 +69,7 @@ public  class  Habilidad {
             timerAnimacion = 0;
             habilidadUsada.remove(i);
             heroeHabilidad.remove(i);
+            sprite.setTexture(new Texture(textura));
         }
     }
 
