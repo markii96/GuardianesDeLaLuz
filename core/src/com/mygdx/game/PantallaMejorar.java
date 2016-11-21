@@ -25,7 +25,8 @@ import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 public class PantallaMejorar implements Screen {
 
     private Juego juego;
-    Preferences heroes = Gdx.app.getPreferences("Heroes");    private int id;
+    Preferences heroes = Gdx.app.getPreferences("Heroes");
+    private int id;
 
     private Texture texturaFondo;
     private Texture texturaHeroe1;

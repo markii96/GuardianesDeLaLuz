@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.org.apache.xpath.internal.operations.String;
 
 /**
  * Created by marco on 17/11/2016.
@@ -30,11 +32,22 @@ public class PantallaMapa implements Screen {
     private Texture textura4;
     private Texture textura5;
     private Texture texturaBtnTaberna;
+    Preferences niveles = Gdx.app.getPreferences("Niveles");
+    private java.lang.String cadena1=niveles.getString("1");
+    private java.lang.String cadena2= niveles.getString("2");
+    private java.lang.String cadena3=niveles.getString("3");
+    private java.lang.String cadena4= niveles.getString("4");
+    //private java.lang.String cadena5 = niveles.getString("5");
+
+
 
     private OrthographicCamera camara;
     private Viewport vista;
     private final int ANCHO_MUNDO = 1280;
     private final int ALTO_MUNDO = 800;
+
+
+
 
 
 
@@ -101,6 +114,7 @@ public class PantallaMapa implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 juego.setScreen(new MenuPrincipal(juego));
 
+
             }
         });
 
@@ -153,14 +167,35 @@ public class PantallaMapa implements Screen {
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
-
         escena.addActor(imgFondo);
 
-        escena.addActor(btn1);
-        escena.addActor(btn2);
-        escena.addActor(btn3);
-        escena.addActor(btn4);
-        escena.addActor(btn5);
+        java.lang.String[] lista1 = cadena1.split("-");
+        java.lang.String[] lista2 = cadena2.split("-");
+        java.lang.String[] lista3 = cadena3.split("-");
+        java.lang.String[] lista4 = cadena4.split("-");
+        //java.lang.String[] lista5 = cadena5.split("-");
+
+
+        int num1= Integer.parseInt(lista1[6]);
+        int num2= Integer.parseInt(lista2[6]);
+        int num3= Integer.parseInt(lista3[6]);
+        int num4= Integer.parseInt(lista4[6]);
+        //int num5= Integer.parseInt(lista5[6]);
+
+
+
+
+        if(num1==1)
+            escena.addActor(btn1);
+        if(num2==1)
+            escena.addActor(btn1);
+        if(num3==1)
+            escena.addActor(btn1);
+        if(num4==1)
+            escena.addActor(btn1);
+        //if(num5==1)
+          //  escena.addActor(btn1);
+
         escena.addActor(btnBack);
         escena.addActor(btnTaberna);
 

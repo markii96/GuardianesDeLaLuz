@@ -64,9 +64,9 @@ public class MenuPrincipal implements Screen {
 			preferenciasHeroes.putString("4","4-Robin-Asesino-150-0-Corto-2-0-70-2-0-1-1-0-4-1-Asesino a sueldo, un día se encuentra con los guardianes y se une a ellos. Tal vez no es la mejor de sus decisiones pero pone el pan en la mesa-robin_caminando.png-robin.png-288,576-robin_atacando.png");
 			preferenciasHeroes.flush();
 			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-7");
-			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-1-ciudad.png-9");
-			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-1-bosque.png-10");
-			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-1-nieve.png-14");
+			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-0-ciudad.png-9");
+			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
+			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-20");
 			preferenciasHabilidades.putString("2","2-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png-25");
