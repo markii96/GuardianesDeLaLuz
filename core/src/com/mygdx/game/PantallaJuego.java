@@ -355,6 +355,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 }
             }
+
+            ordenDibujar.clear();
             //pintar botones Habilidades
             if(heroeSel != null){
 
