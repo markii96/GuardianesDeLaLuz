@@ -223,12 +223,14 @@ public class PantallaJuego implements Screen, InputProcessor {
                                 enemigos[i].setDireccion(true);
                             }
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
+                            nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
                         }
 
                         if (timerHeroes >= 1) {
                             if (enemigos[i].getVitalidad() > 0) {
                                 nivel.getHeroes().get(j).getSoundAttack().play(.5f);
                                 enemigos[i].setVitalidad(enemigos[i].getVitalidad() - nivel.getHeroes().get(j).getDanoFisico());
+
                             }
                             timerHeroes = 0;
                         }
@@ -242,7 +244,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if (nivel.getHeroes().get(j).getVitalidad() <= 0) {
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.MORIR);
                             nivel.getHeroes().remove(j);
-
+                            heroeSel=null;
                             heroesEliminados++;
                             //int ran3 = (int)(Math.random() * 4);
                             Object objetivo = nivel.getCristal();
@@ -484,25 +486,26 @@ public class PantallaJuego implements Screen, InputProcessor {
             for (int i = 0; i < nivel.getHeroes().size(); i++) {
                 if (nivel.getHeroes().get(i).contiene(x, y)) {
                     heroeSel = nivel.getHeroes().get(i);
+                    band=1;
                     xInicial = x;
                     yInicial = y;
                     heroeSel.setEstado(Heroe.Estado.SELECCIONADO);
 
                     botonesHabilidades.clear();
 
-                    if(heroeSel != null){
+                    /*if(heroeSel != null){*/
 
                         for(int k =1; k<=heroeSel.getHabilidades().size();k++){
 
                             botonesHabilidades.add(heroeSel.getHabilidades().get(k-1).getSprite());
                         }
-                    }
+                    //}
 
                     break;
                 }
             }
         }
-        for (int i =0; i<botonesHabilidades.size()-1;i++){
+        for (int i =0; i<botonesHabilidades.size();i++){
             if(botonesHabilidades.get(i).getBoundingRectangle().contains(x,y)){
                 band=1;
 
@@ -511,6 +514,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                     case 1://bolas de fuego
                         if(heroeSel.getObjetivo()!=null){
                             heroeSel.getObjetivo().setVitalidad(heroeSel.getObjetivo().getVitalidad()-heroeSel.getHabilidades().get(i).getIndice());
+                            System.out.println("WTF");
                             habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
                             heroeHabilidad.add(heroeSel);
                         }
@@ -522,7 +526,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         if (band ==0){
             heroeSel= null;
-
+            System.out.println("lol");
         }
 
 
