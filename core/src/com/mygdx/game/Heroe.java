@@ -119,19 +119,25 @@ public class Heroe extends seudoSprite {
         this.armadura = Integer.parseInt(datos[12]);
         this.precio = Integer.parseInt(datos[13]);
 
-        int var = Integer.parseInt(datos[14]);
+        String var = datos[14];
+        String[] vars = var.split(",");
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        for (int i=0;i<var.length();i++){
+            ids.add(Integer.parseInt(vars[0]));
+        }
 
         Preferences h = Gdx.app.getPreferences("Habilidades");
-        String dh = h.getString(datos[14]);
-        String[] dhs = dh.split("-");
+
         habilidades = new ArrayList<Habilidad>();
 
-        switch (var){
-            case 1:{
-                habilidades.add(new Habilidad(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7]),dhs[8]));
-            }
-
+        for (int i=0;i< ids.size();i++){
+            String dh = h.getString(ids.get(i).toString());
+            String[] dhs = dh.split("-");
+            habilidades.add(new Habilidad(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7]),dhs[8]));
         }
+
+        System.out.print(habilidades.toString());
+
 
         if (datos[15]=="1") this.disponibilidad = true;
         else this.disponibilidad = false;
