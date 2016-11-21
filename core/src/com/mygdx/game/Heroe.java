@@ -134,6 +134,7 @@ public class Heroe extends seudoSprite {
             String dh = h.getString(ids.get(i).toString());
             String[] dhs = dh.split("-");
             habilidades.add(new Habilidad(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7]),dhs[8]));
+            System.out.print(ids.get(i).toString());
         }
 
 
