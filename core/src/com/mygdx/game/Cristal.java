@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 /**
  * Created by LUISRICARDO on 10/20/2016.
  */
-public class Cristal {
+public class Cristal extends seudoSprite{
 
     private int vitalidad;
     private int armadura;
@@ -27,6 +27,7 @@ public class Cristal {
     }
 
     public Cristal(){
+        super(50);
         this.vitalidad = 1000;
         maxVitalidad = vitalidad;
         this.armadura = 0;
