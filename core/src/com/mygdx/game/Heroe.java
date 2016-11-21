@@ -23,7 +23,7 @@ import java.io.FileReader;
 /**
  * Created by Josep on 17/10/16.
  */
-public class Heroe {
+public class Heroe extends seudoSprite {
     private float b;
     private Estado estado;
     private Sprite sprite;
@@ -92,6 +92,8 @@ public class Heroe {
     private Texture texturaAtacando;
     private Animation animacionAtaque;
     public Heroe(String id, int x, int y) {
+
+        super(y);
 
         String dato;
         String[] datos;
@@ -170,6 +172,7 @@ public class Heroe {
 
 
     private void actualizar(){
+        super.setCompy(this.getSprite().getY());
         //estados
         switch (estado){
 

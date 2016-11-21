@@ -18,6 +18,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class PantallaJuego implements Screen, InputProcessor {
@@ -38,6 +41,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Texto texto; //texto para mostrar el cd de las habilidades
 
     private Fondo fondo;
+    private ArrayList<seudoSprite> ordenDibujar;
 
     private Estado estado = Estado.JUGANDO;
 
@@ -98,6 +102,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, objetivo);
         cont+=1;
+
+        ordenDibujar = new ArrayList<seudoSprite>();
 
     }
 
@@ -325,13 +331,29 @@ public class PantallaJuego implements Screen, InputProcessor {
             }
             // pinta heroes
             for (int i = 0; i < nivel.getHeroes().size(); i++) {
-                nivel.getHeroes().get(i).draw(batch);
+                //nivel.getHeroes().get(i).draw(batch);
+                ordenDibujar.add(nivel.getHeroes().get(i));
             }
             // fin pinta heroes...
             nivel.getCristal().draw(batch);
 
             for (int i = 0; i < regresaEnemigos(); i++) {
-                enemigos[i].draw(batch);
+                //enemigos[i].draw(batch);
+                ordenDibujar.add(enemigos[i]);
+            }
+            if (ordenDibujar.size()!=0) {
+
+                Collections.sort(ordenDibujar);
+                for (int l = 0; l < ordenDibujar.size(); l++) {
+                   if( ordenDibujar.get(l) instanceof Heroe){
+                       ((Heroe) ordenDibujar.get(l)).draw(batch);
+                   }
+
+                    if( ordenDibujar.get(l) instanceof Enemigo){
+                        ((Enemigo) ordenDibujar.get(l)).draw(batch);
+                    }
+
+                }
             }
             //pintar botones Habilidades
             if(heroeSel != null){

@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.StringBuilder;
 /**
  * Created by LUISRICARDO on 10/20/2016.
  */
-public class Enemigo {
+public class Enemigo extends seudoSprite{
 
 
     private Sprite sprite;
@@ -66,6 +66,7 @@ public class Enemigo {
     private int medidaxA,medidayA;
     public Enemigo(String id, int x, int y, Object objetivo){//debe ser con Cristal o con Heroe a la de egg
 
+        super(y);
         String dato;
         String[] datos;
 
@@ -133,6 +134,7 @@ public class Enemigo {
 
 
     private void actualizar(){
+        super.setCompy(this.getSprite().getY());
         switch (estado){
             case ATACANDO:
 
