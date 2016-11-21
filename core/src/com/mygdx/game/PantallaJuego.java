@@ -572,7 +572,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
 
         for (int i = 0; i < nivel.getHeroes().size(); i++){
-            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO || nivel.getHeroes().get(i).getEstado() == Heroe.Estado.ATACANDO) {
+            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO) {
                 //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
                     nivel.getHeroes().get(i).setEstado(Heroe.Estado.CAMINANDO);
