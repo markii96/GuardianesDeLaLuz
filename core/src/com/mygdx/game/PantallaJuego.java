@@ -208,7 +208,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 estado = Estado.GANAR;
             }
 
-            if (heroesEliminados >= 3) {
+            if (heroesEliminados >= 3 || nivel.getCristal().getVitalidad()<=0) {
                 estado = Estado.PERDER;
             }
 
