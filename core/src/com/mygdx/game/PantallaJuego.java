@@ -474,7 +474,6 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes().get(i).setEstado(Heroe.Estado.DESELECCIONADO);
             }
         }
-        heroeSel = null;
 
 
         if (estado == Estado.JUGANDO) {
@@ -514,6 +513,8 @@ public class PantallaJuego implements Screen, InputProcessor {
                 }
             }
         }
+
+
         return true;
     }
 
