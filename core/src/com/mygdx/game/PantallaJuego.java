@@ -254,10 +254,12 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if (nivel.getHeroes().get(j).getVitalidad() <= 0) {
 
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.MORIR);
-                            nivel.getHeroes().remove(j);
+
                             if (heroeSel==nivel.getHeroes().get(j)) {
                                 heroeSel = null;
+                                botonesHabilidades.clear();
                             }
+                            nivel.getHeroes().remove(j);
                             heroesEliminados++;
                             //int ran3 = (int)(Math.random() * 4);
                             Object objetivo = nivel.getCristal();
@@ -573,12 +575,11 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
         int band2=0;
 
-        for (int i =0; i<botonesHabilidades.size();i++) {
-            if (botonesHabilidades.get(i).getBoundingRectangle().contains(x, y)) {
-                band2 = 1;
-                System.out.println("lolsack");
-            }
+        if (y > 600){
+            band2 = 1;
+            System.out.println("lolsack");
         }
+
 
         if (band2 != 1) {
             if (heroeSel != null) {
