@@ -111,20 +111,21 @@ public class Heroe {
         int var = Integer.parseInt(datos[14]);
 
         Preferences h = Gdx.app.getPreferences("Habilidades");
-        String dh = p.getString(datos[14]);
+        String dh = h.getString(datos[14]);
         String[] dhs = dh.split("-");
-
+        System.out.println(Arrays.toString(dhs));
+        habilidades = new ArrayList<Habilidad>();
         switch (var){
             case 1:{
 
                 habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
             }
-            case 2:{
+            /*case 2:{
                 habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
             }
             case 3:{
                 habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
-            }
+            }*/
         }
 
         if (datos[15]=="1") this.disponibilidad = true;

@@ -17,6 +17,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.ArrayList;
 
 
 public class PantallaJuego implements Screen, InputProcessor {
@@ -62,6 +63,9 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     private Sprite btnPausa;
     private Sprite btnSalir;
+    //habilidades
+    private Heroe heroeSel= null;
+    private ArrayList<Sprite> botonesHabilidades = new ArrayList<Sprite>();
 
     public PantallaJuego(Juego juego,String nivelId) {
 
@@ -201,6 +205,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 estado = Estado.PERDER;
             }
 
+
             timerHeroes += Gdx.graphics.getDeltaTime();
             timerEnemigos += Gdx.graphics.getDeltaTime();
 
@@ -291,6 +296,19 @@ public class PantallaJuego implements Screen, InputProcessor {
             btnPausa.draw(batch);
             btnSalir.setScale(.01f,.01f);
             btnSalir.draw(batch);
+
+            //pintar botones Habilidades
+            if(heroeSel != null){
+
+                for(int k =1; k<=heroeSel.getHabilidades().size();k++){
+
+                    botonesHabilidades.add(new Sprite(heroeSel.getHabilidades().get(k-1).getTexture()));
+                    botonesHabilidades.get(k-1).setPosition(((k-1)*288)+40,412);
+                    botonesHabilidades.get(k-1).draw(batch);
+                }
+            }
+
+            //ends pintar...
             range = (nivel.getEnemigos().length - 1) + 1;
             range2 = (401);
 
@@ -467,14 +485,17 @@ public class PantallaJuego implements Screen, InputProcessor {
                 nivel.getHeroes().get(i).setEstado(Heroe.Estado.DESELECCIONADO);
             }
         }
+        heroeSel = null;
 
 
         if (estado == Estado.JUGANDO) {
             for (int i = 0; i < nivel.getHeroes().size(); i++) {
                 if (nivel.getHeroes().get(i).contiene(x, y)) {
+                    heroeSel = nivel.getHeroes().get(i);
                     xInicial = x;
                     yInicial = y;
-                    nivel.getHeroes().get(i).setEstado(Heroe.Estado.SELECCIONADO);
+                    heroeSel.setEstado(Heroe.Estado.SELECCIONADO);
+
                     break;
                 }
             }
