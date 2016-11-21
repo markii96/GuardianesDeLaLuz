@@ -180,6 +180,7 @@ public class PantallaMapa implements Screen {
         int num2= Integer.parseInt(lista2[6]);
         int num3= Integer.parseInt(lista3[6]);
         int num4= Integer.parseInt(lista4[6]);
+
         //int num5= Integer.parseInt(lista5[6]);
 
 
@@ -188,11 +189,11 @@ public class PantallaMapa implements Screen {
         if(num1==1)
             escena.addActor(btn1);
         if(num2==1)
-            escena.addActor(btn1);
+            escena.addActor(btn2);
         if(num3==1)
-            escena.addActor(btn1);
+            escena.addActor(btn3);
         if(num4==1)
-            escena.addActor(btn1);
+            escena.addActor(btn4);
         //if(num5==1)
           //  escena.addActor(btn1);
 
