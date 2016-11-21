@@ -124,7 +124,6 @@ public class Heroe extends seudoSprite {
         Preferences h = Gdx.app.getPreferences("Habilidades");
         String dh = h.getString(datos[14]);
         String[] dhs = dh.split("-");
-        System.out.println(Arrays.toString(dhs));
         habilidades = new ArrayList<Habilidad>();
 
         switch (var){

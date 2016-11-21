@@ -411,7 +411,6 @@ public class PantallaJuego implements Screen, InputProcessor {
                     respuesta += datos[i]+"-";
                 }
                 p.putString((nivel.getId()+1)+"",respuesta);
-                System.out.println(p.getString(nivel.getId()+1+""));
                 p.flush();
                 batch.draw(texturaPerdiste, 400, 200);
             }
@@ -576,7 +575,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i =0; i<botonesHabilidades.size();i++){
             if(botonesHabilidades.get(i).getBoundingRectangle().contains(x,y)){
                 band=1;
-                System.out.print("etro");
 
                 switch (Integer.parseInt(heroeSel.getHabilidades().get(i).getId())){
                     case 4:
