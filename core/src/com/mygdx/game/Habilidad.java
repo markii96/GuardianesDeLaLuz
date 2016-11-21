@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.Texture;
+
 /**
  * Created by Josep on 17/10/16.
  */
@@ -13,6 +15,7 @@ public abstract class  Habilidad {
     private String textura;
     private String animacion;
     private int indice;
+    private Texture texture;
 
     public Habilidad(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice) {
         this.id = id;
@@ -23,6 +26,16 @@ public abstract class  Habilidad {
         this.textura = textura;
         this.animacion = animacion;
         this.indice = indice;
+
+        texture = new Texture(textura);
+    }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
     }
 
     public String getId() {
