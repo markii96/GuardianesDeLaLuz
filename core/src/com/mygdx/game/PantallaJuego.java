@@ -212,16 +212,6 @@ public class PantallaJuego implements Screen, InputProcessor {
             int bandera = 0;
 
             if (enemigosEliminados >= nivel.getCantEnemigos()) {
-                Preferences p = Gdx.app.getPreferences("Niveles");
-                String dato = p.getString((nivel.getId()+1)+"");
-                String respuesta ="";
-                String[] datos = dato.split("-");
-                datos[6] = "1";
-                for (int i =0; i<datos.length;i++){
-                    respuesta += datos[i]+"-";
-                }
-                p.putString((nivel.getId()+1)+"",respuesta);
-
                 estado = Estado.GANAR;
 
             }
@@ -243,11 +233,12 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO ) {
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
                             nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
-                            if(heroeSel.getSprite().getX()< enemigos[i].getSprite().getX()){
-                                heroeSel.setDireccion(true);
-                            }else
-                                heroeSel.setDireccion(false);
-
+                            if (heroeSel != null){
+                                if (heroeSel.getSprite().getX() < enemigos[i].getSprite().getX()) {
+                                    heroeSel.setDireccion(true);
+                                } else
+                                    heroeSel.setDireccion(false);
+                            }
                             if(enemigos[i].getSprite().getX()<nivel.getHeroes().get(j).getSprite().getX()){
                                 enemigos[i].setDireccion(false);
                             }else{
@@ -264,7 +255,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                             }
                             timerHeroes = 0;
                         }
-                        if (timerEnemigos >= 1.3 && enemigos[i].getEstado() == Enemigo.Estado.ATACANDO) {
+                        if (timerEnemigos >= 2.3 && enemigos[i].getEstado() == Enemigo.Estado.ATACANDO) {
                             if (nivel.getHeroes().get(j).getVitalidad() > 0) {
                                 enemigos[i].getSoundAttack().play(.5f);
                                 nivel.getHeroes().get(j).setVitalidad(nivel.getHeroes().get(j).getVitalidad() - enemigos[i].getDanoFisico());
@@ -411,6 +402,17 @@ public class PantallaJuego implements Screen, InputProcessor {
                 batch.draw(texturaPerdiste, 400, 200);
             }else{
                 texturaPerdiste = new Texture("ganaste.png");
+                Preferences p = Gdx.app.getPreferences("Niveles");
+                String dato = p.getString((nivel.getId()+1)+"");
+                String respuesta ="";
+                String[] datos = dato.split("-");
+                datos[6] = "1";
+                for (int i =0; i<datos.length;i++){
+                    respuesta += datos[i]+"-";
+                }
+                p.putString((nivel.getId()+1)+"",respuesta);
+                System.out.println(p.getString(nivel.getId()+1+""));
+                p.flush();
                 batch.draw(texturaPerdiste, 400, 200);
             }
             Texture back = new Texture("atras.png");

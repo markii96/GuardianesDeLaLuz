@@ -68,7 +68,7 @@ public class MenuPrincipal implements Screen {
 			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
 			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
 			preferenciasNiveles.flush();
-			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-20");
+			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50");
 			preferenciasHabilidades.putString("2","2-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png-25");
 			preferenciasHabilidades.putString("3","3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png-15");
 			preferenciasHabilidades.flush();
