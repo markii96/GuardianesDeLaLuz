@@ -13,16 +13,13 @@ public  class seudoSprite implements Comparable<seudoSprite> {
 
     @Override
     public int compareTo(seudoSprite o) {
-        if (o.getCompy()> compy){
-            return -1;
-
-        }
-        if (o.getCompy()< compy){
+        if (o.getCompy()>= compy){
             return 1;
+
+        }else{
+            return -1;
         }
-        else{
-            return 0;
-        }
+
     }
 
     public float getCompy() {

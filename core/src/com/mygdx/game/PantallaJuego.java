@@ -347,9 +347,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                 for (int l = 0; l < ordenDibujar.size(); l++) {
                    if( ordenDibujar.get(l) instanceof Heroe){
                        ((Heroe) ordenDibujar.get(l)).draw(batch);
-                   }
-
-                    if( ordenDibujar.get(l) instanceof Enemigo){
+                   }else if( ordenDibujar.get(l) instanceof Enemigo){
                         ((Enemigo) ordenDibujar.get(l)).draw(batch);
                     }
 
