@@ -118,7 +118,7 @@ public class Heroe {
         switch (var){
             case 1:{
 
-                habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
+                habilidades.add(new Habilidad(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
             }
             /*case 2:{
                 habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));

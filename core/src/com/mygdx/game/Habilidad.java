@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 /**
  * Created by Josep on 17/10/16.
  */
-public abstract class  Habilidad {
+public  class  Habilidad {
 
     private String id;
     private String nombre;
@@ -102,5 +102,4 @@ public abstract class  Habilidad {
         this.indice = indice;
     }
 
-    abstract int  accion();
 }
