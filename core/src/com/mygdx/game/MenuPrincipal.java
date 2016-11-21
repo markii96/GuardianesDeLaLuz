@@ -71,7 +71,7 @@ public class MenuPrincipal implements Screen {
 			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
 			preferenciasHabilidades.putString("2","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
 			preferenciasHabilidades.putString("3","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("4","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("4","1-Relampago-4-uno-1-relampago.png-relampago_anim.png-50-relampago_reu.png");
 			preferenciasHabilidades.putString("5","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
 			preferenciasHabilidades.putString("6","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
 			preferenciasHabilidades.putString("7","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
