@@ -27,8 +27,8 @@ public class Cristal extends seudoSprite{
     }
 
     public Cristal(){
-        super(105);
-        this.vitalidad = 1000;
+        super(85);
+        this.vitalidad = 5000;
         maxVitalidad = vitalidad;
         this.armadura = 0;
         this.textura = new Texture("torre.png");
@@ -36,7 +36,6 @@ public class Cristal extends seudoSprite{
         this.sprite = new Sprite(textura);
         this.sprite.setX(10);
         this.sprite.setY(50);
-        this.sprite.setScale(.8f);
 
         barraVida = new Vida(this, new Texture("vidaLlena.png"), new Texture("vidaVacia.png"));
     }

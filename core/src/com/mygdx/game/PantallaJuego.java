@@ -44,7 +44,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private ArrayList<seudoSprite> ordenDibujar;
 
     private Estado estado = Estado.JUGANDO;
-
+    int band = 0;
     private Nivel nivel;
 
     private String[] heroesId = new String[3];
@@ -228,7 +228,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                             }else{
                                 enemigos[i].setDireccion(true);
                             }
-                            if(nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.SELECCIONADO){
+                            if(nivel.getHeroes().get(j).getEstado()==Heroe.Estado.PARADO){
                                 nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
                                 nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
                             }
@@ -260,8 +260,7 @@ public class PantallaJuego implements Screen, InputProcessor {
                             //int ran3 = (int)(Math.random() * 4);
                             Object objetivo = nivel.getCristal();
                             // buscar entre los que siguen vivos
-                            enemigos[i].setObjetivo(objetivo);
-                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
+                            enemigos[i].setObjetivo(nivel.getCristal());
                         }
 
                         if (enemigos[i].getVitalidad() <= 0) {
@@ -288,20 +287,16 @@ public class PantallaJuego implements Screen, InputProcessor {
                         bandera = 1;
                     }
 
-                    if (bandera == 0) {
 
-                        if (!enemigos[i].contiene(nivel.getHeroes().get(j).getSprite().getX(), nivel.getHeroes().get(j).getSprite().getY())) {
-                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-
-                        }
-                        if (!nivel.getHeroes().get(j).contiene(enemigos[i].getSprite().getX(), enemigos[i].getSprite().getY())) {
-                            enemigos[i].setEstado(Enemigo.Estado.CAMINANDO);
-                        }
-                    }
 
 
                 }
 
+            }
+            for(int i=0; i<cont;i++){
+                if( enemigos[i].getObjetivo()==null){
+                    enemigos[i].setObjetivo(nivel.getCristal());
+                }
             }
             batch.setProjectionMatrix(camara.combined);
             batch.begin();
@@ -374,8 +369,10 @@ public class PantallaJuego implements Screen, InputProcessor {
             }
             if(!habilidadesUsadas.isEmpty()){
                 for (int k=0;k<habilidadesUsadas.size();k++){
-                    habilidadesUsadas.get(k).getSprite().setPosition(heroeHabilidad.get(k).getObjetivo().getSprite().getX(),heroeHabilidad.get(k).getObjetivo().getSprite().getY());
-                    habilidadesUsadas.get(k).draw(batch,habilidadesUsadas,heroeHabilidad,k);
+                    if (heroeHabilidad.get(k).getObjetivo()!=null) {
+                        habilidadesUsadas.get(k).getSprite().setPosition(heroeHabilidad.get(k).getObjetivo().getSprite().getX(), heroeHabilidad.get(k).getObjetivo().getSprite().getY());
+                        habilidadesUsadas.get(k).draw(batch, habilidadesUsadas, heroeHabilidad, k);
+                    }
                 }
             }
 
@@ -415,6 +412,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
             batch.end();
         }
+
 
     }
 
@@ -471,7 +469,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         //si toco alguna habilidad
         Vector3 v = new Vector3(screenX,screenY,0);
-        int band = 0;
+        band = 0;
         camara.unproject(v);
         float x =v.x;
         float y = v.y;
@@ -545,7 +543,6 @@ public class PantallaJuego implements Screen, InputProcessor {
                     case 1://bolas de fuego
                         if(heroeSel.getObjetivo()!=null){
                             heroeSel.getObjetivo().setVitalidad(heroeSel.getObjetivo().getVitalidad()-heroeSel.getHabilidades().get(i).getIndice());
-                            System.out.println("WTF");
                             habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
                             heroeHabilidad.add(heroeSel);
                         }
@@ -570,15 +567,22 @@ public class PantallaJuego implements Screen, InputProcessor {
         camara.unproject(v);
         float x = v.x;
         float y = v.y;
+        int band2=0;
 
+        for (int i =0; i<botonesHabilidades.size();i++) {
+            if (botonesHabilidades.get(i).getBoundingRectangle().contains(x, y)) {
+                band2 = 1;
+            }
+        }
 
-
+        if (band2 != 1) {
+            if (heroeSel != null) {
                 //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
                     heroeSel.setEstado(Heroe.Estado.CAMINANDO);
                     heroeSel.setxFinal(x - nivel.getHeroes().get(0).getMedidax() / 6);
                     heroeSel.setyFinal(y);
-                    for(int z=0;z<regresaEnemigos();z++) {
+                    for (int z = 0; z < regresaEnemigos(); z++) {
                         if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) {
                             heroeSel.setObjetivo(enemigos[z]);
                             break;
@@ -591,6 +595,8 @@ public class PantallaJuego implements Screen, InputProcessor {
                 } else {
                     heroeSel.setDireccion(false);
                 }
+            }
+        }
 
 
 

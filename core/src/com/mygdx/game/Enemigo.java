@@ -135,6 +135,7 @@ public class Enemigo extends seudoSprite{
 
     private void actualizar(){
         super.setCompy(this.getSprite().getY());
+
         switch (estado){
             case ATACANDO:
 
@@ -150,19 +151,16 @@ public class Enemigo extends seudoSprite{
                     }
                 }
 
-                if(objetivo instanceof Cristal){
-                    if (!this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
+                if(objetivo instanceof Cristal) {
+                    if (this.contiene(((Cristal) objetivo).getSprite().getBoundingRectangle())) {
+                        ((Cristal) objetivo).setVitalidad(((Cristal) objetivo).getVitalidad() - this.danoFisico);
+                    } else {
                         estado = Estado.CAMINANDO;
-                        //direccion = false;
-                    }else{
-
-                        ((Cristal) objetivo).setVitalidad(((Cristal) objetivo).getVitalidad()-this.danoFisico);
                     }
                 }
-
-
-
                 break;
+
+
             case CAMINANDO:
 
                 if(objetivo instanceof Heroe){
@@ -181,7 +179,6 @@ public class Enemigo extends seudoSprite{
                 if(objetivo instanceof Cristal){
                     if (this.contiene(((Cristal)objetivo).getSprite().getBoundingRectangle())){
                         estado = Estado.ATACANDO;
-                        System.out.println("entra ;)");
                     }
                 }
 
