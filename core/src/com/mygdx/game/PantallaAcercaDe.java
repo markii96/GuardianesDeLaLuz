@@ -186,7 +186,7 @@ public class PantallaAcercaDe implements Screen {
 
         batch.begin();
         texto.mostrarMensaje(batch,"Proyecto de desarrollo de videojuegos",600,600);
-        texto.mostrarMensaje(batch,"Tec Campus estado de Mexico",600,500);
+        texto.mostrarMensaje(batch,"ITESM Campus Estado de México",600,500);
 
         batch.end();
     }

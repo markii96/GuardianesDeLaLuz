@@ -28,6 +28,7 @@ public class PantallaMapa implements Screen {
     private Texture textura2;
     private Texture textura3;
     private Texture textura4;
+    private Texture texturaBtnTaberna;
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -53,7 +54,7 @@ public class PantallaMapa implements Screen {
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
         texturaFondo = new Texture("mapa.png");
-
+        texturaBtnTaberna = new Texture("siguiente.png");
         texturaBtnBack = new Texture("atras.png");
         textura1 = new Texture("1.png");
         textura2 = new Texture("2.png");
@@ -64,6 +65,9 @@ public class PantallaMapa implements Screen {
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
+        TextureRegionDrawable trdBtnTaberna = new TextureRegionDrawable(new TextureRegion(texturaBtnTaberna));
+        ImageButton btnTaberna = new ImageButton(trdBtnTaberna);
+        btnTaberna.setPosition(1200,0);
 
         TextureRegionDrawable trd1 = new TextureRegionDrawable(new TextureRegion(textura1));
         ImageButton btn1 = new ImageButton(trd1);
@@ -89,6 +93,13 @@ public class PantallaMapa implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 juego.setScreen(new MenuPrincipal(juego));
 
+            }
+        });
+
+        btnTaberna.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaTaberna(juego));
             }
         });
 
@@ -133,6 +144,7 @@ public class PantallaMapa implements Screen {
         escena.addActor(btn3);
         escena.addActor(btn4);
         escena.addActor(btnBack);
+        escena.addActor(btnTaberna);
 
     }
 

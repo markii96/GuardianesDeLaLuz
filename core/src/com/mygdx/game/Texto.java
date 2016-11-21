@@ -8,11 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Created by LUISRICARDO on 10/17/2016.
  */
+
 public class Texto {
     private BitmapFont font;
 
     public Texto() {
-        font = new BitmapFont(Gdx.files.internal("fuenteTexto.fnt"));
+        font = new BitmapFont(Gdx.files.internal("hola.fnt"));
     }
 
     public void mostrarMensaje(SpriteBatch batch, String mensaje, float x, float y) {
@@ -21,4 +22,7 @@ public class Texto {
         float anchoTexto = glyp.width;
         font.draw(batch,glyp,x-anchoTexto/2,y);
     }
+
+
+
 }
