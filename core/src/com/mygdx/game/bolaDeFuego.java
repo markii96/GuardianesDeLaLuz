@@ -5,12 +5,12 @@ package com.mygdx.game;
  */
 public class bolaDeFuego extends Habilidad {
 
-    public bolaDeFuego(String id, String nombre, int indice) {
-        super(id, nombre, indice);
+    public bolaDeFuego(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice) {
+        super(id, nombre, tiempo, tipo, disponibilidad, textura, animacion, indice);
     }
 
     @Override
     int accion() {
-
+        return super.getIndice();
     }
 }

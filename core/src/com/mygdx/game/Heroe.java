@@ -111,17 +111,19 @@ public class Heroe {
         int var = Integer.parseInt(datos[14]);
 
         Preferences h = Gdx.app.getPreferences("Habilidades");
+        String dh = p.getString(datos[14]);
+        String[] dhs = dh.split("-");
 
         switch (var){
             case 1:{
 
-                habilidades.add(new bolaDeFuego("1","Bola"));
+                habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
             }
             case 2:{
-                habilidades.add(new bolaDeFuego("1","Bola"));
+                habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
             }
             case 3:{
-                habilidades.add(new bolaDeFuego("1","Bola"));
+                habilidades.add(new bolaDeFuego(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7])));
             }
         }
 
@@ -348,7 +350,7 @@ public class Heroe {
         return precio;
     }
 
-    public Habilidad[] getHabilidades() {
+    public ArrayList<Habilidad> getHabilidades() {
         return habilidades;
     }
 
@@ -443,9 +445,6 @@ public class Heroe {
         this.precio = precio;
     }
 
-    public void setHabilidades(Habilidad[] habilidades) {
-        this.habilidades = habilidades;
-    }
 
     public void setDisponibilidad(Boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
