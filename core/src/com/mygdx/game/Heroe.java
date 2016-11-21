@@ -126,6 +126,7 @@ public class Heroe extends seudoSprite {
         String[] dhs = dh.split("-");
         System.out.println(Arrays.toString(dhs));
         habilidades = new ArrayList<Habilidad>();
+
         switch (var){
             case 1:{
 
