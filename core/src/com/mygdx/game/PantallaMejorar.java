@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 /**
  * Created by marco on 20/11/2016.
@@ -23,7 +25,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class PantallaMejorar implements Screen {
 
     private Juego juego;
-    private int id;
+    Preferences heroes = Gdx.app.getPreferences("Heroes");    private int id;
 
     private Texture texturaFondo;
     private Texture texturaHeroe1;
@@ -34,7 +36,7 @@ public class PantallaMejorar implements Screen {
     private Texture texturaBtnMejorar;
     private Texture texturaBtnMejorar1;
 
-    private Texto texto;
+    private Texto1 texto;
     private SpriteBatch batch;
     private Stage escena;
 
@@ -42,6 +44,13 @@ public class PantallaMejorar implements Screen {
     private Viewport vista;
     private final int ANCHO_MUNDO = 1280;
     private final int ALTO_MUNDO = 800;
+
+    private int nivelFisico;
+    private int nivelMagico;
+    private int costoFisico;
+    private int costoMagico;
+    private int vitalidad;
+    private int costoVitalidad;
 
     public PantallaMejorar(Juego juego, int idTexto) {
 
@@ -64,7 +73,7 @@ public class PantallaMejorar implements Screen {
         float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
-        texto = new Texto();
+        texto = new Texto1();
 
         texturaFondo = new Texture("tienda.png");
         texturaBtnBack = new Texture("atras.png");
@@ -124,6 +133,51 @@ public class PantallaMejorar implements Screen {
             imgHeroe1.setScale(.5f);
             imgHeroe1.setPosition(900,350);
             escena.addActor(imgHeroe1);
+
+            String cadena1=heroes.getString("1");
+
+
+            String[] lista1 =cadena1.split("-");
+            String danoFisico = lista1[3];
+            int danoFisico1 = (Integer.parseInt(danoFisico));
+
+            String vida = lista1[8];
+            int vida1 = Integer.parseInt(vida);
+
+            switch (vida1){
+                case 100: vitalidad = 1; break;
+                case 150: vitalidad = 2;break;
+                case 200: vitalidad = 3; break;
+                case 250: vitalidad = 4; break;
+                case 300: vitalidad = 5; break;
+            }
+
+            switch (vitalidad){
+
+                case 1: costoVitalidad = 250; break;
+                case 2: costoVitalidad = 500; break;
+                case 3: costoVitalidad = 750; break;
+                case 4: costoVitalidad = 1000; break;
+                case 5: costoVitalidad = 1250; break;
+
+            }
+
+            switch (danoFisico1){
+                case 100: nivelFisico = 1;break;
+                case 120: nivelFisico = 2;break;
+                case 140: nivelFisico = 3;break;
+                case 160: nivelFisico = 4;break;
+                case 150: nivelFisico = 5;break;
+            }
+
+            switch (nivelFisico){
+
+                case 1: costoFisico = 200;break;
+                case 2: costoFisico = 400;break;
+                case 3: costoFisico = 600;break;
+                case 4: costoFisico = 800;break;
+                case 5: ;break;
+            }
         }
 
         if(id==2) {
@@ -131,19 +185,157 @@ public class PantallaMejorar implements Screen {
             imgHeroe2.setScale(.5f);
             imgHeroe2.setPosition(900,350);
             escena.addActor(imgHeroe2);
+
+            String cadena1=heroes.getString("2");
+
+
+            String[] lista1 =cadena1.split("-");
+            String danoMagico = lista1[4];
+            int danoMagico1 = (Integer.parseInt(danoMagico));
+
+            String vida = lista1[8];
+            int vida1 = Integer.parseInt(vida);
+
+            switch (vida1){
+                case 40: vitalidad = 1; break;
+                case 60: vitalidad = 2;break;
+                case 90: vitalidad = 3; break;
+                case 120: vitalidad = 4; break;
+                case 150: vitalidad = 5; break;
+            }
+
+            switch (vitalidad){
+
+                case 1: costoVitalidad = 250; break;
+                case 2: costoVitalidad = 500; break;
+                case 3: costoVitalidad = 750; break;
+                case 4: costoVitalidad = 1000; break;
+                case 5: costoVitalidad = 1250; break;
+
+            }
+
+            switch (danoMagico1){
+                case 100: nivelMagico = 1;break;
+                case 120: nivelMagico = 2;break;
+                case 140: nivelMagico = 3;break;
+                case 160: nivelMagico = 4;break;
+                case 150: nivelMagico = 5;break;
+            }
+
+            switch (nivelMagico){
+
+                case 1: costoMagico = 200;break;
+                case 2: costoMagico = 400;break;
+                case 3: costoMagico = 600;break;
+                case 4: costoMagico = 800;break;
+                case 5: ;break;
+            }
         }
 
         if(id==3) {
             Image imgHeroe3 = new Image(texturaHeroe3);
             imgHeroe3.setScale(.5f);
-            imgHeroe3.setPosition(900,350);
+            imgHeroe3.setPosition(900, 350);
             escena.addActor(imgHeroe3);
+
+            String cadena1=heroes.getString("3");
+
+
+            String[] lista1 =cadena1.split("-");
+            String danoFisico = lista1[3];
+            int danoFisico1 = (Integer.parseInt(danoFisico));
+
+            String vida = lista1[8];
+            int vida1 = Integer.parseInt(vida);
+
+            switch (vida1){
+                case 50: vitalidad = 1; break;
+                case 80: vitalidad = 2;break;
+                case 110: vitalidad = 3; break;
+                case 140: vitalidad = 4; break;
+                case 170: vitalidad = 5; break;
+            }
+
+            switch (vitalidad){
+
+                case 1: costoVitalidad = 250; break;
+                case 2: costoVitalidad = 500; break;
+                case 3: costoVitalidad = 750; break;
+                case 4: costoVitalidad = 1000; break;
+                case 5: costoVitalidad = 1250; break;
+
+            }
+
+            switch (danoFisico1){
+                case 70: nivelFisico = 1;break;
+                case 90: nivelFisico = 2;break;
+                case 110: nivelFisico = 3;break;
+                case 130: nivelFisico = 4;break;
+                case 150: nivelFisico = 5;break;
+            }
+
+            switch (nivelFisico){
+
+                case 1: costoFisico = 200;break;
+                case 2: costoFisico = 400;break;
+                case 3: costoFisico = 600;break;
+                case 4: costoFisico = 800;break;
+                case 5: ;break;
+            }
+
         }
+
         if(id==4) {
             Image imgHeroe4 = new Image(texturaHeroe4);
             imgHeroe4.setScale(.5f);
-            imgHeroe4.setPosition(900,350);
+            imgHeroe4.setPosition(900, 350);
             escena.addActor(imgHeroe4);
+
+            String cadena1=heroes.getString("4");
+
+
+            String[] lista1 =cadena1.split("-");
+            String danoFisico = lista1[3];
+            int danoFisico1 = (Integer.parseInt(danoFisico));
+
+            String vida = lista1[8];
+            int vida1 = Integer.parseInt(vida);
+
+            switch (vida1){
+                case 70: vitalidad = 1; break;
+                case 100: vitalidad = 2;break;
+                case 130: vitalidad = 3; break;
+                case 160: vitalidad = 4; break;
+                case 190: vitalidad = 5; break;
+            }
+
+            switch (vitalidad){
+
+                case 1: costoVitalidad = 250; break;
+                case 2: costoVitalidad = 500; break;
+                case 3: costoVitalidad = 750; break;
+                case 4: costoVitalidad = 1000; break;
+                case 5: costoVitalidad = 1250; break;
+
+            }
+
+            switch (danoFisico1){
+                case 150: nivelFisico = 1;break;
+                case 180: nivelFisico = 2;break;
+                case 210: nivelFisico = 3;break;
+                case 240: nivelFisico = 4;break;
+                case 270: nivelFisico = 5;break;
+            }
+
+            switch (nivelFisico){
+
+                case 1: costoFisico = 200;break;
+                case 2: costoFisico = 400;break;
+                case 3: costoFisico = 600;break;
+                case 4: costoFisico = 800;break;
+                case 5: ;break;
+            }
+
         }
 
 
@@ -166,7 +358,35 @@ public class PantallaMejorar implements Screen {
 
         batch.begin();
 
-        //mostrar oro
+        //mostrar texto
+
+        if(id==1){
+
+            texto.mostrarMensaje(batch,String.valueOf(costoFisico),300,320);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+
+        }
+
+        if(id==2){
+
+            texto.mostrarMensaje(batch,String.valueOf(costoMagico),300,320);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+
+        }
+
+        if(id==3){
+
+            texto.mostrarMensaje(batch,String.valueOf(costoFisico),300,320);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+
+        }
+
+        if(id==4){
+
+            texto.mostrarMensaje(batch,String.valueOf(costoFisico),300,320);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+
+        }
 
         batch.end();
 
