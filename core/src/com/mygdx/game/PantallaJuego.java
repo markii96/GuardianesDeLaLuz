@@ -212,7 +212,18 @@ public class PantallaJuego implements Screen, InputProcessor {
             int bandera = 0;
 
             if (enemigosEliminados >= nivel.getCantEnemigos()) {
+                Preferences p = Gdx.app.getPreferences("Niveles");
+                String dato = p.getString((nivel.getId()+1)+"");
+                String respuesta ="";
+                String[] datos = dato.split("-");
+                datos[6] = "1";
+                for (int i =0; i<datos.length;i++){
+                    respuesta += datos[i]+"-";
+                }
+                p.putString((nivel.getId()+1)+"",respuesta);
+
                 estado = Estado.GANAR;
+
             }
 
             if (heroesEliminados >= 3 || nivel.getCristal().getVitalidad()<=0) {
