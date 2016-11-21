@@ -63,12 +63,21 @@ public class Heroe {
 
     private Vida barraVida;
     private int medidax, mediday;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     // Animación
     private Animation animacion;    // Caminando
     private float timerAnimacion;   // tiempo para calcular el frame
 
     private boolean direccion; //true = derecha, false = izquierda
-
+    private int id;
     public Enemigo getObjetivo() {
         return objetivo;
     }
@@ -91,7 +100,7 @@ public class Heroe {
         dato = p.getString(id);
 
         datos = dato.split("-");
-
+        this.id = Integer.parseInt(id);
         this.nombre = datos[1];
         this.clase = datos[2];
         this.estado = Estado.PARADO;

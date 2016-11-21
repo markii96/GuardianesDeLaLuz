@@ -66,7 +66,8 @@ public class PantallaJuego implements Screen, InputProcessor {
     //habilidades
     private Heroe heroeSel= null;
     private ArrayList<Sprite> botonesHabilidades = new ArrayList<Sprite>();
-
+    private ArrayList<Habilidad> habilidadesUsadas = new ArrayList<Habilidad>();
+    private ArrayList<Heroe> heroeHabilidad = new ArrayList<Heroe>();
     public PantallaJuego(Juego juego,String nivelId) {
 
 
@@ -335,9 +336,15 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                 for(int k =1; k<=heroeSel.getHabilidades().size();k++){
 
-                    botonesHabilidades.add(new Sprite(heroeSel.getHabilidades().get(k-1).getTexture()));
+                    botonesHabilidades.add(heroeSel.getHabilidades().get(k-1).getSprite());
                     botonesHabilidades.get(k-1).setPosition(((k-1)*288)+40,604);
                     botonesHabilidades.get(k-1).draw(batch);
+                }
+            }
+            if(!habilidadesUsadas.isEmpty()){
+                for (int k=0;k<habilidadesUsadas.size();k++){
+                    habilidadesUsadas.get(k).getSprite().setPosition(heroeHabilidad.get(k).getObjetivo().getSprite().getX(),heroeHabilidad.get(k).getObjetivo().getSprite().getY());
+                    habilidadesUsadas.get(k).draw(batch,habilidadesUsadas,heroeHabilidad,k);
                 }
             }
 
@@ -481,6 +488,21 @@ public class PantallaJuego implements Screen, InputProcessor {
                     heroeSel.setEstado(Heroe.Estado.SELECCIONADO);
 
                     break;
+                }
+            }
+        }
+        for (int i =0; i<botonesHabilidades.size()-1;i++){
+            if(botonesHabilidades.get(i).getBoundingRectangle().contains(x,y)){
+                switch (Integer.parseInt(heroeSel.getHabilidades().get(i).getId())){
+                    case 4:
+                    case 1://bolas de fuego
+                        if(heroeSel.getObjetivo()!=null){
+                            heroeSel.getObjetivo().setVitalidad(heroeSel.getObjetivo().getVitalidad()-heroeSel.getHabilidades().get(i).getIndice());
+                            habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
+                            heroeHabilidad.add(heroeSel);
+                        }
+                        break;
+
                 }
             }
         }

@@ -1,9 +1,13 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import java.util.ArrayList;
 
 /**
  * Created by Josep on 17/10/16.
@@ -19,6 +23,15 @@ public  class  Habilidad {
     private String animacion;
     private int indice;
     private Texture texture;
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
     private Sprite sprite;
     private Animation animacionA;
     private float timerAnimacion;
@@ -34,16 +47,30 @@ public  class  Habilidad {
 
         this.animacion = animacion;
         this.indice = indice;
-        sprite = new Sprite(texture);
+        sprite = new Sprite(new Texture(textura));
         this.texturaAnimacion = new Texture(animacion);
 
-        texture = new Texture(textura);
+        TextureRegion texturaCompleta = new TextureRegion(texturaAnimacion);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(texturaCompleta.getRegionWidth()/6,texturaCompleta.getRegionHeight());
+        animacionA = new Animation(0.16f, texturaPersonaje[0][0],texturaPersonaje[0][1],
+                texturaPersonaje[0][2], texturaPersonaje[0][3],texturaPersonaje[0][4],texturaPersonaje[0][5]);
+        animacionA.setPlayMode(Animation.PlayMode.LOOP);
+        timerAnimacion = 0;
     }
 
-    public void draw (SpriteBatch batch){
-
-
+    public void draw (SpriteBatch batch, ArrayList<Habilidad> habilidadUsada,ArrayList<Heroe> heroeHabilidad,int i) {
+        TextureRegion region;
+        timerAnimacion += Gdx.graphics.getDeltaTime();
+        region = animacionA.getKeyFrame(timerAnimacion);
+        batch.draw(region, sprite.getX(), sprite.getY());
+        if(timerAnimacion>1){
+            timerAnimacion = 0;
+            habilidadUsada.remove(i);
+            heroeHabilidad.remove(i);
+        }
     }
+
+
 
     public Texture getTexture() {
         return texture;
