@@ -577,10 +577,35 @@ public class PantallaJuego implements Screen, InputProcessor {
                 band=1;
 
                 switch (Integer.parseInt(heroeSel.getHabilidades().get(i).getId())){
+                    case 1:
+                    case 3:
                     case 4:
-                    case 1://bolas de fuego
+                    case 8:
                         if(heroeSel.getObjetivo()!=null){
                             heroeSel.getObjetivo().setVitalidad(heroeSel.getObjetivo().getVitalidad()-heroeSel.getHabilidades().get(i).getIndice());
+                            habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
+                            heroeHabilidad.add(heroeSel);
+                        }
+                        break;
+                    case 7:
+                    case 5:
+                        if(heroeSel.getObjetivo()!=null){
+                            heroeSel.getObjetivo().setVitalidad(heroeSel.getObjetivo().getVitalidad()-heroeSel.getHabilidades().get(i).getIndice());
+                            habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
+                            heroeHabilidad.add(heroeSel);
+                            heroeSel.getObjetivo().setEstado(Enemigo.Estado.PARADO);
+                        }
+                        break;
+                    case 2:
+                        if(heroeSel.getObjetivo()!=null){
+                            heroeSel.setDanoFisico(heroeSel.getDanoFisico()+30);
+                            habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
+                            heroeHabilidad.add(heroeSel);
+                        }
+                        break;
+                    case 6:
+                        if(heroeSel.getObjetivo()!=null){
+                            heroeSel.setVitalidad(heroeSel.getVitalidad()+30);
                             habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
                             heroeHabilidad.add(heroeSel);
                         }

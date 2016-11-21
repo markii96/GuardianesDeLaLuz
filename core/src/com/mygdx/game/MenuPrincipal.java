@@ -68,14 +68,14 @@ public class MenuPrincipal implements Screen {
 			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
 			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
 			preferenciasNiveles.flush();
-			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("2","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("3","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("4","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("5","1-Relampago-4-uno-1-relampago.png-relampago_anim.png-50-relampago_reu.png");
-			preferenciasHabilidades.putString("6","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("7","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("8","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-70-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("2","2-Dano-4-uno-1-aumentodano.png-dano_aumentado_anim.png-30-dano_aumentado_reu.png");
+			preferenciasHabilidades.putString("3","3-Flecha Envenenada-4-uno-1-veneno.png-veneno_anim.png-30-veneno_reu.png");
+			preferenciasHabilidades.putString("4","4-Daga toxica-4-uno-1-toxica.png-toxico_anim.png-70-toxica_reu.png");
+			preferenciasHabilidades.putString("5","5-Relampago-4-uno-1-relampago.png-relampago_anim.png-30-relampago_reu.png");
+			preferenciasHabilidades.putString("6","6-Vida-4-uno-1-vida.png-vida_anim.png-50-vida_reu.png");
+			preferenciasHabilidades.putString("7","7-Flecha de hielo-4-uno-1-hielo.png-hielo_anim.png-20-hielo_reu.png");
+			preferenciasHabilidades.putString("8","8-Daga envenenada-4-uno-1-envenenada.png-veneno_anim.png-10-envenenada_reu.png");
 
 			preferenciasHabilidades.flush();
 			preferenciasEnemigos.putString("1","1-Dhole-500-1-2-5-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");

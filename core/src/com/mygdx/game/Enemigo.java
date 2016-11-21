@@ -137,6 +137,8 @@ public class Enemigo extends seudoSprite{
         super.setCompy(this.getSprite().getY());
 
         switch (estado){
+
+            case PARADO:break;
             case ATACANDO:
 
 
@@ -370,7 +372,8 @@ public class Enemigo extends seudoSprite{
         ATACANDO,
         GOLPEADO,
         CAMINANDO,
-        MORIR
+        MORIR,
+        PARADO
     }
 
     private class Vida {
