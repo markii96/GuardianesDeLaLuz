@@ -140,6 +140,7 @@ public class PantallaOpciones implements Screen {
                 banderaSonido --;
                 System.out.println("clicked on");
                 validacion.putString("2","1");
+                validacion.flush();
 
                 btnSonidoOn.setPosition(2000,2000);
 
@@ -156,6 +157,7 @@ public class PantallaOpciones implements Screen {
 
                 System.out.println("clicked off");
                 validacion.putString("2","0");
+                validacion.flush();
 
                 btnSonidoOff.setPosition(2000,2000);
             }
