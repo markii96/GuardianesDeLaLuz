@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.org.apache.xpath.internal.operations.String;
 
 /**
  * Created by marco on 20/11/2016.
@@ -24,18 +25,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class PantallaTaberna implements Screen {
 
     private Juego juego;
+    Preferences heroes = Gdx.app.getPreferences("Heroes");
     //private int id;
 
     private Texture texturaFondo;
     private Texture texturaCara1;
     private Texture texturaCara2;
     private Texture texturaCara3;
+    private Texture texturaCara3_1;
     private Texture texturaCara4;
     private Texture texturaBtnBack;
     private Texture texturaBtnMejorar;
+    private Texture texturaComprar;
 
 
-
+    private int dato1;
     private Sprite imagenHeroe;
 
     private Texto texto;
@@ -43,6 +47,11 @@ public class PantallaTaberna implements Screen {
     private Stage escena;
 
     private int idTexto=0;
+
+
+    java.lang.String cadena = heroes.getString("3");
+    java.lang.String[] lista;
+
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -70,12 +79,20 @@ public class PantallaTaberna implements Screen {
 
         texto = new Texto();
 
+
+        lista= cadena.split("-");
+        java.lang.String dato = lista[15];
+        System.out.println(dato+" hola");
+
+
         texturaFondo = new Texture("taberna.png");
         texturaCara1 = new Texture("cara1.png");
         texturaCara2 = new Texture("cara2.png");
         texturaCara3 = new Texture("cara3.png");
+        texturaCara3_1 = new Texture("cara3_1.png");
         texturaCara4 = new Texture("cara4.png");
         texturaBtnBack = new Texture("atras.png");
+        texturaComprar = new Texture("comprar.png");
         texturaBtnMejorar = new Texture("mejorar.png");
         imagenHeroe = new Sprite(new Texture("nada.png"));
 
@@ -83,6 +100,11 @@ public class PantallaTaberna implements Screen {
         TextureRegionDrawable trdBtnMejorar = new TextureRegionDrawable(new TextureRegion(texturaBtnMejorar));
         final ImageButton btnMejorar = new ImageButton(trdBtnMejorar);
         btnMejorar.setPosition(900,0);
+
+        TextureRegionDrawable trdBtnComprar = new TextureRegionDrawable(new TextureRegion(texturaComprar));
+        final ImageButton btnComprar = new ImageButton(trdBtnComprar);
+        btnComprar.setPosition(900,0);
+
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
@@ -98,7 +120,11 @@ public class PantallaTaberna implements Screen {
 
         TextureRegionDrawable trdCara3 = new TextureRegionDrawable(new TextureRegion(texturaCara3));
         ImageButton btnCara3 = new ImageButton(trdCara3);
-        btnCara3.setPosition(350,550);
+        //btnCara3.setPosition(350,550);
+
+        TextureRegionDrawable trdCara3_1 = new TextureRegionDrawable(new TextureRegion(texturaCara3_1));
+        ImageButton btnCara3_1 = new ImageButton(trdCara3_1);
+        //btnCara3_1.setPosition(350,550);
 
         TextureRegionDrawable trdCara4 = new TextureRegionDrawable(new TextureRegion(texturaCara4));
         ImageButton btnCara4 = new ImageButton(trdCara4);
@@ -108,7 +134,29 @@ public class PantallaTaberna implements Screen {
         escena = new Stage();
 
 
+
+        dato1 = Integer.parseInt(dato);
+
+
+
         //listeners
+
+        btnComprar.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                lista[15] = "1";
+                java.lang.String regresa = "";
+
+                for(int i =0; i<lista.length;i++){
+                    regresa+=lista[i]+"-";
+                }
+                heroes.putString("3",regresa);
+                heroes.flush();
+                juego.setScreen(new PantallaTaberna(juego));
+
+
+            }
+        });
 
         btnBack.addListener(new ClickListener(){
             @Override
@@ -122,7 +170,7 @@ public class PantallaTaberna implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 idTexto = 1;
-                //imagenHeroe.setPosition(900,350);
+                imagenHeroe.setPosition(900,350);
                 imagenHeroe = new Sprite(new Texture("heroe1.png"));
                 escena.addActor(btnMejorar);
             }
@@ -138,13 +186,24 @@ public class PantallaTaberna implements Screen {
             }
         });
 
+        btnCara3_1.addListener(new ClickListener(){
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                imagenHeroe = new Sprite(new Texture("heroe3_1.png"));
+                escena.addActor(btnComprar);
+            }
+        });
+
         btnCara3.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 idTexto = 3;
                 imagenHeroe.setPosition(900,350);
-                imagenHeroe = new Sprite(new Texture("heroe3.png"));
-                escena.addActor(btnMejorar);
+
+                    imagenHeroe = new Sprite(new Texture("heroe3.png"));
+                    escena.addActor(btnMejorar);
+
             }
         });
 
@@ -181,6 +240,19 @@ public class PantallaTaberna implements Screen {
         escena.addActor(btnCara1);
         escena.addActor(btnCara2);
         escena.addActor(btnCara3);
+        escena.addActor(btnCara3_1);
+
+        if(dato1==1) {
+            btnCara3_1.setPosition(2000,2000);
+            btnCara3.setPosition(350,550);
+
+        }
+
+        if(dato1==0) {
+            btnCara3.setPosition(2000,2000);
+            btnCara3_1.setPosition(350,550);
+        }
+
         escena.addActor(btnCara4);
 
 
