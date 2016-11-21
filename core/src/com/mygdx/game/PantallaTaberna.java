@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -33,13 +34,15 @@ public class PantallaTaberna implements Screen {
     private Texture texturaBtnBack;
     private Texture texturaBtnMejorar;
 
+
+
     private Sprite imagenHeroe;
 
     private Texto texto;
     private SpriteBatch batch;
     private Stage escena;
 
-    private int idTexto;
+    private int idTexto=0;
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -78,8 +81,8 @@ public class PantallaTaberna implements Screen {
 
 
         TextureRegionDrawable trdBtnMejorar = new TextureRegionDrawable(new TextureRegion(texturaBtnMejorar));
-        ImageButton btnMejorar = new ImageButton(trdBtnMejorar);
-        btnMejorar.setPosition(1100,0);
+        final ImageButton btnMejorar = new ImageButton(trdBtnMejorar);
+        btnMejorar.setPosition(900,0);
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
@@ -120,6 +123,7 @@ public class PantallaTaberna implements Screen {
                 idTexto = 1;
                 //imagenHeroe.setPosition(900,350);
                 imagenHeroe = new Sprite(new Texture("heroe1.png"));
+                escena.addActor(btnMejorar);
             }
         });
 
@@ -129,6 +133,7 @@ public class PantallaTaberna implements Screen {
                 idTexto = 2;
                 imagenHeroe.setPosition(900,350);
                 imagenHeroe = new Sprite(new Texture("heroe2.png"));
+                escena.addActor(btnMejorar);
             }
         });
 
@@ -138,6 +143,7 @@ public class PantallaTaberna implements Screen {
                 idTexto = 3;
                 imagenHeroe.setPosition(900,350);
                 imagenHeroe = new Sprite(new Texture("heroe3.png"));
+                escena.addActor(btnMejorar);
             }
         });
 
@@ -156,6 +162,7 @@ public class PantallaTaberna implements Screen {
                 idTexto = 4;
                 imagenHeroe.setPosition(900,350);
                 imagenHeroe = new Sprite(new Texture("heroe4.png"));
+                escena.addActor(btnMejorar);
             }
         });
 
@@ -174,7 +181,6 @@ public class PantallaTaberna implements Screen {
         escena.addActor(btnCara2);
         escena.addActor(btnCara3);
         escena.addActor(btnCara4);
-        escena.addActor(btnMejorar);
 
 
 

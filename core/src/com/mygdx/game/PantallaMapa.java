@@ -28,6 +28,7 @@ public class PantallaMapa implements Screen {
     private Texture textura2;
     private Texture textura3;
     private Texture textura4;
+    private Texture textura5;
     private Texture texturaBtnTaberna;
 
     private OrthographicCamera camara;
@@ -54,36 +55,43 @@ public class PantallaMapa implements Screen {
         float alto = ALTO_MUNDO;//Gdx.graphics.getHeight();
 
         texturaFondo = new Texture("mapa.png");
-        texturaBtnTaberna = new Texture("siguiente.png");
+        texturaBtnTaberna = new Texture("botonTABERNA.png");
         texturaBtnBack = new Texture("atras.png");
         textura1 = new Texture("1.png");
         textura2 = new Texture("2.png");
         textura3 = new Texture("3.png");
         textura4 = new Texture("4.png");
+        textura5 = new Texture("5.png");
 
+
+        TextureRegionDrawable trd5 = new TextureRegionDrawable(new TextureRegion(textura5));
+        ImageButton btn5 = new ImageButton(trd5);
+        btn5.setPosition(1150,250);
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
         TextureRegionDrawable trdBtnTaberna = new TextureRegionDrawable(new TextureRegion(texturaBtnTaberna));
         ImageButton btnTaberna = new ImageButton(trdBtnTaberna);
-        btnTaberna.setPosition(1200,0);
+        btnTaberna.setPosition(1000,0);
+        btnTaberna.setScale(1,.8f);
+
 
         TextureRegionDrawable trd1 = new TextureRegionDrawable(new TextureRegion(textura1));
         ImageButton btn1 = new ImageButton(trd1);
-        btn1.setPosition(250,475);
+        btn1.setPosition(75,480);
 
         TextureRegionDrawable trd2 = new TextureRegionDrawable(new TextureRegion(textura2));
         ImageButton btn2 = new ImageButton(trd2);
-        btn2.setPosition(75,250);
+        btn2.setPosition(470,475);
 
         TextureRegionDrawable trd3 = new TextureRegionDrawable(new TextureRegion(textura3));
         ImageButton btn3 = new ImageButton(trd3);
-        btn3.setPosition(950,475);
+        btn3.setPosition(800,400);
 
         TextureRegionDrawable trd4 = new TextureRegionDrawable(new TextureRegion(textura4));
         ImageButton btn4 = new ImageButton(trd4);
-        btn4.setPosition(950,250);
+        btn4.setPosition(950,500);
 
 
         escena = new Stage();
@@ -131,6 +139,14 @@ public class PantallaMapa implements Screen {
                 juego.setScreen(new PantallaJuego(juego,"4"));
             }
         });
+
+        btn5.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaJuego(juego,"5"));
+            }
+        });
+
         Image imgFondo = new Image(texturaFondo);
 
         float escalaX = ancho / imgFondo.getWidth();
@@ -143,6 +159,7 @@ public class PantallaMapa implements Screen {
         escena.addActor(btn2);
         escena.addActor(btn3);
         escena.addActor(btn4);
+        escena.addActor(btn5);
         escena.addActor(btnBack);
         escena.addActor(btnTaberna);
 
