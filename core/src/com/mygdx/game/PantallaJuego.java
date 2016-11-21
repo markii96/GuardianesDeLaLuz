@@ -577,8 +577,6 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) {
                             nivel.getHeroes().get(i).setObjetivo(enemigos[z]);
                             break;
-                        }else{
-                            nivel.getHeroes().get(i).setObjetivo(null);
                         }
                         //setear x para saber de que lado llegar
                     }
