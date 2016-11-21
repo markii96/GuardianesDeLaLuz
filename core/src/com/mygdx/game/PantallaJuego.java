@@ -559,7 +559,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         if (band ==0){
             heroeSel= null;
-            System.out.print("etro");
         }
 
 
@@ -577,7 +576,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         if (y > 600){
             band2 = 1;
-            System.out.println("lolsack");
         }
 
 
