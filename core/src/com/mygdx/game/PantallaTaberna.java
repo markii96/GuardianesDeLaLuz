@@ -113,6 +113,7 @@ public class PantallaTaberna implements Screen {
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Clicked","Tap sobre atras");
                 juego.setScreen(new PantallaMapa(juego));
             }
         });

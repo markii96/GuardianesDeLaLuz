@@ -83,12 +83,28 @@ public class PantallaOpciones implements Screen {
 
 
         TextureRegionDrawable trdSonidoOn = new TextureRegionDrawable(new TextureRegion(botonSonidoOn));
-        ImageButton btnSonidoOn = new ImageButton(trdSonidoOn);
-        btnSonidoOn.setPosition(1100,0);
+        final ImageButton btnSonidoOn = new ImageButton(trdSonidoOn);
+        //btnSonidoOn.setPosition(1100,0);
 
         TextureRegionDrawable trdSonidoOff = new TextureRegionDrawable(new TextureRegion(botonSonidoOff));
-        ImageButton btnSonidoOff = new ImageButton(trdSonidoOff);
-        btnSonidoOff.setPosition(900,0);
+        final ImageButton btnSonidoOff = new ImageButton(trdSonidoOff);
+        //btnSonidoOff.setPosition(900,0);
+
+
+
+        String bandera = validacion.getString("2");
+
+        if(bandera=="1"){
+            btnSonidoOff.setPosition(1100,0);
+            btnSonidoOn.setPosition(2000,2000);
+
+        }
+
+        else {
+            btnSonidoOff.setPosition(2000,2000);
+            btnSonidoOn.setPosition(1100,0);
+
+        }
 
         escena = new Stage();
 
@@ -120,9 +136,12 @@ public class PantallaOpciones implements Screen {
         btnSonidoOn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                btnSonidoOff.setPosition(1100,0);
                 banderaSonido --;
                 System.out.println("clicked on");
-                validacion.putString("2","0");
+                validacion.putString("2","1");
+
+                btnSonidoOn.setPosition(2000,2000);
 
 
             }
@@ -131,10 +150,14 @@ public class PantallaOpciones implements Screen {
         btnSonidoOff.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                btnSonidoOn.setPosition(1100,0);
+
                 banderaSonido ++;
 
                 System.out.println("clicked off");
-                validacion.putString("2","1");
+                validacion.putString("2","0");
+
+                btnSonidoOff.setPosition(2000,2000);
             }
         });
 
@@ -200,11 +223,14 @@ public class PantallaOpciones implements Screen {
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override
     public void dispose() {
+        texturaBtnBack.dispose();
+        botonHistoria.dispose();
+        texturaFondo.dispose();
 
     }
 }

@@ -1,12 +1,15 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -26,11 +29,12 @@ public class PantallaHistoria implements Screen {
     private Texture texturaFondo;
     private Texto texto;
     private Texture texturaBtnBack;
-    private Texture texturaBtnSig;
-    private Texture texturaNext;
+    private Texture texturaBtnNext;
+    private Texture texturaBtnNext1;
     private SpriteBatch batch;
 
     private int idTexto =1;
+    private boolean bandera=true;
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -43,7 +47,7 @@ public class PantallaHistoria implements Screen {
 
     @Override
     public void show() {
-        escena = new Stage();
+
         Gdx.input.setInputProcessor(escena);
         batch = new SpriteBatch();
 
@@ -56,64 +60,67 @@ public class PantallaHistoria implements Screen {
 
         texto = new Texto();
 
-        texturaNext = new Texture("siguiente.png");
         texturaFondo = new Texture("nieve.png");
         texturaBtnBack = new Texture("atras.png");
-        texturaBtnSig = new Texture("2.png");
+        texturaBtnNext = new Texture("siguiente.png");
+        texturaBtnNext1 = new Texture("siguiente.png");
+
         Image imgFondo = new Image(texturaFondo);
-
-
-        TextureRegionDrawable trdBtnNext = new TextureRegionDrawable(new TextureRegion(texturaNext));
-        ImageButton btnNext = new ImageButton(trdBtnNext);
-
 
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
+        TextureRegionDrawable trdBtnNext = new TextureRegionDrawable(new TextureRegion(texturaBtnNext));
+        final ImageButton btnNext = new ImageButton(trdBtnNext);
+        btnNext.setPosition(1000,0);
+
+        TextureRegionDrawable trdBtnNext1 = new TextureRegionDrawable(new TextureRegion(texturaBtnNext1));
+        final ImageButton btnNext1 = new ImageButton(trdBtnNext1);
+        btnNext1.setPosition(1000,0);
+
+
+        escena = new Stage();
+
         btnNext.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                idTexto += 1;
-                System.out.println("clicked");
+                Gdx.app.log("Clicked","Tap sobre siguiente");
+                idTexto++;
+                btnNext.setPosition(2000,2000);
+
+            }
+        });
+
+        btnNext1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Clicked","Tap sobre siguiente");
+                idTexto++;
+                btnNext1.setPosition(2000,2000);
             }
         });
 
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("clicked");
-                //if(idTexto==1) {
-                    juego.setScreen(new PantallaOpciones(juego));
-                //}
-                /*
-                else{
-                    idTexto--;
-                }
-                */
+                Gdx.app.log("Clicked","Tap sobre atras");
+                juego.setScreen(new PantallaOpciones(juego));
             }
         });
 
-
-        if(idTexto==3){
-            btnNext.setVisible(false);
-        }
-
+        Gdx.input.setInputProcessor(escena);
 
         float escalaX = ancho / imgFondo.getWidth();
         float escalaY = alto / imgFondo.getHeight();
         imgFondo.setScale(escalaX,escalaY);
-        btnNext.setPosition(1000,0);
+
 
         escena.addActor(imgFondo);
         escena.addActor(btnBack);
-        if(idTexto!=3) {
-            escena.addActor(btnNext);
-        }
+        escena.addActor(btnNext1);
+        escena.addActor(btnNext);
 
-        if(idTexto==3){
-            btnNext.setVisible(false);
-        }
 
 
     }
@@ -125,8 +132,8 @@ public class PantallaHistoria implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camara.combined);
         escena.setViewport(vista);
-        escena.draw();
 
+        escena.draw();
 
         batch.begin();
 
@@ -159,6 +166,8 @@ public class PantallaHistoria implements Screen {
 
         if(idTexto==3) {
 
+
+
             texto.mostrarMensaje(batch, "El ángel les explico que Cthulhu había regresado", 650, 500);
             texto.mostrarMensaje(batch, "para conquistar todos los mundos con su oscuridad.", 650, 450);
             texto.mostrarMensaje(batch, "Para detenerlo, se necesitaba del poder de la luz", 650, 400);
@@ -189,11 +198,17 @@ public class PantallaHistoria implements Screen {
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override
     public void dispose() {
 
+        texturaFondo.dispose();
+        texturaBtnBack.dispose();
+        texturaBtnNext.dispose();
+        texturaBtnNext1.dispose();
+
     }
+
 }

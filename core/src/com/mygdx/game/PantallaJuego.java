@@ -604,11 +604,6 @@ public class PantallaJuego implements Screen, InputProcessor {
 
 
 
-
-
-
-
-
         return true;
     }
 

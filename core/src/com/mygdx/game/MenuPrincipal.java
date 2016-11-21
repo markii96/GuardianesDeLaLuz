@@ -31,6 +31,8 @@ public class MenuPrincipal implements Screen {
 	private OrthographicCamera camara;
 	private Viewport vista;
 
+	String validacion;
+
 	//textura para el titulo
 	private Texture texturaTitulo;
 	private Texture texturaBtnJugar;
@@ -78,6 +80,8 @@ public class MenuPrincipal implements Screen {
 			preferenciasValidacion.putString("2", "1");
 			preferenciasValidacion.flush();
 			//Gdx.app.log("lol",p.getString("2").toString());
+
+		validacion = preferenciasValidacion.getString("2");
 
 		//}
 	}
@@ -200,7 +204,14 @@ public class MenuPrincipal implements Screen {
 		//
 		music = Gdx.audio.newMusic(Gdx.files.internal("The_Trip_to_the_Market.mp3"));
 		music.setLooping(true);
-		music.play();
+
+		if(validacion.equals("1")) {
+			music.play();
+		}
+
+		else{
+			music.pause();
+		}
 	}
 
 	@Override
