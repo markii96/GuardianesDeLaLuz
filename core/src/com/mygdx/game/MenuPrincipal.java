@@ -65,9 +65,9 @@ public class MenuPrincipal implements Screen {
 			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-1-bosque.png-10");
 			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-1-nieve.png-14");
 			preferenciasNiveles.flush();
-			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png--misil_bola_fuego.png");
-			preferenciasHabilidades.putString("2","2-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png");
-			preferenciasHabilidades.putString("3","3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png");
+			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png--misil_bola_fuego.png-20");
+			preferenciasHabilidades.putString("2","2-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png-25");
+			preferenciasHabilidades.putString("3","3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png-15");
 			preferenciasEnemigos.putString("1","1-Dhole-500-1-2-5-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");
 			preferenciasEnemigos.putString("2","2-Azathoth-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
 			preferenciasEnemigos.putString("3","3-Meatball-250-2-3-4-corto-sus despreciable forma es su castigo, encomendado a defender lo que alguna vez fue tuyo-meatball.png-meatball_caminando.png-346,173-meatball_atacando.png-518,172");

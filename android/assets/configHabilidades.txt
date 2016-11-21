@@ -1,5 +1,5 @@
-id-nombre-tiempo reutilizacion-tipo-disponibilidad-textura-animacion
+id-nombre-tiempo reutilizacion-tipo-disponibilidad-textura-animacion|indice
 
-1-Bola de Fuego-4-uno-1-bola_fuego.png--misil_bola_fuego.png
-2-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png
-3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png
+1-Bola de Fuego-4-uno-1-bola_fuego.png--misil_bola_fuego.png-20
+2-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png-25
+3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png-15
