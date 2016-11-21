@@ -54,7 +54,7 @@ public  class  Habilidad {
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(texturaCompleta.getRegionWidth()/6,texturaCompleta.getRegionHeight());
         animacionA = new Animation(0.16f, texturaPersonaje[0][0],texturaPersonaje[0][1],
                 texturaPersonaje[0][2], texturaPersonaje[0][3],texturaPersonaje[0][4],texturaPersonaje[0][5]);
-        animacionA.setPlayMode(Animation.PlayMode.LOOP);
+        //animacionA.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
     }
 
