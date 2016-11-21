@@ -1,4 +1,4 @@
-id|nombre|clase|danoFisico|danoMagico|alcance|velocidadAatque|curacion|vitalidad|velocidadMovimiento|exp|nivel|armadura|precio|habilidades id(por comas)|disponibilidad|descripcion|textura|img|medidas
+id|nombre|clase|danoFisico|danoMagico|alcance|velocidadAatque|curacion|vitalidad|velocidadMovimiento|exp|nivel|armadura|precio|habilidades id(por comas)|disponibilidad|descripcion|textura|img|medidas_sprite|nombre_anim|medidas_anim
 
 
 1-Ehtoas-Guerrero-100-0-Corto-2-0-100-1-0-1-1-0-1-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png-1728,576
