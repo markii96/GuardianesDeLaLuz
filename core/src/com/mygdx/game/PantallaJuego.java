@@ -228,8 +228,11 @@ public class PantallaJuego implements Screen, InputProcessor {
                             }else{
                                 enemigos[i].setDireccion(true);
                             }
-                            nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
-                            nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
+                            if(nivel.getHeroes().get(j).getEstado()!=Heroe.Estado.SELECCIONADO){
+                                nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
+                                nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
+                            }
+
 
                         }
 
@@ -567,7 +570,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
 
         for (int i = 0; i < nivel.getHeroes().size(); i++){
-            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO||nivel.getHeroes().get(i).getEstado() == Heroe.Estado.ATACANDO || nivel.getHeroes().get(i).getEstado() == Heroe.Estado.PARADO) {
+            if (nivel.getHeroes().get(i).getEstado() == Heroe.Estado.SELECCIONADO) {
                 //para saber si picamos cerca o lejos
                 if (x >= xInicial + 5 || x <= xInicial - 5 && y >= yInicial + 5 || y <= yInicial - 5) {
                     nivel.getHeroes().get(i).setEstado(Heroe.Estado.CAMINANDO);
