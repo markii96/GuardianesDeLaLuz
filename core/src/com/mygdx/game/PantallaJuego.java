@@ -227,6 +227,10 @@ public class PantallaJuego implements Screen, InputProcessor {
                         if (nivel.getHeroes().get(j).getEstado() == Heroe.Estado.PARADO ) {
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.ATACANDO);
                             nivel.getHeroes().get(j).setObjetivo(enemigos[i]);
+                            if(heroeSel.getSprite().getX()< enemigos[i].getSprite().getX()){
+                                heroeSel.setDireccion(true);
+                            }else
+                                heroeSel.setDireccion(false);
 
                             if(enemigos[i].getSprite().getX()<nivel.getHeroes().get(j).getSprite().getX()){
                                 enemigos[i].setDireccion(false);
@@ -590,6 +594,10 @@ public class PantallaJuego implements Screen, InputProcessor {
                     for (int z = 0; z < regresaEnemigos(); z++) {
                         if (enemigos[z].getSprite().getBoundingRectangle().contains(x, y)) {
                             heroeSel.setObjetivo(enemigos[z]);
+                            if(heroeSel.getSprite().getX()< enemigos[z].getSprite().getX()){
+                                heroeSel.setDireccion(true);
+                            }else
+                                heroeSel.setDireccion(false);
                             break;
                         }
                         //setear x para saber de que lado llegar
