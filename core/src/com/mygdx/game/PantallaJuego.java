@@ -335,7 +335,8 @@ public class PantallaJuego implements Screen, InputProcessor {
                 ordenDibujar.add(nivel.getHeroes().get(i));
             }
             // fin pinta heroes...
-            nivel.getCristal().draw(batch);
+            //nivel.getCristal().draw(batch);
+            ordenDibujar.add(nivel.getCristal());
 
             for (int i = 0; i < regresaEnemigos(); i++) {
                 //enemigos[i].draw(batch);
@@ -349,7 +350,9 @@ public class PantallaJuego implements Screen, InputProcessor {
                        ((Heroe) ordenDibujar.get(l)).draw(batch);
                    }else if( ordenDibujar.get(l) instanceof Enemigo){
                         ((Enemigo) ordenDibujar.get(l)).draw(batch);
-                    }
+                    }else {
+                       ((Cristal)ordenDibujar.get(l)).draw(batch);
+                   }
 
                 }
             }
