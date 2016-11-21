@@ -297,18 +297,7 @@ public class PantallaJuego implements Screen, InputProcessor {
             btnSalir.setScale(.01f,.01f);
             btnSalir.draw(batch);
 
-            //pintar botones Habilidades
-            if(heroeSel != null){
 
-                for(int k =1; k<=heroeSel.getHabilidades().size();k++){
-
-                    botonesHabilidades.add(new Sprite(heroeSel.getHabilidades().get(k-1).getTexture()));
-                    botonesHabilidades.get(k-1).setPosition(((k-1)*288)+40,412);
-                    botonesHabilidades.get(k-1).draw(batch);
-                }
-            }
-
-            //ends pintar...
             range = (nivel.getEnemigos().length - 1) + 1;
             range2 = (401);
 
@@ -329,35 +318,30 @@ public class PantallaJuego implements Screen, InputProcessor {
                 if (cont < limiteEnemigos) {
                     this.enemigos[i] = new Enemigo(nivel.getEnemigos()[ran], 1100, ran2, objetivo);
                     cont += 1;
-                    //Gdx.app.log("Create", ran3 + "");
                 }
             }
-
+            // pinta heroes
             for (int i = 0; i < nivel.getHeroes().size(); i++) {
                 nivel.getHeroes().get(i).draw(batch);
             }
+            // fin pinta heroes...
             nivel.getCristal().draw(batch);
-
-            if (estado == Estado.PERDER) {
-                texturaPerdiste = new Texture("perdiste.png");
-                batch.draw(texturaPerdiste, 400, 200);
-            }
-
-            if (estado == Estado.GANAR) {
-                texturaPerdiste = new Texture("ganaste.png");
-                batch.draw(texturaPerdiste, 400, 200);
-            }
 
             for (int i = 0; i < regresaEnemigos(); i++) {
                 enemigos[i].draw(batch);
             }
-            if (estado == Estado.GANAR || estado == Estado.PERDER) {
-                Texture back = new Texture("atras.png");
-                btnAtras = new Sprite(back);
-                btnAtras.setX(400);
-                btnAtras.setY(50);
-                btnAtras.draw(batch);
+            //pintar botones Habilidades
+            if(heroeSel != null){
+
+                for(int k =1; k<=heroeSel.getHabilidades().size();k++){
+
+                    botonesHabilidades.add(new Sprite(heroeSel.getHabilidades().get(k-1).getTexture()));
+                    botonesHabilidades.get(k-1).setPosition(((k-1)*288)+40,604);
+                    botonesHabilidades.get(k-1).draw(batch);
+                }
             }
+
+            //ends pintar...
             batch.end();
         }else if (estado == Estado.GANAR || estado == Estado.PERDER) {
             batch.begin();
