@@ -67,14 +67,16 @@ public class MenuPrincipal implements Screen {
 			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-0-ciudad.png-9");
 			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
 			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
-			preferenciasNiveles.putString("5","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-7");
-			preferenciasNiveles.putString("6","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-0-ciudad.png-9");
-			preferenciasNiveles.putString("7","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
-			preferenciasNiveles.putString("8","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
-			preferenciasHabilidades.putString("2","2-Puñalazo-5-uno-1-punialazo.png-punialazo_anim.png-25-lol");//cambiar
-			preferenciasHabilidades.putString("3","3-Triple Flecha-6-AoE-1-triple_flecha.png-triple_flecha_anim.png-15-master");//cambiar
+			preferenciasHabilidades.putString("2","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("3","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("4","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("5","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("6","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("7","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+			preferenciasHabilidades.putString("8","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-50-bola_fuego_reu.png");
+
 			preferenciasHabilidades.flush();
 			preferenciasEnemigos.putString("1","1-Dhole-500-1-2-5-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");
 			preferenciasEnemigos.putString("2","2-Azathoth-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
