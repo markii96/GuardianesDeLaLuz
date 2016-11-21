@@ -44,7 +44,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private ArrayList<seudoSprite> ordenDibujar;
 
     private Estado estado = Estado.JUGANDO;
-    int band = 0;
+
     private Nivel nivel;
 
     private String[] heroesId = new String[3];
@@ -255,7 +255,9 @@ public class PantallaJuego implements Screen, InputProcessor {
 
                             nivel.getHeroes().get(j).setEstado(Heroe.Estado.MORIR);
                             nivel.getHeroes().remove(j);
-                            heroeSel=null;
+                            if (heroeSel==nivel.getHeroes().get(j)) {
+                                heroeSel = null;
+                            }
                             heroesEliminados++;
                             //int ran3 = (int)(Math.random() * 4);
                             Object objetivo = nivel.getCristal();
@@ -469,7 +471,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         //si toco alguna habilidad
         Vector3 v = new Vector3(screenX,screenY,0);
-        band = 0;
+        int band = 0;
         camara.unproject(v);
         float x =v.x;
         float y = v.y;
@@ -537,6 +539,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i =0; i<botonesHabilidades.size();i++){
             if(botonesHabilidades.get(i).getBoundingRectangle().contains(x,y)){
                 band=1;
+                System.out.print("etro");
 
                 switch (Integer.parseInt(heroeSel.getHabilidades().get(i).getId())){
                     case 4:
@@ -554,6 +557,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         if (band ==0){
             heroeSel= null;
+            System.out.print("etro");
         }
 
 
