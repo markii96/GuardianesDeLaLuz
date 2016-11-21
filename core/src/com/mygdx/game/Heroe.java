@@ -122,7 +122,7 @@ public class Heroe extends seudoSprite {
         String var = datos[14];
         String[] vars = var.split(",");
         ArrayList<Integer> ids = new ArrayList<Integer>();
-        for (int i=0;i<var.length();i++){
+        for (int i=0;i<var.length()-1;i++){
             ids.add(Integer.parseInt(vars[i]));
         }
 
