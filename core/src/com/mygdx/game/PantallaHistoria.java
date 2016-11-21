@@ -56,7 +56,7 @@ public class PantallaHistoria implements Screen {
 
         texto = new Texto();
 
-        texturaNext = new Texture("1.png");
+        texturaNext = new Texture("siguiente.png");
         texturaFondo = new Texture("nieve.png");
         texturaBtnBack = new Texture("atras.png");
         texturaBtnSig = new Texture("2.png");
@@ -83,16 +83,21 @@ public class PantallaHistoria implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("clicked");
-                if(idTexto==1) {
+                //if(idTexto==1) {
                     juego.setScreen(new PantallaOpciones(juego));
-                }
-
+                //}
+                /*
                 else{
                     idTexto--;
                 }
+                */
             }
         });
 
+
+        if(idTexto==3){
+            btnNext.setVisible(false);
+        }
 
 
         float escalaX = ancho / imgFondo.getWidth();
@@ -102,8 +107,13 @@ public class PantallaHistoria implements Screen {
 
         escena.addActor(imgFondo);
         escena.addActor(btnBack);
-        escena.addActor(btnNext);
+        if(idTexto!=3) {
+            escena.addActor(btnNext);
+        }
 
+        if(idTexto==3){
+            btnNext.setVisible(false);
+        }
 
 
     }
@@ -122,20 +132,20 @@ public class PantallaHistoria implements Screen {
 
         if(idTexto==1) {
 
-            texto.mostrarMensaje(batch, "Erase una vez, hace mucho tiempo en una tierra muy", 650, 600);
-            texto.mostrarMensaje(batch, "lejana, un reino que siempre vivia en el temor.", 650, 550);
-            texto.mostrarMensaje(batch, "Todos los dias, el reino sufria ataques de enemigos", 650, 500);
+            texto.mostrarMensaje(batch, "Érase una vez, hace mucho tiempo en una tierra muy", 650, 600);
+            texto.mostrarMensaje(batch, "lejana, un reino que siempre vivía en el temor.", 650, 550);
+            texto.mostrarMensaje(batch, "Todos los días, el reino sufría ataques de enemigos", 650, 500);
             texto.mostrarMensaje(batch, "desconocidos. Estos enemigos eran unos monstruos", 650, 450);
             texto.mostrarMensaje(batch, "grandes y fuertes. Cuando el reino estuvo a punto", 650, 400);
-            texto.mostrarMensaje(batch, "de ser destruido, el cielo se abrio y una esfera", 650, 350);
-            texto.mostrarMensaje(batch, "de luz salio de entre las nubes, ahuyentando a la", 650, 300);
+            texto.mostrarMensaje(batch, "de ser destruido, el cielo se abrió y una esfera", 650, 350);
+            texto.mostrarMensaje(batch, "de luz salió de entre las nubes, ahuyentando a la", 650, 300);
             texto.mostrarMensaje(batch, "horda adversaria por su gran aura de luz.", 650, 250);
         }
 
         if(idTexto==2){
 
             texto.mostrarMensaje(batch, "Cuando el ataque por fin finalizó, la esfera se", 650, 700);
-            texto.mostrarMensaje(batch, "acercó a los humanos y sorpresivamente la esfera", 650, 650);
+            texto.mostrarMensaje(batch, "acercó a los humanos e increíblemente la esfera", 650, 650);
             texto.mostrarMensaje(batch, "hablaba. La esfera explicó que provenía de otro", 650, 600);
             texto.mostrarMensaje(batch, "mundo que ya había sido atacado por las fuerzas", 650, 550);
             texto.mostrarMensaje(batch, "oscuras, y vino para advertir a las siguientes", 650, 500);
@@ -152,7 +162,7 @@ public class PantallaHistoria implements Screen {
             texto.mostrarMensaje(batch, "El ángel les explico que Cthulhu había regresado", 650, 500);
             texto.mostrarMensaje(batch, "para conquistar todos los mundos con su oscuridad.", 650, 450);
             texto.mostrarMensaje(batch, "Para detenerlo, se necesitaba del poder de la luz", 650, 400);
-            texto.mostrarMensaje(batch, "y de la fuerzo de varios héroes dispuestos a ", 650, 350);
+            texto.mostrarMensaje(batch, "y de la fuerza de varios héroes dispuestos a ", 650, 350);
             texto.mostrarMensaje(batch, "salvar la luz de este mundo.", 650, 300);
 
         }

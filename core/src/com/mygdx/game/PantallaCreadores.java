@@ -157,9 +157,9 @@ public class PantallaCreadores implements Screen {
 
         switch(id){
 
-            case 0:texto.mostrarMensaje(batch,"Nombre: Marco Buendia",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: marco_isaac_1996@hotmail.com",487,250);break;
-            case 1:texto.mostrarMensaje(batch,"Nombre: Hector Medina ",300,450);texto.mostrarMensaje(batch,"Carrera: Animacion y arte digital",425,350);texto.mostrarMensaje(batch,"Correo: hmedinaramirez@gmail.com",487,250);break;
-            case 2:texto.mostrarMensaje(batch,"Nombre: Ricardo Gutierrez",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: ricardo.strifeff@gmail.com",487,250);break;
+            case 0:texto.mostrarMensaje(batch,"Nombre: Marco Buendía",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: marco_isaac_1996@hotmail.com",487,250);break;
+            case 1:texto.mostrarMensaje(batch,"Nombre: Héctor Medina ",300,450);texto.mostrarMensaje(batch,"Carrera: Animación y arte digital",425,350);texto.mostrarMensaje(batch,"Correo: hmedinaramirez@gmail.com",487,250);break;
+            case 2:texto.mostrarMensaje(batch,"Nombre: Ricardo Gutiérrez",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: ricardo.strifeff@gmail.com",487,250);break;
             case 3:texto.mostrarMensaje(batch,"Nombre: Josep Romagosa",300,450);texto.mostrarMensaje(batch,"Carrera: Sistemas computacionales",425,350);texto.mostrarMensaje(batch,"Correo: josep@hotmail.com",487,250);break;
 
         }
