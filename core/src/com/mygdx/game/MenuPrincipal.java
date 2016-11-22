@@ -84,8 +84,9 @@ public class MenuPrincipal implements Screen {
 
 			preferenciasEnemigos.flush();
 			preferenciasValidacion.putString("1", "1");
-			preferenciasValidacion.putString("2", "1");
+			preferenciasValidacion.putString("2", "1");//oro
 			preferenciasValidacion.flush();
+
 			//Gdx.app.log("lol",p.getString("2").toString());
 
 		validacion = preferenciasValidacion.getString("2");
