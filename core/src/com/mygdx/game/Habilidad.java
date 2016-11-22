@@ -64,7 +64,9 @@ public  class  Habilidad {
         TextureRegion region;
         timerAnimacion += Gdx.graphics.getDeltaTime();
         region = animacionA.getKeyFrame(timerAnimacion);
-        batch.draw(region, sprite.getX(), sprite.getY());
+        if(timerAnimacion<1) {
+            batch.draw(region, sprite.getX(), sprite.getY());
+        }
         if(timerAnimacion>tiempo){
             timerAnimacion = 0;
             sprite.setTexture(new Texture(textura));
