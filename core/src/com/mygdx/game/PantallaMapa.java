@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -31,6 +32,13 @@ public class PantallaMapa implements Screen {
     private Texture textura3;
     private Texture textura4;
     private Texture textura5;
+
+    private Texture texturaCara1;
+    private Texture texturaCara2;
+    private Texture texturaCara3;
+    private Texture texturaCara3_1;
+    private Texture texturaCara4;
+
     private Texture texturaBtnTaberna;
     Preferences niveles = Gdx.app.getPreferences("Niveles");
     private java.lang.String cadena1=niveles.getString("1");
@@ -76,6 +84,38 @@ public class PantallaMapa implements Screen {
         textura4 = new Texture("4.png");
         textura5 = new Texture("5.png");
 
+        texturaCara1 = new Texture("cara1.png");
+        texturaCara2 = new Texture("cara2.png");
+        texturaCara3 = new Texture("cara3.png");
+        texturaCara3_1 = new Texture("cara3_1.png");
+        texturaCara4 = new Texture("cara4.png");
+
+
+
+        //Seleccion de heroes
+        TextureRegionDrawable trdCara1 = new TextureRegionDrawable(new TextureRegion(texturaCara1));
+        ImageButton btnCara1 = new ImageButton(trdCara1);
+        btnCara1.setPosition(50,550);
+
+
+        TextureRegionDrawable trdCara2 = new TextureRegionDrawable(new TextureRegion(texturaCara2));
+        ImageButton btnCara2 = new ImageButton(trdCara2);
+        btnCara2.setPosition(50,300);
+
+        TextureRegionDrawable trdCara3 = new TextureRegionDrawable(new TextureRegion(texturaCara3));
+        ImageButton btnCara3 = new ImageButton(trdCara3);
+        //btnCara3.setPosition(350,550);
+
+        TextureRegionDrawable trdCara3_1 = new TextureRegionDrawable(new TextureRegion(texturaCara3_1));
+        ImageButton btnCara3_1 = new ImageButton(trdCara3_1);
+        //btnCara3_1.setPosition(350,550);
+
+        TextureRegionDrawable trdCara4 = new TextureRegionDrawable(new TextureRegion(texturaCara4));
+        ImageButton btnCara4 = new ImageButton(trdCara4);
+        btnCara4.setPosition(350,300);
+
+
+        //Fin seleccion de heroes
 
         TextureRegionDrawable trd5 = new TextureRegionDrawable(new TextureRegion(textura5));
         ImageButton btn5 = new ImageButton(trd5);
@@ -161,6 +201,38 @@ public class PantallaMapa implements Screen {
             }
         });
         */
+        //listeners seleccion de heroes
+        btnCara1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+            }
+        });
+
+        btnCara2.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+            }
+        });
+
+        btnCara3_1.addListener(new ClickListener(){
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+            }
+        });
+
+        btnCara3.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+
+            }
+        });
+
+        //fin listeners seleccion de heroes
 
         Image imgFondo = new Image(texturaFondo);
 
