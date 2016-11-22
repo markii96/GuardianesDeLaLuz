@@ -384,7 +384,20 @@ public class PantallaJuego implements Screen, InputProcessor {
             }
             if(!habilidadesUsadas.isEmpty()){
                 for (int k=0;k<habilidadesUsadas.size();k++){
-                    if (heroeHabilidad.get(k).getObjetivo()!=null) {
+                    if(habilidadesUsadas.get(k).getId().equals("6")){
+
+                        for (int l = 0; l<nivel.getHeroes().size();l++){
+                            if(!habilidadesUsadas.isEmpty()&& k<habilidadesUsadas.size()) {
+                                habilidadesUsadas.get(k).getSprite().setPosition(nivel.getHeroes().get(l).getSprite().getX(), nivel.getHeroes().get(l).getSprite().getY());
+                                habilidadesUsadas.get(k).draw(batch, habilidadesUsadas, heroeHabilidad, k);
+                            }
+
+                        }
+
+                    }else if(habilidadesUsadas.get(k).getId().equals("2")){
+                        habilidadesUsadas.get(k).getSprite().setPosition(heroeHabilidad.get(k).getSprite().getX(), heroeHabilidad.get(k).getSprite().getY());
+                        habilidadesUsadas.get(k).draw(batch, habilidadesUsadas, heroeHabilidad, k);
+                    }else if (heroeHabilidad.get(k).getObjetivo()!=null) {
                         habilidadesUsadas.get(k).getSprite().setPosition(heroeHabilidad.get(k).getObjetivo().getSprite().getX(), heroeHabilidad.get(k).getObjetivo().getSprite().getY());
                         habilidadesUsadas.get(k).draw(batch, habilidadesUsadas, heroeHabilidad, k);
                     }
@@ -599,18 +612,22 @@ public class PantallaJuego implements Screen, InputProcessor {
                         }
                         break;
                     case 2:
-                        if(heroeSel.getObjetivo()!=null){
-                            heroeSel.setDanoFisico(heroeSel.getDanoFisico()+30);
-                            habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
-                            heroeHabilidad.add(heroeSel);
-                        }
+                        heroeSel.setDanoFisico(heroeSel.getDanoFisico()+30);
+                        habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
+                        heroeHabilidad.add(heroeSel);
                         break;
                     case 6:
-                        if(heroeSel.getObjetivo()!=null){
-                            heroeSel.setVitalidad(heroeSel.getVitalidad()+30);
-                            habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
-                            heroeHabilidad.add(heroeSel);
+                        for(int k =0;k<nivel.getHeroes().size();k++){
+                            if(nivel.getHeroes().get(k).getMaxVitalidad()>(nivel.getHeroes().get(k).getVitalidad()+30)){//heroeSel.getObjetivo()!=null
+                                nivel.getHeroes().get(k).setVitalidad(nivel.getHeroes().get(k).getVitalidad()+30);
+                            }else{
+                                nivel.getHeroes().get(k).setVitalidad(nivel.getHeroes().get(k).getMaxVitalidad());
+
+                            }
                         }
+                        habilidadesUsadas.add(heroeSel.getHabilidades().get(i));
+                        heroeHabilidad.add(heroeSel);
+
                         break;
 
                 }

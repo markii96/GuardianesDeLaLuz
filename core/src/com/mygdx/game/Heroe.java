@@ -91,6 +91,15 @@ public class Heroe extends seudoSprite {
     // animación atacando
     private Texture texturaAtacando;
     private Animation animacionAtaque;
+
+    public int getMaxVitalidad() {
+        return maxVitalidad;
+    }
+
+    public void setMaxVitalidad(int maxVitalidad) {
+        this.maxVitalidad = maxVitalidad;
+    }
+
     public Heroe(String id, int x, int y) {
 
         super(y);
@@ -134,7 +143,6 @@ public class Heroe extends seudoSprite {
             String dh = h.getString(ids.get(i).toString());
             String[] dhs = dh.split("-");
             habilidades.add(new Habilidad(dhs[0],dhs[1],Integer.parseInt(dhs[2]),dhs[3],Integer.parseInt(dhs[4]),dhs[5],dhs[6],Integer.parseInt(dhs[7]),dhs[8]));
-            System.out.print(ids.get(i).toString());
         }
 
 
@@ -184,7 +192,7 @@ public class Heroe extends seudoSprite {
             case PARADO:break;
             case CAMINANDO:
                 if(objetivo!= null) {
-                    xFinal = objetivo.getSprite().getX();
+                    xFinal = objetivo.getSprite().getX()-5;
                     yFinal = objetivo.getSprite().getY();
                 }
                 if(sprite.getX() >= xFinal) sprite.setX(sprite.getX()-velocidadMovimiento);

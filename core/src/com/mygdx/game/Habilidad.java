@@ -67,9 +67,13 @@ public  class  Habilidad {
         batch.draw(region, sprite.getX(), sprite.getY());
         if(timerAnimacion>tiempo){
             timerAnimacion = 0;
+            sprite.setTexture(new Texture(textura));
+            if(id.equals("2")){
+                heroeHabilidad.get(i).setDanoFisico(heroeHabilidad.get(i).getDanoFisico()-30);
+            }
             habilidadUsada.remove(i);
             heroeHabilidad.remove(i);
-            sprite.setTexture(new Texture(textura));
+
         }
     }
 
