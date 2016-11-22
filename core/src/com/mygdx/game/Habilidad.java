@@ -65,7 +65,7 @@ public  class  Habilidad {
         timerAnimacion += Gdx.graphics.getDeltaTime();
         region = animacionA.getKeyFrame(timerAnimacion);
         batch.draw(region, sprite.getX(), sprite.getY());
-        if(timerAnimacion>1){
+        if(timerAnimacion>tiempo){
             timerAnimacion = 0;
             habilidadUsada.remove(i);
             heroeHabilidad.remove(i);
