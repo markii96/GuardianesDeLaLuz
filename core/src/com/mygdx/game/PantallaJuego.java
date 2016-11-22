@@ -403,16 +403,18 @@ public class PantallaJuego implements Screen, InputProcessor {
             }else{
                 texturaPerdiste = new Texture("ganaste.png");
                 Preferences p = Gdx.app.getPreferences("Niveles");
-                String dato = p.getString((nivel.getId()+1)+"");
-                String respuesta ="";
-                String[] datos = dato.split("-");
-                datos[6] = "1";
-                for (int i =0; i<datos.length;i++){
-                    respuesta += datos[i]+"-";
+                if (nivel.getId() != 5) {
+                    String dato = p.getString((nivel.getId() + 1) + "");
+                    String respuesta = "";
+                    String[] datos = dato.split("-");
+                    datos[6] = "1";
+                    for (int i = 0; i < datos.length; i++) {
+                        respuesta += datos[i] + "-";
+                    }
+                    p.putString((nivel.getId()+1)+"",respuesta);
+                    p.flush();
+                    batch.draw(texturaPerdiste, 400, 200);
                 }
-                p.putString((nivel.getId()+1)+"",respuesta);
-                p.flush();
-                batch.draw(texturaPerdiste, 400, 200);
             }
             Texture back = new Texture("atras.png");
 
