@@ -22,8 +22,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 //solo es una de las pantallas de la aplicacion
 public class MenuPrincipal implements Screen {
-	private static final int ANCHO_MUNDO = 	1280 ;
-	private static final int ALTO_MUNDO = 	800 ;
+	private  final int ANCHO_MUNDO = 	1280 ;
+	private  final int ALTO_MUNDO = 	800 ;
 	private final Juego juego;
     private Stage escena;
 	private Texture texturaFondo;
