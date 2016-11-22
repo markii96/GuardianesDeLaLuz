@@ -177,8 +177,8 @@ public class PantallaJuego implements Screen, InputProcessor {
         botonPause= new Sprite(new Texture("pause.png"));
 
         btnPausa = new Sprite(new Texture("pausa.png"));
-        btnPausa.setX(1100);
-        btnPausa.setY(545);
+        btnPausa.setX(1150);
+        btnPausa.setY(610);
 
         btnSalir = new Sprite(new Texture("exit.png"));
         btnSalir.setX(750);
