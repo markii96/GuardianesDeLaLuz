@@ -95,24 +95,24 @@ public class PantallaMapa implements Screen {
         //Seleccion de heroes
         TextureRegionDrawable trdCara1 = new TextureRegionDrawable(new TextureRegion(texturaCara1));
         ImageButton btnCara1 = new ImageButton(trdCara1);
-        btnCara1.setPosition(50,550);
+        btnCara1.setSize(96,96);
+        btnCara1.setPosition(300,30);
 
 
         TextureRegionDrawable trdCara2 = new TextureRegionDrawable(new TextureRegion(texturaCara2));
         ImageButton btnCara2 = new ImageButton(trdCara2);
-        btnCara2.setPosition(50,300);
+        btnCara2.setSize(96,96);
+        btnCara2.setPosition(425,30);
 
         TextureRegionDrawable trdCara3 = new TextureRegionDrawable(new TextureRegion(texturaCara3));
         ImageButton btnCara3 = new ImageButton(trdCara3);
-        //btnCara3.setPosition(350,550);
-
-        TextureRegionDrawable trdCara3_1 = new TextureRegionDrawable(new TextureRegion(texturaCara3_1));
-        ImageButton btnCara3_1 = new ImageButton(trdCara3_1);
-        //btnCara3_1.setPosition(350,550);
+        btnCara3.setSize(96,96);
+        btnCara3.setPosition(550,30);
 
         TextureRegionDrawable trdCara4 = new TextureRegionDrawable(new TextureRegion(texturaCara4));
         ImageButton btnCara4 = new ImageButton(trdCara4);
-        btnCara4.setPosition(350,300);
+        btnCara4.setSize(96,96);
+        btnCara4.setPosition(675,30);
 
 
         //Fin seleccion de heroes
@@ -126,7 +126,7 @@ public class PantallaMapa implements Screen {
 
         TextureRegionDrawable trdBtnTaberna = new TextureRegionDrawable(new TextureRegion(texturaBtnTaberna));
         ImageButton btnTaberna = new ImageButton(trdBtnTaberna);
-        btnTaberna.setPosition(1000,0);
+        btnTaberna.setPosition(1000,20);
         btnTaberna.setScale(1,.8f);
 
 
@@ -216,13 +216,6 @@ public class PantallaMapa implements Screen {
             }
         });
 
-        btnCara3_1.addListener(new ClickListener(){
-
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-
-            }
-        });
 
         btnCara3.addListener(new ClickListener(){
             @Override
@@ -271,7 +264,10 @@ public class PantallaMapa implements Screen {
 
         escena.addActor(btnBack);
         escena.addActor(btnTaberna);
-
+        escena.addActor(btnCara1);
+        escena.addActor(btnCara2);
+        escena.addActor(btnCara3);
+        escena.addActor(btnCara4);
     }
 
     @Override
