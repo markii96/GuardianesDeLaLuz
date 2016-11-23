@@ -33,7 +33,7 @@ public class pantallaSplash implements Screen {
 
         //texto = new Texto1();
 
-        fondo = new Texture("logoTec.jpg");
+        fondo = new Texture("logoTec.png");
         fondoSp = new Sprite(fondo);
         fondoSp.setX(ANCHO_MUNDO/4);
         fondoSp.setY(ALTO_MUNDO/3);
