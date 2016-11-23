@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -19,6 +20,7 @@ public  class  Habilidad {
     private int tiempo;
     private String tipo;
     private int disponibilidad;
+    private String tono;
     private String textura;
     private String animacion;
     private int indice;
@@ -38,13 +40,14 @@ public  class  Habilidad {
     private float timerAnimacion;
     private Texture texturaAnimacion;
 
-    public Habilidad(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice,String texturaReutilizacion) {
+    public Habilidad(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice,String texturaReutilizacion,String tono) {
         this.id = id;
         this.nombre = nombre;
         this.tiempo = tiempo;
         this.tipo = tipo;
         this.disponibilidad = disponibilidad;
         this.textura = textura;
+        this.tono = tono;
 
         this.animacion = animacion;
         this.indice = indice;
@@ -64,8 +67,12 @@ public  class  Habilidad {
         TextureRegion region;
         timerAnimacion += Gdx.graphics.getDeltaTime();
         region = animacionA.getKeyFrame(timerAnimacion);
+        Music music = Gdx.audio.newMusic(Gdx.files.internal(tono));
+        music.setLooping(true);
+
         if(timerAnimacion<1) {
             batch.draw(region, sprite.getX(), sprite.getY());
+            music.play();
         }
         if(timerAnimacion>tiempo){
             timerAnimacion = 0;
@@ -75,6 +82,7 @@ public  class  Habilidad {
             }
             habilidadUsada.remove(i);
             heroeHabilidad.remove(i);
+            music.pause();
 
         }
     }
