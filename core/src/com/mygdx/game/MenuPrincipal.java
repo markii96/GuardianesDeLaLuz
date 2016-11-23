@@ -83,8 +83,8 @@ public class MenuPrincipal implements Screen {
 			preferenciasEnemigos.putString("1", "1-Dhole-500-1-2-5-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");
 			preferenciasEnemigos.putString("2", "2-Azathoth-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
 			preferenciasEnemigos.putString("3", "3-Meatball-350-2-3-4-corto-sus despreciable forma es su castigo, encomendado a defender lo que alguna vez fue tuyo-meatball.png-meatball_caminando.png-346,173-meatball_atacando.png-518,172");
-			preferenciasEnemigos.putString("4", "4-Hidra-450-3-3-4-corto-por llenar-hidra.png-hidra_caminando.png-346,173-hidra_atacando.png-346,173");
-			preferenciasEnemigos.putString("5", "5-Chtulhu-800-5-3-4-corto-por llenar-hidra.png-chtulhu_caminando.png-346,173-chtulhu_atacando.png-346,173");
+			preferenciasEnemigos.putString("4", "4-Hidra-450-3-3-6-corto-por llenar-hidra.png-hidra_caminando.png-346,173-hidra_atacando.png-346,173");
+			preferenciasEnemigos.putString("5", "5-Chtulhu-800-2-3-10-corto-por llenar-hidra.png-chtulhu_caminando.png-346,173-chtulhu_atacando.png-346,173");
 
 			preferenciasEnemigos.flush();
 			preferenciasValidacion.putString("1", "1");

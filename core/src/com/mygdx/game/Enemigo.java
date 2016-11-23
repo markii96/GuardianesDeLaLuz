@@ -95,7 +95,7 @@ public class Enemigo extends seudoSprite{
         // medidas texturas
         String[] medidas = datos[10].split(",");
         medidax = Integer.parseInt(medidas[0])/2;
-        if(id.equals("4")){
+        if(id.equals("4")||id.equals("5")){
             medidax = Integer.parseInt(medidas[0])/3;
         }
         mediday = Integer.parseInt(medidas[1]);
@@ -104,7 +104,7 @@ public class Enemigo extends seudoSprite{
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
         animacion = new Animation(0.25f, texturaPersonaje[0][0],
                 texturaPersonaje[0][1]);
-        if(id.equals("4")){
+        if(id.equals("4")||id.equals("5")){
             animacion = new Animation(0.25f, texturaPersonaje[0][0],
                     texturaPersonaje[0][1],texturaPersonaje[0][2]);
         }
