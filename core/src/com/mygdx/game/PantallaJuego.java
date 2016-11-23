@@ -31,6 +31,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     private Texture texturaHeroe1;
     private Texture texturaHeroe2;
     private Texture texturaHeroe3;
+    private int banderaOro =0;
     private Music music;
     private float[] posicion = new float[2];
     private Texture texturaPerdiste;
@@ -442,7 +443,10 @@ public class PantallaJuego implements Screen, InputProcessor {
                     int sumar = Oro2+guardarOro1;
                     System.out.println(Oro2+ "+"+guardarOro1);
                     oro.putString("1",String.valueOf(sumar));
-                    oro.flush();
+                    if (banderaOro==0) {
+                        oro.flush();
+                        banderaOro = 1;
+                    }
 
 
                     batch.draw(texturaPerdiste, 400, 200);
