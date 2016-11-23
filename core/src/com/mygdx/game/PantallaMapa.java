@@ -313,7 +313,7 @@ public class PantallaMapa implements Screen {
         batch.begin();
 
         texto.mostrarMensaje(batch,"Selecciona a 3 heroes",ANCHO_MUNDO*.23f,ALTO_MUNDO*.18f);
-        texto1.mostrarMensaje(batch,cantidadOro+"",ANCHO_MUNDO*.96f,ALTO_MUNDO*.96f);
+        texto1.mostrarMensaje(batch,cantidadOro+"",ANCHO_MUNDO*.99f,ALTO_MUNDO*.99f);
         //System.out.println(ANCHO_MUNDO*.39f+","+ALTO_MUNDO*.25f);
         //System.out.println(ANCHO_MUNDO*.8f+","+ALTO_MUNDO*.9375f);
 
