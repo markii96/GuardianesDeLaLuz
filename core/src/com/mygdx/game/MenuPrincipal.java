@@ -102,10 +102,8 @@ public class MenuPrincipal implements Screen {
 		Preferencias();
 		cargarTexturas();
 		escena = new Stage();
-
 		//habilitar el manejo de eventos
 		Gdx.input.setInputProcessor(escena);
-		//Gdx.input.setCatchBackKey(true);
 		//calcular ancho y alto de la pantalla fisica
 		//ahora con la pantalla virtual
 		float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();
@@ -255,7 +253,6 @@ public class MenuPrincipal implements Screen {
 	public void dispose () {
 		texturaFondo.dispose();
 		texturaBtnAcercaDe.dispose();
-		//texturaTitulo.dispose();
 		texturaBtnOpciones.dispose();
 		texturaBtnJugar.dispose();
 		music.dispose();

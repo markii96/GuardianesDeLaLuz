@@ -59,16 +59,11 @@ public  class  Habilidad {
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(texturaCompleta.getRegionWidth()/6,texturaCompleta.getRegionHeight());
         animacionA = new Animation(0.16f, texturaPersonaje[0][0],texturaPersonaje[0][1],
                 texturaPersonaje[0][2], texturaPersonaje[0][3],texturaPersonaje[0][4],texturaPersonaje[0][5]);
-        //animacionA.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
     }
 
     public Sound getSoundAttack() {
         return soundAttack;
-    }
-
-    public void setSoundAttack(Sound soundAttack) {
-        this.soundAttack = soundAttack;
     }
 
     public void draw (SpriteBatch batch, ArrayList<Habilidad> habilidadUsada, ArrayList<Heroe> heroeHabilidad, int i) {
@@ -89,12 +84,9 @@ public  class  Habilidad {
             }
             habilidadUsada.remove(i);
             heroeHabilidad.remove(i);
-            //music.pause();
 
         }
     }
-
-
 
     public Texture getTexture() {
         return texture;
@@ -108,64 +100,19 @@ public  class  Habilidad {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getTiempo() {
-        return tiempo;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public int getDisponibilidad() {
-        return disponibilidad;
-    }
-
     public String getTextura() {
         return textura;
-    }
-
-    public String getAnimacion() {
-        return animacion;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setTiempo(int tiempo) {
-        this.tiempo = tiempo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setDisponibilidad(int disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
     public void setTextura(String textura) {
         this.textura = textura;
-    }
-
-    public void setAnimacion(String animacion) {
-        this.animacion = animacion;
     }
 
     public int getIndice() {
         return indice;
     }
-
-    public void setIndice(int indice) {
-        this.indice = indice;
-    }
-
 }

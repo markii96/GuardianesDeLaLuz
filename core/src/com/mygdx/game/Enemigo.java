@@ -289,37 +289,14 @@ public class Enemigo extends seudoSprite{
         return sprite;
     }
 
-    public int[] getPosicionInicial() {
-        return posicionInicial;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
 
     public int getDanoFisico() {
         return danoFisico;
     }
 
-    public String getAlcance() {
-        return alcance;
-    }
-
-    public float getVelocidadAtaque() {
-        return velocidadAtaque;
-    }
-
-
     public int getVitalidad() {
         return vitalidad;
     }
-
-    public float getVelocidadMovimiento() {
-        return velocidadMovimiento;
-    }
-
-
 
     public String getDescripcion() {
         return descripcion;
@@ -333,38 +310,8 @@ public class Enemigo extends seudoSprite{
         this.sprite = sprite;
     }
 
-    public void setPosicionInicial(int[] posicionInicial) {
-        this.posicionInicial = posicionInicial;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-
-    public void setDanoFisico(int danoFisico) {
-        this.danoFisico = danoFisico;
-    }
-
-    public void setAlcance(String alcance) {
-        this.alcance = alcance;
-    }
-
-    public void setVelocidadAtaque(float velocidadAtaque) {
-        this.velocidadAtaque = velocidadAtaque;
-    }
-
-
     public void setVitalidad(int vitalidad) {
         this.vitalidad = vitalidad;
-    }
-
-    public void setVelocidadMovimiento(float velocidadMovimiento) {
-        this.velocidadMovimiento = velocidadMovimiento;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public void setTextura(Texture textura) {

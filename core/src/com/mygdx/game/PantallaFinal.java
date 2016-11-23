@@ -72,7 +72,7 @@ public class PantallaFinal implements Screen {
 
         Gdx.input.setInputProcessor(escena);
 
-        texturaFondo = new Texture("end game.png");
+        texturaFondo = new Texture("end_game.png");
         Image imgFondo = new Image(texturaFondo);
 
         float escalaX = ancho / imgFondo.getWidth();

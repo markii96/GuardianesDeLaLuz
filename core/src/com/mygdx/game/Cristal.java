@@ -61,14 +61,6 @@ public class Cristal extends seudoSprite{
         this.vitalidad = vitalidad;
     }
 
-    public int getArmadura() {
-        return armadura;
-    }
-
-    public void setArmadura(int armadura) {
-        this.armadura = armadura;
-    }
-
     public Texture getTextura() {
         return textura;
     }
@@ -77,18 +69,8 @@ public class Cristal extends seudoSprite{
         this.textura = textura;
     }
 
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
     private enum Estado{
-        DESTRUIDO,
         VIVIR,
-        DAÑADO
     }
     private class Vida {
         private Sprite barraVidaVacia;
