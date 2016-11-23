@@ -61,13 +61,13 @@ public class MenuPrincipal implements Screen {
 			preferenciasHeroes.putString("1","1-Ehtoas-Guerrero-100-0-Corto-2-0-100-2-0-1-1-0-2,6-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png-518,173-glad_atacando.png");
 			preferenciasHeroes.putString("2","2-Althalas-Mago-100-100-Largo-2-0-40-2-0-1-1-0-1,5-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png-346,173-mago_atacando.png");
 			preferenciasHeroes.putString("3","3-Irina-Arquero-70-0-Largo-3-0-50-2-0-1-1-0-3,7-0-Dejó su pueblo para salvar la luz del mundo-arquero_caminando.png-arquero.png-346,173-arquera_atacando.png");
-			preferenciasHeroes.putString("4","4-Robin-Asesino-150-0-Corto-2-0-70-2-0-1-1-0-4,8-1-Asesino a sueldo, un día se encuentra con los guardianes y se une a ellos. Tal vez no es la mejor de sus decisiones pero pone el pan en la mesa-robin_caminando.png-robin.png-288,576-robin_atacando.png");
+			preferenciasHeroes.putString("4","4-Robin-Asesino-150-0-Corto-2-0-70-2-0-1-1-0-4,8-1-Asesino a sueldo, un día se encuentra con los guardianes y se une a ellos. Tal vez no es la mejor de sus decisiones pero pone el pan en la mesa-robin_caminando.png-robin.png-288,462-robin_atacando.png");
 			preferenciasHeroes.flush();
-			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-7");
+			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-4-100-1000-1-campo.png-7");
 			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-0-ciudad.png-9");
 			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
 			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
-			preferenciasNiveles.putString("5","5-Volcan-Por fin, la base dle enemigo, la lucha por la tierra comienza ahora-1,2,3-250-1800-0-volcan.png-14");
+			preferenciasNiveles.putString("5","5-Volcan-Por fin, la base dle enemigo, la lucha por la tierra comienza ahora-1,2,3,4-250-1800-0-volcan.png-17");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-70-bola_fuego_reu.png");
 			preferenciasHabilidades.putString("2","2-Dano-4-uno-1-aumentodano.png-dano_aumentado_anim.png-30-dano_aumentado_reu.png");
@@ -81,7 +81,8 @@ public class MenuPrincipal implements Screen {
 			preferenciasHabilidades.flush();
 			preferenciasEnemigos.putString("1","1-Dhole-500-1-2-5-corto-uno de los peones de Cthulhu, enviado a encontrar los cristales de luz-crawler.png-crawler_caminando.png-346,87-crawler_atacando.png-518,86");
 			preferenciasEnemigos.putString("2","2-Azathoth-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
-			preferenciasEnemigos.putString("3","3-Meatball-250-2-3-4-corto-sus despreciable forma es su castigo, encomendado a defender lo que alguna vez fue tuyo-meatball.png-meatball_caminando.png-346,173-meatball_atacando.png-518,172");
+			preferenciasEnemigos.putString("3","3-Meatball-350-2-3-4-corto-sus despreciable forma es su castigo, encomendado a defender lo que alguna vez fue tuyo-meatball.png-meatball_caminando.png-346,173-meatball_atacando.png-518,172");
+			preferenciasEnemigos.putString("4","4-Hidra-450-3-3-4-corto-por llenar-hidra.png-hidra_caminando.png-346,173-hidra_atacando.png-518,172");
 
 			preferenciasEnemigos.flush();
 			preferenciasValidacion.putString("1", "1");
