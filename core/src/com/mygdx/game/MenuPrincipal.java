@@ -104,7 +104,7 @@ public class MenuPrincipal implements Screen {
 
 		//habilitar el manejo de eventos
 		Gdx.input.setInputProcessor(escena);
-
+		//Gdx.input.setCatchBackKey(true);
 		//calcular ancho y alto de la pantalla fisica
 		//ahora con la pantalla virtual
 		float ancho = ANCHO_MUNDO;//Gdx.graphics.getWidth();

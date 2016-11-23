@@ -154,7 +154,7 @@ public class PantallaMapa implements Screen {
         ImageButton btn4 = new ImageButton(trd4);
         btn4.setPosition(950,500);
 
-
+        Gdx.input.setCatchBackKey(true);
         escena = new Stage();
         Gdx.input.setInputProcessor(escena);
         //listeners seleccion de heroes
