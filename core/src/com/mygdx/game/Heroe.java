@@ -271,12 +271,6 @@ public class Heroe extends seudoSprite {
     public boolean contiene(Rectangle rectangulo){
         return sprite.getBoundingRectangle().overlaps(rectangulo);
     }
-
-    public void mover(float x, float y){
-
-    }
-
-
     public Estado getEstado() {
         return estado;
     }
@@ -312,60 +306,13 @@ public class Heroe extends seudoSprite {
         return yFinal;
     }
 
-    public float[] getPosicion() {
-        return posicion;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getClase() {
-        return clase;
-    }
-
     public int getDanoFisico() {
         return danoFisico;
     }
 
-    public int getDanoMagico() {
-        return danoMagico;
-    }
-
-    public String getAlcance() {
-        return alcance;
-    }
-
-    public float getVelocidadAatque() {
-        return velocidadAatque;
-    }
-
-    public int getCuracion() {
-        return curacion;
-    }
 
     public int getVitalidad() {
         return vitalidad;
-    }
-
-    public float getVelocidadMovimiento() {
-        return velocidadMovimiento;
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public int getNivel() {
-        return nivel;
-    }
-
-    public int getArmadura() {
-        return armadura;
-    }
-
-    public int getPrecio() {
-        return precio;
     }
 
     public ArrayList<Habilidad> getHabilidades() {
@@ -376,41 +323,15 @@ public class Heroe extends seudoSprite {
         return disponibilidad;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
     public Texture getTextura() {
         return textura;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
 
-    public void setPosicion(float[] posicionInicial) {
-        this.posicion = posicionInicial;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setClase(String clase) {
-        this.clase = clase;
-    }
-
-    public int getMediday() {
-        return mediday;
-    }
 
     public int getMedidax() {
         return medidax;
@@ -420,57 +341,13 @@ public class Heroe extends seudoSprite {
         this.danoFisico = danoFisico;
     }
 
-    public void setDanoMagico(int danoMagico) {
-        this.danoMagico = danoMagico;
-    }
-
-    public void setAlcance(String alcance) {
-        this.alcance = alcance;
-    }
-
-    public void setVelocidadAatque(float velocidadAatque) {
-        this.velocidadAatque = velocidadAatque;
-    }
-
-    public void setCuracion(int curacion) {
-        this.curacion = curacion;
-    }
 
     public void setVitalidad(int vitalidad) {
         this.vitalidad = vitalidad;
     }
 
-    public void setVelocidadMovimiento(float velocidadMovimiento) {
-        this.velocidadMovimiento = velocidadMovimiento;
-    }
-
-   // public void setExp(int exp) {
-    //    this.exp = exp;
-    //}
-
 
     public void setyFinal(float yFinal1){ this.yFinal = yFinal1;}
-
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
-    }
-
-    public void setArmadura(int armadura) {
-        this.armadura = armadura;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-
-    public void setDisponibilidad(Boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public void setTextura(Texture textura) {
         this.textura = textura;

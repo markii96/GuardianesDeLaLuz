@@ -49,7 +49,6 @@ public class MenuPrincipal implements Screen {
 
 
 	public void Preferencias(){
-		/*Gdx.app.log("PreferenciasLeidas",p.getString("1"));*/
 
 		Preferences preferenciasNiveles = Gdx.app.getPreferences("Niveles");
 		Preferences preferenciasValidacion = Gdx.app.getPreferences("Validacion");
@@ -94,8 +93,6 @@ public class MenuPrincipal implements Screen {
 			preferenciasOro.putString("1", "0");
 			preferenciasOro.flush();
 		}
-
-			//Gdx.app.log("lol",p.getString("2").toString());
 
 		validacion = preferenciasValidacion.getString("2");
 	}
