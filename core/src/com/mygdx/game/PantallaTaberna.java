@@ -48,7 +48,7 @@ public class PantallaTaberna implements Screen {
     private Stage escena;
 
     private int idTexto=0;
-    private int costoArquera;
+    private int costoArquera = 3000;
 
 
     java.lang.String cadena = heroes.getString("3");
@@ -146,14 +146,19 @@ public class PantallaTaberna implements Screen {
                 lista[15] = "1";
                 java.lang.String regresa = "";
 
-                for(int i =0; i<lista.length;i++){
-                    regresa+=lista[i]+"-";
+                java.lang.String oroTotal = oro.getString("1");
+                int oroTotal1 = Integer.valueOf(oroTotal);
+
+                if(oroTotal1>costoArquera) {
+
+                    for (int i = 0; i < lista.length; i++) {
+                        regresa += lista[i] + "-";
+                    }
+                    heroes.putString("3", regresa);
+                    heroes.flush();
+                    juego.setScreen(new PantallaTaberna(juego));
+
                 }
-                heroes.putString("3",regresa);
-                heroes.flush();
-                juego.setScreen(new PantallaTaberna(juego));
-
-
             }
         });
 
