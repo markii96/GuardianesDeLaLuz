@@ -75,13 +75,13 @@ public class PantallaJuego implements Screen, InputProcessor {
     private ArrayList<Habilidad> habilidadesUsadas = new ArrayList<Habilidad>();
     private ArrayList<Heroe> heroeHabilidad = new ArrayList<Heroe>();
 
-    public PantallaJuego(Juego juego,String nivelId) {
+    public PantallaJuego(Juego juego,String nivelId,ArrayList<String> idHeroes) {
 
 
         this.juego = juego;
-        heroesId[0]="1";
-        heroesId[1]="2";
-        heroesId[2]="3";
+        for (int i = 0; i < idHeroes.size(); i++) {
+            heroesId[i]= idHeroes.get(i);
+        }
 
         this.nivel = new Nivel(nivelId,heroesId);
         this.limiteEnemigos = nivel.getId()+1;

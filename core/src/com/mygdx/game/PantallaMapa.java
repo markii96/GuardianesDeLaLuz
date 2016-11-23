@@ -14,9 +14,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sun.org.apache.xpath.internal.operations.String;
+//import com.sun.org.apache.xpath.internal.operations.String;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by marco on 17/11/2016.
@@ -32,12 +36,13 @@ public class PantallaMapa implements Screen {
     private Texture textura3;
     private Texture textura4;
     private Texture textura5;
-
+    /*
     private Texture texturaCara1;
     private Texture texturaCara2;
     private Texture texturaCara3;
     private Texture texturaCara3_1;
     private Texture texturaCara4;
+    */
 
     private Texture texturaBtnTaberna;
     Preferences niveles = Gdx.app.getPreferences("Niveles");
@@ -57,9 +62,14 @@ public class PantallaMapa implements Screen {
 
 
 
-
-
-
+    private String lineaHeroe;
+    private String[] datosHeroe;
+    private ArrayList<String> idHeroes = new ArrayList<String>();
+    private ArrayList<String> heroesSeleccionados = new ArrayList<String>();
+    private ArrayList<ImageButton> botonesHeroes =new ArrayList<ImageButton>();
+    private ArrayList<Image> flechas = new ArrayList<Image>();
+    private int cont;
+    private int posicion=0;
     public PantallaMapa(Juego juego){
         this.juego = juego;
     }
@@ -84,38 +94,36 @@ public class PantallaMapa implements Screen {
         textura4 = new Texture("4.png");
         textura5 = new Texture("5.png");
 
+        //seleccion de Heroes
+        /*
         texturaCara1 = new Texture("cara1.png");
         texturaCara2 = new Texture("cara2.png");
         texturaCara3 = new Texture("cara3.png");
-        texturaCara3_1 = new Texture("cara3_1.png");
         texturaCara4 = new Texture("cara4.png");
+        */
+        Preferences p = Gdx.app.getPreferences("Heroes");
 
+        Map heroes = p.get();
+        int pos = 0;
+        float xInicial =300;
+        float yInicial = 30;
+        for(int j = 0;j<heroes.size();j++){
+            String idHeroe = (j+1)+"";
+            lineaHeroe = heroes.get(idHeroe).toString();
+            datosHeroe = lineaHeroe.split("-");
+            if(datosHeroe[15].equals("1")){
+                idHeroes.add(idHeroe);
+                TextureRegionDrawable trdCara1 = new TextureRegionDrawable(new TextureRegion(new Texture("cara"+(j+1)+".png")));
+                botonesHeroes.add( new ImageButton(trdCara1));
+                botonesHeroes.get(pos).setSize(96,96);
+                botonesHeroes.get(pos).setPosition(xInicial,yInicial);
+                xInicial +=125;
+                pos++;
 
+            }
 
-        //Seleccion de heroes
-        TextureRegionDrawable trdCara1 = new TextureRegionDrawable(new TextureRegion(texturaCara1));
-        ImageButton btnCara1 = new ImageButton(trdCara1);
-        btnCara1.setSize(96,96);
-        btnCara1.setPosition(300,30);
-
-
-        TextureRegionDrawable trdCara2 = new TextureRegionDrawable(new TextureRegion(texturaCara2));
-        ImageButton btnCara2 = new ImageButton(trdCara2);
-        btnCara2.setSize(96,96);
-        btnCara2.setPosition(425,30);
-
-        TextureRegionDrawable trdCara3 = new TextureRegionDrawable(new TextureRegion(texturaCara3));
-        ImageButton btnCara3 = new ImageButton(trdCara3);
-        btnCara3.setSize(96,96);
-        btnCara3.setPosition(550,30);
-
-        TextureRegionDrawable trdCara4 = new TextureRegionDrawable(new TextureRegion(texturaCara4));
-        ImageButton btnCara4 = new ImageButton(trdCara4);
-        btnCara4.setSize(96,96);
-        btnCara4.setPosition(675,30);
-
-
-        //Fin seleccion de heroes
+        }
+        //fin seleccion de heroes
 
         TextureRegionDrawable trd5 = new TextureRegionDrawable(new TextureRegion(textura5));
         ImageButton btn5 = new ImageButton(trd5);
@@ -149,6 +157,30 @@ public class PantallaMapa implements Screen {
 
         escena = new Stage();
         Gdx.input.setInputProcessor(escena);
+        //listeners seleccion de heroes
+
+        for(int i=0;i<botonesHeroes.size();i++){
+            botonesHeroes.get(i).addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    for (int z = 0; z < botonesHeroes.size(); z++) {
+                        if(botonesHeroes.get(z).isPressed()){
+                            if(heroesSeleccionados.size()<3) {
+                                if(!heroesSeleccionados.contains(idHeroes.get(z))) {
+                                    heroesSeleccionados.add(idHeroes.get(z));
+                                    flechas.add(new Image(new Texture("flechaSeleccion.png")));
+                                    flechas.get(posicion).setPosition(botonesHeroes.get(z).getX(), botonesHeroes.get(z).getY() + (botonesHeroes.get(z).getHeight() + 10));
+                                    escena.addActor(flechas.get(posicion));
+                                    posicion++;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        //fin listeners seleccion de heroes
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -168,29 +200,34 @@ public class PantallaMapa implements Screen {
         btn1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if(heroesSeleccionados.size()==3){
+                    juego.setScreen(new PantallaJuego(juego,"1",heroesSeleccionados));
+                }
 
-                juego.setScreen(new PantallaJuego(juego,"1"));
             }
         });
         btn2.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
-                juego.setScreen(new PantallaJuego(juego,"2"));
+                if(heroesSeleccionados.size()==3){
+                    juego.setScreen(new PantallaJuego(juego,"2",heroesSeleccionados));
+                }
             }
         });
         btn3.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
-                juego.setScreen(new PantallaJuego(juego,"3"));
+                if(heroesSeleccionados.size()==3){
+                    juego.setScreen(new PantallaJuego(juego,"3",heroesSeleccionados));
+                }
             }
         });
         btn4.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
-                juego.setScreen(new PantallaJuego(juego,"4"));
+                if(heroesSeleccionados.size()==4){
+                    juego.setScreen(new PantallaJuego(juego,"1",heroesSeleccionados));
+                }
             }
         });
         /*
@@ -201,31 +238,7 @@ public class PantallaMapa implements Screen {
             }
         });
         */
-        //listeners seleccion de heroes
-        btnCara1.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
 
-            }
-        });
-
-        btnCara2.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-
-            }
-        });
-
-
-        btnCara3.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-
-
-            }
-        });
-
-        //fin listeners seleccion de heroes
 
         Image imgFondo = new Image(texturaFondo);
 
@@ -264,10 +277,10 @@ public class PantallaMapa implements Screen {
 
         escena.addActor(btnBack);
         escena.addActor(btnTaberna);
-        escena.addActor(btnCara1);
-        escena.addActor(btnCara2);
-        escena.addActor(btnCara3);
-        escena.addActor(btnCara4);
+        for(int i =0;i<botonesHeroes.size();i++){
+            escena.addActor(botonesHeroes.get(i));
+        }
+
     }
 
     @Override

@@ -67,6 +67,7 @@ public class MenuPrincipal implements Screen {
 			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-0-ciudad.png-9");
 			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
 			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
+			preferenciasNiveles.putString("5","5-Volcan-Por fin, la base dle enemigo, la lucha por la tierra comienza ahora-1,2,3-250-1800-0-volcan.png-14");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-70-bola_fuego_reu.png");
 			preferenciasHabilidades.putString("2","2-Dano-4-uno-1-aumentodano.png-dano_aumentado_anim.png-30-dano_aumentado_reu.png");
