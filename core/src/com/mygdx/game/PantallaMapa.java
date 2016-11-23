@@ -40,7 +40,8 @@ public class PantallaMapa implements Screen {
 
     private Texture texturaMoneda;
 
-    private Texto1 texto;
+    private Texto texto;
+    private Texto1 texto1;
     /*
     private Texture texturaCara1;
     private Texture texturaCara2;
@@ -84,7 +85,8 @@ public class PantallaMapa implements Screen {
     @Override
     public void show() {
 
-        texto = new Texto1();
+        texto = new Texto();
+        texto1 = new Texto1();
         batch = new SpriteBatch();
 
         camara = new OrthographicCamera(ANCHO_MUNDO,ALTO_MUNDO);
@@ -106,7 +108,7 @@ public class PantallaMapa implements Screen {
         texturaMoneda = new Texture("moneda.png");
 
         Image imgMoneda = new Image(texturaMoneda);
-        imgMoneda.setPosition(875,650);
+        imgMoneda.setPosition(950,650);
 
         Preferences p = Gdx.app.getPreferences("Heroes");
 
@@ -142,7 +144,7 @@ public class PantallaMapa implements Screen {
         TextureRegionDrawable trdBtnTaberna = new TextureRegionDrawable(new TextureRegion(texturaBtnTaberna));
         ImageButton btnTaberna = new ImageButton(trdBtnTaberna);
         btnTaberna.setPosition(1000,20);
-        btnTaberna.setScale(1,.8f);
+        btnTaberna.setScale(1,.7f);
 
 
         TextureRegionDrawable trd1 = new TextureRegionDrawable(new TextureRegion(textura1));
@@ -162,8 +164,8 @@ public class PantallaMapa implements Screen {
         btn4.setPosition(950,500);
 
         Gdx.input.setCatchBackKey(true);
-        escena = new Stage();
-        Gdx.input.setInputProcessor(escena);
+
+
         //listeners seleccion de heroes
 
         for(int i=0;i<botonesHeroes.size();i++){
@@ -186,6 +188,8 @@ public class PantallaMapa implements Screen {
                 }
             });
         }
+
+        escena = new Stage();
 
         //fin listeners seleccion de heroes
         btnBack.addListener(new ClickListener(){
@@ -247,7 +251,7 @@ public class PantallaMapa implements Screen {
             }
         });
 
-
+        Gdx.input.setInputProcessor(escena);
 
         Image imgFondo = new Image(texturaFondo);
 
@@ -312,13 +316,19 @@ public class PantallaMapa implements Screen {
 
         batch.begin();
 
-        texto.mostrarMensaje(batch,String.valueOf(cantidadOro),650,450);
+        texto.mostrarMensaje(batch,"Selecciona a 3 heroes",ANCHO_MUNDO*.39f,ALTO_MUNDO*.25f);
+        texto1.mostrarMensaje(batch,String.valueOf(cantidadOro),ANCHO_MUNDO*.8f,ALTO_MUNDO*.9375f);
+
+        //System.out.println(ANCHO_MUNDO*.39f+","+ALTO_MUNDO*.25f);
+        //System.out.println(ANCHO_MUNDO*.8f+","+ALTO_MUNDO*.9375f);
+
 
         batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
+
         vista.update(width, height);
     }
 

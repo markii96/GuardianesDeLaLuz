@@ -26,6 +26,7 @@ public class PantallaTaberna implements Screen {
 
     private Juego juego;
     Preferences heroes = Gdx.app.getPreferences("Heroes");
+    Preferences oro = Gdx.app.getPreferences("Oro");
     //private int id;
 
     private Texture texturaFondo;
@@ -47,6 +48,7 @@ public class PantallaTaberna implements Screen {
     private Stage escena;
 
     private int idTexto=0;
+    private int costoArquera;
 
 
     java.lang.String cadena = heroes.getString("3");
@@ -99,7 +101,8 @@ public class PantallaTaberna implements Screen {
 
         TextureRegionDrawable trdBtnMejorar = new TextureRegionDrawable(new TextureRegion(texturaBtnMejorar));
         final ImageButton btnMejorar = new ImageButton(trdBtnMejorar);
-        btnMejorar.setPosition(900,0);
+        btnMejorar.setPosition(1000,0);
+        btnMejorar.setScale(1,.8f);
 
         TextureRegionDrawable trdBtnComprar = new TextureRegionDrawable(new TextureRegion(texturaComprar));
         final ImageButton btnComprar = new ImageButton(trdBtnComprar);
@@ -168,7 +171,7 @@ public class PantallaTaberna implements Screen {
                 btnMejorar.setPosition(900,0);
                 btnComprar.setPosition(2000,2000);
                 idTexto = 1;
-                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.3f);
                 imagenHeroe = new Sprite(new Texture("heroe1.png"));
                 escena.addActor(btnMejorar);
             }
@@ -180,7 +183,7 @@ public class PantallaTaberna implements Screen {
                 btnMejorar.setPosition(900,0);
                 btnComprar.setPosition(2000,2000);
                 idTexto = 2;
-                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.3f);
                 imagenHeroe = new Sprite(new Texture("heroe2.png"));
                 escena.addActor(btnMejorar);
             }
@@ -191,7 +194,7 @@ public class PantallaTaberna implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 btnComprar.setPosition(900,0);
-                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.3f);
                 imagenHeroe = new Sprite(new Texture("heroe3_1.png"));
                 idTexto=5;
                 btnMejorar.setPosition(2000,2000);
@@ -206,7 +209,7 @@ public class PantallaTaberna implements Screen {
                 btnComprar.setPosition(2000,2000);
                 btnMejorar.setPosition(900,0);
                 idTexto = 3;
-                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.3f);
 
                     imagenHeroe = new Sprite(new Texture("heroe3.png"));
                     escena.addActor(btnMejorar);
@@ -229,7 +232,7 @@ public class PantallaTaberna implements Screen {
                 btnComprar.setPosition(2000,2000);
                 btnMejorar.setPosition(900,0);
                 idTexto = 4;
-                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.3f);
                 imagenHeroe = new Sprite(new Texture("heroe4.png"));
                 escena.addActor(btnMejorar);
             }
@@ -287,7 +290,7 @@ public class PantallaTaberna implements Screen {
         imagenHeroe.setScale(.6f);
 
         imagenHeroe.setX(ANCHO_MUNDO*.7f);
-        imagenHeroe.setY(ALTO_MUNDO*.8f);
+        imagenHeroe.setY(ALTO_MUNDO*.3f);
         imagenHeroe.draw(batch);
 
 

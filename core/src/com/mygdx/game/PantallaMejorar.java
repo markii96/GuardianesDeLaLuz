@@ -363,29 +363,29 @@ public class PantallaMejorar implements Screen {
 
         if(id==1){
 
-            texto.mostrarMensaje(batch,String.valueOf(costoFisico),300,320);
-            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+            texto.mostrarMensaje(batch,String.valueOf(costoFisico),450,350);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),450,500);
 
         }
 
         if(id==2){
 
-            texto.mostrarMensaje(batch,String.valueOf(costoMagico),300,320);
-            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+            texto.mostrarMensaje(batch,String.valueOf(costoMagico),450,350);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),450,500);
 
         }
 
         if(id==3){
 
-            texto.mostrarMensaje(batch,String.valueOf(costoFisico),300,320);
-            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+            texto.mostrarMensaje(batch,String.valueOf(costoFisico),450,350);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),450,500);
 
         }
 
         if(id==4){
 
-            texto.mostrarMensaje(batch,String.valueOf(costoFisico),300,320);
-            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),300,220);
+            texto.mostrarMensaje(batch,String.valueOf(costoFisico),450,350);
+            texto.mostrarMensaje(batch,String.valueOf(costoVitalidad),450,500);
 
         }
 
