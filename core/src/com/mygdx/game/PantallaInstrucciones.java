@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
 
 /**
  * Created by marco on 17/11/2016.
@@ -44,7 +43,7 @@ public class PantallaInstrucciones implements Screen {
     private Texture texturaHeroe;
     private Texture texturaMano;
 
-    //public abstract Heroe heroe("1",1,1);
+
 
     //CAMARA virtual
     private OrthographicCamera camara;
@@ -86,7 +85,6 @@ public class PantallaInstrucciones implements Screen {
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
         ImageButton btnBack = new ImageButton(trdBtnBack);
 
-        //Gdx.input.setInputProcessor();
 
         escena = new Stage();
 

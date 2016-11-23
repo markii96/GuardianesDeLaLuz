@@ -4,23 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 
 
 public class PantallaJuego implements Screen, InputProcessor {
@@ -39,7 +34,6 @@ public class PantallaJuego implements Screen, InputProcessor {
     Preferences nivelPref = Gdx.app.getPreferences("Niveles");
     Preferences oro = Gdx.app.getPreferences("Oro");
 
-    String[] cadenaNivel;
 
     private SpriteBatch batch;
 
@@ -107,7 +101,6 @@ public class PantallaJuego implements Screen, InputProcessor {
                 objetivo = nivel.getHeroes().get(ran3-1);
                 break;
         }
-        //Gdx.app.log("Create",ran3+"");
 
         this.enemigos[0] = new Enemigo(nivel.getEnemigos()[ran], 900, ran2, objetivo);
         cont+=1;

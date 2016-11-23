@@ -42,13 +42,6 @@ public class PantallaMapa implements Screen {
 
     private Texto texto;
     private Texto1 texto1;
-    /*
-    private Texture texturaCara1;
-    private Texture texturaCara2;
-    private Texture texturaCara3;
-    private Texture texturaCara3_1;
-    private Texture texturaCara4;
-    */
 
     private Texture texturaBtnTaberna;
     Preferences niveles = Gdx.app.getPreferences("Niveles");
@@ -267,17 +260,12 @@ public class PantallaMapa implements Screen {
         java.lang.String[] lista5 = cadena5.split("-");
 
 
-
-
-
         int num1= Integer.parseInt(lista1[6]);
         int num2= Integer.parseInt(lista2[6]);
         int num3= Integer.parseInt(lista3[6]);
         int num4= Integer.parseInt(lista4[6]);
 
         int num5= Integer.parseInt(lista5[6]);
-
-
 
 
         if(num1==1)
@@ -314,9 +302,6 @@ public class PantallaMapa implements Screen {
 
         texto.mostrarMensaje(batch,"Selecciona a 3 heroes",ANCHO_MUNDO*.23f,ALTO_MUNDO*.18f);
         texto1.mostrarMensaje(batch,cantidadOro+"",ANCHO_MUNDO*.8f,ALTO_MUNDO*.9375f);
-        //System.out.println(ANCHO_MUNDO*.39f+","+ALTO_MUNDO*.25f);
-        //System.out.println(ANCHO_MUNDO*.8f+","+ALTO_MUNDO*.9375f);
-
 
         batch.end();
     }
