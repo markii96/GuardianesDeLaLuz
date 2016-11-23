@@ -57,7 +57,7 @@ public class MenuPrincipal implements Screen {
 		Preferences preferenciasHabilidades = Gdx.app.getPreferences("Habilidades");
 		Preferences preferenciasEnemigos = Gdx.app.getPreferences("Enemigos");
 		Preferences preferenciasOro = Gdx.app.getPreferences("Oro");
-		if(!preferenciasValidacion.get().toString().equals("{}")) {
+		if(preferenciasValidacion.get().toString().equals("{}")) {
 			Preferences p = Gdx.app.getPreferences("Enemigos");
 			preferenciasHeroes.putString("1", "1-Ehtoas-Guerrero-100-0-Corto-2-0-100-2-0-1-1-0-2,6-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png-518,173-glad_atacando.png");
 			preferenciasHeroes.putString("2", "2-Althalas-Mago-100-100-Largo-2-0-40-2-0-1-1-0-1,5-1-Uno de los guardianes de la luz, acabó sus estudios en el Circulo de Hechiceros y se unio en la lucha contra la oscuridad-mago_caminando.png-mago.png-346,173-mago_atacando.png");
