@@ -61,7 +61,7 @@ public class pantallaSplash implements Screen {
         }
         batch.begin();
 
-        texto.mostrarMensaje(batch,"Campus Estado de México",ANCHO_MUNDO/2,ALTO_MUNDO/2.7f);
+        texto.mostrarMensaje(batch,"Campus Estado de México",ANCHO_MUNDO/2,ALTO_MUNDO/3.2f);
 
         batch.end();
 
