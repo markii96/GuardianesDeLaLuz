@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -39,7 +40,7 @@ public  class  Habilidad {
     private Animation animacionA;
     private float timerAnimacion;
     private Texture texturaAnimacion;
-
+    private Sound soundAttack;
     public Habilidad(String id, String nombre, int tiempo, String tipo, int disponibilidad, String textura, String animacion, int indice,String texturaReutilizacion,String tono) {
         this.id = id;
         this.nombre = nombre;
@@ -48,7 +49,7 @@ public  class  Habilidad {
         this.disponibilidad = disponibilidad;
         this.textura = textura;
         this.tono = tono;
-
+        soundAttack = Gdx.audio.newSound(Gdx.files.internal(tono));
         this.animacion = animacion;
         this.indice = indice;
         sprite = new Sprite(new Texture(textura));
@@ -62,17 +63,23 @@ public  class  Habilidad {
         timerAnimacion = 0;
     }
 
-    public void draw (SpriteBatch batch, ArrayList<Habilidad> habilidadUsada,ArrayList<Heroe> heroeHabilidad,int i) {
+    public Sound getSoundAttack() {
+        return soundAttack;
+    }
+
+    public void setSoundAttack(Sound soundAttack) {
+        this.soundAttack = soundAttack;
+    }
+
+    public void draw (SpriteBatch batch, ArrayList<Habilidad> habilidadUsada, ArrayList<Heroe> heroeHabilidad, int i) {
         sprite.setTexture(new Texture(texturaReutilizacion));
         TextureRegion region;
         timerAnimacion += Gdx.graphics.getDeltaTime();
         region = animacionA.getKeyFrame(timerAnimacion);
-        Music music = Gdx.audio.newMusic(Gdx.files.internal(tono));
-        music.setLooping(true);
 
         if(timerAnimacion<1) {
             batch.draw(region, sprite.getX(), sprite.getY());
-            music.play();
+            //soundAttack.play();
         }
         if(timerAnimacion>tiempo){
             timerAnimacion = 0;
@@ -82,7 +89,7 @@ public  class  Habilidad {
             }
             habilidadUsada.remove(i);
             heroeHabilidad.remove(i);
-            music.pause();
+            //music.pause();
 
         }
     }

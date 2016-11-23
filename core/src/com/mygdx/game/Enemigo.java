@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.StringBuilder;
+
 
 /**
  * Created by LUISRICARDO on 10/20/2016.

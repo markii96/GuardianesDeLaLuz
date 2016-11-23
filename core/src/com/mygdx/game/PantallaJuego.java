@@ -590,7 +590,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         for (int i =0; i<botonesHabilidades.size();i++){
             if(botonesHabilidades.get(i).getBoundingRectangle().contains(x,y)){
                 band=1;
-
+                heroeSel.getHabilidades().get(i).getSoundAttack().play();
                 switch (Integer.parseInt(heroeSel.getHabilidades().get(i).getId())){
                     case 1:
                     case 3:
