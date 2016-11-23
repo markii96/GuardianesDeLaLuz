@@ -35,7 +35,7 @@ public class Cristal extends seudoSprite{
         this.estado = Estado.VIVIR;
         this.sprite = new Sprite(textura);
         this.sprite.setX(10);
-        this.sprite.setY(50);
+        this.sprite.setY(150);
 
         barraVida = new Vida(this, new Texture("vidaLlena.png"), new Texture("vidaVacia.png"));
     }
