@@ -133,11 +133,7 @@ public class PantallaTaberna implements Screen {
 
         escena = new Stage();
 
-
-
         dato1 = Integer.parseInt(dato);
-
-
 
         //listeners
 
@@ -169,8 +165,10 @@ public class PantallaTaberna implements Screen {
         btnCara1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                btnMejorar.setPosition(900,0);
+                btnComprar.setPosition(2000,2000);
                 idTexto = 1;
-                imagenHeroe.setPosition(900,350);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
                 imagenHeroe = new Sprite(new Texture("heroe1.png"));
                 escena.addActor(btnMejorar);
             }
@@ -179,8 +177,10 @@ public class PantallaTaberna implements Screen {
         btnCara2.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                btnMejorar.setPosition(900,0);
+                btnComprar.setPosition(2000,2000);
                 idTexto = 2;
-                imagenHeroe.setPosition(900,350);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
                 imagenHeroe = new Sprite(new Texture("heroe2.png"));
                 escena.addActor(btnMejorar);
             }
@@ -190,7 +190,12 @@ public class PantallaTaberna implements Screen {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                btnComprar.setPosition(900,0);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
                 imagenHeroe = new Sprite(new Texture("heroe3_1.png"));
+                idTexto=5;
+                btnMejorar.setPosition(2000,2000);
+
                 escena.addActor(btnComprar);
             }
         });
@@ -198,8 +203,10 @@ public class PantallaTaberna implements Screen {
         btnCara3.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                btnComprar.setPosition(2000,2000);
+                btnMejorar.setPosition(900,0);
                 idTexto = 3;
-                imagenHeroe.setPosition(900,350);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
 
                     imagenHeroe = new Sprite(new Texture("heroe3.png"));
                     escena.addActor(btnMejorar);
@@ -219,8 +226,10 @@ public class PantallaTaberna implements Screen {
         btnCara4.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                btnComprar.setPosition(2000,2000);
+                btnMejorar.setPosition(900,0);
                 idTexto = 4;
-                imagenHeroe.setPosition(900,350);
+                imagenHeroe.setPosition(ANCHO_MUNDO*.75f,ALTO_MUNDO*.8f);
                 imagenHeroe = new Sprite(new Texture("heroe4.png"));
                 escena.addActor(btnMejorar);
             }
@@ -246,11 +255,13 @@ public class PantallaTaberna implements Screen {
             btnCara3_1.setPosition(2000,2000);
             btnCara3.setPosition(350,550);
 
+
         }
 
         if(dato1==0) {
             btnCara3.setPosition(2000,2000);
             btnCara3_1.setPosition(350,550);
+
         }
 
         escena.addActor(btnCara4);
@@ -284,33 +295,38 @@ public class PantallaTaberna implements Screen {
         texto.mostrarMensaje(batch,"",0,200);
 
         if(idTexto==1){
-            texto.mostrarMensaje(batch,"Uno de los guardianes de la luz, su propósito es",400,150);
-            texto.mostrarMensaje(batch,"ayudar a la gente y salvar a la mayor cantidad",380,120);
-            texto.mostrarMensaje(batch,"de inocentes posibles.",200,90);
+            texto.mostrarMensaje(batch,"Uno de los guardianes de la luz, su propósito es",400,ALTO_MUNDO/4);
+            texto.mostrarMensaje(batch,"ayudar a la gente y salvar a la mayor cantidad",380,ALTO_MUNDO/4.8f);
+            texto.mostrarMensaje(batch,"de inocentes posibles.",200,ALTO_MUNDO/5.8f);
 
         }
 
         if(idTexto==3){
-            texto.mostrarMensaje(batch,"Uno de los Guardianes de la luz, dejó su pueblo",400,150);
-            texto.mostrarMensaje(batch,"para unirse a la aventura para salvar la luz",360,120);
-            texto.mostrarMensaje(batch,"del mundo.",130,90);
+            texto.mostrarMensaje(batch,"Uno de los Guardianes de la luz, dejó su pueblo",400,ALTO_MUNDO/4);
+            texto.mostrarMensaje(batch,"para unirse a la aventura para salvar la luz",360,ALTO_MUNDO/4.8f);
+            texto.mostrarMensaje(batch,"del mundo.",130,ALTO_MUNDO/5.8f);
 
         }
         if(idTexto==2){
 
-            texto.mostrarMensaje(batch,"Uno de los Guardianes de la luz, acabó sus",355,150);
-            texto.mostrarMensaje(batch,"estudios en el Círculo de Hechiceros y se unió",380,120);
-            texto.mostrarMensaje(batch,"a la lucha contra la oscuridad.",250,90);
+            texto.mostrarMensaje(batch,"Uno de los Guardianes de la luz, acabó sus",355,ALTO_MUNDO/4);
+            texto.mostrarMensaje(batch,"estudios en el Círculo de Hechiceros y se unió",380,ALTO_MUNDO/4.8f);
+            texto.mostrarMensaje(batch,"a la lucha contra la oscuridad.",250,ALTO_MUNDO/5.8f);
 
         }
         if(idTexto==4){
 
-            texto.mostrarMensaje(batch,"Asesino a sueldo. Un día se encuentra con los",370,150);
-            texto.mostrarMensaje(batch,"guardianes y se une a ellos. Tal vez no es la mejor",400,120);
-            texto.mostrarMensaje(batch,"de sus decisiones pero pone el pan en la mesa",370,90);
+            texto.mostrarMensaje(batch,"Asesino a sueldo. Un día se encuentra con los",370,ALTO_MUNDO/4);
+            texto.mostrarMensaje(batch,"guardianes y se une a ellos. Tal vez no es la mejor",400,ALTO_MUNDO/4.8f);
+            texto.mostrarMensaje(batch,"de sus decisiones pero pone el pan en la mesa",370,ALTO_MUNDO/5.8f);
 
         }
 
+        if(idTexto==5){
+
+            texto.mostrarMensaje(batch,"",0,0);
+
+        }
 
         batch.end();
 

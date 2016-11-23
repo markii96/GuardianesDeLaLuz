@@ -50,7 +50,7 @@ public class PantallaMapa implements Screen {
     private java.lang.String cadena2= niveles.getString("2");
     private java.lang.String cadena3=niveles.getString("3");
     private java.lang.String cadena4= niveles.getString("4");
-    //private java.lang.String cadena5 = niveles.getString("5");
+    private java.lang.String cadena5 = niveles.getString("5");
 
 
 
@@ -230,14 +230,14 @@ public class PantallaMapa implements Screen {
                 }
             }
         });
-        /*
+
         btn5.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                juego.setScreen(new PantallaJuego(juego,"5"));
+                juego.setScreen(new PantallaJuego(juego,"5",heroesSeleccionados));
             }
         });
-        */
+
 
 
         Image imgFondo = new Image(texturaFondo);
