@@ -28,19 +28,12 @@ public class Heroe extends seudoSprite {
     private Estado estado;
     private Sprite sprite;
     private float[] posicion = new float[2];
-
     public Sound getSoundAttack() {
         return soundAttack;
     }
-
-    public void setSoundAttack(Sound soundAttack) {
-        this.soundAttack = soundAttack;
-    }
-
     private Sound soundAttack = Gdx.audio.newSound(Gdx.files.internal("sword-gesture2.mp3"));
     float x, y;
     private float xFinal, yFinal;
-
     private String nombre;
     private String clase;
     private int danoFisico;
@@ -94,10 +87,6 @@ public class Heroe extends seudoSprite {
 
     public int getMaxVitalidad() {
         return maxVitalidad;
-    }
-
-    public void setMaxVitalidad(int maxVitalidad) {
-        this.maxVitalidad = maxVitalidad;
     }
 
     public Heroe(String id, int x, int y) {
@@ -277,11 +266,9 @@ public class Heroe extends seudoSprite {
 
     public enum Estado{
         ATACANDO,
-        GOLPEADO,
         CAMINANDO,
         PARADO,
         MORIR,
-        USANDOHABILDAD,
         DESELECCIONADO,
         SELECCIONADO //ESTA SE USARA PARA MOSTRAR LAS HABILIDADES DEL HEROE
     }
@@ -352,13 +339,11 @@ public class Heroe extends seudoSprite {
     public void setTextura(Texture textura) {
         this.textura = textura;
     }
-    public boolean isDireccion() {
-        return direccion;
-    }
 
     public void setDireccion(boolean direccion) {
         this.direccion = direccion;
     }
+
     private class Vida {
         private Sprite barraVidaVacia;
         private Sprite barraVidaLlena;

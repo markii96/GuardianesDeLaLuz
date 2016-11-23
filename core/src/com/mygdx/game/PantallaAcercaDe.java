@@ -213,6 +213,11 @@ public class PantallaAcercaDe implements Screen {
 
     @Override
     public void dispose() {
-
+        texturaBtnBack.dispose();
+        texturaFondo.dispose();
+        texturaHector.dispose();
+        texturaJosep.dispose();
+        texturaMarco.dispose();
+        texturaRichard.dispose();
     }
 }

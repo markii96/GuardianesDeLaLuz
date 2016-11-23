@@ -35,7 +35,6 @@ public class PantallaFin implements Screen {
         camara.position.set(ANCHO_MUNDO/2,ALTO_MUNDO/2,0);
         camara.update();
         vista = new FitViewport(ANCHO_MUNDO,ALTO_MUNDO);
-
     }
 
     @Override

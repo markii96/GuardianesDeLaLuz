@@ -64,24 +64,8 @@ public class Nivel {
         return id;
     }
 
-    public void setEnemigos(String[] enemigos) {
-        this.enemigos = enemigos;
-    }
-
     public int getCantEnemigos() {
         return cantEnemigos;
-    }
-
-    public void setCantEnemigos(int cantEnemigos) {
-        this.cantEnemigos = cantEnemigos;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
     }
 
     public String[] getEnemigos() {
@@ -92,60 +76,16 @@ public class Nivel {
         return heroes;
     }
 
-    public Integer getRecompensaOro() {
-        return recompensaOro;
-    }
-
-    public Integer getRecompensaExp() {
-        return recompensaExp;
-    }
-
-    public Boolean getDisponibilidad() {
-        return disponibilidad;
-    }
-
     public Texture getTextura() {
         return textura;
-    }
-
-    public Enum getEstado() {
-        return estado;
     }
 
     public Cristal getCristal() {
         return cristal;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public void setRecompensaOro(Integer recompensaOro) {
-        this.recompensaOro = recompensaOro;
-    }
-
-    public void setRecompensaExp(Integer recompensaExp) {
-        this.recompensaExp = recompensaExp;
-    }
-
-    public void setDisponibilidad(Boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
     public void setTextura(Texture textura) {
         this.textura = textura;
-    }
-
-    public void setEstado(Enum estado) {
-        this.estado = estado;
-    }
-
-    public void setCristal(Cristal cristal) {
-        this.cristal = cristal;
     }
 
     public enum Estado{
