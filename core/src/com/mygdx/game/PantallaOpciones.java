@@ -66,7 +66,7 @@ public class PantallaOpciones implements Screen {
         botonSonidoOff = new Texture("off.png");
         texturaFondo = new Texture("fondo_opciones.png");
         texturaBtnBack = new Texture("atras.png");
-        botonMejoras = new Texture("mejoras.png");
+        botonMejoras = new Texture("mejorar.png");
 
 
         TextureRegionDrawable trdBtnBack = new TextureRegionDrawable(new TextureRegion(texturaBtnBack));
