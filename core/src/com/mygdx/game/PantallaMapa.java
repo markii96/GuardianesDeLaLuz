@@ -108,13 +108,6 @@ public class PantallaMapa implements Screen {
         Image imgMoneda = new Image(texturaMoneda);
         imgMoneda.setPosition(875,650);
 
-        //seleccion de Heroes
-        /*
-        texturaCara1 = new Texture("cara1.png");
-        texturaCara2 = new Texture("cara2.png");
-        texturaCara3 = new Texture("cara3.png");
-        texturaCara4 = new Texture("cara4.png");
-        */
         Preferences p = Gdx.app.getPreferences("Heroes");
 
         Map heroes = p.get();
@@ -248,7 +241,9 @@ public class PantallaMapa implements Screen {
         btn5.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                juego.setScreen(new PantallaJuego(juego,"5",heroesSeleccionados));
+                if(heroesSeleccionados.size()==3) {
+                    juego.setScreen(new PantallaJuego(juego, "5", heroesSeleccionados));
+                }
             }
         });
 

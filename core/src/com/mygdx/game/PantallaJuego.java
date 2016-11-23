@@ -78,10 +78,10 @@ public class PantallaJuego implements Screen, InputProcessor {
     private ArrayList<Sprite> botonesHabilidades = new ArrayList<Sprite>();
     private ArrayList<Habilidad> habilidadesUsadas = new ArrayList<Habilidad>();
     private ArrayList<Heroe> heroeHabilidad = new ArrayList<Heroe>();
-
+    private String nivelId;
     public PantallaJuego(Juego juego,String nivelId,ArrayList<String> idHeroes) {
 
-
+        this.nivelId = nivelId;
         this.juego = juego;
         for (int i = 0; i < idHeroes.size(); i++) {
             heroesId[i]= idHeroes.get(i);
@@ -446,6 +446,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
 
                     batch.draw(texturaPerdiste, 400, 200);
+                }else{
+                    batch.draw(texturaPerdiste, 400, 200);
                 }
             }
             Texture back = new Texture("atras.png");
@@ -547,7 +549,12 @@ public class PantallaJuego implements Screen, InputProcessor {
         float y = v.y;
         if(estado == Estado.PERDER || estado == Estado.GANAR) {
             if (x <= btnAtras.getX() + btnAtras.getWidth() && x >= btnAtras.getX() && y <= btnAtras.getY() + btnAtras.getHeight() && y >= btnAtras.getY()) {
-                juego.setScreen(new PantallaMapa(juego));
+                if(nivelId.equals("5")){
+                    juego.setScreen(new PantallaFin(juego));
+                }else{
+                    juego.setScreen(new PantallaMapa(juego));
+                }
+
                 return true;
             }
         }else{
