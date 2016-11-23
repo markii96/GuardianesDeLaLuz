@@ -300,7 +300,7 @@ public class PantallaMapa implements Screen {
         escena.draw();
         batch.begin();
 
-        texto.mostrarMensaje(batch,"Selecciona a 3 heroes",ANCHO_MUNDO*.23f,ALTO_MUNDO*.18f);
+        texto.mostrarMensaje(batch,"Selecciona a 3 heroes",ANCHO_MUNDO*.23f,ALTO_MUNDO*.23f);
         texto1.mostrarMensaje(batch,cantidadOro+"",ANCHO_MUNDO*.8f,ALTO_MUNDO*.9375f);
 
         batch.end();
