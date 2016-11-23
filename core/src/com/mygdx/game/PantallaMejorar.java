@@ -27,7 +27,7 @@ public class PantallaMejorar implements Screen {
 
     private Juego juego;
     Preferences heroes = Gdx.app.getPreferences("Heroes");
-    Preferences oro = Gdx.app.getPreferences("Heroes");
+    //Preferences oro = Gdx.app.getPreferences("Heroes");
     private int id;
 
     private Texture texturaFondo;
@@ -113,89 +113,7 @@ public class PantallaMejorar implements Screen {
         btnMejorar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //proceso
-                int nivelMejora=0;
-                int oroTotal =oro.getInteger("1");
-
-                java.lang.String cadena = heroes.getString("1");
-                java.lang.String[] lista = cadena.split("-");
-                java.lang.String dato = lista[3];
-                int vida1=0;
-                int danoFisico1 =0;
-                int vitalidad1 =0;
-                int costoVitalidad1=0;
-                int nivelFisico1=0;
-                int costoFisico1=0;
-
-                if(id==1){
-
-                    switch (vida1){
-                        case 100: vitalidad1 = 1; break;
-                        case 150: vitalidad1 = 2;break;
-                        case 200: vitalidad1 = 3; break;
-                        case 250: vitalidad1 = 4; break;
-                        case 300: vitalidad1 = 5; break;
-                    }
-
-                    switch (vitalidad1){
-
-                        case 1: costoVitalidad1 = 250; break;
-                        case 2: costoVitalidad1 = 500; break;
-                        case 3: costoVitalidad1 = 750; break;
-                        case 4: costoVitalidad1 = 1000; break;
-                        case 5: costoVitalidad1 = 1250; break;
-
-                    }
-
-                    switch (danoFisico1){
-                        case 100: nivelFisico1 = 1;break;
-                        case 120: nivelFisico1 = 2;break;
-                        case 140: nivelFisico1 = 3;break;
-                        case 160: nivelFisico1 = 4;break;
-                        case 180: nivelFisico1 = 5;break;
-                    }
-
-                    switch (nivelFisico1){
-
-                        case 1: costoFisico1 = 200;break;
-                        case 2: costoFisico1 = 400;break;
-                        case 3: costoFisico1 = 600;break;
-                        case 4: costoFisico1 = 800;break;
-                        case 5: ;break;
-                    }
-
-
-                }
-
-                if(id==2){
-
-                }
-
-                if(id==3){
-
-                }
-
-                if(id==4){
-
-                }
-
-
-                int costoMejora=Integer.valueOf(dato);
-                if(nivelMejora>=1 && nivelMejora<=4){
-
-                    if(oroTotal < costoMejora){
-                        idMensaje =2;
-                    }
-
-                    else{
-                        idMensaje=1;
-                    }
-
-                }
-
-                else{
-                    idMensaje=3;
-                }
+               idMensaje=1;
             }
         });
 

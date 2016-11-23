@@ -23,7 +23,7 @@ public class pantallaSplash implements Screen {
     private int cont = 0;
     private Sprite fondoSp;
 
-    private Texto1 texto;
+    //private Texto1 texto;
 
     public pantallaSplash(Juego juego){
         this.juego = juego;
@@ -31,7 +31,7 @@ public class pantallaSplash implements Screen {
     @Override
     public void show() {
 
-        texto = new Texto1();
+        //texto = new Texto1();
 
         fondo = new Texture("logoTec.jpg");
         fondoSp = new Sprite(fondo);
@@ -61,7 +61,7 @@ public class pantallaSplash implements Screen {
         }
         batch.begin();
 
-        texto.mostrarMensaje(batch,"Campus Estado de México",ANCHO_MUNDO/2,ALTO_MUNDO/3.2f);
+        //texto.mostrarMensaje(batch,"Campus Estado de México",ANCHO_MUNDO/2,ALTO_MUNDO/3.2f);
 
         batch.end();
 
