@@ -496,7 +496,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     public void dispose() {
         batch.dispose();
         music.dispose();
-        texturaPerdiste.dispose();
+        //texturaPerdiste.dispose();
         texturaFondo.dispose();
         texturaHeroe1.dispose();
         texturaHeroe2.dispose();
@@ -547,7 +547,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
             if(btnSalir.getBoundingRectangle().contains(x,y)){
                 band=1;
-
+                this.dispose();
                 juego.setScreen(new MenuPrincipal(juego));
 
             }

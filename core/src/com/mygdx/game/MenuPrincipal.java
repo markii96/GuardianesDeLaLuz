@@ -179,7 +179,7 @@ public class MenuPrincipal implements Screen {
 		assetManager.load("jugar.png", Texture.class);
 		assetManager.load("opciones.png", Texture.class);
 		assetManager.load("acerca de.png", Texture.class);
-		assetManager.load("menu.png", Texture.class);
+		//assetManager.load("menu.png", Texture.class);
 
 		assetManager.finishLoading();
 		texturaFondo=assetManager.get("fondo.png");
@@ -188,7 +188,7 @@ public class MenuPrincipal implements Screen {
 		texturaBtnJugar = assetManager.get("jugar.png");
 		texturaBtnOpciones = assetManager.get("opciones.png");
 		texturaBtnAcercaDe = assetManager.get("acerca de.png");
-		texturaTitulo = assetManager.get("menu.png");
+		//texturaTitulo = assetManager.get("menu.png");
 	}
 
 
@@ -254,7 +254,7 @@ public class MenuPrincipal implements Screen {
 	public void dispose () {
 		texturaFondo.dispose();
 		texturaBtnAcercaDe.dispose();
-		texturaTitulo.dispose();
+		//texturaTitulo.dispose();
 		texturaBtnOpciones.dispose();
 		texturaBtnJugar.dispose();
 		music.dispose();
