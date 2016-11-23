@@ -35,6 +35,10 @@ public class PantallaJuego implements Screen, InputProcessor {
     private float[] posicion = new float[2];
     private Texture texturaPerdiste;
     Preferences validacion = Gdx.app.getPreferences("Validacion");
+    Preferences nivelPref = Gdx.app.getPreferences("Niveles");
+    Preferences oro = Gdx.app.getPreferences("Oro");
+
+    String[] cadenaNivel;
 
     private SpriteBatch batch;
 
@@ -426,6 +430,21 @@ public class PantallaJuego implements Screen, InputProcessor {
                     }
                     p.putString((nivel.getId()+1)+"",respuesta);
                     p.flush();
+
+                    String dato1 =nivelPref.getString(String.valueOf(nivel.getId()));
+                    String[] datos1 = dato1.split("-");
+                    String guardarOro = datos1[4];
+                    int guardarOro1 = Integer.valueOf(guardarOro);
+
+                    String Oro1 = oro.getString("1");
+                    int Oro2 = Integer.valueOf(Oro1);
+                    Oro1 = String.valueOf(Oro1);
+                    int sumar = Oro2+guardarOro1;
+                    System.out.println(Oro2+ "+"+guardarOro1);
+                    oro.putString("1",String.valueOf(sumar));
+                    oro.flush();
+
+
                     batch.draw(texturaPerdiste, 400, 200);
                 }
             }

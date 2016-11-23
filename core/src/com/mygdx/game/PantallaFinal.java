@@ -72,6 +72,7 @@ public class PantallaFinal implements Screen {
 
         Gdx.input.setInputProcessor(escena);
 
+        texturaFondo = new Texture("end game.png");
         Image imgFondo = new Image(texturaFondo);
 
         float escalaX = ancho / imgFondo.getWidth();
@@ -97,7 +98,7 @@ public class PantallaFinal implements Screen {
 
         batch.begin();
 
-        texto.mostrarMensaje(batch,"",300,600);
+        //texto.mostrarMensaje(batch,"",300,600);
 
         batch.end();
 

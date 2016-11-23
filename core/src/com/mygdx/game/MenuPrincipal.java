@@ -56,6 +56,7 @@ public class MenuPrincipal implements Screen {
 		Preferences preferenciasHeroes = Gdx.app.getPreferences("Heroes");
 		Preferences preferenciasHabilidades = Gdx.app.getPreferences("Habilidades");
 		Preferences preferenciasEnemigos = Gdx.app.getPreferences("Enemigos");
+		Preferences preferenciasOro = Gdx.app.getPreferences("Oro");
 		//if(!preferenciasValidacion.get().toString().equals("{}")){
 			Preferences p = Gdx.app.getPreferences("Enemigos");
 			preferenciasHeroes.putString("1","1-Ehtoas-Guerrero-100-0-Corto-2-0-100-2-0-1-1-0-2,6-1-Uno de los guardianes de la luz, su propósito es ayudar a la gente y salvar la mayor cantidad de inocentes posibles-Glad.png-Glad.png-518,173-glad_atacando.png");
@@ -66,7 +67,7 @@ public class MenuPrincipal implements Screen {
 			preferenciasNiveles.putString("1","1-Tuorial-Emprende la nueva aventura-1,2-100-1000-1-campo.png-7");
 			preferenciasNiveles.putString("2","2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-0-ciudad.png-9");
 			preferenciasNiveles.putString("3","3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-10");
-			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-0-nieve.png-14");
+			preferenciasNiveles.putString("4","4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3-250-1800-1-nieve.png-14");
 			preferenciasNiveles.putString("5","5-Volcan-Por fin, la base dle enemigo, la lucha por la tierra comienza ahora-1,2,3,4-250-1800-0-volcan.png-17");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1","1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-70-bola_fuego_reu.png-bola_fuego.mp3");
@@ -88,6 +89,9 @@ public class MenuPrincipal implements Screen {
 			preferenciasValidacion.putString("1", "1");
 			preferenciasValidacion.putString("2", "1");//oro
 			preferenciasValidacion.flush();
+
+			preferenciasOro.putString("1","0");
+			preferenciasOro.flush();
 
 			//Gdx.app.log("lol",p.getString("2").toString());
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -36,6 +37,10 @@ public class PantallaMapa implements Screen {
     private Texture textura3;
     private Texture textura4;
     private Texture textura5;
+
+    private Texture texturaMoneda;
+
+    private Texto1 texto;
     /*
     private Texture texturaCara1;
     private Texture texturaCara2;
@@ -46,13 +51,15 @@ public class PantallaMapa implements Screen {
 
     private Texture texturaBtnTaberna;
     Preferences niveles = Gdx.app.getPreferences("Niveles");
+    Preferences oro = Gdx.app.getPreferences("Oro");
+
     private java.lang.String cadena1=niveles.getString("1");
     private java.lang.String cadena2= niveles.getString("2");
     private java.lang.String cadena3=niveles.getString("3");
     private java.lang.String cadena4= niveles.getString("4");
     private java.lang.String cadena5 = niveles.getString("5");
 
-
+    private String guardarOro = oro.getString("1");
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -60,7 +67,7 @@ public class PantallaMapa implements Screen {
     private final int ALTO_MUNDO = 800;
 
 
-
+    private SpriteBatch batch;
 
     private String lineaHeroe;
     private String[] datosHeroe;
@@ -76,6 +83,9 @@ public class PantallaMapa implements Screen {
 
     @Override
     public void show() {
+
+        texto = new Texto1();
+        batch = new SpriteBatch();
 
         camara = new OrthographicCamera(ANCHO_MUNDO,ALTO_MUNDO);
         camara.position.set(ANCHO_MUNDO/2,ALTO_MUNDO/2,0);
@@ -93,6 +103,10 @@ public class PantallaMapa implements Screen {
         textura3 = new Texture("3.png");
         textura4 = new Texture("4.png");
         textura5 = new Texture("5.png");
+        texturaMoneda = new Texture("moneda.png");
+
+        Image imgMoneda = new Image(texturaMoneda);
+        imgMoneda.setPosition(875,650);
 
         //seleccion de Heroes
         /*
@@ -225,8 +239,8 @@ public class PantallaMapa implements Screen {
         btn4.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(heroesSeleccionados.size()==4){
-                    juego.setScreen(new PantallaJuego(juego,"1",heroesSeleccionados));
+                if(heroesSeleccionados.size()==3){
+                    juego.setScreen(new PantallaJuego(juego,"4",heroesSeleccionados));
                 }
             }
         });
@@ -251,7 +265,10 @@ public class PantallaMapa implements Screen {
         java.lang.String[] lista2 = cadena2.split("-");
         java.lang.String[] lista3 = cadena3.split("-");
         java.lang.String[] lista4 = cadena4.split("-");
-        //java.lang.String[] lista5 = cadena5.split("-");
+        java.lang.String[] lista5 = cadena5.split("-");
+
+
+
 
 
         int num1= Integer.parseInt(lista1[6]);
@@ -259,7 +276,7 @@ public class PantallaMapa implements Screen {
         int num3= Integer.parseInt(lista3[6]);
         int num4= Integer.parseInt(lista4[6]);
 
-        //int num5= Integer.parseInt(lista5[6]);
+        int num5= Integer.parseInt(lista5[6]);
 
 
 
@@ -272,11 +289,12 @@ public class PantallaMapa implements Screen {
             escena.addActor(btn3);
         if(num4==1)
             escena.addActor(btn4);
-        //if(num5==1)
-          //  escena.addActor(btn1);
+        if(num5==1)
+            escena.addActor(btn5);
 
         escena.addActor(btnBack);
         escena.addActor(btnTaberna);
+        escena.addActor(imgMoneda);
         for(int i =0;i<botonesHeroes.size();i++){
             escena.addActor(botonesHeroes.get(i));
         }
@@ -289,8 +307,19 @@ public class PantallaMapa implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         escena.setViewport(vista);
+
+        int cantidadOro = Integer.parseInt(guardarOro);
+
         escena.draw();
 
+        batch.begin();
+        batch.end();
+
+        batch.begin();
+
+        texto.mostrarMensaje(batch,String.valueOf(cantidadOro),650,450);
+
+        batch.end();
     }
 
     @Override

@@ -286,8 +286,8 @@ public class PantallaTaberna implements Screen {
 
         imagenHeroe.setScale(.6f);
 
-        imagenHeroe.setX(500);
-        imagenHeroe.setY(75);
+        imagenHeroe.setX(ANCHO_MUNDO*.7f);
+        imagenHeroe.setY(ALTO_MUNDO*.8f);
         imagenHeroe.draw(batch);
 
 
