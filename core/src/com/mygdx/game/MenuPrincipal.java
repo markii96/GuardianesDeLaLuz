@@ -68,7 +68,7 @@ public class MenuPrincipal implements Screen {
 			preferenciasNiveles.putString("2", "2-La Ciudad Abandonada-Llegas a lo que fue alguna vez la ciudad mas rica del reino-1,2-120-1300-0-ciudad.png-9");
 			preferenciasNiveles.putString("3", "3-Bosque por siempre verde-la vegetacion te rodea, pero lo enemigos están cerca-1,2,3-200-1600-0-bosque.png-11");
 			preferenciasNiveles.putString("4", "4-Nieve-Te acerca a la base del enemigo, el peligro te rodea y los enemigos te acechan-1,2,3,4-250-1800-0-nieve.png-15");
-			preferenciasNiveles.putString("5", "5-Volcan-Por fin, la base dle enemigo, la lucha por la tierra comienza ahora-5-250-1800-0-volcan.png-18");
+			preferenciasNiveles.putString("5", "5-Volcan-Por fin, la base dle enemigo, la lucha por la tierra comienza ahora-4,5-250-1800-1-volcan.png-10");
 			preferenciasNiveles.flush();
 			preferenciasHabilidades.putString("1", "1-Bola de Fuego-4-uno-1-bola_fuego.png-bola_fuego_anim.png-70-bola_fuego_reu.png-bola_fuego.mp3");
 			preferenciasHabilidades.putString("2", "2-Dano-4-uno-1-aumentodano.png-dano_aumentado_anim.png-30-dano_aumentado_reu.png-aumento_dano.mp3");
@@ -84,6 +84,7 @@ public class MenuPrincipal implements Screen {
 			preferenciasEnemigos.putString("2", "2-Azathoth-600-1-2-7-corto-enviado de la oscuridad a arrasar con la vida orgánica del planeta-soulEater.png-soulEater_caminando.png-346,173-soulEater_atacando.png-518,172");
 			preferenciasEnemigos.putString("3", "3-Meatball-350-2-3-4-corto-sus despreciable forma es su castigo, encomendado a defender lo que alguna vez fue tuyo-meatball.png-meatball_caminando.png-346,173-meatball_atacando.png-518,172");
 			preferenciasEnemigos.putString("4", "4-Hidra-450-3-3-4-corto-por llenar-hidra.png-hidra_caminando.png-346,173-hidra_atacando.png-346,173");
+			preferenciasEnemigos.putString("5", "5-Chtulhu-800-5-3-4-corto-por llenar-hidra.png-chtulhu_caminando.png-346,173-chtulhu_atacando.png-346,173");
 
 			preferenciasEnemigos.flush();
 			preferenciasValidacion.putString("1", "1");
@@ -97,8 +98,6 @@ public class MenuPrincipal implements Screen {
 			//Gdx.app.log("lol",p.getString("2").toString());
 
 		validacion = preferenciasValidacion.getString("2");
-
-		//}
 	}
 
     public void create () {

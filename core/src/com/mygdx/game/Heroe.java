@@ -159,8 +159,6 @@ public class Heroe extends seudoSprite {
         String[] medidas = datos[19].split(",");
         medidax = Integer.parseInt(medidas[0])/4;
         mediday = Integer.parseInt(medidas[1]);
-
-
         TextureRegion texturaCompleta = new TextureRegion(this.textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(medidax,mediday);
         animacion = new Animation(0.25f, texturaPersonaje[0][1],
